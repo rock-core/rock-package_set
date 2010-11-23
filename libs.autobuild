@@ -1,0 +1,30 @@
+##### Control-related libraries
+cmake_package 'control/motor_controller'
+cmake_package 'control/trajectory_follower'
+cmake_package 'control/waypoint_navigation'
+
+##### Base implementation for data acquisition
+cmake_package 'drivers/iodrivers_base'
+cmake_package 'drivers/aggregator'
+
+##### Device drivers
+cmake_package 'drivers/canbus'
+cmake_package 'drivers/mb500'
+cmake_package 'drivers/vicon'
+cmake_package 'drivers/hokuyo'
+cmake_package 'drivers/xsens_imu'
+cmake_package 'drivers/dynamixel'
+cmake_package 'drivers/controldev'
+cmake_package 'drivers/parport'
+
+##### Planning
+cmake_package 'planning/corridor_planner'
+cmake_package 'planning/vfh_star'
+
+autotools_package 'external/libply' do |pkg|
+    pkg.using[:libtool] = true
+    pkg.using[:autoheader] = true
+end
+
+cmake_package 'slam/envire'
+

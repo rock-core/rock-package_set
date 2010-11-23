@@ -1,0 +1,41 @@
+name: rock
+
+imports:
+    - type: git
+      url: $GITORIOUS_ROOT/rock-base/autoproj.git
+      push_to: $GITORIOUS_PUSH_ROOT/rock-base/autoproj.git
+
+version_control:
+    - drivers/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-control/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-control/$PACKAGE_BASENAME.git
+
+    - drivers/orogen/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
+
+
+    - planning/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-planning/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-planning/$PACKAGE_BASENAME.git
+
+    - planning/orogen/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-planning/orogen-$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-planning/orogen-$PACKAGE_BASENAME.git
+
+
+    - slam/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/$PACKAGE_BASENAME.git
+
+    - slam/orogen/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
+
+

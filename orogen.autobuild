@@ -1,0 +1,17 @@
+if package_enabled?('orogen')
+    orogen_package 'drivers/orogen/trajectory_follower'
+    orogen_package 'drivers/orogen/waypoint_navigation'
+
+    orogen_package 'drivers/orogen/canbus'
+    orogen_package 'drivers/orogen/gps'
+    orogen_package 'drivers/orogen/vicon'
+    orogen_package 'drivers/orogen/hokuyo'
+    orogen_package 'drivers/orogen/xsens_imu'
+    orogen_package 'drivers/orogen/dynamixel'
+    orogen_package 'drivers/orogen/controldev'
+    orogen_package 'drivers/orogen/parport'
+    orogen_package 'drivers/orogen/wifimon'
+else
+    Autoproj.warn "the rise.toolchain package set is not enabled, skipping the oroGen packages"
+end
+
