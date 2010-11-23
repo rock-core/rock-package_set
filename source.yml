@@ -6,15 +6,25 @@ imports:
       push_to: $GITORIOUS_PUSH_ROOT/rock-base/autoproj.git
 
 version_control:
-    - drivers/.*:
+    - control/.*:
         type: git
         url: $GITORIOUS_ROOT/rock-control/$PACKAGE_BASENAME.git
         push_to: $GITORIOUS_PUSH_ROOT/rock-control/$PACKAGE_BASENAME.git
 
-    - drivers/orogen/.*:
+    - control/orogen/.*:
         type: git
         url: $GITORIOUS_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
         push_to: $GITORIOUS_PUSH_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
+
+    - drivers/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-drivers/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-drivers/$PACKAGE_BASENAME.git
+
+    - drivers/orogen/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-drivers/orogen-$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-drivers/orogen-$PACKAGE_BASENAME.git
 
 
     - planning/.*:
