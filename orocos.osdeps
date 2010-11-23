@@ -1,0 +1,49 @@
+boost:
+    debian,ubuntu:
+        - libboost-dev
+        - libboost-graph-dev
+        - libboost-program-options-dev
+        - libboost-regex-dev
+        - libboost-thread-dev
+        - libboost-filesystem-dev
+    gentoo: dev-libs/boost
+
+antlr:
+    debian,ubuntu: [antlr, libantlr-dev]
+    gentoo: dev-java/antlr_pic
+omniorb:
+    debian,ubuntu: [omniidl4, libomniorb4-dev, omniorb4-nameserver]
+    gentoo: net-misc/omniORB
+tao:
+    debian,ubuntu: [libtao-orbsvcs-dev, tao-idl, tao-naming, gperf-ace]
+
+readline:
+    debian,ubuntu: [libreadline5-dev]
+    gentoo: sys-libs/readline
+ncurses:
+    debian,ubuntu: [libncurses5-dev]
+    gentoo: sys-libs/ncurses
+doxygen:
+    debian,ubuntu: [doxygen]
+    gentoo: app-doc/doxygen
+qtruby:
+    debian,ubuntu:
+        libqt4-ruby1.8
+    gentoo:
+        kde-base/kdebindings-ruby
+graphviz:
+    debian,ubuntu:
+        graphviz
+    gentoo:
+        graphviz
+
+gccxml:
+    debian,ubuntu:
+        gccxml
+
+hoe: gem
+flexmock: gem
+webgen: gem
+coderay: gem
+rice: gem
+

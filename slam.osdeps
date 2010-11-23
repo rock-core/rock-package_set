@@ -1,0 +1,24 @@
+gdal:
+    debian,ubuntu: [libgdal1-dev]
+    gentoo: sci-libs/gdal
+
+yaml:
+    debian,ubuntu: [libyaml-dev]
+    gentoo:
+        dev-libs/libyaml
+
+libkdtree:
+    debian,ubuntu: [libkdtree++-dev]
+    gentoo:
+        libkdtree++              #actually, there is no ebuild.
+	
+cgal:
+    debian,ubuntu: [libcgal-dev]
+    gentoo:
+        sci-mathematics/cgal
+
+autoconf-archive:
+    debian,ubuntu: [autoconf-archive]
+    gentoo:
+        sys-devel/autoconf-archive
+
