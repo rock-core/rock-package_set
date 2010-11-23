@@ -38,6 +38,11 @@ version_control:
         push_to: $GITORIOUS_PUSH_ROOT/rock-planning/orogen-$PACKAGE_BASENAME.git
 
 
+    - external/libply:
+        type: git
+        url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/$PACKAGE_BASENAME.git
+
     - slam/.*:
         type: git
         url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
