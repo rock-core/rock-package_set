@@ -2,8 +2,8 @@ name: rock
 
 imports:
     - type: git
-      url: $GITORIOUS_ROOT/rock-base/autoproj.git
-      push_to: $GITORIOUS_PUSH_ROOT/rock-base/autoproj.git
+      url: $GITORIOUS_ROOT/rock-base/package_set.git
+      push_to: $GITORIOUS_PUSH_ROOT/rock-base/package_set.git
 
 version_control:
     - control/.*:
