@@ -16,6 +16,7 @@ cmake_package 'drivers/xsens_imu'
 cmake_package 'drivers/dynamixel'
 cmake_package 'drivers/controldev'
 cmake_package 'drivers/parport'
+cmake_package 'drivers/camera_interface'
 
 ##### Planning
 cmake_package 'planning/corridor_planner'
