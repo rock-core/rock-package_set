@@ -27,5 +27,6 @@ autotools_package 'external/libply' do |pkg|
     pkg.using[:autoheader] = true
 end
 
+##### Localisation and Mapping related packages
 cmake_package 'slam/envire'
-
+cmake_package 'slam/pose_ekf'
