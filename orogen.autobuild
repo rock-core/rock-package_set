@@ -1,6 +1,7 @@
 if package_enabled?('orogen')
     orogen_package 'control/orogen/trajectory_follower'
     orogen_package 'control/orogen/waypoint_navigation'
+    orogen_package 'control/orogen/skid4_control'
 
     orogen_package 'drivers/orogen/canbus'
     orogen_package 'drivers/orogen/gps'
