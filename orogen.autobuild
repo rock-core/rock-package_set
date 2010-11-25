@@ -15,6 +15,6 @@ if package_enabled?('orogen')
 
     orogen_package 'planning/orogen/corridor_planner'
 else
-    Autoproj.warn "the rise.toolchain package set is not enabled, skipping the oroGen packages"
+    Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
 
