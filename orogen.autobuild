@@ -12,6 +12,8 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/controldev'
     orogen_package 'drivers/orogen/parport'
     orogen_package 'drivers/orogen/wifimon'
+
+    orogen_package 'planning/orogen/corridor_planner'
 else
     Autoproj.warn "the rise.toolchain package set is not enabled, skipping the oroGen packages"
 end
