@@ -14,6 +14,8 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/wifimon'
 
     orogen_package 'planning/orogen/corridor_planner'
+
+    orogen_package 'slam/orogen/icp'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
