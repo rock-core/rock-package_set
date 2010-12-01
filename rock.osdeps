@@ -1,0 +1,127 @@
+opencv:
+    debian:
+        squeeze/sid:
+                - libcv-dev
+                - libcv2.1
+                - libhighgui-dev
+                - libhighgui2.1
+                - libcvaux-dev
+                - libcvaux2.1	
+    ubuntu:
+        9.04,9.10:
+                - libcv1
+                - libcv-dev
+        '10.04': 
+                - libcv4
+                - libcv-dev
+                - libhighgui4
+                - libhighgui-dev
+                - libcvaux4
+                - libcvaux-dev
+        '10.10': 
+                - libcv2.1
+                - libcv-dev
+                - libhighgui2.1
+                - libhighgui-dev
+                - libcvaux2.1
+                - libcvaux-dev
+    gentoo: media-libs/opencv
+
+sysfs:
+    debian,ubuntu: [libsysfs-dev]
+    gentoo:
+        sys-fs/sysfsutils
+
+gdal:
+    debian,ubuntu: [libgdal1-dev]
+    gentoo: sci-libs/gdal
+
+proj:
+    debian,ubuntu: [libproj-dev]
+    gentoo: sci-libs/proj
+
+libiw:
+    debian,ubuntu: [libiw-dev]
+    gentoo:
+        net-wireless/wireless-tools
+
+libgps:
+  debian,ubuntu: [libgps-dev]
+  gentoo:
+        sci-geosciences/gpsd
+
+rice: gem
+boost:
+    debian,ubuntu:
+        - libboost-dev
+        - libboost-graph-dev
+        - libboost-program-options-dev
+        - libboost-regex-dev
+        - libboost-thread-dev
+        - libboost-filesystem-dev
+    gentoo: dev-libs/boost
+
+antlr:
+    debian,ubuntu: [antlr, libantlr-dev]
+    gentoo: dev-java/antlr_pic
+omniorb:
+    debian,ubuntu: [omniidl4, libomniorb4-dev, omniorb4-nameserver]
+    gentoo: net-misc/omniORB
+tao:
+    debian,ubuntu: [libtao-orbsvcs-dev, tao-idl, tao-naming, gperf-ace]
+
+readline:
+    debian,ubuntu: [libreadline5-dev]
+    gentoo: sys-libs/readline
+ncurses:
+    debian,ubuntu: [libncurses5-dev]
+    gentoo: sys-libs/ncurses
+doxygen:
+    debian,ubuntu: [doxygen]
+    gentoo: app-doc/doxygen
+qtruby:
+    debian,ubuntu:
+        libqt4-ruby1.8
+    gentoo:
+        kde-base/kdebindings-ruby
+graphviz:
+    debian,ubuntu:
+        graphviz
+    gentoo:
+        graphviz
+
+gccxml:
+    debian,ubuntu:
+        gccxml
+
+hoe: gem
+flexmock: gem
+webgen: gem
+coderay: gem
+rice: gem
+
+facets: gem
+gdal:
+    debian,ubuntu: [libgdal1-dev]
+    gentoo: sci-libs/gdal
+
+yaml:
+    debian,ubuntu: [libyaml-dev]
+    gentoo:
+        dev-libs/libyaml
+
+libkdtree:
+    debian,ubuntu: [libkdtree++-dev]
+    gentoo:
+        libkdtree++              #actually, there is no ebuild.
+	
+cgal:
+    debian,ubuntu: [libcgal-dev]
+    gentoo:
+        sci-mathematics/cgal
+
+autoconf-archive:
+    debian,ubuntu: [autoconf-archive]
+    gentoo:
+        sys-devel/autoconf-archive
+
