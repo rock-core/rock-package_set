@@ -53,4 +53,8 @@ version_control:
         url: $GITORIOUS_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
         push_to: $GITORIOUS_PUSH_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
 
+    - external/yaml-cpp:
+        type: archive
+        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.2.5.tar.gz
+        update_cached_file: false
 

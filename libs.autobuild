@@ -1,3 +1,6 @@
+##### External libraries not available as binary packages
+cmake_package 'external/yaml-cpp'
+
 ##### Control-related libraries
 cmake_package 'control/motor_controller'
 cmake_package 'control/trajectory_follower'
