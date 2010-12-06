@@ -29,4 +29,5 @@ end
 
 ##### Localisation and Mapping related packages
 cmake_package 'slam/envire'
+cmake_package 'slam/enview'
 cmake_package 'slam/pose_ekf'

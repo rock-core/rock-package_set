@@ -125,3 +125,13 @@ autoconf-archive:
     gentoo:
         sys-devel/autoconf-archive
 
+osg:
+    debian,ubuntu: [libopenscenegraph-dev]
+    gentoo:
+        dev-games/openscenegraph
+qt4:
+    debian,ubuntu: [libqt4-dev]
+    gentoo:
+        - qt-core 
+        - qt-opengl 
+        - qt-gui
