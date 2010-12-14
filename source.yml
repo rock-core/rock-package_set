@@ -58,3 +58,9 @@ version_control:
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.2.5.tar.gz
         update_cached_file: false
 
+    - tools/configuration-manager:
+        type: git
+        url: $GITORIOUS_ROOT/rock-base/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-base/$PACKAGE_BASENAME.git
+
+
