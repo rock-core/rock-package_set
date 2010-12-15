@@ -32,8 +32,10 @@ end
 
 ##### Localisation and Mapping related packages
 cmake_package 'slam/envire'
-cmake_package 'slam/enview'
 cmake_package 'slam/pose_ekf'
+
+##### Graphical User Interface related packages 
+cmake_package 'gui/vizkit'
 
 ##### Tools
 cmake_package 'tools/configuration-manager'
