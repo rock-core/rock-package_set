@@ -1,12 +1,11 @@
 opencv:
     debian:
-        squeeze/sid:
-                - libcv-dev
-                - libcv2.1
-                - libhighgui-dev
-                - libhighgui2.1
-                - libcvaux-dev
-                - libcvaux2.1	
+        - libcv-dev
+        - libcv2.1
+        - libhighgui-dev
+        - libhighgui2.1
+        - libcvaux-dev
+        - libcvaux2.1	
     ubuntu:
         9.04,9.10:
                 - libcv1
