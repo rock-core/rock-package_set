@@ -34,7 +34,12 @@ cmake_package 'slam/envire'
 cmake_package 'slam/pose_ekf'
 
 ##### Graphical User Interface related packages 
-cmake_package 'gui/vizkit'
+cmake_package 'gui/vizkit' do |pkg|
+  Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
+end
+
+#add environment variable for qt desiger plugin system
+Autoproj.env_add_path 'QT_PLUGIN_PATH',File.join(Autoproj.root_dir,Autoproj.prefix,"lib/qt")
 
 ##### Tools
 cmake_package 'tools/configuration-manager'
