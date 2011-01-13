@@ -136,3 +136,6 @@ qt4:
         - qt-core 
         - qt-opengl 
         - qt-gui
+
+qt-designer:
+    debian,ubuntu: qt4-designer
