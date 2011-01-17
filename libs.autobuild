@@ -30,7 +30,10 @@ autotools_package 'external/libply' do |pkg|
 end
 
 ##### Localisation and Mapping related packages
-cmake_package 'slam/envire'
+cmake_package 'slam/envire' do |pkg| 
+    pkg.define "CMAKE_BUILD_TYPE", "RelWithDebInfo"
+end
+
 cmake_package 'slam/pose_ekf'
 
 ##### Graphical User Interface related packages 
