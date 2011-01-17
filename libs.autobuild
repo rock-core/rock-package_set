@@ -8,7 +8,9 @@ cmake_package 'control/waypoint_navigation'
 
 ##### Base implementation for data acquisition
 cmake_package 'drivers/iodrivers_base'
-cmake_package 'drivers/aggregator'
+cmake_package 'drivers/aggregator' do |pkg|
+    Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+end
 
 ##### Device drivers
 cmake_package 'drivers/canbus'
