@@ -139,3 +139,5 @@ qt4:
 
 qt-designer:
     debian,ubuntu: qt4-designer
+    gentoo:
+        x11-libs/qt-gui
