@@ -43,6 +43,7 @@ cmake_package 'gui/vizkit' do |pkg|
   Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
   Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
 end
+cmake_package 'gui/rock_widget_collection'
 
 #add environment variable for qt desiger plugin system
 Autoproj.env_add_path 'QT_PLUGIN_PATH',File.join(Autoproj.root_dir,Autoproj.prefix,"lib/qt")
