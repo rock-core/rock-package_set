@@ -69,9 +69,6 @@ omniorb:
 tao:
     debian,ubuntu: [libtao-orbsvcs-dev, tao-idl, tao-naming, gperf-ace]
 
-readline:
-    debian,ubuntu: [libreadline5-dev]
-    gentoo: sys-libs/readline
 ncurses:
     debian,ubuntu: [libncurses5-dev]
     gentoo: sys-libs/ncurses
@@ -88,12 +85,6 @@ graphviz:
         graphviz
     gentoo:
         graphviz
-
-gccxml:
-    debian,ubuntu:
-        gccxml
-    gentoo:
-        dev-cpp/gccxml
 
 hoe: gem
 flexmock: gem
