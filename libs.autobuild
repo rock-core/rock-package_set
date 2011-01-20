@@ -25,6 +25,7 @@ cmake_package 'drivers/camera_interface'
 ##### Planning
 cmake_package 'planning/corridor_planner'
 cmake_package 'planning/vfh_star'
+cmake_package 'planning/corridor_navigation'
 
 autotools_package 'external/libply' do |pkg|
     pkg.using[:libtool] = true
