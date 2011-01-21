@@ -48,10 +48,15 @@ version_control:
         url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
         push_to: $GITORIOUS_PUSH_ROOT/rock-slam/$PACKAGE_BASENAME.git
 
-    -  gui/.*:
+    - gui/.*:
         type: git
         url: $GITORIOUS_ROOT/rock-gui/$PACKAGE_BASENAME.git
         push_to: $GITORIOUS_PUSH_ROOT/rock-gui/$PACKAGE_BASENAME.git
+      
+    - image_processing/.*:
+        type: git
+        url: $GITORIOUS_ROOT/rock-image-processing/$PACKAGE_BASENAME.git
+        push_to: $GITORIOUS_PUSH_ROOT/rock-image-processing/$PACKAGE_BASENAME.git
 
     - slam/orogen/.*:
         type: git
