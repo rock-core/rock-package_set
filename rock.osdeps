@@ -39,6 +39,9 @@ proj:
     debian,ubuntu: [libproj-dev]
     gentoo: sci-libs/proj
 
+freeglut3:
+    debian,ubuntu [freeglut3-dev]
+
 libiw:
     debian,ubuntu: [libiw-dev]
     gentoo:
