@@ -50,5 +50,3 @@ cmake_package 'image_processing/frame_helper'
 #add environment variable for qt desiger plugin system
 Autoproj.env_add_path 'QT_PLUGIN_PATH',File.join(Autoproj.root_dir,Autoproj.prefix,"lib/qt")
 
-##### Tools
-cmake_package 'tools/configuration-manager'
