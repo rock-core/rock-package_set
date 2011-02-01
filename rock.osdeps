@@ -89,7 +89,8 @@ graphviz:
     gentoo:
         graphviz
 
-hoe: gem
+hoe:
+    gem: "hoe < 2.9.0"
 flexmock: gem
 webgen: gem
 coderay: gem
