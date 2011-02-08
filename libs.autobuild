@@ -46,6 +46,7 @@ cmake_package 'slam/pose_ekf'
 cmake_package 'gui/vizkit' do |pkg|
     Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
     Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
+    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
     Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
 end
 cmake_package 'gui/rock_widget_collection'
