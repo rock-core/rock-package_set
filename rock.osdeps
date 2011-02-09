@@ -136,5 +136,3 @@ qt-designer:
     debian,ubuntu: qt4-designer
     gentoo:
         x11-libs/qt-gui
-qwt5:
-    debian,ubuntu: [libqwt5-qt4-dev]
