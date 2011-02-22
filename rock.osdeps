@@ -26,6 +26,11 @@ opencv:
                 - libcvaux-dev
     gentoo: media-libs/opencv
 
+ffmpeg:
+    debian,ubuntu: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
+    gentoo:
+        media-video/ffmpeg
+
 sysfs:
     debian,ubuntu: [libsysfs-dev]
     gentoo:

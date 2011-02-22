@@ -52,6 +52,11 @@ end
 cmake_package 'gui/rock_widget_collection'
 cmake_package 'image_processing/frame_helper'
 
+ruby_package 'gui/ffmpeg-ruby' do |pkg|
+    pkg.depends_on 'ffmpeg'
+    Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
+end
+
 #add environment variable for qt desiger plugin system
 Autoproj.env_add_path 'QT_PLUGIN_PATH',File.join(Autoproj.root_dir,Autoproj.prefix,"lib/qt")
 
