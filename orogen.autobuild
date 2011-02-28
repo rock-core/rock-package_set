@@ -11,6 +11,7 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/controldev'
     orogen_package 'drivers/orogen/parport'
     orogen_package 'drivers/orogen/wifimon'
+    orogen_package 'drivers/orogen/taskmon'
 
     orogen_package 'planning/orogen/corridor_planner' do |pkg|
         pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
