@@ -143,3 +143,6 @@ qt-designer:
         x11-libs/qt-gui
 qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
+
+libnl2:
+    debian,ubuntu: libnl2-dev
