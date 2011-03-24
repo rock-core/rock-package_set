@@ -48,6 +48,10 @@ cmake_package 'gui/vizkit' do |pkg|
     Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
     Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
     Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
+    # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+    # to list the place where they install themselves
+    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
 end
 cmake_package 'gui/rock_widget_collection'
 cmake_package 'image_processing/frame_helper'
