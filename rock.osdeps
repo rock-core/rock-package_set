@@ -121,6 +121,14 @@ cgal:
     gentoo:
         sci-mathematics/cgal
 
+blas:
+    debian,ubuntu: [libblas-dev]
+    gentoo: blas
+
+lapack:
+    debian,ubuntu: [liblapack-dev]
+    gentoo: lapack
+
 autoconf-archive:
     debian,ubuntu: [autoconf-archive]
     gentoo:
