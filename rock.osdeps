@@ -153,4 +153,11 @@ qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
 
 libnl2:
-    debian,ubuntu: libnl2-dev
+    debian: libnl2-dev
+    ubuntu:
+        9.04,9.10:
+                - libnl-dev
+        '10.04': 
+                - libnl-dev
+        '10.10': 
+                - libnl2-dev
