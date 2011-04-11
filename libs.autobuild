@@ -38,6 +38,7 @@ end
 ##### Localisation and Mapping related packages
 cmake_package 'slam/envire' do |pkg| 
     pkg.define "CMAKE_BUILD_TYPE", "RelWithDebInfo"
+    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
 end
 
 cmake_package 'slam/pose_ekf'
