@@ -26,6 +26,7 @@ cmake_package 'drivers/parport'
 cmake_package 'drivers/camera_interface'
 
 ##### Planning
+cmake_package 'planning/nav_graph_search'
 cmake_package 'planning/corridor_planner'
 cmake_package 'planning/vfh_star'
 cmake_package 'planning/corridor_navigation'
