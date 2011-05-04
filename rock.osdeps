@@ -17,7 +17,7 @@ opencv:
                 - libhighgui-dev
                 - libcvaux4
                 - libcvaux-dev
-        '10.10': 
+        default: 
                 - libcv2.1
                 - libcv-dev
                 - libhighgui2.1
@@ -159,5 +159,5 @@ libnl2:
                 - libnl-dev
         '10.04': 
                 - libnl-dev
-        '10.10': 
+        default: 
                 - libnl2-dev
