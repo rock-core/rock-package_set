@@ -139,7 +139,8 @@ osg:
     gentoo:
         dev-games/openscenegraph
 qt4:
-    debian,ubuntu: [libqt4-dev]
+    # QMake is needed for the CMake macro for Qt4
+    debian,ubuntu: [libqt4-dev, qt4-qmake]
     gentoo:
         - qt-core 
         - qt-opengl 
