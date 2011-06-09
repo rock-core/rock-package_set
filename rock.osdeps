@@ -146,6 +146,14 @@ qt4:
         - qt-opengl 
         - qt-gui
 
+avahi:
+    debian,ubuntu: [avahi-daemon, libavahi-client3, libavahi-client-dev, libavahi-core-dev]
+    gentoo: net-dns/avahi
+
+sigc:
+     debian,ubuntu: [libsigc++-2.0-0c2a, libsigc++-2.0-dev]
+     gentoo: dev-libs/libsigc++
+
 qt-designer:
     debian,ubuntu: qt4-designer
     gentoo:
