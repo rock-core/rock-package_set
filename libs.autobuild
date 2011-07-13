@@ -55,7 +55,10 @@ cmake_package 'gui/vizkit' do |pkg|
     Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
     Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
 end
-cmake_package 'gui/rock_widget_collection'
+cmake_package 'gui/rock_widget_collection' do |pkg|
+    Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
+end
+
 cmake_package 'image_processing/frame_helper'
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
@@ -63,6 +66,4 @@ ruby_package 'gui/ffmpeg-ruby' do |pkg|
     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 end
 
-#add environment variable for qt desiger plugin system
-Autoproj.env_add_path 'QT_PLUGIN_PATH',File.join(Autoproj.root_dir,Autoproj.prefix,"lib/qt")
 
