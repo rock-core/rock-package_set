@@ -66,4 +66,5 @@ ruby_package 'gui/ffmpeg-ruby' do |pkg|
     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 end
 
+enable_in_next "slam/pose_ekf"
 
