@@ -66,7 +66,7 @@ end
 cmake_package 'gui/rock_widget_collection' do |pkg|
     Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
 end
-# enable_in_next 'gui/vizkit', 'gui/rock_widget_collection'
+enable_in_next 'gui/vizkit', 'gui/rock_widget_collection'
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
     pkg.depends_on 'ffmpeg'
