@@ -13,6 +13,9 @@ version_control:
         gitorious: rock-control/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - control/orogen/auv_rel_pos_controller:
+        branch: master
+
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
@@ -37,6 +40,9 @@ version_control:
         gitorious: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - slam/pose_ekf:
+        branch: master
+
     - slam/orogen/.*:
         gitorious: rock-slam/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
@@ -44,6 +50,9 @@ version_control:
     - gui/.*:
         gitorious: rock-gui/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
+
+    - gui/ffmpeg-ruby:
+        branch: master
       
     - image_processing/.*:
         gitorious: rock-image-processing/$PACKAGE_BASENAME
