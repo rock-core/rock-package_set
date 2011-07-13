@@ -2,76 +2,44 @@ name: rock
 required_autoproj_version: 1.7.4
 
 imports:
-    - type: git
-      url: $GITORIOUS_ROOT/rock-base/package_set.git
-      push_to: $GITORIOUS_PUSH_ROOT/rock-base/package_set.git
+    - gitorious: rock-base/package_set
 
 version_control:
     - control/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-control/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-control/$PACKAGE_BASENAME.git
+        gitorious: rock-control/$PACKAGE_BASENAME
 
     - control/orogen/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-control/orogen-$PACKAGE_BASENAME.git
+        gitorious: rock-control/orogen-$PACKAGE_BASENAME
 
     - drivers/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-drivers/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-drivers/$PACKAGE_BASENAME.git
+        gitorious: rock-drivers/$PACKAGE_BASENAME
 
     - drivers/orogen/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-drivers/orogen-$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-drivers/orogen-$PACKAGE_BASENAME.git
-
+        gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
 
     - planning/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-planning/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-planning/$PACKAGE_BASENAME.git
+        gitorious: rock-planning/$PACKAGE_BASENAME
 
     - planning/orogen/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-planning/orogen-$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-planning/orogen-$PACKAGE_BASENAME.git
-
+        gitorious: rock-planning/orogen-$PACKAGE_BASENAME
 
     - external/libply:
-        type: git
-        url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/$PACKAGE_BASENAME.git
+        gitorious: rock-slam/$PACKAGE_BASENAME
 
     - slam/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-slam/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/$PACKAGE_BASENAME.git
-
-    - gui/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-gui/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-gui/$PACKAGE_BASENAME.git
-      
-    - image_processing/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-image-processing/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-image-processing/$PACKAGE_BASENAME.git
+        gitorious: rock-slam/$PACKAGE_BASENAME
 
     - slam/orogen/.*:
-        type: git
-        url: $GITORIOUS_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-slam/orogen-$PACKAGE_BASENAME.git
+        gitorious: rock-slam/orogen-$PACKAGE_BASENAME
+
+    - gui/.*:
+        gitorious: rock-gui/$PACKAGE_BASENAME
+      
+    - image_processing/.*:
+        gitorious: rock-image_processing/$PACKAGE_BASENAME
 
     - external/yaml-cpp:
         type: archive
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.2.5.tar.gz
         update_cached_file: false
-
-    - tools/configuration-manager:
-        type: git
-        url: $GITORIOUS_ROOT/rock-base/$PACKAGE_BASENAME.git
-        push_to: $GITORIOUS_PUSH_ROOT/rock-base/$PACKAGE_BASENAME.git
-
 
