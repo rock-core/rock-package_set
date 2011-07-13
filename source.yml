@@ -7,36 +7,47 @@ imports:
 version_control:
     - control/.*:
         gitorious: rock-control/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - control/orogen/.*:
         gitorious: rock-control/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - drivers/orogen/.*:
         gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - planning/.*:
         gitorious: rock-planning/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - planning/orogen/.*:
         gitorious: rock-planning/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - external/libply:
         gitorious: rock-slam/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - slam/.*:
         gitorious: rock-slam/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - slam/orogen/.*:
         gitorious: rock-slam/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - gui/.*:
         gitorious: rock-gui/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
       
     - image_processing/.*:
-        gitorious: rock-image_processing/$PACKAGE_BASENAME
+        gitorious: rock-image-processing/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - external/yaml-cpp:
         type: archive
