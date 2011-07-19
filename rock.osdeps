@@ -101,6 +101,7 @@ flexmock: gem
 webgen: gem
 coderay: gem
 rice: gem
+state_machine: gem
 
 facets: gem
 gdal:
