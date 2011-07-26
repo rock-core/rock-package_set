@@ -101,7 +101,6 @@ flexmock: gem
 webgen: gem
 coderay: gem
 rice: gem
-state_machine: gem
 
 facets: gem
 gdal:
@@ -147,14 +146,6 @@ qt4:
         - qt-core 
         - qt-opengl 
         - qt-gui
-
-avahi:
-    debian,ubuntu: [avahi-daemon, libavahi-client3, libavahi-client-dev, libavahi-core-dev]
-    gentoo: net-dns/avahi
-
-sigc:
-     debian,ubuntu: [libsigc++-2.0-0c2a, libsigc++-2.0-dev]
-     gentoo: dev-libs/libsigc++
 
 qt-designer:
     debian,ubuntu: qt4-designer
