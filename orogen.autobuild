@@ -1,38 +1,31 @@
 if package_enabled?('orogen')
-    orogen_package 'control/orogen/trajectory_follower'
-    orogen_package 'control/orogen/waypoint_navigation'
-    orogen_package 'control/orogen/skid4_control'
-    orogen_package 'control/orogen/auv_rel_pos_controller'
-    enable_in_next 'control/orogen/trajectory_follower', 'control/orogen/waypoint_navigation',
-        'control/orogen/skid4_control'
+    in_flavor 'next' do
+        orogen_package 'control/orogen/trajectory_follower'
+        orogen_package 'control/orogen/waypoint_navigation'
+        orogen_package 'control/orogen/skid4_control'
+        orogen_package 'control/orogen/auv_rel_pos_controller'
 
-    orogen_package 'drivers/orogen/canbus'
-    orogen_package 'drivers/orogen/gps'
-    orogen_package 'drivers/orogen/hokuyo'
-    orogen_package 'drivers/orogen/xsens_imu'
-    orogen_package 'drivers/orogen/dynamixel'
-    orogen_package 'drivers/orogen/controldev'
-    orogen_package 'drivers/orogen/parport'
-    orogen_package 'drivers/orogen/wifimon'
-    orogen_package 'drivers/orogen/camera_base'
-    orogen_package 'drivers/orogen/camera_prosilica'
-    enable_in_next 'drivers/orogen/canbus', 'drivers/orogen/gps', 'drivers/orogen/hokuyo',
-        'drivers/orogen/xsens_imu', 'drivers/orogen/dynamixel', 'drivers/orogen/controldev',
-        'drivers/orogen/parport', 'drivers/orogen/wifimon', 'drivers/orogen/camera_base',
-        'drivers/orogen/camera_prosilica'
+        orogen_package 'drivers/orogen/canbus'
+        orogen_package 'drivers/orogen/gps'
+        orogen_package 'drivers/orogen/hokuyo'
+        orogen_package 'drivers/orogen/xsens_imu'
+        orogen_package 'drivers/orogen/dynamixel'
+        orogen_package 'drivers/orogen/controldev'
+        orogen_package 'drivers/orogen/parport'
+        orogen_package 'drivers/orogen/wifimon'
+        orogen_package 'drivers/orogen/camera_base'
+        orogen_package 'drivers/orogen/camera_prosilica'
 
-    only_on 'debian' do
-        orogen_package 'drivers/orogen/taskmon'
-        enable_in_next 'drivers/orogen/taskmon'
+        only_on 'debian' do
+            orogen_package 'drivers/orogen/taskmon'
+        end
+
+        orogen_package 'image_processing/orogen/image_preprocessing'
+
+        orogen_package 'planning/orogen/corridor_planner' do |pkg|
+            pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
+        end
     end
-
-    orogen_package 'image_processing/orogen/image_preprocessing'
-    enable_in_next 'image_processing/orogen/image_preprocessing'
-
-    orogen_package 'planning/orogen/corridor_planner' do |pkg|
-        pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
-    end
-    enable_in_next 'planning/orogen/corridor_planner'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end

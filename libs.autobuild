@@ -1,75 +1,67 @@
-##### External libraries not available as binary packages
-cmake_package 'external/yaml-cpp'
-enable_in_next "external/yaml-cpp"
+in_flavor 'next' do
+    ##### External libraries not available as binary packages
+    cmake_package 'external/yaml-cpp'
 
-##### Control-related libraries
-cmake_package 'control/motor_controller'
-cmake_package 'control/trajectory_follower'
-cmake_package 'control/waypoint_navigation'
-enable_in_next "control/motor_controller", 'control/trajectory_follower', 'control/waypoint_navigation'
+    ##### Control-related libraries
+    cmake_package 'control/motor_controller'
+    cmake_package 'control/trajectory_follower'
+    cmake_package 'control/waypoint_navigation'
 
-##### Base implementation for data acquisition
-cmake_package 'drivers/iodrivers_base'
-cmake_package 'drivers/aggregator' do |pkg|
-    Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
-end
-cmake_package 'drivers/transformer' do |pkg|
-    Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
-end
-enable_in_next "drivers/iodrivers_base", "drivers/aggregator", "drivers/transformer"
+    ##### Base implementation for data acquisition
+    cmake_package 'drivers/iodrivers_base'
+    cmake_package 'drivers/aggregator' do |pkg|
+        Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+    end
+    cmake_package 'drivers/transformer' do |pkg|
+        Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+    end
 
-##### Device drivers
-cmake_package 'drivers/canbus'
-cmake_package 'drivers/mb500'
-cmake_package 'drivers/hokuyo'
-cmake_package 'drivers/xsens_imu'
-cmake_package 'drivers/dynamixel'
-cmake_package 'drivers/controldev'
-cmake_package 'drivers/parport'
-cmake_package 'drivers/camera_interface'
-cmake_package 'drivers/camera_prosilica'
-cmake_package 'image_processing/frame_helper'
-enable_in_next 'drivers/canbus', 'drivers/mb500', 'drivers/hokuyo', 'drivers/xsens_imu',
- 'drivers/dynamixel', 'drivers/controldev', 'drivers/parport', 'drivers/camera_interface',
- 'drivers/camera_prosilica', 'image_processing/frame_helper'
+    ##### Device drivers
+    cmake_package 'drivers/canbus'
+    cmake_package 'drivers/mb500'
+    cmake_package 'drivers/hokuyo'
+    cmake_package 'drivers/xsens_imu'
+    cmake_package 'drivers/dynamixel'
+    cmake_package 'drivers/controldev'
+    cmake_package 'drivers/parport'
+    cmake_package 'drivers/camera_interface'
+    cmake_package 'drivers/camera_prosilica'
+    cmake_package 'image_processing/frame_helper'
 
-##### Planning
-cmake_package 'planning/nav_graph_search'
-cmake_package 'planning/corridor_planner'
-cmake_package 'planning/vfh_star'
-cmake_package 'planning/corridor_navigation'
-enable_in_next 'planning/nav_graph_search', 'planning/corridor_planner',
- 'planning/vfh_star', 'planning/corridor_navigation'
+    ##### Planning
+    cmake_package 'planning/nav_graph_search'
+    cmake_package 'planning/corridor_planner'
+    cmake_package 'planning/vfh_star'
+    cmake_package 'planning/corridor_navigation'
 
-##### Localisation and Mapping related packages
-autotools_package 'external/libply' do |pkg|
-    pkg.using[:libtool] = true
-    pkg.using[:autoheader] = true
-end
-cmake_package 'slam/envire' do |pkg| 
-    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
-end
-cmake_package 'slam/pose_ekf'
-enable_in_next 'external/libply', 'slam/envire'
+    ##### Localisation and Mapping related packages
+    autotools_package 'external/libply' do |pkg|
+        pkg.using[:libtool] = true
+        pkg.using[:autoheader] = true
+    end
+    cmake_package 'slam/envire' do |pkg| 
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
+    end
 
-##### Graphical User Interface related packages 
-cmake_package 'gui/vizkit' do |pkg|
-    Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
-    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
-    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
-    Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
-    # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
-    # to list the place where they install themselves
-    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
-    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+    ##### Graphical User Interface related packages 
+    cmake_package 'gui/vizkit' do |pkg|
+        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
+        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
+        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+        # to list the place where they install themselves
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+    end
+    cmake_package 'gui/rock_widget_collection' do |pkg|
+        Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
+    end
 end
-cmake_package 'gui/rock_widget_collection' do |pkg|
-    Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
-end
-enable_in_next 'gui/vizkit', 'gui/rock_widget_collection'
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
     pkg.depends_on 'ffmpeg'
     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 end
 
+cmake_package 'slam/pose_ekf'
