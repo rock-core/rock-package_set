@@ -36,6 +36,9 @@ sysfs:
     gentoo:
         sys-fs/sysfsutils
 
+libusb-old:
+    debian,ubuntu: [libusb-dev]
+
 gdal:
     debian,ubuntu: [libgdal1-dev]
     gentoo: sci-libs/gdal
