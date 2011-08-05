@@ -46,6 +46,15 @@ end
 cmake_package 'slam/pose_ekf'
 
 ##### Graphical User Interface related packages 
+cmake_package 'external/opencv' do |pkg|
+  pkg.define("CMAKE_BUILD_TYPE","Release")
+  pkg.define("ENABLE_SSE3","ON")
+  pkg.define("ENABLE_SSE41","ON")
+  pkg.define("ENABLE_SSE42","ON")
+  pkg.define("ENABLE_SSSE3","ON")
+  pkg.define("BUILD_EXAMPLES","OFF")
+end
+
 cmake_package 'gui/vizkit' do |pkg|
     Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
     Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
