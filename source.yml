@@ -63,3 +63,8 @@ version_control:
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.2.5.tar.gz
         update_cached_file: false
 
+    - external/opencv:
+        type: archive
+        url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.3/OpenCV-2.3.0.tar.bz2
+        update_cached_file: false
+
