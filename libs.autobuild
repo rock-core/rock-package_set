@@ -57,16 +57,21 @@ in_flavor 'next' do
     cmake_package 'gui/rock_widget_collection' do |pkg|
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
+end
 
-    ##### Graphical User Interface related packages 
-    cmake_package 'external/opencv' do |pkg|
-      pkg.define("CMAKE_BUILD_TYPE","Release")
-      pkg.define("ENABLE_SSE3","ON")
-      pkg.define("ENABLE_SSE41","ON")
-      pkg.define("ENABLE_SSE42","ON")
-      pkg.define("ENABLE_SSSE3","ON")
-      pkg.define("BUILD_EXAMPLES","OFF")
-    end
+##### Graphical User Interface related packages 
+cmake_package 'external/opencv' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("ENABLE_SSE3","ON")
+    pkg.define("ENABLE_SSE41","ON")
+    pkg.define("ENABLE_SSE42","ON")
+    pkg.define("ENABLE_SSSE3","ON")
+    pkg.define("BUILD_EXAMPLES","OFF")
+end
+# In recent enough autoproj versions, declare that we want to use opencv from
+# source and not from OS
+in_flavor 'master' do
+    Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
 end
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
