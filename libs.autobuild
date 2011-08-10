@@ -25,6 +25,7 @@ cmake_package 'drivers/controldev'
 cmake_package 'drivers/parport'
 cmake_package 'drivers/camera_interface'
 cmake_package 'drivers/camera_prosilica'
+cmake_package 'drivers/iCharger'
 
 ##### Planning
 cmake_package 'planning/nav_graph_search'
