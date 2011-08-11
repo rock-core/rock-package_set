@@ -166,3 +166,6 @@ libnl2:
                 - libnl-dev
         default: 
                 - libnl2-dev
+v4l:
+    debian,ubuntu: libv4l-dev
+
