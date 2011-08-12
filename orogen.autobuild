@@ -4,6 +4,7 @@ if package_enabled?('orogen')
     orogen_package 'control/orogen/skid4_control'
     orogen_package 'control/orogen/auv_rel_pos_controller'
 
+    orogen_package 'drivers/orogen/aggregator'
     orogen_package 'drivers/orogen/canbus'
     orogen_package 'drivers/orogen/gps'
     orogen_package 'drivers/orogen/hokuyo'
