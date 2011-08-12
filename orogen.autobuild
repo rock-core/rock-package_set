@@ -3,7 +3,6 @@ if package_enabled?('orogen')
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
         orogen_package 'control/orogen/skid4_control'
-        orogen_package 'control/orogen/auv_rel_pos_controller'
 
         orogen_package 'drivers/orogen/canbus'
         orogen_package 'drivers/orogen/gps'
@@ -26,6 +25,9 @@ if package_enabled?('orogen')
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
     end
+
+    orogen_package 'control/orogen/auv_rel_pos_controller'
+    orogen_package 'drivers/orogen/camera_v4l'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end

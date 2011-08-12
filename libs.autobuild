@@ -59,6 +59,8 @@ in_flavor 'next' do
     end
 end
 
+cmake_package 'drivers/iCharger'
+
 ##### Graphical User Interface related packages 
 cmake_package 'external/opencv' do |pkg|
     pkg.define("CMAKE_BUILD_TYPE","Release")

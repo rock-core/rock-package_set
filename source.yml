@@ -13,9 +13,6 @@ version_control:
         gitorious: rock-control/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
-    - control/orogen/auv_rel_pos_controller:
-        branch: master
-
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
