@@ -58,7 +58,7 @@ cmake_package 'slam/pcl' do |pkg|
     pkg.depends_on 'slam/flann'
     pkg.depends_on 'external/cminpack'
     pkg.define("CMAKE_BUILD_TYPE","Release")
-    env_set 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+    env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
 end
 
 ##### Graphical User Interface related packages 
