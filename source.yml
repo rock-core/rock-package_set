@@ -79,4 +79,18 @@ version_control:
         url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.3/OpenCV-2.3.0.tar.bz2
         update_cached_file: false
 
+    - slam/pcl:
+        type: archive
+        url: http://dev.pointclouds.org/attachments/download/322/PCL-1.1.0-Source.tar.bz2 
+        update_cached_file: false
 
+    - slam/flann:
+        type: archive
+        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.6.11-src.zip 
+        archive_dir: flann-1.6.11-src
+        update_cached_file: false
+
+    - external/cminpack:
+        type: archive
+        url: http://devernay.free.fr/hacks/cminpack/cminpack-1.1.3.tar.gz 
+        update_cached_file: false

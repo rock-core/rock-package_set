@@ -45,6 +45,21 @@ cmake_package 'slam/envire' do |pkg|
 end
 
 cmake_package 'slam/pose_ekf'
+cmake_package 'external/cminpack' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+end
+cmake_package 'slam/flann' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("BUILD_C_BINDINGS", "OFF")
+    pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
+    pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
+end
+cmake_package 'slam/pcl' do |pkg|
+    pkg.depends_on 'slam/flann'
+    pkg.depends_on 'external/cminpack'
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    env_set 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+end
 
 ##### Graphical User Interface related packages 
 cmake_package 'external/opencv' do |pkg|
