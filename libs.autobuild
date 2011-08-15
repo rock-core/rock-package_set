@@ -99,4 +99,3 @@ ruby_package 'gui/ffmpeg-ruby' do |pkg|
     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 end
 
-cmake_package 'slam/pose_ekf'
