@@ -14,6 +14,7 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/parport'
     orogen_package 'drivers/orogen/wifimon'
     orogen_package 'drivers/orogen/camera_base'
+    orogen_package 'drivers/orogen/fog_kvh'
     orogen_package 'drivers/orogen/camera_prosilica'
     orogen_package 'drivers/orogen/camera_v4l'
     only_on 'debian' do
