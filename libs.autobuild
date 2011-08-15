@@ -31,8 +31,6 @@ in_flavor 'next' do
     ##### Planning
     cmake_package 'planning/nav_graph_search'
     cmake_package 'planning/corridor_planner'
-    cmake_package 'planning/vfh_star'
-    cmake_package 'planning/corridor_navigation'
 
     ##### Localisation and Mapping related packages
     autotools_package 'external/libply' do |pkg|
@@ -59,7 +57,27 @@ in_flavor 'next' do
     end
 end
 
+cmake_package 'planning/vfh_star'
+cmake_package 'planning/corridor_navigation'
+cmake_package 'drivers/fog_kvh'
 cmake_package 'drivers/iCharger'
+cmake_package 'slam/hogman'
+cmake_package 'slam/pose_ekf'
+cmake_package 'external/cminpack' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+end
+cmake_package 'slam/flann' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("BUILD_C_BINDINGS", "OFF")
+    pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
+    pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
+end
+cmake_package 'slam/pcl' do |pkg|
+    pkg.depends_on 'slam/flann'
+    pkg.depends_on 'external/cminpack'
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+end
 
 ##### Graphical User Interface related packages 
 cmake_package 'external/opencv' do |pkg|
@@ -72,7 +90,7 @@ cmake_package 'external/opencv' do |pkg|
 end
 # In recent enough autoproj versions, declare that we want to use opencv from
 # source and not from OS
-in_flavor 'master' do
+only_in_flavor 'master' do
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
 end
 
