@@ -76,6 +76,8 @@ cmake_package 'slam/pcl' do |pkg|
     pkg.depends_on 'slam/flann'
     pkg.depends_on 'external/cminpack'
     pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("BUILD_surface","FALSE")
+    pkg.define("BUILD_io","FALSE")
     env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
 end
 
