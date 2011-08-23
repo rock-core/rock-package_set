@@ -34,6 +34,8 @@ in_flavor 'next' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
+
+    ##### Image Processing
     cmake_package 'image_processing/frame_helper'
 
     ##### Planning
@@ -65,6 +67,8 @@ in_flavor 'next' do
     end
 end
 
+cmake_package 'image_processing/stereo'
+cmake_package 'image_processing/libelas'
 cmake_package 'planning/vfh_star'
 cmake_package 'planning/corridor_navigation'
 cmake_package 'drivers/fog_kvh'
@@ -98,6 +102,7 @@ cmake_package 'external/opencv' do |pkg|
     pkg.define("ENABLE_SSSE3","ON")
     pkg.define("BUILD_EXAMPLES","OFF")
 end
+
 # In recent enough autoproj versions, declare that we want to use opencv from
 # source and not from OS
 only_in_flavor 'master' do
