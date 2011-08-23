@@ -1,0 +1,16 @@
+<package>
+  <description brief="solver for nonlinear equations and nonlinear least squares problems">
+  Five algorithmic paths each include a core subroutine and an easy-to-use
+  driver. The algorithms proceed either from an analytic specification of the
+  Jacobian matrix or directly from the problem functions. The paths include
+  facilities for systems of equations with a banded Jacobian matrix, for least
+  squares problems with a large amount of data, and for checking the consistency
+  of the Jacobian matrix with the functions.
+
+  In Rock, this is included mainly for the purpose of compiling the PCL
+  (slam/pcl)
+  </description>
+  <author>frederic.devernay@inria.fr</author>
+  <license>BSD</license>
+  <url>http://devernay.free.fr/hacks/cminpack/cminpack.html</url>
+</package>

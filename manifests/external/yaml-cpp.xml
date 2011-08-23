@@ -1,0 +1,8 @@
+<package>
+  <description brief="YAML parser for C++">
+  yaml-cpp is a YAML parser and emitter in C++ matching the YAML 1.2 spec. 
+  </description>
+  <author></author>
+  <license>MIT</license>
+  <url>http://code.google.com/p/yaml-cpp/</url>
+</package>
