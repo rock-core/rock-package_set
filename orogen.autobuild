@@ -34,6 +34,7 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/fog_kvh'
 
     orogen_package 'image_processing/orogen/stereo'
+    orogen_package 'slam/orogen/graph_slam'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
