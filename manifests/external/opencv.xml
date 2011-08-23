@@ -1,0 +1,9 @@
+<package>
+  <description brief="Open Computer Vision Library">
+  The well known library for computer vision. This package is used only if the
+  current operating system does not provide a recent enough OpenCV package.
+  </description>
+  <author>Many. Currently maintained by Willow Garage</author>
+  <license>BSD</license>
+  <url>http://opencv.willowgarage.com</url>
+</package>

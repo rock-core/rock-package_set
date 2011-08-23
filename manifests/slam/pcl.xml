@@ -1,0 +1,10 @@
+<package>
+  <description brief="The Point Cloud Library">
+  The PCL framework contains numerous state-of-the art algorithms including
+  filtering, feature estimation, surface reconstruction, registration, model
+  fitting and segmentation.
+  </description>
+  <author>Willow Garage and contributors</author>
+  <license>BSD</license>
+  <url>http://pointclouds.org/</url>
+</package>
