@@ -72,8 +72,8 @@ version_control:
     - slam/pcl:
         type: svn
         url: http://svn.pointclouds.org/pcl/trunk
-        svnco: [--revision, 2137]
-        svnup: [--revision, 2137]
+        svnco: [--revision, 2189]
+        svnup: [--revision, 2189]
 
     - slam/flann:
         type: archive

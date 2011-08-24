@@ -160,3 +160,6 @@ libnl2:
 v4l:
     debian,ubuntu: libv4l-dev
 
+qhull:
+    debian,ubuntu: libqhull-dev
+
