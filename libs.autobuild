@@ -1,6 +1,7 @@
 in_flavor 'next' do
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
+    cmake_package 'external/tinyxml'
 
     ##### Control-related libraries
     cmake_package 'control/motor_controller'

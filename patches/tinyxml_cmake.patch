@@ -1,0 +1,68 @@
+diff -urN ../tinyxml/CMakeLists.txt ./CMakeLists.txt
+--- ../tinyxml/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./CMakeLists.txt	2011-08-31 18:42:19.353709326 +0200
+@@ -0,0 +1,21 @@
++# CMakeLists.txt has to be located in the project folder and cmake has to be
++# executed from 'project/build' with 'cmake ../'.
++
++cmake_minimum_required(VERSION 2.6)
++include($ENV{ROCK_CMAKE_MACROS}/Rock.cmake)
++rock_init(tinyxml 2.6)
++
++set(SOURCES tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
++set(HEADERS tinystr.h tinyxml.h)
++
++rock_library(${PROJECT_NAME}
++	SOURCES ${SOURCES}
++	HEADERS ${HEADERS}
++)
++
++rock_executable(${PROJECT_NAME}_test 
++	SOURCES xmltest.cpp
++	DEPS ${PROJECT_NAME}
++	NOINSTALL
++)
++
+diff -urN ../tinyxml/tinyxml_cmake.patch ./tinyxml_cmake.patch
+--- ../tinyxml/tinyxml_cmake.patch	1970-01-01 01:00:00.000000000 +0100
++++ ./tinyxml_cmake.patch	2011-08-31 19:19:18.592399246 +0200
+@@ -0,0 +1,25 @@
++diff -urN ../tinyxml/CMakeLists.txt ./CMakeLists.txt
++--- ../tinyxml/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
+++++ ./CMakeLists.txt	2011-08-31 18:42:19.353709326 +0200
++@@ -0,0 +1,21 @@
+++# CMakeLists.txt has to be located in the project folder and cmake has to be
+++# executed from 'project/build' with 'cmake ../'.
+++
+++cmake_minimum_required(VERSION 2.6)
+++include($ENV{ROCK_CMAKE_MACROS}/Rock.cmake)
+++rock_init(tinyxml 2.6)
+++
+++set(SOURCES tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
+++set(HEADERS tinystr.h tinyxml.h)
+++
+++rock_library(${PROJECT_NAME}
+++	SOURCES ${SOURCES}
+++	HEADERS ${HEADERS}
+++)
+++
+++rock_executable(${PROJECT_NAME}_test 
+++	SOURCES xmltest.cpp
+++	DEPS ${PROJECT_NAME}
+++	NOINSTALL
+++)
+++
+diff -urN ../tinyxml/tinyxml.pc.in ./tinyxml.pc.in
+--- ../tinyxml/tinyxml.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./tinyxml.pc.in	2011-08-31 18:39:01.002367300 +0200
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @PROJECT_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -l@PROJECT_NAME@
++Cflags: -I${includedir}
