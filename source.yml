@@ -58,6 +58,14 @@ version_control:
     - image_processing/orogen/.*:
         gitorious: rock-image-processing/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
+    
+    - multiagent/.*:
+        gitorious: rock-multiagent/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
+    - multiagent/orogen/.*:
+        gitorious: rock-multiagent/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
     - external/yaml-cpp:
         type: archive

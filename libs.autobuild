@@ -94,6 +94,9 @@ cmake_package 'slam/pcl' do |pkg|
     env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
 end
 
+#### Multiagent related packages
+cmake_package 'multiagent/fipa_acl'
+
 ##### Graphical User Interface related packages 
 cmake_package 'external/opencv' do |pkg|
     pkg.define("CMAKE_BUILD_TYPE","Release")
