@@ -71,9 +71,9 @@ in_flavor 'next' do
     cmake_package 'external/opencv' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("ENABLE_SSE3","ON")
-        pkg.define("ENABLE_SSE41","ON")
-        pkg.define("ENABLE_SSE42","ON")
-        pkg.define("ENABLE_SSSE3","ON")
+        pkg.define("ENABLE_SSE41","OFF")
+        pkg.define("ENABLE_SSE42","OFF")
+        pkg.define("ENABLE_SSSE3","OFF")
         pkg.define("BUILD_EXAMPLES","OFF")
     end
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
