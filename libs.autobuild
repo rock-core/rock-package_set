@@ -1,4 +1,4 @@
-in_flavor 'next' do
+in_flavor 'stable', 'next', 'master' do
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
     cmake_package 'external/tinyxml'
@@ -66,7 +66,9 @@ in_flavor 'next' do
     cmake_package 'gui/rock_widget_collection' do |pkg|
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
+end
 
+in_flavor 'next', 'master' do
     ##### Graphical User Interface related packages 
     cmake_package 'external/opencv' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
@@ -76,11 +78,34 @@ in_flavor 'next' do
         pkg.define("ENABLE_SSSE3","OFF")
         pkg.define("BUILD_EXAMPLES","OFF")
     end
+    cmake_package 'image_processing/libelas'
+
+    cmake_package 'external/cminpack' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE","Release")
+    end
+    cmake_package 'slam/flann' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE","Release")
+        pkg.define("BUILD_C_BINDINGS", "OFF")
+        pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
+        pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
+    end
+    cmake_package 'slam/pcl' do |pkg|
+        pkg.depends_on 'slam/flann'
+        pkg.depends_on 'external/cminpack'
+        pkg.depends_on 'qhull'
+        pkg.define("CMAKE_BUILD_TYPE","Release")
+        pkg.define("BUILD_OPENNI","OFF")
+        env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+    end
+end
+
+# In recent enough autoproj versions, declare that we want to use opencv from
+# source and not from OS
+only_in_flavor 'master', 'next' do
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
 end
 
 cmake_package 'image_processing/stereo'
-cmake_package 'image_processing/libelas'
 cmake_package 'planning/vfh_star'
 cmake_package 'planning/corridor_navigation'
 cmake_package 'drivers/fog_kvh'
@@ -88,31 +113,9 @@ cmake_package 'drivers/iCharger'
 cmake_package 'drivers/dvl_teledyne'
 cmake_package 'slam/hogman'
 cmake_package 'slam/pose_ekf'
-cmake_package 'external/cminpack' do |pkg|
-    pkg.define("CMAKE_BUILD_TYPE","Release")
-end
-cmake_package 'slam/flann' do |pkg|
-    pkg.define("CMAKE_BUILD_TYPE","Release")
-    pkg.define("BUILD_C_BINDINGS", "OFF")
-    pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
-    pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
-end
-cmake_package 'slam/pcl' do |pkg|
-    pkg.depends_on 'slam/flann'
-    pkg.depends_on 'external/cminpack'
-    pkg.depends_on 'qhull'
-    pkg.define("CMAKE_BUILD_TYPE","Release")
-    pkg.define("BUILD_OPENNI","OFF")
-    env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
-end
 
 #### Multiagent related packages
 cmake_package 'multiagent/fipa_acl'
-
-# In recent enough autoproj versions, declare that we want to use opencv from
-# source and not from OS
-only_in_flavor 'master' do
-end
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
     pkg.depends_on 'ffmpeg'

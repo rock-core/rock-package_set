@@ -1,7 +1,7 @@
 if package_enabled?('orogen')
     orogen_package 'drivers/orogen/aggregator'
 
-    in_flavor 'next' do
+    in_flavor 'master', 'next', 'stable' do
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
         orogen_package 'control/orogen/skid4_control'
@@ -26,6 +26,9 @@ if package_enabled?('orogen')
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
+    end
+
+    in_flavor 'master', 'next' do
     end
 
     orogen_package 'control/orogen/auv_rel_pos_controller'
