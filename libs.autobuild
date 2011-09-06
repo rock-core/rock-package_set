@@ -97,6 +97,8 @@ in_flavor 'next', 'master' do
         pkg.define("BUILD_OPENNI","OFF")
         env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
     end
+
+    cmake_package 'planning/vfh_star'
 end
 
 # In recent enough autoproj versions, declare that we want to use opencv from
@@ -106,7 +108,6 @@ only_in_flavor 'master', 'next' do
 end
 
 cmake_package 'image_processing/stereo'
-cmake_package 'planning/vfh_star'
 cmake_package 'planning/corridor_navigation'
 cmake_package 'drivers/fog_kvh'
 cmake_package 'drivers/iCharger'
