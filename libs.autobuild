@@ -85,6 +85,7 @@ cmake_package 'planning/vfh_star'
 cmake_package 'planning/corridor_navigation'
 cmake_package 'drivers/fog_kvh'
 cmake_package 'drivers/iCharger'
+cmake_package 'drivers/dvl_teledyne'
 cmake_package 'slam/hogman'
 cmake_package 'slam/pose_ekf'
 cmake_package 'external/cminpack' do |pkg|
