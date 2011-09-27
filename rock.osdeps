@@ -163,3 +163,8 @@ v4l:
 qhull:
     debian,ubuntu: libqhull-dev
 
+dc1394:
+    debian, ubuntu: libdc1394-22-dev
+    gentoo: media-libs/libdc1394
+
+
