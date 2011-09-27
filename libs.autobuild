@@ -107,6 +107,7 @@ only_in_flavor 'master', 'next' do
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
 end
 
+cmake_package 'drivers/camera_firewire'
 cmake_package 'image_processing/stereo'
 cmake_package 'planning/corridor_navigation'
 cmake_package 'drivers/fog_kvh'

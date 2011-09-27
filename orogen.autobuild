@@ -31,6 +31,7 @@ if package_enabled?('orogen')
     in_flavor 'master', 'next' do
     end
 
+    orogen_package 'drivers/orogen/camera_firewire'
     orogen_package 'control/orogen/auv_rel_pos_controller'
     orogen_package 'drivers/orogen/iodrivers_base'
     orogen_package 'drivers/orogen/camera_v4l'
