@@ -1,6 +1,4 @@
 if package_enabled?('orogen')
-    orogen_package 'drivers/orogen/aggregator'
-
     in_flavor 'master', 'next', 'stable' do
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
@@ -29,6 +27,7 @@ if package_enabled?('orogen')
     end
 
     in_flavor 'master', 'next' do
+        orogen_package 'drivers/orogen/aggregator'
     end
 
     orogen_package 'drivers/orogen/camera_firewire'
