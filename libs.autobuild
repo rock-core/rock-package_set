@@ -77,6 +77,7 @@ in_flavor 'next', 'master' do
         pkg.define("ENABLE_SSE42","OFF")
         pkg.define("ENABLE_SSSE3","OFF")
         pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("WITH_FFMPEG","OFF")
     end
     cmake_package 'image_processing/libelas'
 
