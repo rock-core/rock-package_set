@@ -66,9 +66,7 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'gui/rock_widget_collection' do |pkg|
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
-end
 
-in_flavor 'next', 'master' do
     ##### Graphical User Interface related packages 
     cmake_package 'external/opencv' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
@@ -101,11 +99,7 @@ in_flavor 'next', 'master' do
     end
 
     cmake_package 'planning/vfh_star'
-end
 
-# In recent enough autoproj versions, declare that we want to use opencv from
-# source and not from OS
-only_in_flavor 'master', 'next' do
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
 end
 

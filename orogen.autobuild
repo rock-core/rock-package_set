@@ -24,9 +24,7 @@ if package_enabled?('orogen')
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
-    end
 
-    in_flavor 'master', 'next' do
         orogen_package 'drivers/orogen/aggregator'
     end
 
