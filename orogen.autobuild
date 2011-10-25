@@ -28,9 +28,12 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/aggregator'
     end
 
+    in_flavor 'master', 'next' do
+        orogen_package 'drivers/orogen/iodrivers_base'
+    end
+
     orogen_package 'drivers/orogen/camera_firewire'
     orogen_package 'control/orogen/auv_rel_pos_controller'
-    orogen_package 'drivers/orogen/iodrivers_base'
     orogen_package 'drivers/orogen/camera_v4l'
     orogen_package 'drivers/orogen/fog_kvh'
     orogen_package 'drivers/orogen/dvl_teledyne'
