@@ -114,6 +114,7 @@ cmake_package 'drivers/fog_kvh'
 cmake_package 'drivers/iCharger'
 cmake_package 'drivers/dvl_teledyne'
 cmake_package 'slam/pose_ekf'
+cmake_package 'slam/polygonnet'
 
 #### Multiagent related packages
 cmake_package 'multiagent/fipa_acl'
