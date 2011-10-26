@@ -25,7 +25,9 @@ if package_enabled?('orogen')
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
 
-        orogen_package 'drivers/orogen/aggregator'
+        orogen_package 'drivers/orogen/aggregator' do |pkg|
+            Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+        end
     end
 
     in_flavor 'master', 'next' do
