@@ -104,14 +104,14 @@ in_flavor 'stable', 'next', 'master' do
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'drivers/fog_kvh'
+    cmake_package 'drivers/iCharger'
     cmake_package 'slam/hogman'
 end
 
 cmake_package 'drivers/camera_firewire'
 cmake_package 'image_processing/stereo'
 cmake_package 'planning/corridor_navigation'
-cmake_package 'drivers/fog_kvh'
-cmake_package 'drivers/iCharger'
 cmake_package 'drivers/dvl_teledyne'
 cmake_package 'slam/pose_ekf'
 cmake_package 'slam/polygonnet'
