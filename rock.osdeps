@@ -79,8 +79,13 @@ doxygen:
     debian,ubuntu: [doxygen]
     gentoo: app-doc/doxygen
 qtruby:
-    debian,ubuntu:
-        libqt4-ruby1.8
+    debian: libqt4-ruby1.8
+    ubuntu:
+       '11.10':
+               - libqt4-ruby1.8
+               - ruby-qt4-uitools
+       default:
+               - libqt4-ruby1.8
     gentoo:
         kde-base/kdebindings-ruby
 graphviz:
@@ -149,7 +154,10 @@ qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
 
 qsqlite:
-    debian,ubuntu: [libqt4-sql-sqlite2]
+    debian: [libqt4-sql-sqlite]
+    ubuntu:
+        '11.10': [libqt4-sql-sqlite]
+        default: [libqt4-sql-sqlite2]
 
 libnl2:
     debian: libnl2-dev
