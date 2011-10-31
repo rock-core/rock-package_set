@@ -119,6 +119,7 @@ cmake_package 'image_processing/stereo'
 cmake_package 'drivers/dvl_teledyne'
 cmake_package 'slam/pose_ekf'
 cmake_package 'slam/polygonnet'
+cmake_package 'gui/map2d'
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
     pkg.depends_on 'ffmpeg'
