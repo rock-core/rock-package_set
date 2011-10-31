@@ -148,6 +148,9 @@ qt-designer:
 qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
 
+qsqlite:
+    debian,ubuntu: [libqt4-sql-sqlite2]
+
 libnl2:
     debian: libnl2-dev
     ubuntu:
