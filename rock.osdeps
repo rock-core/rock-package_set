@@ -154,10 +154,7 @@ qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
 
 qsqlite:
-    debian: [libqt4-sql-sqlite]
-    ubuntu:
-        '11.10': [libqt4-sql-sqlite]
-        default: [libqt4-sql-sqlite2]
+    debian,ubuntu: libqt4-sql-sqlite
 
 libnl2:
     debian: libnl2-dev
