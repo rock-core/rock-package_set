@@ -28,9 +28,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/aggregator' do |pkg|
             Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
         end
-    end
 
-    in_flavor 'master', 'next' do
         orogen_package 'drivers/orogen/iodrivers_base'
 	orogen_package 'drivers/orogen/camera_firewire'
     end

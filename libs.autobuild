@@ -101,15 +101,12 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'planning/vfh_star'
 
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
-end
 
-in_flavor 'master', 'next' do
     cmake_package 'drivers/fog_kvh'
     cmake_package 'drivers/iCharger'
     cmake_package 'slam/hogman'
     cmake_package 'drivers/camera_firewire'
     cmake_package 'planning/corridor_navigation'
-
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
