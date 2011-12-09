@@ -38,6 +38,7 @@ in_flavor 'stable', 'next', 'master' do
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'
+    cmake_package 'image_processing/jpeg_conversion'
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
