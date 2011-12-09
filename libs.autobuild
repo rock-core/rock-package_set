@@ -38,6 +38,7 @@ in_flavor 'stable', 'next', 'master' do
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'
+    cmake_package 'image_processing/jpeg_conversion'
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
@@ -66,9 +67,7 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'gui/rock_widget_collection' do |pkg|
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
-end
 
-in_flavor 'next', 'master' do
     ##### Graphical User Interface related packages 
     cmake_package 'external/opencv' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
@@ -79,6 +78,8 @@ in_flavor 'next', 'master' do
 	    pkg.define("ENABLE_SSSE3","OFF")
         end
         pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("WITH_FFMPEG","OFF")
+        pkg.define("BUILD_TESTS","OFF")
     end
     cmake_package 'image_processing/libelas'
 
@@ -101,24 +102,27 @@ in_flavor 'next', 'master' do
     end
 
     cmake_package 'planning/vfh_star'
+
+    Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
+
+    cmake_package 'drivers/fog_kvh'
+    cmake_package 'drivers/iCharger'
+    cmake_package 'slam/hogman'
+    cmake_package 'drivers/camera_firewire'
+    cmake_package 'planning/corridor_navigation'
+
+    #### Multiagent related packages
+    cmake_package 'multiagent/fipa_acl'
 end
 
-# In recent enough autoproj versions, declare that we want to use opencv from
-# source and not from OS
-only_in_flavor 'master', 'next' do
-    Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
+in_flavor 'master', 'next' do
+    cmake_package 'drivers/dvl_teledyne'
 end
 
 cmake_package 'image_processing/stereo'
-cmake_package 'planning/corridor_navigation'
-cmake_package 'drivers/fog_kvh'
-cmake_package 'drivers/iCharger'
-cmake_package 'drivers/dvl_teledyne'
-cmake_package 'slam/hogman'
 cmake_package 'slam/pose_ekf'
-
-#### Multiagent related packages
-cmake_package 'multiagent/fipa_acl'
+cmake_package 'slam/polygonnet'
+cmake_package 'gui/map2d'
 
 ruby_package 'gui/ffmpeg-ruby' do |pkg|
     pkg.depends_on 'ffmpeg'

@@ -1,6 +1,4 @@
 if package_enabled?('orogen')
-    orogen_package 'drivers/orogen/aggregator'
-
     in_flavor 'master', 'next', 'stable' do
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
@@ -26,18 +24,26 @@ if package_enabled?('orogen')
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
+
+        orogen_package 'drivers/orogen/aggregator' do |pkg|
+            Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+        end
+
+        orogen_package 'drivers/orogen/iodrivers_base'
+	orogen_package 'drivers/orogen/camera_firewire'
     end
 
     in_flavor 'master', 'next' do
+        orogen_package 'drivers/orogen/fog_kvh'
+        orogen_package 'drivers/orogen/dvl_teledyne'
     end
 
-    orogen_package 'control/orogen/auv_rel_pos_controller'
-    orogen_package 'drivers/orogen/iodrivers_base'
-    orogen_package 'drivers/orogen/camera_v4l'
-    orogen_package 'drivers/orogen/fog_kvh'
-    orogen_package 'drivers/orogen/dvl_teledyne'
-
     orogen_package 'image_processing/orogen/stereo'
+    orogen_package 'control/orogen/auv_rel_pos_controller'
+    orogen_package 'control/orogen/auv_control'
+    orogen_package 'drivers/orogen/camera_v4l'
+
+    
     orogen_package 'slam/orogen/graph_slam'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
