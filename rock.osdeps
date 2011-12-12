@@ -178,3 +178,5 @@ dc1394:
 vtk-qt4:
     debian,ubuntu: libvtk5-qt4-dev
 
+jpeg:
+    debian,ubuntu: libjpeg-dev
