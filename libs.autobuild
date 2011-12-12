@@ -22,7 +22,11 @@ in_flavor 'stable', 'next', 'master' do
         Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
     end
     cmake_package 'drivers/transformer' do |pkg|
+        ## Keep this around as long as the refactored transformer is not in
+        ## stable
         Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, "ruby", "lib")
     end
 
     ##### Device drivers
