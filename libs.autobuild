@@ -35,6 +35,7 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
+    cmake_package 'drivers/sonar_tritech'
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'
