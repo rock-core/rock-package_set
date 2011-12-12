@@ -180,3 +180,5 @@ vtk-qt4:
 
 jpeg:
     debian,ubuntu: libjpeg-dev
+gsl:
+    debian,ubuntu: libgsl0-dev
