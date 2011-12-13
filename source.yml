@@ -21,6 +21,12 @@ version_control:
         gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - drivers/lidar_sick:
+        type: archive
+        mode: tar
+        url: http://sourceforge.net/projects/sicktoolbox/files/latest/download?source=files
+        update_cached_file: false
+
     - planning/.*:
         gitorious: rock-planning/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR

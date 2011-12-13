@@ -1,3 +1,24 @@
+# Integration of the Sick Toolbox
+autotools_package "drivers/lidar_sick" do |pkg|
+    pkg.using[:aclocal] = false
+    pkg.using[:automake] = false
+    pkg.using[:autoconf] = false
+    pkg.using[:autoheader] = false
+
+    # This is a hack to make sure that the package does build
+    include_path_for_examples = [
+        "-I#{pkg.srcdir}/c++/drivers/base/src",
+        "-I#{pkg.srcdir}/c++/drivers/ld/sickld-1.0",
+        "-I#{pkg.srcdir}/c++/drivers/lms/sicklms-1.0"]
+    library_path_for_examples = [
+        "-L#{pkg.builddir}/c++/drivers/base/src",
+        "-L#{pkg.builddir}/c++/drivers/ld/sickld-1.0",
+        "-L#{pkg.builddir}/c++/drivers/lms/sicklms-1.0"]
+
+    pkg.configureflags << "CPPFLAGS=#{include_path_for_examples.join(" ")}"
+    pkg.configureflags << "LDFLAGS=#{library_path_for_examples.join(" ")}"
+end
+
 cmake_package 'drivers/sonar_tritech'
 cmake_package 'image_processing/jpeg_conversion'
 cmake_package 'image_processing/stereo'
