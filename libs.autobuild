@@ -1,3 +1,26 @@
+cmake_package 'image_processing/jpeg_conversion'
+cmake_package 'image_processing/stereo'
+cmake_package 'slam/pose_ekf'
+cmake_package 'slam/polygonnet'
+cmake_package 'gui/map2d'
+ruby_package 'gui/ffmpeg-ruby' do |pkg|
+    pkg.depends_on 'ffmpeg'
+    Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
+end
+
+#################################################################################"
+#################################################################################"
+## 
+## Do not add anything below this line unless you know what you are doing
+## New packages MUST be added at the top of the file
+##
+#################################################################################"
+#################################################################################"
+
+in_flavor 'master', 'next' do
+    cmake_package 'drivers/dvl_teledyne'
+end
+
 in_flavor 'stable', 'next', 'master' do
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
@@ -118,18 +141,3 @@ in_flavor 'stable', 'next', 'master' do
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
 end
-
-in_flavor 'master', 'next' do
-    cmake_package 'drivers/dvl_teledyne'
-end
-
-cmake_package 'image_processing/jpeg_conversion'
-cmake_package 'image_processing/stereo'
-cmake_package 'slam/pose_ekf'
-cmake_package 'slam/polygonnet'
-cmake_package 'gui/map2d'
-ruby_package 'gui/ffmpeg-ruby' do |pkg|
-    pkg.depends_on 'ffmpeg'
-    Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
-end
-
