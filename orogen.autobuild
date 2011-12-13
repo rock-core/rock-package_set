@@ -10,6 +10,8 @@ if package_enabled?('orogen')
         Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
     end
 
+    orogen_package 'drivers/orogen/sonar_tritech'
+
     #################################################################################"
     #################################################################################"
     ## 
@@ -40,7 +42,6 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/wifimon'
         orogen_package 'drivers/orogen/camera_base'
         orogen_package 'drivers/orogen/camera_prosilica'
-        orogen_package 'drivers/orogen/sonar_tritech'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'

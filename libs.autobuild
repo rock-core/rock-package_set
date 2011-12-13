@@ -1,3 +1,4 @@
+cmake_package 'drivers/sonar_tritech'
 cmake_package 'image_processing/jpeg_conversion'
 cmake_package 'image_processing/stereo'
 cmake_package 'slam/pose_ekf'
@@ -62,7 +63,6 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
-    cmake_package 'drivers/sonar_tritech'
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'
