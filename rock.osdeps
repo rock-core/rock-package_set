@@ -182,3 +182,6 @@ jpeg:
     debian,ubuntu: libjpeg-dev
 gsl:
     debian,ubuntu: libgsl0-dev
+
+boost-python:
+    debian,ubuntu: libboost-python-dev
