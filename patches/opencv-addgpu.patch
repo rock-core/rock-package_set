@@ -1,9 +1,0 @@
---- opencv.pc.cmake.in.old	2011-12-08 15:28:43.192570985 +0100
-+++ opencv.pc.cmake.in	2011-12-08 15:29:14.013799954 +0100
-@@ -9,5 +9,5 @@
- Name: OpenCV
- Description: Open Source Computer Vision Library
- Version: @VERSION@
--Libs: -L${libdir} -lopencv_core@OPENCV_DLLVERSION@ -lopencv_imgproc@OPENCV_DLLVERSION@ -lopencv_highgui@OPENCV_DLLVERSION@ -lopencv_ml@OPENCV_DLLVERSION@ -lopencv_video@OPENCV_DLLVERSION@ -lopencv_features2d@OPENCV_DLLVERSION@ -lopencv_calib3d@OPENCV_DLLVERSION@ -lopencv_objdetect@OPENCV_DLLVERSION@ -lopencv_contrib@OPENCV_DLLVERSION@ -lopencv_legacy@OPENCV_DLLVERSION@ -lopencv_flann@OPENCV_DLLVERSION@
-+Libs: -L${libdir} -lopencv_core@OPENCV_DLLVERSION@ -lopencv_imgproc@OPENCV_DLLVERSION@ -lopencv_highgui@OPENCV_DLLVERSION@ -lopencv_ml@OPENCV_DLLVERSION@ -lopencv_video@OPENCV_DLLVERSION@ -lopencv_features2d@OPENCV_DLLVERSION@ -lopencv_calib3d@OPENCV_DLLVERSION@ -lopencv_objdetect@OPENCV_DLLVERSION@ -lopencv_contrib@OPENCV_DLLVERSION@ -lopencv_legacy@OPENCV_DLLVERSION@ -lopencv_flann@OPENCV_DLLVERSION@ -lopencv_gpu@OPENCV_DLLVERSION@ 
- Cflags: -I${includedir_old} -I${includedir_new}
