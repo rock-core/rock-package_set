@@ -11,6 +11,7 @@ if package_enabled?('orogen')
     end
 
     orogen_package 'drivers/orogen/sonar_tritech'
+    orogen_package 'drivers/orogen/laserscanner_sick'
 
     #################################################################################"
     #################################################################################"

@@ -1,4 +1,5 @@
 cmake_package 'drivers/sonar_tritech'
+cmake_package 'drivers/laserscanner_sick'
 cmake_package 'image_processing/jpeg_conversion'
 cmake_package 'image_processing/stereo'
 cmake_package 'slam/pose_ekf'
