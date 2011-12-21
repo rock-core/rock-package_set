@@ -63,6 +63,11 @@ if package_enabled?('orogen')
     end
 
 
+    orogen_package 'image_processing/orogen/stereo'
+    orogen_package 'slam/orogen/graph_slam'
+
+    orogen_package 'slam/orogen/envire'
+    orogen_package 'slam/orogen/tilt_scan'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
