@@ -12,6 +12,7 @@ if package_enabled?('orogen')
 
     orogen_package 'drivers/orogen/sonar_tritech'
     orogen_package 'drivers/orogen/laserscanner_sick'
+    orogen_package 'drivers/orogen/qualisys'
 
     #################################################################################"
     #################################################################################"
@@ -43,7 +44,6 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/wifimon'
         orogen_package 'drivers/orogen/camera_base'
         orogen_package 'drivers/orogen/camera_prosilica'
-        orogen_package 'drivers/orogen/qualisys'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'

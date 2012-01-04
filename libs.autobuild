@@ -1,3 +1,4 @@
+cmake_package 'drivers/qualisys'
 cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'
 cmake_package 'image_processing/jpeg_conversion'
@@ -64,7 +65,6 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
-    cmake_package 'drivers/qualisys'
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'
