@@ -1,3 +1,5 @@
+# IMPORTANT: new packages must be added at the top of this file
+
 cmake_package 'drivers/qualisys'
 cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'

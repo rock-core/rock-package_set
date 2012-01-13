@@ -1,3 +1,6 @@
+# IMPORTANT: new packages must be added at the top of this file (after if
+# package_enabled ...)
+
 if package_enabled?('orogen')
     orogen_package 'image_processing/orogen/stereo'
     orogen_package 'control/orogen/auv_rel_pos_controller'
