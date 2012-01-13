@@ -78,10 +78,9 @@ version_control:
         update_cached_file: false
 
     - slam/pcl:
-        type: svn
-        url: http://svn.pointclouds.org/pcl/trunk
-        svnco: [--revision, 2189]
-        svnup: [--revision, 2189]
+        type: archive
+        url: http://dev.pointclouds.org/attachments/download/610/PCL-1.4.0-Source.tar.bz2
+        update_cached_file: false
 
     - slam/flann:
         type: archive
