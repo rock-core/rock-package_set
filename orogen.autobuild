@@ -17,6 +17,8 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/laserscanner_sick'
     orogen_package 'drivers/orogen/qualisys'
 
+    orogen_package 'slam/orogen/tilt_scan'
+
     #################################################################################"
     #################################################################################"
     ## 
@@ -66,11 +68,6 @@ if package_enabled?('orogen')
 	orogen_package 'drivers/orogen/camera_firewire'
     end
 
-
-    orogen_package 'image_processing/orogen/stereo'
-    orogen_package 'slam/orogen/graph_slam'
-
-    orogen_package 'slam/orogen/tilt_scan'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
