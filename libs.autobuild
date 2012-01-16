@@ -143,7 +143,8 @@ in_flavor 'stable', 'next', 'master' do
                     "currently checked out slam/pcl directory.",
                     "Should I do it ? This is required to continue building"],
                 :default => 'yes'
-            if Autoproj.configure("UPDATE_PCL_FROM_SVN")
+
+            if Autoproj.user_config("UPDATE_PCL_FROM_SVN")
                 Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
                 FileUtils.rm_rf pkg.srcdir
             else
