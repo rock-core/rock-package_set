@@ -132,6 +132,24 @@ in_flavor 'stable', 'next', 'master' do
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")
         env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+
+        # Seamlessly migrate from the SVN to the archive. We must delete the svn
+        # directory !
+        if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".svn"))
+            Autoproj.configuration_option "UPDATE_PCL_FROM_SVN", "boolean",
+                :doc => ["delete slam/pcl to update to the 1.4.0 release tarball ?",
+                    "Rock was previously checking out the PCL SVN but just switched to",
+                    "using the release tarball. Updating requires the deletion of the",
+                    "currently checked out slam/pcl directory.",
+                    "Should I do it ? This is required to continue building"],
+                :default => 'yes'
+            if Autoproj.configure("UPDATE_PCL_FROM_SVN")
+                Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
+                FileUtils.rm_rf pkg.srcdir
+            else
+                raise ConfigError, "user refused to delete slam/pcl, aborting the build"
+            end
+        end
     end
 
     cmake_package 'planning/vfh_star'
