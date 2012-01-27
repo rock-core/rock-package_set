@@ -188,3 +188,9 @@ gsl:
 
 boost-python:
     debian,ubuntu: libboost-python-dev
+
+gstreamer:
+    debian,ubuntu: 
+        - libgstreamer0.10-dev
+        - libgstreamer-plugins-base0.10-dev
+        - gstreamer0.10-plugins-good
