@@ -18,6 +18,7 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/qualisys'
 
     orogen_package 'slam/orogen/tilt_scan'
+    orogen_package 'drivers/orogen/camera_usb'
 
     #################################################################################"
     #################################################################################"
@@ -49,7 +50,6 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/wifimon'
         orogen_package 'drivers/orogen/camera_base'
         orogen_package 'drivers/orogen/camera_prosilica'
-        orogen_package 'drivers/orogen/camera_usb'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'
