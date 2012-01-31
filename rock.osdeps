@@ -27,7 +27,10 @@ opencv:
     gentoo: media-libs/opencv
 
 ffmpeg:
-    debian,ubuntu: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
+    ubuntu: 
+        9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
+        default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
+    debian: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
     gentoo:
         media-video/ffmpeg
 
@@ -185,3 +188,9 @@ gsl:
 
 boost-python:
     debian,ubuntu: libboost-python-dev
+
+gstreamer:
+    debian,ubuntu: 
+        - libgstreamer0.10-dev
+        - libgstreamer-plugins-base0.10-dev
+        - gstreamer0.10-plugins-good

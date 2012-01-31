@@ -1,3 +1,6 @@
+# IMPORTANT: new packages must be added at the top of this file (after if
+# package_enabled ...)
+
 if package_enabled?('orogen')
     orogen_package 'image_processing/orogen/stereo'
     orogen_package 'control/orogen/auv_rel_pos_controller'
@@ -13,6 +16,9 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/sonar_tritech'
     orogen_package 'drivers/orogen/laserscanner_sick'
     orogen_package 'drivers/orogen/qualisys'
+
+    orogen_package 'slam/orogen/tilt_scan'
+    orogen_package 'drivers/orogen/camera_usb'
 
     #################################################################################"
     #################################################################################"
@@ -63,11 +69,6 @@ if package_enabled?('orogen')
 	orogen_package 'drivers/orogen/camera_firewire'
     end
 
-
-    orogen_package 'image_processing/orogen/stereo'
-    orogen_package 'slam/orogen/graph_slam'
-
-    orogen_package 'slam/orogen/tilt_scan'
 else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end

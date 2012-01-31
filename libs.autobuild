@@ -1,3 +1,5 @@
+# IMPORTANT: new packages must be added at the top of this file
+
 cmake_package 'drivers/qualisys'
 cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'
@@ -7,10 +9,18 @@ cmake_package 'slam/pose_ekf'
 cmake_package 'slam/quater_ikf'
 cmake_package 'slam/polygonnet'
 cmake_package 'gui/map2d'
-ruby_package 'gui/ffmpeg-ruby' do |pkg|
-    pkg.depends_on 'ffmpeg'
-    Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
-end
+cmake_package 'drivers/camera_usb'
+
+## 
+# Remove this package. It's not working properly (has memory leak) and sometime
+# does not build at all
+#
+# ruby_package 'gui/ffmpeg-ruby' do |pkg|
+#     pkg.depends_on 'ffmpeg'
+#     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
+# end
+
+bundle_package 'bundles/rock'
 
 #################################################################################"
 #################################################################################"
@@ -129,6 +139,25 @@ in_flavor 'stable', 'next', 'master' do
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")
         env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+
+        # Seamlessly migrate from the SVN to the archive. We must delete the svn
+        # directory !
+        if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".svn"))
+            Autoproj.configuration_option "UPDATE_PCL_FROM_SVN", "boolean",
+                :doc => ["delete slam/pcl to update to the 1.4.0 release tarball ?",
+                    "Rock was previously checking out the PCL SVN but just switched to",
+                    "using the release tarball. Updating requires the deletion of the",
+                    "currently checked out slam/pcl directory.",
+                    "Should I do it ? This is required to continue building"],
+                :default => 'yes'
+
+            if Autoproj.user_config("UPDATE_PCL_FROM_SVN")
+                Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
+                FileUtils.rm_rf pkg.srcdir
+            else
+                raise ConfigError, "user refused to delete slam/pcl, aborting the build"
+            end
+        end
     end
 
     cmake_package 'planning/vfh_star'
