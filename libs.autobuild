@@ -43,10 +43,6 @@ bundle_package 'bundles/rock'
 #################################################################################"
 #################################################################################"
 
-in_flavor 'master', 'next' do
-    cmake_package 'drivers/dvl_teledyne'
-end
-
 in_flavor 'stable', 'next', 'master' do
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
@@ -88,6 +84,7 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
+    cmake_package 'drivers/dvl_teledyne'
 
     ##### Image Processing
     cmake_package 'image_processing/frame_helper'

@@ -31,11 +31,6 @@ if package_enabled?('orogen')
     #################################################################################"
     #################################################################################"
 
-    in_flavor 'master', 'next' do
-        orogen_package 'drivers/orogen/fog_kvh'
-        orogen_package 'drivers/orogen/dvl_teledyne'
-    end
-
     in_flavor 'master', 'next', 'stable' do
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
@@ -51,6 +46,8 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/wifimon'
         orogen_package 'drivers/orogen/camera_base'
         orogen_package 'drivers/orogen/camera_prosilica'
+        orogen_package 'drivers/orogen/fog_kvh'
+        orogen_package 'drivers/orogen/dvl_teledyne'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'
