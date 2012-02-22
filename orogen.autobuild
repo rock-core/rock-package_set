@@ -19,6 +19,7 @@ if package_enabled?('orogen')
 
     orogen_package 'slam/orogen/tilt_scan'
     orogen_package 'drivers/orogen/camera_usb'
+    orogen_package 'drivers/orogen/camera_ids'
 
     #################################################################################"
     #################################################################################"
