@@ -3,13 +3,8 @@
 cmake_package 'drivers/qualisys'
 cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'
-cmake_package 'image_processing/jpeg_conversion'
-cmake_package 'image_processing/stereo'
-cmake_package 'slam/pose_ekf'
-cmake_package 'slam/quater_ikf'
 cmake_package 'slam/polygonnet'
 cmake_package 'gui/map2d'
-cmake_package 'drivers/camera_usb'
 cmake_package 'drivers/camera_ids' do |pkg|
     def pkg.prepare
         super
@@ -32,8 +27,6 @@ end
 #     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 # end
 
-bundle_package 'bundles/rock'
-
 #################################################################################"
 #################################################################################"
 ## 
@@ -42,6 +35,15 @@ bundle_package 'bundles/rock'
 ##
 #################################################################################"
 #################################################################################"
+
+in_flavor 'next', 'master' do
+    bundle_package 'bundles/rock'
+    cmake_package 'image_processing/stereo'
+    cmake_package 'slam/pose_ekf'
+    cmake_package 'slam/quater_ikf'
+    cmake_package 'drivers/camera_usb'
+    cmake_package 'image_processing/jpeg_conversion'
+end
 
 in_flavor 'stable', 'next', 'master' do
     ##### External libraries not available as binary packages

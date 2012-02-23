@@ -41,12 +41,6 @@ version_control:
         gitorious: rock/bundle.git
         branch: $ROCK_FLAVOR
 
-    - slam/pose_ekf:
-        branch: master
-
-    - slam/quater_ikf:
-        branch: master
-
     - slam/orogen/.*:
         gitorious: rock-slam/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR

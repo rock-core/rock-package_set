@@ -2,23 +2,15 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'image_processing/orogen/stereo'
     orogen_package 'control/orogen/auv_rel_pos_controller'
     orogen_package 'control/orogen/auv_control'
     orogen_package 'drivers/orogen/camera_v4l'
-    
-    orogen_package 'slam/orogen/graph_slam'
-
-    orogen_package 'drivers/orogen/transformer' do |pkg|
-        Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
-    end
 
     orogen_package 'drivers/orogen/sonar_tritech'
     orogen_package 'drivers/orogen/laserscanner_sick'
     orogen_package 'drivers/orogen/qualisys'
 
     orogen_package 'slam/orogen/tilt_scan'
-    orogen_package 'drivers/orogen/camera_usb'
     orogen_package 'drivers/orogen/camera_ids'
 
     #################################################################################"
@@ -30,6 +22,16 @@ if package_enabled?('orogen')
     ##
     #################################################################################"
     #################################################################################"
+    
+    in_flavor 'master', 'next' do
+        orogen_package 'slam/orogen/graph_slam'
+        orogen_package 'image_processing/orogen/stereo'
+        orogen_package 'drivers/orogen/camera_usb'
+
+        orogen_package 'drivers/orogen/transformer' do |pkg|
+            Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+        end
+    end
 
     in_flavor 'master', 'next', 'stable' do
         orogen_package 'control/orogen/trajectory_follower'
