@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'drivers/orogen/vicon'
     orogen_package 'control/orogen/auv_rel_pos_controller'
     orogen_package 'control/orogen/auv_control'
     orogen_package 'drivers/orogen/camera_v4l'
