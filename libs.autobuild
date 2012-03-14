@@ -6,17 +6,12 @@ cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'
 cmake_package 'slam/polygonnet'
 cmake_package 'gui/map2d'
-cmake_package 'drivers/camera_ids' do |pkg|
-    def pkg.prepare
-        super
 
-        include_file = File.join("/usr","include","ueye.h")
-        lib = File.join("/usr","lib","libueye_api.so")
-        if !File.exists?(include_file) || !File.exists?(lib)
-            raise ConfigError, "uEye Linux SDK needed for camera_ids is not installed! "+
-                 "Install it manually: http://www.ids-imaging.de/drivers.php"
-        end
-    end 
+cmake_package 'drivers/camera_ids'
+include_file = File.join("/usr","include","ueye.h")
+lib = File.join("/usr","lib","libueye_api.so")
+if File.exists?(include_file) || !File.exists?(lib)
+    Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
 end
 
 ## 
