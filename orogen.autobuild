@@ -13,6 +13,9 @@ if package_enabled?('orogen')
 
     orogen_package 'slam/orogen/tilt_scan'
     orogen_package 'drivers/orogen/camera_ids'
+    if !has_ueye_api?
+        Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    end
 
     #################################################################################"
     #################################################################################"
