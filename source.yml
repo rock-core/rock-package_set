@@ -80,7 +80,7 @@ version_control:
 
     - slam/pcl:
         type: archive
-        url: http://dev.pointclouds.org/attachments/download/610/PCL-1.4.0-Source.tar.bz2
+        url: http://www.pointclouds.org/assets/files/1.4.0/PCL-1.4.0-Source.tar.bz2
         update_cached_file: false
 
     - slam/flann:
