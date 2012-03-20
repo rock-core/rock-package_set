@@ -7,6 +7,8 @@ if package_enabled?('orogen')
     orogen_package 'control/orogen/auv_control'
     orogen_package 'drivers/orogen/camera_v4l'
 
+    orogen_package 'slam/orogen/envire'
+
     orogen_package 'drivers/orogen/sonar_tritech'
     orogen_package 'drivers/orogen/laserscanner_sick'
     orogen_package 'drivers/orogen/qualisys'
