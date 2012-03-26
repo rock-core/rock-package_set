@@ -35,6 +35,7 @@ in_flavor 'next', 'master' do
     cmake_package 'image_processing/stereo'
     cmake_package 'slam/pose_ekf'
     cmake_package 'slam/quater_ikf'
+    cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/camera_usb'
     cmake_package 'image_processing/jpeg_conversion'
 end
