@@ -30,12 +30,15 @@ end
 #################################################################################"
 #################################################################################"
 
+in_flavor 'master' do
+    cmake_package 'slam/quater_ukf'
+end
+
 in_flavor 'next', 'master' do
     bundle_package 'bundles/rock'
     cmake_package 'image_processing/stereo'
     cmake_package 'slam/pose_ekf'
     cmake_package 'slam/quater_ikf'
-    cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/camera_usb'
     cmake_package 'image_processing/jpeg_conversion'
 end
