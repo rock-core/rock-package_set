@@ -111,18 +111,15 @@ gdal:
 
 yaml:
     debian,ubuntu: [libyaml-dev]
-    gentoo:
-        dev-libs/libyaml
+    gentoo: dev-libs/libyaml
 
-libkdtree:
-    debian,ubuntu: [libkdtree++-dev]
-    gentoo:
-        libkdtree++              #actually, there is no ebuild.
-	
 cgal:
     debian,ubuntu: [libcgal-dev]
-    gentoo:
-        sci-mathematics/cgal
+    gentoo: sci-mathematics/cgal
+
+libkdtree:
+    debian,ubuntu: libkdtree++-dev
+    gentoo: libkdtree++ # actually, there are no ebuilds
 
 blas:
     debian,ubuntu: [libblas-dev]
@@ -134,13 +131,11 @@ lapack:
 
 autoconf-archive:
     debian,ubuntu: [autoconf-archive]
-    gentoo:
-        sys-devel/autoconf-archive
+    gentoo: sys-devel/autoconf-archive
 
 osg:
     debian,ubuntu: [libopenscenegraph-dev]
-    gentoo:
-        dev-games/openscenegraph
+    gentoo: dev-games/openscenegraph
 qt4:
     # QMake is needed for the CMake macro for Qt4
     debian,ubuntu: [libqt4-dev, qt4-qmake]
@@ -151,8 +146,7 @@ qt4:
 
 qt-designer:
     debian,ubuntu: qt4-designer
-    gentoo:
-        x11-libs/qt-gui
+    gentoo: x11-libs/qt-gui
 qwt5:
     debian,ubuntu: [libqwt5-qt4-dev]
 
