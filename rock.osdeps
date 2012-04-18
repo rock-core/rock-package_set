@@ -141,8 +141,12 @@ qt4:
     debian,ubuntu: [libqt4-dev, qt4-qmake]
     gentoo:
         - qt-core 
-        - qt-opengl 
         - qt-gui
+
+qt4-opengl:
+    debian,ubuntu: [libqt4-opengl-dev]
+    gentoo:
+        - qt-opengl 
 
 qt-designer:
     debian,ubuntu: qt4-designer
