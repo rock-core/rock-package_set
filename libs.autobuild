@@ -142,6 +142,7 @@ in_flavor 'stable', 'next', 'master' do
         pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
     end
     cmake_package 'slam/pcl' do |pkg|
+        pkg.depends_on 'eigen3'
         pkg.depends_on 'slam/flann'
         pkg.depends_on 'external/cminpack'
         pkg.depends_on 'qhull'
