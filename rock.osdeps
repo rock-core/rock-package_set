@@ -194,6 +194,11 @@ gstreamer:
         - gstreamer0.10-plugins-good
 
 libproc:
-    debian,ubuntu:
+    debian:
+        squeeze:
+                - libproc-dev
+        default:
+                - libprocps0-dev
+    ubuntu:
         - libproc-dev
 
