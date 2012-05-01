@@ -2,21 +2,23 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'drivers/orogen/vicon'
-    orogen_package 'control/orogen/auv_rel_pos_controller'
-    orogen_package 'control/orogen/auv_control'
-    orogen_package 'drivers/orogen/camera_v4l'
+    in_flavor 'master' do
+    	orogen_package 'drivers/orogen/vicon'
+    	orogen_package 'control/orogen/auv_rel_pos_controller'
+    	orogen_package 'control/orogen/auv_control'
+    	orogen_package 'drivers/orogen/camera_v4l'
 
-    orogen_package 'slam/orogen/envire'
+    	orogen_package 'slam/orogen/envire'
 
-    orogen_package 'drivers/orogen/sonar_tritech'
-    orogen_package 'drivers/orogen/laserscanner_sick'
-    orogen_package 'drivers/orogen/qualisys'
+    	orogen_package 'drivers/orogen/sonar_tritech'
+    	orogen_package 'drivers/orogen/laserscanner_sick'
+    	orogen_package 'drivers/orogen/qualisys'
 
-    orogen_package 'slam/orogen/tilt_scan'
-    orogen_package 'drivers/orogen/camera_ids'
-    if !has_ueye_api?
-        Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    	orogen_package 'slam/orogen/tilt_scan'
+    	orogen_package 'drivers/orogen/camera_ids'
+    	if !has_ueye_api?
+    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    	end
     end
 
     #################################################################################"
@@ -30,16 +32,10 @@ if package_enabled?('orogen')
     #################################################################################"
     
     in_flavor 'master', 'next' do
-        orogen_package 'slam/orogen/graph_slam'
-        orogen_package 'image_processing/orogen/stereo'
-        orogen_package 'drivers/orogen/camera_usb'
-
-        orogen_package 'drivers/orogen/transformer' do |pkg|
-            Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
-        end
     end
 
     in_flavor 'master', 'next', 'stable' do
+
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
         orogen_package 'control/orogen/skid4_control'
@@ -56,12 +52,18 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/camera_prosilica'
         orogen_package 'drivers/orogen/fog_kvh'
         orogen_package 'drivers/orogen/dvl_teledyne'
+        orogen_package 'drivers/orogen/camera_usb'
+        orogen_package 'drivers/orogen/iodrivers_base'
+	orogen_package 'drivers/orogen/camera_firewire'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'
         end
 
+        orogen_package 'slam/orogen/graph_slam'
+
         orogen_package 'image_processing/orogen/image_preprocessing'
+        orogen_package 'image_processing/orogen/stereo'
 
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
@@ -70,9 +72,9 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/aggregator' do |pkg|
             Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
         end
-
-        orogen_package 'drivers/orogen/iodrivers_base'
-	orogen_package 'drivers/orogen/camera_firewire'
+        orogen_package 'drivers/orogen/transformer' do |pkg|
+            Autoproj.env_add_path 'OROGEN_PLUGIN_PATH', File.join(pkg.prefix, "share", "orogen", "plugins" )
+        end
     end
 
 else

@@ -34,16 +34,12 @@ in_flavor 'master' do
     cmake_package 'slam/quater_ukf'
 end
 
-in_flavor 'next', 'master' do
-    bundle_package 'bundles/rock'
-    cmake_package 'image_processing/stereo'
-    cmake_package 'slam/pose_ekf'
-    cmake_package 'slam/quater_ikf'
-    cmake_package 'drivers/camera_usb'
-    cmake_package 'image_processing/jpeg_conversion'
+in_flavor 'master', 'next' do
 end
 
-in_flavor 'stable', 'next', 'master' do
+in_flavor 'master', 'next', 'stable' do
+    bundle_package 'bundles/rock'
+
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
     cmake_package 'external/tinyxml'
@@ -84,14 +80,23 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
     cmake_package 'drivers/camera_prosilica'
+    cmake_package 'drivers/camera_usb'
     cmake_package 'drivers/dvl_teledyne'
+    cmake_package 'drivers/camera_firewire'
+    cmake_package 'drivers/fog_kvh'
+    cmake_package 'drivers/iCharger'
 
     ##### Image Processing
+    cmake_package 'image_processing/stereo'
+    cmake_package 'image_processing/jpeg_conversion'
     cmake_package 'image_processing/frame_helper'
+    cmake_package 'image_processing/libelas'
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
     cmake_package 'planning/corridor_planner'
+    cmake_package 'planning/vfh_star'
+    cmake_package 'planning/corridor_navigation'
 
     ##### Localisation and Mapping related packages
     autotools_package 'external/libply' do |pkg|
@@ -101,37 +106,8 @@ in_flavor 'stable', 'next', 'master' do
     cmake_package 'slam/envire' do |pkg| 
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
     end
-
-    ##### Graphical User Interface related packages 
-    cmake_package 'gui/vizkit' do |pkg|
-        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
-        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
-        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
-        # to list the place where they install themselves
-        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
-        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
-    end
-    cmake_package 'gui/rock_widget_collection' do |pkg|
-        Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
-    end
-
-    ##### Graphical User Interface related packages 
-    cmake_package 'external/opencv' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE","Release")
-        if not RUBY_PLATFORM.downcase.include?("arm")
-	    pkg.define("ENABLE_SSE3","ON")
-	    pkg.define("ENABLE_SSE41","OFF")
-	    pkg.define("ENABLE_SSE42","OFF")
-	    pkg.define("ENABLE_SSSE3","OFF")
-        end
-        pkg.define("BUILD_EXAMPLES","OFF")
-        pkg.define("WITH_FFMPEG","OFF")
-        pkg.define("BUILD_TESTS","OFF")
-    end
-    cmake_package 'image_processing/libelas'
-
+    cmake_package 'slam/pose_ekf'
+    cmake_package 'slam/quater_ikf'
     cmake_package 'external/cminpack' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
     end
@@ -169,16 +145,38 @@ in_flavor 'stable', 'next', 'master' do
             end
         end
     end
+    cmake_package 'slam/hogman'
 
-    cmake_package 'planning/vfh_star'
+    ##### Graphical User Interface related packages 
+    cmake_package 'gui/vizkit' do |pkg|
+        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
+        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
+        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+        # to list the place where they install themselves
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+    end
+    cmake_package 'gui/rock_widget_collection' do |pkg|
+        Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
+    end
+
+    cmake_package 'external/opencv' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE","Release")
+        if not RUBY_PLATFORM.downcase.include?("arm")
+	    pkg.define("ENABLE_SSE3","ON")
+	    pkg.define("ENABLE_SSE41","OFF")
+	    pkg.define("ENABLE_SSE42","OFF")
+	    pkg.define("ENABLE_SSSE3","OFF")
+        end
+        pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("WITH_FFMPEG","OFF")
+        pkg.define("BUILD_TESTS","OFF")
+    end
+
 
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
-
-    cmake_package 'drivers/fog_kvh'
-    cmake_package 'drivers/iCharger'
-    cmake_package 'slam/hogman'
-    cmake_package 'drivers/camera_firewire'
-    cmake_package 'planning/corridor_navigation'
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
