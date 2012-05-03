@@ -8,6 +8,7 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/camera_v4l'
 
     orogen_package 'slam/orogen/envire'
+    orogen_package 'slam/orogen/orientation_estimator'
 
     orogen_package 'drivers/orogen/sonar_tritech'
     orogen_package 'drivers/orogen/laserscanner_sick'
