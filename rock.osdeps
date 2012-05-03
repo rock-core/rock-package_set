@@ -141,8 +141,12 @@ qt4:
     debian,ubuntu: [libqt4-dev, qt4-qmake]
     gentoo:
         - qt-core 
-        - qt-opengl 
         - qt-gui
+
+qt4-opengl:
+    debian,ubuntu: [libqt4-opengl-dev]
+    gentoo:
+        - qt-opengl 
 
 qt-designer:
     debian,ubuntu: qt4-designer
@@ -188,3 +192,13 @@ gstreamer:
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
+
+libproc:
+    debian:
+        squeeze:
+                - libproc-dev
+        default:
+                - libprocps0-dev
+    ubuntu:
+        - libproc-dev
+

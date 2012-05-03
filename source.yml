@@ -97,7 +97,8 @@ version_control:
     - slam/hogman:
         type: svn
         url: http://svn.openslam.org/data/svn/hog-man/trunk 
-        patches: $AUTOPROJ_SOURCE_DIR/patches/hogman.patch
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/hogman.patch
     
     - external/tinyxml: 
         type: archive
