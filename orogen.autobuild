@@ -9,7 +9,6 @@ if package_enabled?('orogen')
     	orogen_package 'drivers/orogen/camera_v4l'
 
 
-	orogen_package 'slam/orogen/envire'
 	orogen_package 'slam/orogen/orientation_estimator'
 
     	orogen_package 'drivers/orogen/sonar_tritech'
@@ -34,6 +33,7 @@ if package_enabled?('orogen')
     #################################################################################"
     
     in_flavor 'master', 'next' do
+	orogen_package 'slam/orogen/envire'
     end
 
     in_flavor 'master', 'next', 'stable' do
