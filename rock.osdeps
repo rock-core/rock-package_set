@@ -17,12 +17,16 @@ opencv:
                 - libhighgui-dev
                 - libcvaux4
                 - libcvaux-dev
-        default: 
+        '10.10,11.04,11.10':
                 - libcv2.1
                 - libcv-dev
                 - libhighgui2.1
                 - libhighgui-dev
                 - libcvaux2.1
+                - libcvaux-dev
+        default:
+                - libcv-dev
+                - libhighgui-dev
                 - libcvaux-dev
     gentoo: media-libs/opencv
 
