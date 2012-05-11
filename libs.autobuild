@@ -6,6 +6,7 @@ cmake_package 'drivers/sonar_tritech'
 cmake_package 'drivers/laserscanner_sick'
 cmake_package 'slam/polygonnet'
 cmake_package 'slam/graph_slam'
+cmake_package 'slam/odometry'
 cmake_package 'gui/map2d'
 
 cmake_package 'drivers/camera_ids'
