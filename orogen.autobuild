@@ -57,6 +57,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/camera_usb'
         orogen_package 'drivers/orogen/iodrivers_base'
 	orogen_package 'drivers/orogen/camera_firewire'
+	orogen_package 'drivers/orogen/gpsd_client'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'

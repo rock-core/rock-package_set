@@ -204,4 +204,5 @@ libproc:
                 - libprocps0-dev
     ubuntu:
         - libproc-dev
-
+gpsd:
+    debian,ubuntu: libgps-dev
