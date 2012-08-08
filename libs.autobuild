@@ -34,7 +34,6 @@ end
 
 in_flavor 'master' do
     cmake_package 'slam/quater_ukf'
-    cmake_package 'gui/vizkit_3d_plugins'
 end
 
 in_flavor 'master', 'next' do
