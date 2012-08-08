@@ -136,6 +136,8 @@ autoconf-archive:
     debian,ubuntu: [autoconf-archive]
     gentoo: sys-devel/autoconf-archive
 
+osgEarth:
+    debian,ubuntu: [libosgearth-dev]
 osg:
     debian,ubuntu: [libopenscenegraph-dev]
     gentoo: dev-games/openscenegraph
