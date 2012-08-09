@@ -34,6 +34,13 @@ end
 
 in_flavor 'master' do
     cmake_package 'slam/quater_ukf'
+
+    name, version = Autoproj::OSDependencies.operating_system
+    if(name != "ubuntu" || version.to_f >= 12.0) 
+        cmake_package 'gui/vizkit_3d_plugins'
+    else
+        puts "Not installing Map Vizualiszation, because on Ubuntu Systems below 12.0 there is no openSceneGraph Package availible, so skipping this"
+    end
 end
 
 in_flavor 'master', 'next' do
