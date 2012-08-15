@@ -181,6 +181,7 @@ in_flavor 'master', 'next', 'stable' do
 	    pkg.define("ENABLE_SSSE3","OFF")
         end
         pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("BUILD_NEW_PYTHON_SUPPORT","OFF")
         pkg.define("WITH_FFMPEG","OFF")
         pkg.define("BUILD_TESTS","OFF")
     end
