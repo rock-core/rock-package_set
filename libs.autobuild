@@ -187,8 +187,13 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define("BUILD_TESTS","OFF")
     end
 
-
-    Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
+    name, version = Autoproj::OSDependencies.operating_system
+    #puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
+    if((name.include?("ubuntu") && version[1].to_f >= 12.0) || name.include?("debian")) 
+    else
+        puts "Compiling opencv locally, as there is no opencv-gpu Package availible"
+        Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
+    end
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'

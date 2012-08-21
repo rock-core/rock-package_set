@@ -1,33 +1,9 @@
 opencv:
     debian:
-        - libcv-dev
-        - libcv2.1
-        - libhighgui-dev
-        - libhighgui2.1
-        - libcvaux-dev
-        - libcvaux2.1	
+       - libopencv-dev
     ubuntu:
-        9.04,9.10:
-                - libcv1
-                - libcv-dev
-        '10.04': 
-                - libcv4
-                - libcv-dev
-                - libhighgui4
-                - libhighgui-dev
-                - libcvaux4
-                - libcvaux-dev
-        '10.10,11.04,11.10':
-                - libcv2.1
-                - libcv-dev
-                - libhighgui2.1
-                - libhighgui-dev
-                - libcvaux2.1
-                - libcvaux-dev
-        default:
-                - libcv-dev
-                - libhighgui-dev
-                - libcvaux-dev
+        '12.04':
+                - libopencv-dev
     gentoo: media-libs/opencv
 
 ffmpeg:
