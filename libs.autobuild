@@ -189,7 +189,7 @@ in_flavor 'master', 'next', 'stable' do
 
     name, version = Autoproj::OSDependencies.operating_system
     #puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
-    if((name.include?("ubuntu") && version[1].to_f >= 12.0) || name.include?("debian")) 
+    if((name.include?("ubuntu") && version[1].to_f >= 12.0) || (name.index("debian")==0)) 
     else
         puts "Compiling opencv locally, as there is no opencv-gpu Package availible"
         Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
