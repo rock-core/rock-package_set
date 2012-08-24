@@ -173,25 +173,24 @@ in_flavor 'master', 'next', 'stable' do
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
 
-    cmake_package 'external/opencv' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE","Release")
-        if not RUBY_PLATFORM.downcase.include?("arm")
-	    pkg.define("ENABLE_SSE3","ON")
-	    pkg.define("ENABLE_SSE41","OFF")
-	    pkg.define("ENABLE_SSE42","OFF")
-	    pkg.define("ENABLE_SSSE3","OFF")
-        end
-        pkg.define("BUILD_EXAMPLES","OFF")
-        pkg.define("BUILD_NEW_PYTHON_SUPPORT","OFF")
-        pkg.define("WITH_FFMPEG","OFF")
-        pkg.define("BUILD_TESTS","OFF")
-    end
-
     name, version = Autoproj::OSDependencies.operating_system
     #puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
-    if((name.include?("ubuntu") && version[1].to_f >= 12.0) || (name.index("debian")==0)) 
+    if((name.include?("ubuntu") && version[1].to_f >= 12.0) || (name.index("debian")==0))     
     else
         puts "Compiling opencv locally, as there is no opencv-gpu Package availible"
+        cmake_package 'external/opencv' do |pkg|
+    	    pkg.define("CMAKE_BUILD_TYPE","Release")
+            if not RUBY_PLATFORM.downcase.include?("arm")
+	       pkg.define("ENABLE_SSE3","ON")
+	       pkg.define("ENABLE_SSE41","OFF")
+	       pkg.define("ENABLE_SSE42","OFF")
+	       pkg.define("ENABLE_SSSE3","OFF")
+            end
+            pkg.define("BUILD_EXAMPLES","OFF")
+            pkg.define("BUILD_NEW_PYTHON_SUPPORT","OFF")
+            pkg.define("WITH_FFMPEG","OFF")
+            pkg.define("BUILD_TESTS","OFF")
+    	end
         Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
     end
 
