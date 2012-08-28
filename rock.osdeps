@@ -85,6 +85,7 @@ flexmock: gem
 webgen: gem
 coderay: gem
 rice: gem
+net-ssh: gem
 
 facets: gem
 gdal:
