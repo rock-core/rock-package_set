@@ -1,6 +1,8 @@
 opencv:
     debian:
        - libopencv-dev
+       - libcv-dev
+       - libhighgui-dev
     ubuntu:
         '12.04':
                 - libopencv-dev
