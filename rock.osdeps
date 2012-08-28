@@ -47,7 +47,6 @@ libgps:
   gentoo:
         sci-geosciences/gpsd
 
-rice: gem
 boost:
     debian,ubuntu:
         - libboost-dev
