@@ -1,8 +1,10 @@
 opencv:
     debian:
-       - libopencv-dev
-       - libcv-dev
-       - libhighgui-dev
+        'squeeze':
+                - libcv-dev
+                - libhighgui-dev
+        'wheezy,sid':
+                - libopencv-dev
     ubuntu:
         '12.04':
                 - libopencv-dev
