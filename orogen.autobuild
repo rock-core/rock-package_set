@@ -5,6 +5,7 @@ if package_enabled?('orogen')
     in_flavor 'master' do
 	orogen_package 'drivers/orogen/imar'
     	orogen_package 'drivers/orogen/vicon'
+	orogen_package 'drivers/orogen/laser_filter'
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
     	orogen_package 'drivers/orogen/camera_v4l'
