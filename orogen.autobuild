@@ -3,6 +3,7 @@
 
 if package_enabled?('orogen')
     in_flavor 'master' do
+	orogen_package 'drivers/orogen/stim300'
 	orogen_package 'drivers/orogen/imar'
     	orogen_package 'drivers/orogen/vicon'
 	orogen_package 'drivers/orogen/laser_filter'
