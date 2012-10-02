@@ -1,8 +1,5 @@
 opencv:
     debian:
-        'squeeze':
-                - libcv-dev
-                - libhighgui-dev
         'wheezy,sid':
                 - libopencv-dev
     ubuntu:
