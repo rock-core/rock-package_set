@@ -38,6 +38,9 @@ in_flavor 'master' do
     cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/laser_filter'
     cmake_package 'gui/vizkit_3d_plugins'
+    if !Autoproj.osdeps.has? 'osgEarth'
+        Autoproj.manifest.add_exclusion "gui/vizkit_3d_plugin", "osgEarth is not available as a prebuilt package on this operating system, vizkit_3d_plugin cannot be compiled"
+    end
 end
 
 in_flavor 'master', 'next' do
