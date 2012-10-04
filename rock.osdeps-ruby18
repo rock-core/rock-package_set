@@ -1,0 +1,14 @@
+qtruby:
+    debian:
+        - ruby-qt4
+        - ruby-qt4-uitools
+        
+    ubuntu:
+       default:
+               - ruby-qt4
+               - ruby-qt4-uitools
+       '10.04,10.10,11.04':
+               - libqt4-ruby1.8
+    gentoo:
+        kde-base/kdebindings-ruby
+

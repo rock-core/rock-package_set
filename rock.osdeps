@@ -63,15 +63,6 @@ ncurses:
 doxygen:
     debian,ubuntu: [doxygen]
     gentoo: app-doc/doxygen
-qtruby:
-    debian,ubuntu:
-        'lenny,squeeze,9.04,9.10,10.04,10.10,11.04':
-            - libqt4-ruby1.8
-        default:
-            - ruby-qt4
-            - ruby-qt4-uitools
-    gentoo:
-        kde-base/kdebindings-ruby
 graphviz:
     debian,ubuntu:
         graphviz
@@ -188,3 +179,9 @@ libproc:
         - libproc-dev
 gpsd:
     debian,ubuntu: libgps-dev
+
+# NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
+# and rock.osdeps-ruby19) as we need to install different packages depending on
+# the Ruby version
+
+
