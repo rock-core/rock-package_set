@@ -72,7 +72,6 @@ graphviz:
 rice: gem
 net-ssh: gem
 
-facets: gem
 gdal:
     debian,ubuntu: [libgdal1-dev]
     gentoo: sci-libs/gdal
