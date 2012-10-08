@@ -185,6 +185,7 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define("BUILD_TESTS","OFF")
     end
     Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv'
+    remove_from_default 'external/opencv'
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
