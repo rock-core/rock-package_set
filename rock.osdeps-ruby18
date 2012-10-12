@@ -12,3 +12,9 @@ qtruby:
     gentoo:
         kde-base/kdebindings-ruby
 
+    fedora:
+        "16": ruby-qt
+        default:
+            gem:
+                qtbindings
+

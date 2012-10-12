@@ -9,43 +9,51 @@ opencv:
                 - libcv-dev
                 - libhighgui-dev
     gentoo: media-libs/opencv
+    fedora: opencv-devel
 
 ffmpeg:
     ubuntu: 
         9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
     debian: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
-    gentoo:
-        media-video/ffmpeg
+    gentoo: media-video/ffmpeg
 
 sysfs:
-    debian,ubuntu: [libsysfs-dev]
-    gentoo:
-        sys-fs/sysfsutils
+    debian,ubuntu: libsysfs-dev
+    gentoo: sys-fs/sysfsutils
+    fedora: libsysfs-devel
 
 libusb-old:
-    debian,ubuntu: [libusb-dev]
+    debian,ubuntu: libusb-dev
 
 gdal:
-    debian,ubuntu: [libgdal1-dev]
+    debian,ubuntu: libgdal1-dev
     gentoo: sci-libs/gdal
+    fedora: gdal-devel
 
 proj:
-    debian,ubuntu: [libproj-dev]
+    debian,ubuntu: libproj-dev
     gentoo: sci-libs/proj
+    fedora: proj-devel
 
 freeglut3:
-    debian,ubuntu: [freeglut3-dev]
+    debian,ubuntu: freeglut3-dev
+    fedora: freeglut-devel
 
 libiw:
-    debian,ubuntu: [libiw-dev]
-    gentoo:
-        net-wireless/wireless-tools
+    debian,ubuntu: libiw-dev
+    gentoo: net-wireless/wireless-tools
+    fedora: wireless-tools-devel
 
 libgps:
-  debian,ubuntu: [libgps-dev]
-  gentoo:
-        sci-geosciences/gpsd
+  debian,ubuntu: libgps-dev
+  gentoo: sci-geosciences/gpsd
+  fedora: gpsd-devel
+
+gpsd:
+  debian,ubuntu: libgps-dev
+  gentoo: sci-geosciences/gpsd
+  fedora: gpsd-devel
 
 boost:
     debian,ubuntu:
@@ -57,79 +65,91 @@ boost:
         - libboost-filesystem-dev
         - libboost-iostreams-dev
     gentoo: dev-libs/boost
+    fedora: boost-devel
 
 ncurses:
-    debian,ubuntu: [libncurses5-dev]
+    debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
+    fedora: ncurses-devel
 doxygen:
-    debian,ubuntu: [doxygen]
+    debian,ubuntu: doxygen
     gentoo: app-doc/doxygen
+    fedora: doxygen
 graphviz:
-    debian,ubuntu:
-        graphviz
-    gentoo:
-        graphviz
+    debian,ubuntu: graphviz
+    gentoo: graphviz
+    fedora: graphviz
 
 rice: gem
 net-ssh: gem
 
-gdal:
-    debian,ubuntu: [libgdal1-dev]
-    gentoo: sci-libs/gdal
-
 yaml:
-    debian,ubuntu: [libyaml-dev]
+    debian,ubuntu: libyaml-dev
     gentoo: dev-libs/libyaml
+    fedora: libyaml-devel
 
 cgal:
-    debian,ubuntu: [libcgal-dev]
+    debian,ubuntu: libcgal-dev
     gentoo: sci-mathematics/cgal
+    fedora: CGAL-devel
 
 libkdtree:
     debian,ubuntu: libkdtree++-dev
     gentoo: libkdtree++ # actually, there are no ebuilds
+    fedora: nonexistent
 
 blas:
-    debian,ubuntu: [libblas-dev]
+    debian,ubuntu: libblas-dev
     gentoo: blas
+    fedora: blas-devel
 
 lapack:
-    debian,ubuntu: [liblapack-dev]
+    debian,ubuntu: liblapack-dev
     gentoo: lapack
+    fedora: lapack-devel
 
 autoconf-archive:
-    debian,ubuntu: [autoconf-archive]
+    debian,ubuntu: autoconf-archive
     gentoo: sys-devel/autoconf-archive
+    fedora: autoconf-archive
 
 osgEarth:
     debian: [libosgearth-dev, libosgearth1]
     ubuntu:
         default: [libosgearth-dev, libosgearth1]
         10.04,10.10,11.04,11.10: nonexistent
+    fedora: nonexistent
 
 osg:
-    debian,ubuntu: [libopenscenegraph-dev]
+    debian,ubuntu: libopenscenegraph-dev
     gentoo: dev-games/openscenegraph
+    fedora: OpenSceneGraph-devel
+
 qt4:
     # QMake is needed for the CMake macro for Qt4
     debian,ubuntu: [libqt4-dev, qt4-qmake]
     gentoo:
         - qt-core 
         - qt-gui
+    fedora: qt-devel
 
 qt4-opengl:
-    debian,ubuntu: [libqt4-opengl-dev]
-    gentoo:
-        - qt-opengl 
+    debian,ubuntu: libqt4-opengl-dev
+    gentoo: qt-opengl 
+    fedora: qt-devel
 
 qt-designer:
     debian,ubuntu: qt4-designer
     gentoo: x11-libs/qt-gui
+    fedora: qt-devel
+
 qwt5:
-    debian,ubuntu: [libqwt5-qt4-dev]
+    debian,ubuntu: libqwt5-qt4-dev
+    fedora: qwt-devel
 
 qsqlite:
     debian,ubuntu: libqt4-sql-sqlite
+    fedora: qt-devel
 
 libnl2:
     debian: libnl2-dev
@@ -140,32 +160,43 @@ libnl2:
                 - libnl-dev
         default: 
                 - libnl2-dev
+    fedora: nonexistent
+
 v4l:
     debian,ubuntu: libv4l-dev
+    fedora: libv4l-devel
 
 qhull:
     debian,ubuntu: libqhull-dev
+    fedora: qhull-devel
 
 dc1394:
     debian, ubuntu: libdc1394-22-dev
     gentoo: media-libs/libdc1394
+    fedora: libdc1394-devel
 
 vtk-qt4:
     debian,ubuntu: libvtk5-qt4-dev
+    fedora: vtk-devel
 
 jpeg:
     debian,ubuntu: libjpeg-dev
+    fedora: libjpeg-turbo-devel
+
 gsl:
     debian,ubuntu: libgsl0-dev
+    fedora: gsl-devel
 
 boost-python:
     debian,ubuntu: libboost-python-dev
+    fedora: boost-devel
 
 gstreamer:
     debian,ubuntu: 
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
+    fedora: gstreamer-devel
 
 libproc:
     debian:
@@ -173,10 +204,8 @@ libproc:
                 - libproc-dev
         default:
                 - libprocps0-dev
-    ubuntu:
-        - libproc-dev
-gpsd:
-    debian,ubuntu: libgps-dev
+    ubuntu: libproc-dev
+    fedora: procps-devel
 
 # NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
 # and rock.osdeps-ruby19) as we need to install different packages depending on
