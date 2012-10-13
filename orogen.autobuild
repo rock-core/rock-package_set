@@ -38,10 +38,6 @@ if package_enabled?('orogen')
     #################################################################################"
     #################################################################################"
     
-    in_flavor 'master', 'next' do
-	orogen_package 'slam/orogen/envire'
-    end
-
     in_flavor 'master', 'next', 'stable' do
 
         orogen_package 'control/orogen/trajectory_follower'
@@ -69,6 +65,7 @@ if package_enabled?('orogen')
             orogen_package 'drivers/orogen/taskmon'
         end
 
+	orogen_package 'slam/orogen/envire'
         orogen_package 'slam/orogen/graph_slam'
 
         orogen_package 'image_processing/orogen/image_preprocessing'
