@@ -5,7 +5,6 @@ if package_enabled?('orogen')
     in_flavor 'master' do
 	orogen_package 'drivers/orogen/stim300'
 	orogen_package 'drivers/orogen/imar'
-	orogen_package 'drivers/orogen/laser_filter'
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'slam/orogen/orientation_estimator'
@@ -27,6 +26,7 @@ if package_enabled?('orogen')
     	orogen_package 'drivers/orogen/sonar_tritech'
     	orogen_package 'drivers/orogen/laserscanner_sick'
     	orogen_package 'drivers/orogen/qualisys'
+	orogen_package 'drivers/orogen/laser_filter'
 
     	orogen_package 'slam/orogen/odometry'
     	orogen_package 'drivers/orogen/camera_ids'
