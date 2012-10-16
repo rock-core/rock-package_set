@@ -9,7 +9,6 @@ if package_enabled?('orogen')
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'slam/orogen/orientation_estimator'
-    	orogen_package 'slam/orogen/tilt_scan'
     end
 
     #################################################################################"
@@ -36,6 +35,7 @@ if package_enabled?('orogen')
     	end
 	
 	orogen_package 'planning/orogen/corridor_navigation'
+    	orogen_package 'slam/orogen/tilt_scan'
     end
     
     in_flavor 'master', 'next', 'stable' do
