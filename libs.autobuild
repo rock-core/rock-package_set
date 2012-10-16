@@ -1,21 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
 
-cmake_package 'drivers/stim300'
-cmake_package 'drivers/imar'
-cmake_package 'drivers/vicon'
-cmake_package 'drivers/qualisys'
-cmake_package 'drivers/sonar_tritech'
-cmake_package 'drivers/laserscanner_sick'
-cmake_package 'slam/polygonnet'
-cmake_package 'slam/graph_slam'
-cmake_package 'slam/odometry'
-cmake_package 'gui/map2d'
-
-cmake_package 'drivers/camera_ids'
-if !has_ueye_api? # defined in init.rb
-    Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-end
-
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime
 # does not build at all
@@ -35,19 +19,37 @@ end
 #################################################################################"
 
 in_flavor 'master' do
+    cmake_package 'drivers/stim300'
+    cmake_package 'drivers/imar'
+    cmake_package 'slam/polygonnet'
+    cmake_package 'slam/graph_slam'
+    cmake_package 'gui/map2d'
+
     cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/laser_filter'
 
     name, version = Autoproj::OSDependencies.operating_system
-    #puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
     if(!name.include?("ubuntu") || version[1].to_f >= 12.0) 
         cmake_package 'gui/vizkit_3d_plugins'
     else
-        puts "Not installing Map Vizualiszation, because on Ubuntu Systems below 12.0 there is no openSceneGraph Package availible, so skipping this"
+        # Remove this annoying (and wrong ! It would work on debian or fedora
+        # for instance) message. I'll push bugfixes to autoproj/autobuild soon
+        # that will make this much better
+        # puts "Not installing Map Vizualiszation, because on Ubuntu Systems below 12.0 there is no openSceneGraph Package availible, so skipping this"
     end
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'drivers/vicon'
+    cmake_package 'drivers/qualisys'
+    cmake_package 'drivers/sonar_tritech'
+    cmake_package 'drivers/laserscanner_sick'
+    cmake_package 'slam/odometry'
+
+    cmake_package 'drivers/camera_ids'
+    if !has_ueye_api? # defined in init.rb
+        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    end
 end
 
 in_flavor 'master', 'next', 'stable' do

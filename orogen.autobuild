@@ -5,27 +5,11 @@ if package_enabled?('orogen')
     in_flavor 'master' do
 	orogen_package 'drivers/orogen/stim300'
 	orogen_package 'drivers/orogen/imar'
-    	orogen_package 'drivers/orogen/vicon'
 	orogen_package 'drivers/orogen/laser_filter'
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
-    	orogen_package 'drivers/orogen/camera_v4l'
-
-
 	orogen_package 'slam/orogen/orientation_estimator'
-
-    	orogen_package 'drivers/orogen/sonar_tritech'
-    	orogen_package 'drivers/orogen/laserscanner_sick'
-    	orogen_package 'drivers/orogen/qualisys'
-
     	orogen_package 'slam/orogen/tilt_scan'
-    	orogen_package 'slam/orogen/odometry'
-    	orogen_package 'drivers/orogen/camera_ids'
-    	if !has_ueye_api?
-    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    	end
-	
-	orogen_package 'planning/orogen/corridor_navigation'
     end
 
     #################################################################################"
@@ -37,6 +21,22 @@ if package_enabled?('orogen')
     ##
     #################################################################################"
     #################################################################################"
+
+    in_flavor 'master', 'next' do
+    	orogen_package 'drivers/orogen/vicon'
+    	orogen_package 'drivers/orogen/camera_v4l'
+    	orogen_package 'drivers/orogen/sonar_tritech'
+    	orogen_package 'drivers/orogen/laserscanner_sick'
+    	orogen_package 'drivers/orogen/qualisys'
+
+    	orogen_package 'slam/orogen/odometry'
+    	orogen_package 'drivers/orogen/camera_ids'
+    	if !has_ueye_api?
+    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    	end
+	
+	orogen_package 'planning/orogen/corridor_navigation'
+    end
     
     in_flavor 'master', 'next', 'stable' do
 
