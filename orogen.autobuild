@@ -5,7 +5,6 @@ if package_enabled?('orogen')
     in_flavor 'master' do
 	orogen_package 'drivers/orogen/stim300'
 	orogen_package 'drivers/orogen/imar'
-    	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'slam/orogen/orientation_estimator'
     end
@@ -23,10 +22,10 @@ if package_enabled?('orogen')
     in_flavor 'master', 'next' do
     	orogen_package 'drivers/orogen/vicon'
     	orogen_package 'drivers/orogen/camera_v4l'
-    	orogen_package 'drivers/orogen/sonar_tritech'
     	orogen_package 'drivers/orogen/laserscanner_sick'
     	orogen_package 'drivers/orogen/qualisys'
 	orogen_package 'drivers/orogen/laser_filter'
+    	orogen_package 'control/orogen/auv_rel_pos_controller'
 
     	orogen_package 'slam/orogen/odometry'
     	orogen_package 'drivers/orogen/camera_ids'
@@ -60,6 +59,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/iodrivers_base'
 	orogen_package 'drivers/orogen/camera_firewire'
 #	orogen_package 'drivers/orogen/gpsd_client' #same functionallity like gps, but planned to put gps funcionallity in this, and create generic gps command
+    	orogen_package 'drivers/orogen/sonar_tritech'
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'
