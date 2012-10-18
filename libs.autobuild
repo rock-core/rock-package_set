@@ -26,7 +26,6 @@ in_flavor 'master' do
     cmake_package 'gui/map2d'
 
     cmake_package 'slam/quater_ukf'
-    cmake_package 'drivers/laser_filter'
 
     name, version = Autoproj::OSDependencies.operating_system
     if(!name.include?("ubuntu") || version[1].to_f >= 12.0) 
@@ -44,6 +43,7 @@ in_flavor 'master', 'next' do
     cmake_package 'drivers/qualisys'
     cmake_package 'drivers/sonar_tritech'
     cmake_package 'drivers/laserscanner_sick'
+    cmake_package 'drivers/laser_filter'
     cmake_package 'slam/odometry'
 
     cmake_package 'drivers/camera_ids'
