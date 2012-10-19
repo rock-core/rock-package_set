@@ -22,7 +22,6 @@ in_flavor 'master' do
     cmake_package 'drivers/stim300'
     cmake_package 'drivers/imar'
     cmake_package 'slam/polygonnet'
-    cmake_package 'slam/graph_slam'
     cmake_package 'gui/map2d'
 
     cmake_package 'slam/quater_ukf'
@@ -45,6 +44,7 @@ in_flavor 'master', 'next' do
     cmake_package 'drivers/laserscanner_sick'
     cmake_package 'drivers/laser_filter'
     cmake_package 'slam/odometry'
+    cmake_package 'slam/graph_slam'
 
     cmake_package 'drivers/camera_ids'
     if !has_ueye_api? # defined in init.rb
