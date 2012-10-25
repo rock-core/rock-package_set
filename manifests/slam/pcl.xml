@@ -9,7 +9,6 @@
   <url>http://pointclouds.org/</url>
 
   <depend package="boost" />
-  <depend package="vtk" />
   <depend package="eigen3" />
   <depend package='slam/flann' />
   <depend package='external/cminpack' />
