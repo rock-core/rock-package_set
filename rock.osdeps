@@ -175,6 +175,10 @@ dc1394:
     gentoo: media-libs/libdc1394
     fedora: libdc1394-devel
 
+vtk:
+    debian,ubuntu: libvtk5-dev
+    fedora: vtk-devel
+
 vtk-qt4:
     debian,ubuntu: libvtk5-qt4-dev
     fedora: vtk-devel
