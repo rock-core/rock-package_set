@@ -100,6 +100,12 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman.patch
     
+    - slam/g2o:
+        type: svn
+        url: https://svn.openslam.org/data/svn/g2o/trunk 
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/g2o.patch
+    
     - external/tinyxml: 
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
