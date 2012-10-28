@@ -161,7 +161,9 @@ in_flavor 'master', 'next', 'stable' do
         end
     end
     cmake_package 'slam/hogman'
-    cmake_package 'slam/g2o'
+    cmake_package 'slam/g2o' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE", "Release")
+    end
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
