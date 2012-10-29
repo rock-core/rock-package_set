@@ -102,7 +102,7 @@ version_control:
     
     - slam/g2o:
         type: svn
-        url: https://svn.openslam.org/data/svn/g2o/trunk 
+        url: http://svn.openslam.org/data/svn/g2o/trunk 
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o.patch
     
