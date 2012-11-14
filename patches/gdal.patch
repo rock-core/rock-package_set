@@ -1,0 +1,32 @@
+diff --git a/swig/ruby/RubyMakefile.mk b/swig/ruby/RubyMakefile.mk
+--- swig/ruby/RubyMakefile.mk
++++ swig/ruby/RubyMakefile.mk
+@@ -24,8 +24,8 @@ RUBY_INCLUDE_DIR := $(shell ruby -rrbconfig -e "puts Config::CONFIG['rubyhdrdir'
+ RUBY_ARCH_INCLUDE_DIR := $(shell ruby -rrbconfig -e "puts Config::CONFIG['rubyhdrdir'] + '/' + Config::CONFIG['arch'] unless Config::CONFIG['rubyhdrdir'].nil?")
+ RUBY_LIB_DIR := $(shell ruby -rrbconfig -e "puts Config::CONFIG['libdir']")
+ RUBY_SO_NAME := $(shell ruby -rrbconfig -e "puts Config::CONFIG['RUBY_SO_NAME']")
+-RUBY_EXTENSIONS_DIR := $(shell ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
+-INSTALL_DIR := $(RUBY_EXTENSIONS_DIR)/gdal
++RUBY_EXTENSIONS_DIR := $(shell ruby -rrbconfig -e "puts File.join('lib', 'ruby', RbConfig::CONFIG['ruby_version'], RbConfig::CONFIG['sitearch'])")
++INSTALL_DIR := ${prefix}/$(RUBY_EXTENSIONS_DIR)/gdal
+ 
+ ifeq ($(RUBY_ARCH_INCLUDE_DIR),)
+ # For Ruby < 1.9
+@@ -41,7 +41,7 @@ LDFLAGS += -Xcompiler -bundle -L$(RUBY_LIB_DIR)
+ RUBY_LIB := -l$(RUBY_SO_NAME)
+ else
+ RUBY_MODULES=$(RUBY_MODULES_LIN)
+-LDFLAGS += -Xcompiler -shared -L$(RUBY_LIB_DIR)
++LDFLAGS += -shared -L$(RUBY_LIB_DIR)
+ RUBY_LIB := -l$(RUBY_SO_NAME)
+ endif
+ 
+@@ -66,7 +66,7 @@ $(RUBY_MODULES_MAC): %.bundle: %_wrap.o
+ 	$(LD) $(LDFLAGS) $(LIBS) $(GDAL_SLIB_LINK) $(RUBY_LIB) $< -o $@
+ 
+ $(RUBY_MODULES_LIN): %.so: %_wrap.o
+-	$(LD) $(LDFLAGS) $(LIBS) $(GDAL_SLIB_LINK) $(RUBY_LIB) $< -o $@
++	$(LD) $(LDFLAGS) $< -o $@ $(LIBS) $(GDAL_SLIB_LINK) $(RUBY_LIB)
+ 
+ %.o: %.cpp
+ 	$(CXX) $(CFLAGS) $(GDAL_INCLUDE) $(RUBY_INCLUDE)  -c $<

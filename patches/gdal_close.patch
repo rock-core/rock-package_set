@@ -1,0 +1,17 @@
+--- swig/include/Dataset.i	2012-10-09 02:58:28.000000000 +0200
++++ swig/include/Dataset.i	2012-11-27 18:58:16.245632813 +0100
+@@ -329,7 +329,13 @@ public:
+ %mutable;
+ 
+   ~GDALDatasetShadow() {
+-    if ( GDALDereferenceDataset( self ) <= 0 ) {
++    if ( GDALDereferenceDataset( self ) == 0 ) {
++      GDALClose(self);
++    }
++  }
++
++  void Close() {
++    if ( GDALDereferenceDataset( self ) == 0 ) {
+       GDALClose(self);
+     }
+   }

@@ -118,4 +118,9 @@ version_control:
         update_cached_file: false
         patches: $AUTOPROJ_SOURCE_DIR/patches/libkdtree++_0.7.0-2.diff
 
+    - external/gdal:
+        type: archive
+        url: http://download.osgeo.org/gdal/gdal-1.9.2.tar.gz
+        update_cached_file: false
+        patches: [$AUTOPROJ_SOURCE_DIR/patches/gdal.patch, $AUTOPROJ_SOURCE_DIR/patches/gdal_close.patch]
 
