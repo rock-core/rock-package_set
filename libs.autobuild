@@ -61,7 +61,10 @@ in_flavor 'master', 'next', 'stable' do
 
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
-    cmake_package 'external/tinyxml'
+    cmake_package 'external/tinyxml' do |pkg|
+        # tinyxml is patched to use Rock macros
+        pkg.depends_on 'base/types'
+    end
 
     ##### Control-related libraries
     cmake_package 'control/motor_controller'
