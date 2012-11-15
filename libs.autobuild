@@ -116,7 +116,10 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'image_processing/frame_helper' do |pkg|
         pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
     end
-    cmake_package 'image_processing/libelas'
+    cmake_package 'image_processing/libelas' do |pkg|
+        # Build system from libelas has been patched into a Rock/CMake-based one
+        pkg.depends_on 'base/types'
+    end
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
