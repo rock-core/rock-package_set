@@ -174,7 +174,10 @@ in_flavor 'master', 'next', 'stable' do
             end
         end
     end
-    cmake_package 'slam/hogman'
+    cmake_package 'slam/hogman' do |pkg|
+        # HogMan has been patched to use Rock's build system
+        pkg.depends_on 'base/types'
+    end
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
