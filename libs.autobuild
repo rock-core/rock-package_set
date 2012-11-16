@@ -114,6 +114,9 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
     end
     cmake_package 'image_processing/frame_helper' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
         pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
     end
     cmake_package 'image_processing/libelas' do |pkg|
