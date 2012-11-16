@@ -88,6 +88,7 @@ webgen: gem
 coderay: gem
 rice: gem
 net-ssh: gem
+net-scp: gem
 
 facets: gem
 gdal:
