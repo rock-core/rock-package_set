@@ -184,6 +184,9 @@ in_flavor 'master', 'next', 'stable' do
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
         Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
