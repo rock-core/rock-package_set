@@ -1,0 +1,9 @@
+<package>
+  <description brief="Fast nearest neighbour search in N-dimensional spaces">
+      This is a compile-from-source version of libkdtree. It is used on
+      Debian-based systems where the binary package is broken (such as Ubuntu
+      12.10)
+  </description>
+  <url>http://libkdtree.alioth.debian.org/</url>
+</package>
+
