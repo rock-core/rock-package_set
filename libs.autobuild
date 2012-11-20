@@ -224,3 +224,7 @@ in_flavor 'master', 'next', 'stable' do
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
 end
+
+autotools_package 'external/kdtree'
+remove_from_default 'external/kdtree'
+Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
