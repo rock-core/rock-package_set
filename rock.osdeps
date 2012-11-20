@@ -105,7 +105,9 @@ cgal:
     gentoo: sci-mathematics/cgal
 
 libkdtree:
-    debian,ubuntu: libkdtree++-dev
+    debian,ubuntu:
+        default: libkdtree++-dev
+        "12.10": nonexistent # libkdtree++ is broken on 12.10
     gentoo: libkdtree++ # actually, there are no ebuilds
 
 blas:
