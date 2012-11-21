@@ -12,6 +12,13 @@
 cmake_package 'slam/g2o' do |pkg|
     pkg.define("CMAKE_BUILD_TYPE", "Release")
 end
+cmake_package 'drivers/alt_imagenex'
+cmake_package 'drivers/base_schilling'
+cmake_package 'drivers/ctd_seabird'
+cmake_package 'drivers/mbeam_imagenex'
+cmake_package 'drivers/pressure_paroscientific'
+cmake_package 'drivers/ucm_schilling'
+cmake_package 'drivers/phins_ixsea'
 
 #################################################################################"
 #################################################################################"
