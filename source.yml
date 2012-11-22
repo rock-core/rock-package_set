@@ -100,10 +100,22 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman.patch
     
+    - slam/g2o:
+        type: svn
+        url: http://svn.openslam.org/data/svn/g2o/trunk 
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/g2o.patch
+    
     - external/tinyxml: 
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
         update_cached_file: false
         patches: $AUTOPROJ_SOURCE_DIR/patches/tinyxml_cmake.patch
+
+    - external/kdtree:
+        type: archive
+        url: http://ftp.de.debian.org/debian/pool/main/libk/libkdtree++/libkdtree++_0.7.0.orig.tar.gz
+        update_cached_file: false
+        patches: $AUTOPROJ_SOURCE_DIR/patches/libkdtree++_0.7.0-2.diff
 
 

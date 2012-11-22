@@ -1,21 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
 
-cmake_package 'drivers/stim300'
-cmake_package 'drivers/imar'
-cmake_package 'drivers/vicon'
-cmake_package 'drivers/qualisys'
-cmake_package 'drivers/sonar_tritech'
-cmake_package 'drivers/laserscanner_sick'
-cmake_package 'slam/polygonnet'
-cmake_package 'slam/graph_slam'
-cmake_package 'slam/odometry'
-cmake_package 'gui/map2d'
-
-cmake_package 'drivers/camera_ids'
-if !has_ueye_api? # defined in init.rb
-    Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-end
-
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime
 # does not build at all
@@ -24,6 +8,17 @@ end
 #     pkg.depends_on 'ffmpeg'
 #     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 # end
+
+cmake_package 'slam/g2o' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE", "Release")
+end
+cmake_package 'drivers/alt_imagenex'
+cmake_package 'drivers/base_schilling'
+cmake_package 'drivers/ctd_seabird'
+cmake_package 'drivers/mbeam_imagenex'
+cmake_package 'drivers/pressure_paroscientific'
+cmake_package 'drivers/ucm_schilling'
+cmake_package 'drivers/phins_ixsea'
 
 #################################################################################"
 #################################################################################"
@@ -35,15 +30,29 @@ end
 #################################################################################"
 
 in_flavor 'master' do
+    cmake_package 'drivers/stim300'
+    cmake_package 'drivers/imar'
+    cmake_package 'slam/polygonnet'
+    cmake_package 'gui/map2d'
+
     cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/laser_filter'
     cmake_package 'gui/vizkit_3d_plugins'
-    if !Autoproj.osdeps.has? 'osgEarth'
-        Autoproj.manifest.add_exclusion "gui/vizkit_3d_plugin", "osgEarth is not available as a prebuilt package on this operating system, vizkit_3d_plugin cannot be compiled"
-    end
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'drivers/vicon'
+    cmake_package 'drivers/qualisys'
+    cmake_package 'drivers/sonar_tritech'
+    cmake_package 'drivers/laserscanner_sick'
+    cmake_package 'drivers/laser_filter'
+    cmake_package 'slam/odometry'
+    cmake_package 'slam/graph_slam'
+
+    cmake_package 'drivers/camera_ids'
+    if !has_ueye_api? # defined in init.rb
+        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    end
 end
 
 in_flavor 'master', 'next', 'stable' do
@@ -51,7 +60,10 @@ in_flavor 'master', 'next', 'stable' do
 
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp'
-    cmake_package 'external/tinyxml'
+    cmake_package 'external/tinyxml' do |pkg|
+        # tinyxml is patched to use Rock macros
+        pkg.depends_on 'base/types'
+    end
 
     ##### Control-related libraries
     cmake_package 'control/motor_controller'
@@ -97,9 +109,19 @@ in_flavor 'master', 'next', 'stable' do
 
     ##### Image Processing
     cmake_package 'image_processing/stereo'
-    cmake_package 'image_processing/jpeg_conversion'
-    cmake_package 'image_processing/frame_helper'
-    cmake_package 'image_processing/libelas'
+    cmake_package 'image_processing/jpeg_conversion' do |pkg|
+        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+    end
+    cmake_package 'image_processing/frame_helper' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
+        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+    end
+    cmake_package 'image_processing/libelas' do |pkg|
+        # Build system from libelas has been patched into a Rock/CMake-based one
+        pkg.depends_on 'base/types'
+    end
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
@@ -150,10 +172,16 @@ in_flavor 'master', 'next', 'stable' do
             end
         end
     end
-    cmake_package 'slam/hogman'
+    cmake_package 'slam/hogman' do |pkg|
+        # HogMan has been patched to use Rock's build system
+        pkg.depends_on 'base/types'
+    end
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
         Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
@@ -186,3 +214,7 @@ in_flavor 'master', 'next', 'stable' do
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl'
 end
+
+autotools_package 'external/kdtree'
+remove_from_default 'external/kdtree'
+Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'

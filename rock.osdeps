@@ -13,9 +13,9 @@ opencv:
 
 ffmpeg:
     ubuntu: 
-        9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
-        default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
-    debian: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev]
+        9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+    debian: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
 
 sysfs:
@@ -82,6 +82,7 @@ graphviz:
 
 rice: gem
 net-ssh: gem
+net-scp: gem
 
 yaml:
     debian,ubuntu: libyaml-dev
@@ -94,7 +95,9 @@ cgal:
     fedora: CGAL-devel
 
 libkdtree:
-    debian,ubuntu: libkdtree++-dev
+    debian,ubuntu:
+        default: libkdtree++-dev
+        "12.10": nonexistent # libkdtree++ is broken on 12.10
     gentoo: libkdtree++ # actually, there are no ebuilds
     fedora: nonexistent
 
@@ -208,7 +211,9 @@ libproc:
                 - libproc-dev
         default:
                 - libprocps0-dev
-    ubuntu: libproc-dev
+    ubuntu:
+        '10.04,10.10,11.04,11.10,12.04': libproc-dev
+        default: libprocps0-dev
     fedora: procps-devel
 
 # NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
@@ -216,3 +221,5 @@ libproc:
 # the Ruby version
 
 
+gpsd:
+    debian,ubuntu: libgps-dev
