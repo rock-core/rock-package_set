@@ -36,7 +36,6 @@ in_flavor 'master' do
     cmake_package 'gui/map2d'
 
     cmake_package 'slam/quater_ukf'
-    cmake_package 'drivers/laser_filter'
     cmake_package 'gui/vizkit_3d_plugins'
 end
 
