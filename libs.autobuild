@@ -217,13 +217,3 @@ end
 autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
-
-
-only_in_flavor 'master' do
-    setup_package 'external/yaml-cpp' do |pkg|
-        update_archive(pkg, "http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz", "0.3.0") do
-            File.readlines(File.join(pkg.srcdir,"CMakeLists.txt")).grep(/set(YAML_CPP_VERSION_MINOR "3")/)
-        end
-    end
-end
-
