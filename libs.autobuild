@@ -35,12 +35,12 @@ in_flavor 'master' do
     cmake_package 'slam/polygonnet'
     cmake_package 'gui/map2d'
 
-    cmake_package 'slam/quater_ukf'
     cmake_package 'gui/vizkit_3d_plugins'
 end
 
 in_flavor 'master', 'next' do
     cmake_package 'drivers/vicon'
+    cmake_package 'slam/quater_ukf'
     cmake_package 'drivers/qualisys'
     cmake_package 'drivers/sonar_tritech'
     cmake_package 'drivers/laserscanner_sick'
