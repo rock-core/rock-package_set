@@ -31,6 +31,9 @@ gdal:
     gentoo: sci-libs/gdal
     fedora: gdal-devel
 
+swig: 
+    debian,ubuntu: swig
+
 proj:
     debian,ubuntu: libproj-dev
     gentoo: sci-libs/proj

@@ -20,8 +20,11 @@ cmake_package 'drivers/pressure_paroscientific'
 cmake_package 'drivers/ucm_schilling'
 cmake_package 'drivers/phins_ixsea'
 
+# Override for gdal, but don't force so we don't have to build gdal
+# unecessarily
 Autoproj.add_osdeps_overrides 'gdal', :package => 'external/gdal'
 autotools_package 'external/gdal' do |pkg|
+    pkg.depends_on 'swig'
     # GDAL doesn't support out of source builds
     pkg.builddir = "."
     pkg.configureflags = [
