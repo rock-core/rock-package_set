@@ -72,6 +72,7 @@ autotools_package 'external/gdal' do |pkg|
             '--without-ogpython',
             '--with-hide-internal-symbols']
 end
+remove_from_default "external/gdal"
 
 #################################################################################"
 #################################################################################"
