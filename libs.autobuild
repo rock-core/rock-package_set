@@ -18,6 +18,7 @@ cmake_package 'drivers/ctd_seabird'
 cmake_package 'drivers/mbeam_imagenex'
 cmake_package 'drivers/pressure_paroscientific'
 cmake_package 'drivers/ucm_schilling'
+cmake_package 'drivers/act_schilling'
 cmake_package 'drivers/phins_ixsea'
 
 # Override for gdal, but don't force so we don't have to build gdal

@@ -11,6 +11,13 @@ if package_enabled?('orogen')
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'slam/orogen/orientation_estimator'
+
+        cmake_package 'drivers/orogen/alt_imagenex'
+        cmake_package 'drivers/orogen/ctd_seabird'
+        cmake_package 'drivers/orogen/mbeam_imagenex'
+        cmake_package 'drivers/orogen/pressure_paroscientific'
+        cmake_package 'drivers/orogen/ucm_schilling'
+        cmake_package 'drivers/orogen/phins_ixsea'
     end
 
     #################################################################################"
