@@ -1,8 +1,11 @@
 qtruby:
     debian:
+       default:
         - ruby-qt4
         - ruby-qt4-uitools
-        
+       '6.0.4,squeeze':
+        - libqt4-ruby
+
     ubuntu:
        default:
                - ruby-qt4
