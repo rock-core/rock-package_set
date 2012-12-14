@@ -12,12 +12,12 @@ if package_enabled?('orogen')
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'slam/orogen/orientation_estimator'
 
-        cmake_package 'drivers/orogen/alt_imagenex'
-        cmake_package 'drivers/orogen/ctd_seabird'
-        cmake_package 'drivers/orogen/mbeam_imagenex'
-        cmake_package 'drivers/orogen/pressure_paroscientific'
-        cmake_package 'drivers/orogen/ucm_schilling'
-        cmake_package 'drivers/orogen/phins_ixsea'
+        orogen_package 'drivers/orogen/alt_imagenex'
+        orogen_package 'drivers/orogen/ctd_seabird'
+        orogen_package 'drivers/orogen/mbeam_imagenex'
+        orogen_package 'drivers/orogen/pressure_paroscientific'
+        orogen_package 'drivers/orogen/ucm_schilling'
+        orogen_package 'drivers/orogen/phins_ixsea'
     end
 
     #################################################################################"
