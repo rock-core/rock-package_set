@@ -17,6 +17,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/mbeam_imagenex'
         orogen_package 'drivers/orogen/pressure_paroscientific'
         orogen_package 'drivers/orogen/ucm_schilling'
+        orogen_package 'drivers/orogen/act_schilling'
         orogen_package 'drivers/orogen/phins_ixsea'
     end
 
