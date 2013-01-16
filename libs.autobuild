@@ -91,7 +91,10 @@ in_flavor 'master' do
     cmake_package 'drivers/stim300'
     cmake_package 'drivers/imar'
     cmake_package 'slam/polygonnet'
+    cmake_package 'control/hysteresis_model'
+    cmake_package 'slam/terrain_estimator'
     cmake_package 'gui/map2d'
+    cmake_package 'slam/eslam'
 
     cmake_package 'gui/vizkit_3d_plugins'
 end
