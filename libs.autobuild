@@ -20,8 +20,8 @@ cmake_package 'drivers/pressure_paroscientific'
 cmake_package 'drivers/ucm_schilling'
 cmake_package 'drivers/act_schilling'
 cmake_package 'drivers/phins_ixsea'
-bundle_package 'bundles/rock_nav'
-remove_from_default 'bundles/rock_nav'
+bundle_package 'bundles/rock_ugv_nav'
+remove_from_default 'bundles/rock_ugv_nav'
 
 # Override for gdal, but don't force so we don't have to build gdal
 # unecessarily

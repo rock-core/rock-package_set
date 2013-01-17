@@ -41,8 +41,8 @@ version_control:
         gitorious: rock/bundle.git
         branch: $ROCK_FLAVOR
 
-    - bundles/rock_nav:
-        gitorious: rock/bundle-rock_nav.git
+    - bundles/rock_ugv_nav:
+        gitorious: rock/bundle-rock_ugv_nav.git
         branch: $ROCK_FLAVOR
 
     - slam/orogen/.*:
