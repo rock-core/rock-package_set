@@ -1,6 +1,8 @@
 qtruby:
     debian,ubuntu:
         gem: qtbindings
+    gentoo:
+        kde-base/kdebindings-ruby
     fedora:
         "17": ruby-qt
         default:
