@@ -102,19 +102,6 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'next' do
-    cmake_package 'drivers/vicon'
-    cmake_package 'slam/quater_ukf'
-    cmake_package 'drivers/qualisys'
-    cmake_package 'drivers/sonar_tritech'
-    cmake_package 'drivers/laserscanner_sick'
-    cmake_package 'drivers/laser_filter'
-    cmake_package 'slam/odometry'
-    cmake_package 'slam/graph_slam'
-
-    cmake_package 'drivers/camera_ids'
-    if !has_ueye_api? # defined in init.rb
-        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    end
 end
 
 in_flavor 'master', 'next', 'stable' do
@@ -168,6 +155,15 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/camera_firewire'
     cmake_package 'drivers/fog_kvh'
     cmake_package 'drivers/iCharger'
+    cmake_package 'drivers/vicon'
+    cmake_package 'drivers/qualisys'
+    cmake_package 'drivers/sonar_tritech'
+    cmake_package 'drivers/laserscanner_sick'
+    cmake_package 'drivers/laser_filter'
+    cmake_package 'drivers/camera_ids'
+    if !has_ueye_api? # defined in init.rb
+        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    end
 
     ##### Image Processing
     cmake_package 'image_processing/stereo'
@@ -238,6 +234,10 @@ in_flavor 'master', 'next', 'stable' do
         # HogMan has been patched to use Rock's build system
         pkg.depends_on 'base/types'
     end
+    cmake_package 'slam/quater_ukf'
+    cmake_package 'slam/odometry'
+    cmake_package 'slam/graph_slam'
+
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|

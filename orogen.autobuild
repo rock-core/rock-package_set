@@ -37,25 +37,9 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
-    	orogen_package 'drivers/orogen/vicon'
-    	orogen_package 'drivers/orogen/camera_v4l'
-    	orogen_package 'drivers/orogen/sonar_tritech'
-    	orogen_package 'drivers/orogen/laserscanner_sick'
-    	orogen_package 'drivers/orogen/qualisys'
-	orogen_package 'drivers/orogen/laser_filter'
-
-    	orogen_package 'slam/orogen/odometry'
-    	orogen_package 'drivers/orogen/camera_ids'
-    	if !has_ueye_api?
-    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    	end
-	
-	orogen_package 'planning/orogen/corridor_navigation'
-    	orogen_package 'slam/orogen/tilt_scan'
     end
     
     in_flavor 'master', 'next', 'stable' do
-
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
         orogen_package 'control/orogen/skid4_control'
@@ -76,6 +60,16 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/iodrivers_base'
 	orogen_package 'drivers/orogen/camera_firewire'
 #	orogen_package 'drivers/orogen/gpsd_client' #same functionallity like gps, but planned to put gps funcionallity in this, and create generic gps command
+    	orogen_package 'drivers/orogen/vicon'
+    	orogen_package 'drivers/orogen/camera_v4l'
+    	orogen_package 'drivers/orogen/sonar_tritech'
+    	orogen_package 'drivers/orogen/laserscanner_sick'
+    	orogen_package 'drivers/orogen/qualisys'
+	orogen_package 'drivers/orogen/laser_filter'
+    	orogen_package 'drivers/orogen/camera_ids'
+    	if !has_ueye_api?
+    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    	end
 
         only_on 'debian' do
             orogen_package 'drivers/orogen/taskmon'
@@ -83,10 +77,13 @@ if package_enabled?('orogen')
 
 	orogen_package 'slam/orogen/envire'
         orogen_package 'slam/orogen/graph_slam'
+    	orogen_package 'slam/orogen/odometry'
+    	orogen_package 'slam/orogen/tilt_scan'
 
         orogen_package 'image_processing/orogen/image_preprocessing'
         orogen_package 'image_processing/orogen/stereo'
 
+	orogen_package 'planning/orogen/corridor_navigation'
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
