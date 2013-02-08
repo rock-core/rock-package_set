@@ -9,77 +9,6 @@
 #     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
 # end
 
-cmake_package 'slam/g2o' do |pkg|
-    pkg.define("CMAKE_BUILD_TYPE", "Release")
-end
-cmake_package 'drivers/alt_imagenex'
-cmake_package 'drivers/base_schilling'
-cmake_package 'drivers/ctd_seabird'
-cmake_package 'drivers/mbeam_imagenex'
-cmake_package 'drivers/pressure_paroscientific'
-cmake_package 'drivers/ucm_schilling'
-cmake_package 'drivers/act_schilling'
-cmake_package 'drivers/phins_ixsea'
-bundle_package 'bundles/rock_ugv_nav'
-remove_from_default 'bundles/rock_ugv_nav'
-
-# Override for gdal, but don't force so we don't have to build gdal
-# unecessarily
-Autoproj.add_osdeps_overrides 'gdal', :package => 'external/gdal'
-autotools_package 'external/gdal' do |pkg|
-    pkg.depends_on 'swig'
-    # GDAL doesn't support out of source builds
-    pkg.builddir = "."
-    pkg.configureflags = [
-	    "--includedir=#{pkg.prefix}/include/gdal",
-	    '--with-threads',
-            '--with-ogr',
-            '--with-geos',
-            '--without-libtool',
-            '--with-libz=internal',
-            '--with-libtiff=internal',
-            '--with-geotiff=internal',
-            '--with-jpeg',
-	    '--with-ruby',
-            '--without-gif',
-            '--without-pg',
-            '--without-grass',
-            '--without-libgrass',
-            '--without-cfitsio',
-            '--without-pcraster',
-            '--without-netcdf',
-            '--without-png',
-            '--without-gif',
-            '--without-ogdi',
-            '--without-fme',
-            '--without-hdf4',
-            '--without-hdf5',
-            '--without-jasper',
-            '--without-ecw',
-            '--without-kakadu',
-            '--without-mrsid',
-            '--without-jp2mrsid',
-            '--without-bsb',
-            '--without-grib',
-            '--without-mysql',
-            '--without-ingres',
-            '--without-xerces',
-            '--without-expat',
-            '--without-odbc',
-            '--without-curl',
-            '--without-sqlite3',
-            '--without-dwgdirect',
-            '--without-panorama',
-            '--without-idb',
-            '--without-sde',
-            '--without-perl',
-            '--without-php',
-            '--without-python',
-            '--without-ogpython',
-            '--with-hide-internal-symbols']
-end
-remove_from_default "external/gdal"
-
 #################################################################################"
 #################################################################################"
 ## 
@@ -99,9 +28,80 @@ in_flavor 'master' do
     cmake_package 'slam/eslam'
 
     cmake_package 'gui/vizkit_3d_plugins'
+
+    cmake_package 'drivers/alt_imagenex'
+    cmake_package 'drivers/base_schilling'
+    cmake_package 'drivers/ctd_seabird'
+    cmake_package 'drivers/mbeam_imagenex'
+    cmake_package 'drivers/pressure_paroscientific'
+    cmake_package 'drivers/ucm_schilling'
+    cmake_package 'drivers/act_schilling'
+    cmake_package 'drivers/phins_ixsea'
+    bundle_package 'bundles/rock_ugv_nav'
+    remove_from_default 'bundles/rock_ugv_nav'
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'slam/g2o' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE", "Release")
+    end
+
+    # Override for gdal, but don't force so we don't have to build gdal
+    # unecessarily
+    Autoproj.add_osdeps_overrides 'gdal', :package => 'external/gdal'
+    autotools_package 'external/gdal' do |pkg|
+        pkg.depends_on 'swig'
+        # GDAL doesn't support out of source builds
+        pkg.builddir = "."
+        pkg.configureflags = [
+                "--includedir=#{pkg.prefix}/include/gdal",
+                '--with-threads',
+                '--with-ogr',
+                '--with-geos',
+                '--without-libtool',
+                '--with-libz=internal',
+                '--with-libtiff=internal',
+                '--with-geotiff=internal',
+                '--with-jpeg',
+                '--with-ruby',
+                '--without-gif',
+                '--without-pg',
+                '--without-grass',
+                '--without-libgrass',
+                '--without-cfitsio',
+                '--without-pcraster',
+                '--without-netcdf',
+                '--without-png',
+                '--without-gif',
+                '--without-ogdi',
+                '--without-fme',
+                '--without-hdf4',
+                '--without-hdf5',
+                '--without-jasper',
+                '--without-ecw',
+                '--without-kakadu',
+                '--without-mrsid',
+                '--without-jp2mrsid',
+                '--without-bsb',
+                '--without-grib',
+                '--without-mysql',
+                '--without-ingres',
+                '--without-xerces',
+                '--without-expat',
+                '--without-odbc',
+                '--without-curl',
+                '--without-sqlite3',
+                '--without-dwgdirect',
+                '--without-panorama',
+                '--without-idb',
+                '--without-sde',
+                '--without-perl',
+                '--without-php',
+                '--without-python',
+                '--without-ogpython',
+                '--with-hide-internal-symbols']
+    end
+    remove_from_default "external/gdal"
 end
 
 in_flavor 'master', 'next', 'stable' do
