@@ -12,6 +12,7 @@ if package_enabled?('orogen')
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'control/orogen/torque_estimator'
+        orogen_package 'control/orogen/kdl'	
 
 	orogen_package 'slam/orogen/orientation_estimator'
 	orogen_package 'slam/orogen/terrain_estimator'
