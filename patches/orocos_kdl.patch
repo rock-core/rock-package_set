@@ -4,7 +4,7 @@
  cmake_minimum_required(VERSION 2.4.6)
 -include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 +find_package(Rock)
-+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
++set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${ROCK_CMAKE_MACROS}/cmake")
 +rock_init(kdl 0.1)
 +add_subdirectory(orocos_kdl)
  

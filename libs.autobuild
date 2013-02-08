@@ -19,7 +19,9 @@
 #################################################################################"
 
 in_flavor 'master' do
-    cmake_package 'control/kdl'
+    cmake_package 'control/kdl' do |pkg|
+        pkg.depends_on 'base/types'
+    end
     cmake_package 'drivers/stim300'
     cmake_package 'drivers/imar'
     cmake_package 'slam/polygonnet'
