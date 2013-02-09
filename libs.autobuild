@@ -280,6 +280,12 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'multiagent/fipa_acl'
 end
 
+# There is a problem with GCC and fipa_acl. Three of its files are taking
+# something north of 3G to compile ... each
+#
+# Don't build unless really really needed
+remove_from_default 'multiagent/fipa_acl'
+
 autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
