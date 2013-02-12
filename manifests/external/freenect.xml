@@ -1,0 +1,10 @@
+<package>
+  <description brief="freenect driver from OpenKinect community">
+  
+  </description>
+  <license></license>
+  <url>https://github.com/OpenKinect/libfreenect</url>
+
+  <depend package="libusb1" />
+  <depend package="libxmu" />
+</package>

@@ -116,6 +116,13 @@ in_flavor 'master', 'next', 'stable' do
         # tinyxml is patched to use Rock macros
         pkg.depends_on 'base/types'
     end
+    
+    cmake_package "external/freenect" do |pkg|
+        pkg.define "BUILD_AUDIO", "ON"
+        pkg.define "BUILD_FAKENECT", "OFF"
+        pkg.define "BUILD_EXAMPLES", "OFF"
+        pkg.define "BUILD_C_SYNC", "OFF"
+    end
 
     ##### Control-related libraries
     cmake_package 'control/motor_controller'

@@ -223,6 +223,11 @@ libproc:
 # and rock.osdeps-ruby19) as we need to install different packages depending on
 # the Ruby version
 
+libusb1:
+    ubuntu:  libusb-1.0-0-dev
+
+libxmu:
+    ubuntu:  libxmu-dev 
 
 gpsd:
     debian,ubuntu: libgps-dev
