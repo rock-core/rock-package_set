@@ -30,6 +30,14 @@ in_flavor 'master' do
     cmake_package 'gui/map2d'
     cmake_package 'slam/eslam'
 
+    cmake_package "external/freenect" do |pkg|
+        pkg.define "BUILD_AUDIO", "ON"
+        pkg.define "BUILD_FAKENECT", "OFF"
+        pkg.define "BUILD_EXAMPLES", "OFF"
+        pkg.define "BUILD_C_SYNC", "OFF"
+    end
+
+
     cmake_package 'gui/vizkit_3d_plugins'
 
     cmake_package 'drivers/alt_imagenex'
@@ -117,13 +125,6 @@ in_flavor 'master', 'next', 'stable' do
         pkg.depends_on 'base/types'
     end
     
-    cmake_package "external/freenect" do |pkg|
-        pkg.define "BUILD_AUDIO", "ON"
-        pkg.define "BUILD_FAKENECT", "OFF"
-        pkg.define "BUILD_EXAMPLES", "OFF"
-        pkg.define "BUILD_C_SYNC", "OFF"
-    end
-
     ##### Control-related libraries
     cmake_package 'control/motor_controller'
     cmake_package 'control/trajectory_follower'
