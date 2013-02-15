@@ -104,3 +104,4 @@ else
     Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
 end
 
+create_metapackages

@@ -4,3 +4,12 @@ def has_ueye_api?
     File.exists?(include_file) && File.exists?(lib)
 end
 
+def create_metapackages
+    Autoproj.current_package_set().each_package do |pkg|
+        meta_name = pkg.name.split("/").first
+        if(meta_name)
+            metapackage("rock.#{meta_name}", pkg.name)
+        end
+    end
+end
+

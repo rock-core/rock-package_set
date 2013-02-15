@@ -309,3 +309,4 @@ only_in_flavor 'master' do
     end
 end
 
+create_metapackages
