@@ -21,6 +21,8 @@
 in_flavor 'master' do
     cmake_package 'control/kdl' do |pkg|
         pkg.depends_on 'base/types'
+        pkg.with_doc 'docs'
+        pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
     end
     cmake_package 'drivers/stim300'
     cmake_package 'drivers/imar'
