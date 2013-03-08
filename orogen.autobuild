@@ -14,7 +14,6 @@ if package_enabled?('orogen')
 	orogen_package 'control/orogen/torque_estimator'
         orogen_package 'control/orogen/kdl'	
 
-	orogen_package 'slam/orogen/orientation_estimator'
 	orogen_package 'slam/orogen/terrain_estimator'
         orogen_package 'slam/orogen/eslam'
 
@@ -78,6 +77,7 @@ if package_enabled?('orogen')
             orogen_package 'drivers/orogen/taskmon'
         end
 
+	orogen_package 'slam/orogen/orientation_estimator'
 	orogen_package 'slam/orogen/envire'
         orogen_package 'slam/orogen/graph_slam'
     	orogen_package 'slam/orogen/odometry'
