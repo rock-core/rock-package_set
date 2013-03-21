@@ -1,0 +1,14 @@
+<package>
+<description brief="The Kinematics and Dynamics Library (latest)">
+This package contains a recent version of the Kinematics and Dynamics
+Library (KDL), distributed by the Orocos Project. 
+</description>
+<author>Ruben Smits, Erwin Aertbelien, Orocos Developers</author>
+<license>LGPL</license>
+<url>http://www.orocos.org/kdl</url>
+
+<rosdep name="pkg-config"/>
+<rosdep name="eigen3"/>
+
+</package>
+
