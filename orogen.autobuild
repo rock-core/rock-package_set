@@ -17,6 +17,8 @@ if package_enabled?('orogen')
 	orogen_package 'slam/orogen/terrain_estimator'
         orogen_package 'slam/orogen/eslam'
 
+	orogen_package 'planning/orogen/simple_path_planner'
+
         orogen_package 'drivers/orogen/alt_imagenex'
         orogen_package 'drivers/orogen/ctd_seabird'
         orogen_package 'drivers/orogen/mbeam_imagenex'
