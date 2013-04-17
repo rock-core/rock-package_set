@@ -1,4 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'drivers/ptu_directedperception'
 
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime
