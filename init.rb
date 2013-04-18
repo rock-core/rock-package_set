@@ -13,3 +13,6 @@ def create_metapackages
     end
 end
 
+if Metapackage.method_defined?(:weak_dependencies?)
+    metapackage('rock').weak_dependencies = true
+end
