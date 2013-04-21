@@ -224,10 +224,10 @@ libproc:
 # the Ruby version
 
 libusb1:
-    ubuntu:  libusb-1.0-0-dev
+    ubuntu,debian:  libusb-1.0-0-dev
 
 libxmu:
-    ubuntu:  libxmu-dev 
+    ubuntu,debian:  libxmu-dev 
 
 gpsd:
     debian,ubuntu: libgps-dev
