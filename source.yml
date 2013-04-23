@@ -83,14 +83,13 @@ version_control:
         update_cached_file: false
 
     - slam/pcl:
-        type: archive
-        url: http://www.pointclouds.org/assets/files/1.4.0/PCL-1.4.0-Source.tar.bz2
-        update_cached_file: false
+        type: svn
+        url: http://svn.pointclouds.org/pcl/tags/pcl-1.6.0/
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.6.11-src.zip 
-        archive_dir: flann-1.6.11-src
+        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip
+        archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
