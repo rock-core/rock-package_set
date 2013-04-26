@@ -143,5 +143,11 @@ version_control:
         url: git://github.com/OpenKinect/libfreenect.git
         branch: master
 
+    - data_processing/*:
+        gitorious: rock-data-processing/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
+    - data_processing/orogen/.*:
+        gitorious: rock-data-processing/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
