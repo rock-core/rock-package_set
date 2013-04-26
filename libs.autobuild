@@ -34,6 +34,8 @@ in_flavor 'master' do
     cmake_package 'gui/map2d'
     cmake_package 'slam/eslam'
 
+    cmake_package 'planning/simple_path_planner'
+
     cmake_package "external/freenect" do |pkg|
         pkg.define "BUILD_AUDIO", "ON"
         pkg.define "BUILD_FAKENECT", "OFF"
