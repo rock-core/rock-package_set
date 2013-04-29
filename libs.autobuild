@@ -1,6 +1,73 @@
 # IMPORTANT: new packages must be added at the top of this file
 cmake_package 'data_processing/type_to_vector'
 cmake_package 'drivers/ptu_directedperception'
+import_package 'drivers/aria' do |pkg|
+
+    def pkg.do_build
+        run('build', Autobuild.tool(:make), "-j#{parallel_build_level}", "-C", srcdir)
+    end
+    
+    def pkg.do_install
+        include_dir = File.join(prefix, 'include', 'aria')
+        lib_dir     = File.join(prefix, 'lib')
+        FileUtils.rm_rf include_dir
+        FileUtils.mkdir_p File.dirname(include_dir)
+        FileUtils.mkdir_p lib_dir
+
+        FileUtils.cp File.join(srcdir, 'lib','libAria.so'), File.join(lib_dir, 'libAria.so')
+        FileUtils.cp_r File.join(srcdir, 'include'), include_dir
+    end
+    
+    def pkg.do_pkgconfig
+        pkgconfig_dir     = File.join(prefix, 'lib', "pkgconfig")
+        FileUtils.mkdir_p pkgconfig_dir
+
+        infile = File.readlines(File.join(srcdir, 'aria.pc.in'))
+        
+        pkgconfig = infile.map do |line|
+            if !line.index("@CMAKE_INSTALL_PREFIX@").nil?
+                line["@CMAKE_INSTALL_PREFIX@"] = prefix
+            end
+            
+            if !line.index("@TARGET_NAME@").nil?
+                line["@TARGET_NAME@"] = "aria"
+            end
+            
+            if !line.index("@PROJECT_VERSION@").nil?
+                line["@PROJECT_VERSION@"] = "2.7.5.2"
+            end
+            line
+        end
+        
+        File.open(File.join(pkgconfig_dir, 'aria.pc'), 'w') do |outfile|
+            outfile.write pkgconfig.join
+        end
+    end
+    
+    if pkg.respond_to?(:progress_start) # newer versions of autoproj
+        pkg.post_install do
+            pkg.progress_start "building %s" do
+                pkg.do_build
+            end
+            pkg.progress_start "installing %s" do
+                pkg.do_install
+            end
+            pkg.progress_start "generating pkgconfig file for %s" do
+                pkg.do_pkgconfig
+            end
+        end
+    else
+        pkg.post_install do
+            pkg.progress "building %s"
+            pkg.do_build
+            pkg.progress "installing %s"
+            pkg.do_install
+            pkg.progress "generating pkgconfig file for %s"
+            pkg.do_pkgconfig
+        end
+    end
+
+end
 
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime

@@ -1,0 +1,17 @@
+Index: aria.pc.in
+===================================================================
+--- aria.pc.in	(revision 0)
++++ aria.pc.in	(revision 0)
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: 
++Version: @PROJECT_VERSION@
++Requires: 
++Libs: -L${libdir} -lAria
++Cflags: -I${includedir}/aria
++

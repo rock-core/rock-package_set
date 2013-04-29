@@ -151,3 +151,11 @@ version_control:
         gitorious: rock-data-processing/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - drivers/aria:
+        type: archive
+        url: http://rock-robotics.org/archives/ARIA-2.7.5.2.tgz
+        no_subriectory: false
+        update_cached_file: false
+        patches: $AUTOPROJ_SOURCE_DIR/patches/aria_pc.patch
+        
+
