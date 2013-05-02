@@ -1,0 +1,9 @@
+<package>
+  <description brief="SDK for all MobileRobots/ActivMedia platfroms (e.g. Pioneer, Seekur).">
+    ARIA means Advanced Robot Interface for Applications. It provides a software layer
+    to access and control robots from MobileRobots/ActiveMedia.
+  </description>
+  <author>Mobile Robots/Adept Technology</author>
+  <license>GPL</license>
+  <url>http://robots.mobilerobots.com/wiki/ARIA</url>
+</package>
