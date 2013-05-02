@@ -59,7 +59,8 @@ end
 
 in_flavor 'master', 'next' do
     cmake_package 'slam/g2o' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE", "Release")
+        pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
+        pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
     end
 
     # Override for gdal, but don't force so we don't have to build gdal
