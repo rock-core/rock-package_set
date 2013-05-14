@@ -108,7 +108,9 @@ if package_enabled?('orogen')
     end
 
 else
-    Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages"
+    Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages!\n\t\
+If you think oroGen should be enabled, then check your manifest: rock.toolchain package set \
+has to be included before the rock package set"
 end
 
 create_metapackages
