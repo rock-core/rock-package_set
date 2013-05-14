@@ -1,4 +1,6 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'planning/lama'
+cmake_package 'planning/pddl_planner'
 cmake_package 'drivers/actuator_dispatcher'
 cmake_package 'data_processing/type_to_vector'
 cmake_package 'drivers/ptu_directedperception'
