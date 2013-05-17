@@ -5,6 +5,7 @@ if package_enabled?('orogen')
     orogen_package 'planning/orogen/pddl_planner'
     orogen_package 'drivers/orogen/aria'
     orogen_package 'data_processing/orogen/type_to_vector'
+    orogen_package 'control/orogen/motor_controller'
     orogen_package 'drivers/orogen/ptu_directedperception'
 
     in_flavor 'master' do
