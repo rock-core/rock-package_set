@@ -1,4 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'simulation/imumodel'
 cmake_package 'planning/lama'
 cmake_package 'planning/pddl_planner'
 cmake_package 'drivers/actuator_dispatcher'

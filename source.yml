@@ -29,6 +29,14 @@ version_control:
         gitorious: rock-planning/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - simulation/imumodel:
+        gitorious: rock-simulation/$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
+    - simulation/orogen/imumodel:
+        gitorious: rock-simulation/orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
     - external/libply:
         gitorious: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR

@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'simulation/orogen/imumodel'
     orogen_package 'planning/orogen/pddl_planner'
     orogen_package 'drivers/orogen/aria'
     orogen_package 'data_processing/orogen/type_to_vector'
