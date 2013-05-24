@@ -295,6 +295,8 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
         pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
     end
+    Autoproj.add_osdeps_overrides 'flann', :package => 'slam/flann'
+    remove_from_default 'slam/flann'
     cmake_package 'slam/pcl' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")

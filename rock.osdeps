@@ -11,6 +11,12 @@ opencv:
     gentoo: media-libs/opencv
     fedora: opencv-devel
 
+flann:
+    ubuntu:
+        9.04,9.10,10.04,10.10,11.04,11.10: nonexistent
+        default: libflann-dev
+    debian: libflann-dev
+
 ffmpeg:
     ubuntu: 
         9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]

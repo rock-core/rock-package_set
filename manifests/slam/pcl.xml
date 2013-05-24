@@ -10,7 +10,7 @@
 
   <depend package="boost" />
   <depend package="eigen3" />
-  <depend package='slam/flann' />
+  <depend package='flann' />
   <depend package='external/cminpack' />
   <depend package='qhull' />
 </package>
