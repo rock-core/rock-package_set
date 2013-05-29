@@ -389,4 +389,12 @@ only_in_flavor 'master','next' do
     end
 end
 
+only_in_flavor 'master' do
+    setup_package 'drivers/camera_prosilica' do |pkg|
+        if pkg.respond_to?(:source_tree_excludes)
+            pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
+        end
+    end
+end
+
 create_metapackages
