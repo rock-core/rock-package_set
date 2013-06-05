@@ -1,4 +1,10 @@
 # IMPORTANT: new packages must be added at the top of this file
+
+# This is removed from default for now as it requires the joint_state branch on
+# base/types
+cmake_package 'control/joint_dispatcher'
+remove_from_default 'control/joint_dispatcher'
+
 cmake_package 'simulation/imumodel'
 cmake_package 'planning/lama'
 cmake_package 'planning/pddl_planner'
