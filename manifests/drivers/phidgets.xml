@@ -1,0 +1,9 @@
+<package>
+  <description brief="SDK for Phidgets.">
+  </description>
+  <author></author>
+  <license>GPL</license>
+  <url>http://www.phidgets.com</url>
+  <depend package="libusb1" />
+</package>
+

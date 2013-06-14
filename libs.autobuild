@@ -4,6 +4,8 @@
 # base/types
 cmake_package 'control/joint_dispatcher'
 remove_from_default 'control/joint_dispatcher'
+autotools_package 'drivers/phidgets'
+remove_from_default 'drivers/phidgets'
 
 cmake_package 'simulation/imumodel'
 cmake_package 'planning/lama'

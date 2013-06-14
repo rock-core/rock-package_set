@@ -11,6 +11,8 @@ if package_enabled?('orogen')
     orogen_package 'drivers/orogen/ptu_directedperception'
     orogen_package 'control/orogen/joint_dispatcher'
     remove_from_default 'control/orogen/joint_dispatcher'
+    orogen_package 'drivers/orogen/phidgets'
+    remove_from_default 'drivers/orogen/phidgets'
 
     in_flavor 'master' do
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
