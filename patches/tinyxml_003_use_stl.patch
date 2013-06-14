@@ -1,0 +1,44 @@
+--- tinyxml.h	2013-06-14 16:14:35.683631645 +0200
++++ orig/tinyxml.h	2013-06-14 16:14:04.931408336 +0200
+@@ -32,6 +32,10 @@ distribution.
+ #pragma warning( disable : 4786 )
+ #endif
+ 
++#ifndef TIXML_USE_STL
++#define TIXML_USE_STL
++#endif
++
+ #include <ctype.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+--- CMakeLists.txt	2013-06-14 16:14:23.403542426 +0200
++++ orig/CMakeLists.txt	2013-06-14 16:14:14.287476210 +0200
+@@ -8,6 +8,7 @@ rock_init(tinyxml 2.6)
+ set(SOURCES tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
+ set(HEADERS tinystr.h tinyxml.h)
+ 
++add_definitions(-DTINYXML_USE_STL)
+ rock_library(${PROJECT_NAME}
+ 	SOURCES ${SOURCES}
+ 	HEADERS ${HEADERS}
+--- orig/xmltest.cpp	2011-05-14 19:24:58.000000000 +0200
++++ xmltest.cpp	2013-06-14 16:18:58.261558353 +0200
+@@ -25,6 +25,9 @@ bool XmlTest( const char* testString, in
+ static int gPass = 0;
+ static int gFail = 0;
+ 
++#ifdef TINYXML_USE_STL
++using namespace std;
++#endif
+ 
+ 
+ bool XmlTest (const char* testString, const char* expected, const char* found, bool noEcho )
+@@ -1278,7 +1281,7 @@ int main()
+ 	{
+ 		// [ 1475201 ] TinyXML parses entities in comments
+ 		TiXmlDocument xml;
+-		istringstream parse1( "<!-- declarations for <head> & <body> -->"
++                std::istringstream parse1( "<!-- declarations for <head> & <body> -->"
+ 						      "<!-- far &amp; away -->" );
+ 		parse1 >> xml;
+ 

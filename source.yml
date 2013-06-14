@@ -123,7 +123,10 @@ version_control:
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
         update_cached_file: false
-        patches: $AUTOPROJ_SOURCE_DIR/patches/tinyxml_cmake.patch
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/tinyxml_cmake.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/tinyxml_002_fix_include_path.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/tinyxml_003_use_stl.patch
 
     - external/kdtree:
         type: archive

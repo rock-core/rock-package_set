@@ -1,0 +1,6 @@
+diff -urN ../tinyxml/tinyxml.pc.in ./tinyxml.pc.in
+--- ../tinyxml/tinyxml.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./tinyxml.pc.in	2011-08-31 18:39:01.002367300 +0200
+@@ -10,1 +10,1 @@
+-Cflags: -I${includedir}
++Cflags: -I${includedir}/tinyxml
