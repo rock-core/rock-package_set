@@ -237,3 +237,9 @@ libxmu:
 
 gpsd:
     debian,ubuntu: libgps-dev
+
+csparse:
+    debian,ubuntu: libsuitesparse-dev
+
+cholmod: 
+    debian,ubuntu: libsuitesparse-dev
