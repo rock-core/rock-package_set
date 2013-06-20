@@ -138,10 +138,6 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'next' do
-    cmake_package 'slam/g2o' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
-        pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
-    end
 end
 
 in_flavor 'master', 'next', 'stable' do
@@ -337,6 +333,10 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'slam/quater_ukf'
     cmake_package 'slam/odometry'
     cmake_package 'slam/graph_slam'
+    cmake_package 'slam/g2o' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
+        pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
+    end
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
