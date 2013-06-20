@@ -142,6 +142,17 @@ in_flavor 'master', 'next' do
         pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
         pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
     end
+end
+
+in_flavor 'master', 'next', 'stable' do
+    bundle_package 'bundles/rock'
+
+    ##### External libraries not available as binary packages
+    cmake_package 'external/yaml-cpp'
+    cmake_package 'external/tinyxml' do |pkg|
+        # tinyxml is patched to use Rock macros
+        pkg.depends_on 'base/types'
+    end
 
     # Override for gdal, but don't force so we don't have to build gdal
     # unecessarily
@@ -199,17 +210,6 @@ in_flavor 'master', 'next' do
                 '--with-hide-internal-symbols']
     end
     remove_from_default "external/gdal"
-end
-
-in_flavor 'master', 'next', 'stable' do
-    bundle_package 'bundles/rock'
-
-    ##### External libraries not available as binary packages
-    cmake_package 'external/yaml-cpp'
-    cmake_package 'external/tinyxml' do |pkg|
-        # tinyxml is patched to use Rock macros
-        pkg.depends_on 'base/types'
-    end
     
     ##### Control-related libraries
     cmake_package 'control/motor_controller'
@@ -337,7 +337,6 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'slam/quater_ukf'
     cmake_package 'slam/odometry'
     cmake_package 'slam/graph_slam'
-
 
     ##### Graphical User Interface related packages 
     cmake_package 'gui/vizkit' do |pkg|
