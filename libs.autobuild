@@ -210,7 +210,6 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'control/motor_controller'
     cmake_package 'control/trajectory_follower'
     cmake_package 'control/waypoint_navigation'
-    cmake_package 'drivers/actuator_dispatcher'
 
     ##### Base implementation for data acquisition
     cmake_package 'drivers/iodrivers_base' do |pkg|
@@ -394,6 +393,12 @@ only_in_flavor 'master','next','stable' do
             File.readlines(File.join(pkg.srcdir,"CMakeLists.txt")).grep(/YAML_CPP_VERSION_MINOR "3"/) == []
         end
     end
+end
+
+only_in_flavor 'master','next' do
+    #Depends on newer types that not (yet) jun. '13 in stable
+    #move to all in next "next merge window"
+    cmake_package 'drivers/actuator_dispatcher'
 end
 
 only_in_flavor 'master' do
