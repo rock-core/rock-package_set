@@ -10,7 +10,6 @@ remove_from_default 'drivers/phidgets'
 cmake_package 'simulation/imumodel'
 cmake_package 'planning/lama'
 cmake_package 'planning/pddl_planner'
-cmake_package 'drivers/actuator_dispatcher'
 cmake_package 'data_processing/type_to_vector'
 cmake_package 'drivers/ptu_directedperception'
 import_package 'drivers/aria' do |pkg|
@@ -211,6 +210,7 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'control/motor_controller'
     cmake_package 'control/trajectory_follower'
     cmake_package 'control/waypoint_navigation'
+    cmake_package 'drivers/actuator_dispatcher'
 
     ##### Base implementation for data acquisition
     cmake_package 'drivers/iodrivers_base' do |pkg|
