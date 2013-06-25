@@ -387,7 +387,7 @@ remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
 
-only_in_flavor 'master','next' do
+only_in_flavor 'master','next','stable' do
     setup_package 'external/yaml-cpp' do |pkg|
         pkg.define("BUILD_SHARED_LIBS","ON")
         update_archive(pkg, "http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz", "0.3.0") do
