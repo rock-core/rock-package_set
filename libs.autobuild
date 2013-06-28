@@ -11,7 +11,6 @@ remove_from_default 'drivers/phidgets'
 cmake_package 'simulation/imumodel'
 cmake_package 'planning/lama'
 cmake_package 'planning/pddl_planner'
-cmake_package 'drivers/actuator_dispatcher'
 cmake_package 'data_processing/type_to_vector'
 cmake_package 'drivers/ptu_directedperception'
 import_package 'drivers/aria' do |pkg|
@@ -388,13 +387,19 @@ remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
 
-only_in_flavor 'master','next' do
+only_in_flavor 'master','next','stable' do
     setup_package 'external/yaml-cpp' do |pkg|
         pkg.define("BUILD_SHARED_LIBS","ON")
         update_archive(pkg, "http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz", "0.3.0") do
             File.readlines(File.join(pkg.srcdir,"CMakeLists.txt")).grep(/YAML_CPP_VERSION_MINOR "3"/) == []
         end
     end
+end
+
+only_in_flavor 'master','next' do
+    #Depends on newer types that not (yet) jun. '13 in stable
+    #move to all in next "next merge window"
+    cmake_package 'drivers/actuator_dispatcher'
 end
 
 only_in_flavor 'master' do
