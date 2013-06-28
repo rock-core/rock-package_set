@@ -2,6 +2,7 @@
 
 # This is removed from default for now as it requires the joint_state branch on
 # base/types
+cmake_package 'image_processing/viso2'
 cmake_package 'control/joint_dispatcher'
 remove_from_default 'control/joint_dispatcher'
 autotools_package 'drivers/phidgets'
