@@ -244,3 +244,8 @@ external/tinyxml:
         default: libtinyxml-dev
     debian: libtinyxml-dev
 
+csparse:
+    debian,ubuntu: libsuitesparse-dev
+
+cholmod: 
+    debian,ubuntu: libsuitesparse-dev
