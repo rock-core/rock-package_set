@@ -2,36 +2,32 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'image_processing/orogen/viso2'
-    orogen_package 'simulation/orogen/imumodel'
-    orogen_package 'planning/orogen/pddl_planner'
-    orogen_package 'data_processing/orogen/statistics'
-    orogen_package 'drivers/orogen/aria'
-    orogen_package 'data_processing/orogen/type_to_vector'
-    orogen_package 'control/orogen/motor_controller'
-    orogen_package 'drivers/orogen/ptu_directedperception'
     orogen_package 'control/orogen/joint_dispatcher'
     remove_from_default 'control/orogen/joint_dispatcher'
-    orogen_package 'drivers/orogen/phidgets'
-    remove_from_default 'drivers/orogen/phidgets'
 
     in_flavor 'master' do
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'image_processing/orogen/video_streamer'
         end
-	orogen_package 'drivers/orogen/stim300'
-	orogen_package 'drivers/orogen/imar'
+        orogen_package 'image_processing/orogen/viso2'
+        orogen_package 'simulation/orogen/imumodel'
+        orogen_package 'data_processing/orogen/statistics'
+        orogen_package 'data_processing/orogen/type_to_vector'
 
+        orogen_package 'control/orogen/motor_controller'
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
 	orogen_package 'control/orogen/torque_estimator'
-        orogen_package 'control/orogen/kdl'	
 
 	orogen_package 'slam/orogen/terrain_estimator'
         orogen_package 'slam/orogen/eslam'
 
+        orogen_package 'planning/orogen/pddl_planner'
 	orogen_package 'planning/orogen/simple_path_planner'
 
+        orogen_package 'drivers/orogen/phidgets'
+	orogen_package 'drivers/orogen/stim300'
+	orogen_package 'drivers/orogen/imar'
         orogen_package 'drivers/orogen/alt_imagenex'
         orogen_package 'drivers/orogen/ctd_seabird'
         orogen_package 'drivers/orogen/mbeam_imagenex'
@@ -39,7 +35,6 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/ucm_schilling'
         orogen_package 'drivers/orogen/act_schilling'
         orogen_package 'drivers/orogen/phins_ixsea'
-
         orogen_package 'drivers/orogen/kinect'
     end
 
@@ -54,6 +49,9 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
+        orogen_package 'control/orogen/kdl'	
+        orogen_package 'drivers/orogen/ptu_directedperception'
+        orogen_package 'drivers/orogen/aria'
     end
     
     in_flavor 'master', 'next', 'stable' do
