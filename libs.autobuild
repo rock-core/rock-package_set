@@ -371,7 +371,9 @@ in_flavor 'master', 'next', 'stable' do
     remove_from_default 'external/opencv'
 
     #### Multiagent related packages
-    cmake_package 'multiagent/fipa_acl'
+    cmake_package 'multiagent/fipa_acl' do |pkg|
+        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+    end
 end
 
 # There is a problem with GCC and fipa_acl. Three of its files are taking
