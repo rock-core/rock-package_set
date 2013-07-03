@@ -243,3 +243,6 @@ csparse:
 
 cholmod: 
     debian,ubuntu: libsuitesparse-dev
+
+wget:
+    debian,ubuntu: wget
