@@ -2,82 +2,8 @@
 
 # This is removed from default for now as it requires the joint_state branch on
 # base/types
-cmake_package 'image_processing/viso2'
 cmake_package 'control/joint_dispatcher'
 autotools_package 'drivers/phidgets'
-
-cmake_package 'simulation/imumodel'
-cmake_package 'planning/lama'
-cmake_package 'planning/pddl_planner'
-cmake_package 'data_processing/type_to_vector'
-cmake_package 'drivers/ptu_directedperception'
-import_package 'drivers/aria' do |pkg|
-
-    def pkg.do_build
-        run('build', Autobuild.tool(:make), "-j#{parallel_build_level}", "-C", srcdir)
-    end
-    
-    def pkg.do_install
-        include_dir = File.join(prefix, 'include', 'aria')
-        lib_dir     = File.join(prefix, 'lib')
-        FileUtils.rm_rf include_dir
-        FileUtils.mkdir_p File.dirname(include_dir)
-        FileUtils.mkdir_p lib_dir
-
-        FileUtils.cp File.join(srcdir, 'lib','libAria.so'), File.join(lib_dir, 'libAria.so')
-        FileUtils.cp_r File.join(srcdir, 'include'), include_dir
-    end
-    
-    def pkg.do_pkgconfig
-        pkgconfig_dir     = File.join(prefix, 'lib', "pkgconfig")
-        FileUtils.mkdir_p pkgconfig_dir
-
-        infile = File.readlines(File.join(srcdir, 'aria.pc.in'))
-        
-        pkgconfig = infile.map do |line|
-            if !line.index("@CMAKE_INSTALL_PREFIX@").nil?
-                line["@CMAKE_INSTALL_PREFIX@"] = prefix
-            end
-            
-            if !line.index("@TARGET_NAME@").nil?
-                line["@TARGET_NAME@"] = "aria"
-            end
-            
-            if !line.index("@PROJECT_VERSION@").nil?
-                line["@PROJECT_VERSION@"] = "2.7.5.2"
-            end
-            line
-        end
-        
-        File.open(File.join(pkgconfig_dir, 'aria.pc'), 'w') do |outfile|
-            outfile.write pkgconfig.join
-        end
-    end
-    
-    if pkg.respond_to?(:progress_start) # newer versions of autoproj
-        pkg.post_install do
-            pkg.progress_start "building %s" do
-                pkg.do_build
-            end
-            pkg.progress_start "installing %s" do
-                pkg.do_install
-            end
-            pkg.progress_start "generating pkgconfig file for %s" do
-                pkg.do_pkgconfig
-            end
-        end
-    else
-        pkg.post_install do
-            pkg.progress "building %s"
-            pkg.do_build
-            pkg.progress "installing %s"
-            pkg.do_install
-            pkg.progress "generating pkgconfig file for %s"
-            pkg.do_pkgconfig
-        end
-    end
-
-end
 
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime
@@ -98,20 +24,20 @@ end
 #################################################################################"
 
 in_flavor 'master' do
-    cmake_package 'control/kdl' do |pkg|
-        pkg.depends_on 'base/types'
-        pkg.with_doc 'docs'
-        pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
-    end
-    cmake_package 'drivers/stim300'
-    cmake_package 'drivers/imar'
-    cmake_package 'slam/polygonnet'
-    cmake_package 'control/hysteresis_model'
-    cmake_package 'slam/terrain_estimator'
-    cmake_package 'gui/map2d'
-    cmake_package 'slam/eslam'
+    cmake_package 'data_processing/type_to_vector'
 
+    cmake_package 'image_processing/viso2'
+    cmake_package 'simulation/imumodel'
+
+    cmake_package 'planning/lama'
+    cmake_package 'planning/pddl_planner'
     cmake_package 'planning/simple_path_planner'
+
+    cmake_package 'control/hysteresis_model'
+
+    cmake_package 'slam/terrain_estimator'
+    cmake_package 'slam/eslam'
+    cmake_package 'slam/polygonnet'
 
     cmake_package "external/freenect" do |pkg|
         pkg.define "BUILD_AUDIO", "ON"
@@ -120,9 +46,11 @@ in_flavor 'master' do
         pkg.define "BUILD_C_SYNC", "OFF"
     end
 
-
+    cmake_package 'gui/map2d'
     cmake_package 'gui/vizkit_3d_plugins'
 
+    cmake_package 'drivers/stim300'
+    cmake_package 'drivers/imar'
     cmake_package 'drivers/alt_imagenex'
     cmake_package 'drivers/base_schilling'
     cmake_package 'drivers/ctd_seabird'
@@ -131,11 +59,81 @@ in_flavor 'master' do
     cmake_package 'drivers/ucm_schilling'
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
-    bundle_package 'bundles/rock_ugv_nav'
-    remove_from_default 'bundles/rock_ugv_nav'
 end
 
 in_flavor 'master', 'next' do
+    bundle_package 'bundles/rock_ugv_nav'
+    cmake_package 'control/kdl' do |pkg|
+        pkg.depends_on 'base/types'
+        pkg.with_doc 'docs'
+        pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
+    end
+    cmake_package 'drivers/ptu_directedperception'
+    import_package 'drivers/aria' do |pkg|
+        def pkg.do_build
+            run('build', Autobuild.tool(:make), "-j#{parallel_build_level}", "-C", srcdir)
+        end
+        
+        def pkg.do_install
+            include_dir = File.join(prefix, 'include', 'aria')
+            lib_dir     = File.join(prefix, 'lib')
+            FileUtils.rm_rf include_dir
+            FileUtils.mkdir_p File.dirname(include_dir)
+            FileUtils.mkdir_p lib_dir
+
+            FileUtils.cp File.join(srcdir, 'lib','libAria.so'), File.join(lib_dir, 'libAria.so')
+            FileUtils.cp_r File.join(srcdir, 'include'), include_dir
+        end
+        
+        def pkg.do_pkgconfig
+            pkgconfig_dir     = File.join(prefix, 'lib', "pkgconfig")
+            FileUtils.mkdir_p pkgconfig_dir
+
+            infile = File.readlines(File.join(srcdir, 'aria.pc.in'))
+            
+            pkgconfig = infile.map do |line|
+                if !line.index("@CMAKE_INSTALL_PREFIX@").nil?
+                    line["@CMAKE_INSTALL_PREFIX@"] = prefix
+                end
+                
+                if !line.index("@TARGET_NAME@").nil?
+                    line["@TARGET_NAME@"] = "aria"
+                end
+                
+                if !line.index("@PROJECT_VERSION@").nil?
+                    line["@PROJECT_VERSION@"] = "2.7.5.2"
+                end
+                line
+            end
+            
+            File.open(File.join(pkgconfig_dir, 'aria.pc'), 'w') do |outfile|
+                outfile.write pkgconfig.join
+            end
+        end
+        
+        if pkg.respond_to?(:progress_start) # newer versions of autoproj
+            pkg.post_install do
+                pkg.progress_start "building %s" do
+                    pkg.do_build
+                end
+                pkg.progress_start "installing %s" do
+                    pkg.do_install
+                end
+                pkg.progress_start "generating pkgconfig file for %s" do
+                    pkg.do_pkgconfig
+                end
+            end
+        else
+            pkg.post_install do
+                pkg.progress "building %s"
+                pkg.do_build
+                pkg.progress "installing %s"
+                pkg.do_install
+                pkg.progress "generating pkgconfig file for %s"
+                pkg.do_pkgconfig
+            end
+        end
+    end
 end
 
 in_flavor 'master', 'next', 'stable' do
@@ -371,7 +369,9 @@ in_flavor 'master', 'next', 'stable' do
     remove_from_default 'external/opencv'
 
     #### Multiagent related packages
-    cmake_package 'multiagent/fipa_acl'
+    cmake_package 'multiagent/fipa_acl' do |pkg|
+        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+    end
 end
 
 # There is a problem with GCC and fipa_acl. Three of its files are taking
