@@ -19,7 +19,7 @@ diff -Naur g2o.pc.in g2o.pc.in
 +Name: g2o 
 +Description: slam backend
 +Version: @PROJECT_VERSION@
-+Libs: -L${libdir} -lg2o_core -lg2o_types_slam3d -lg2o_cli 
++Libs: -L${libdir} -lg2o_core -lg2o_types_slam3d -lg2o_cli -lg2o_ext_csparse -lg2o_parser -lg2o_interface -lg2o_stuff -lg2o_math_groups -lg2o_types_slam2d -lg2o_types_sba -lg2o_types_sim3 -lg2o_types_icp -lg2o_solver_pcg -lg2o_solver_csparse -lg2o_solver_dense
 +Cflags: -I${includedir}
 +
 diff -Naur manifest.xml manifest.xml
