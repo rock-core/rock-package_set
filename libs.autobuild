@@ -3,7 +3,6 @@
 # This is removed from default for now as it requires the joint_state branch on
 # base/types
 cmake_package 'control/joint_dispatcher'
-autotools_package 'drivers/phidgets'
 
 ## 
 # Remove this package. It's not working properly (has memory leak) and sometime
@@ -24,6 +23,7 @@ autotools_package 'drivers/phidgets'
 #################################################################################"
 
 in_flavor 'master' do
+    autotools_package 'drivers/phidgets'
     cmake_package 'data_processing/type_to_vector'
 
     cmake_package 'image_processing/viso2'
