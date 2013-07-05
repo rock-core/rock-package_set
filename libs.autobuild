@@ -38,6 +38,7 @@ in_flavor 'master' do
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
     cmake_package 'slam/polygonnet'
+    remove_from_default 'slam/polygonnet'
 
     cmake_package "external/freenect" do |pkg|
         pkg.define "BUILD_AUDIO", "ON"
