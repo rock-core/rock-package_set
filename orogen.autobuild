@@ -2,13 +2,12 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'control/orogen/joint_dispatcher'
-    orogen_package 'drivers/orogen/phidgets'
 
     in_flavor 'master' do
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'image_processing/orogen/video_streamer'
         end
+        orogen_package 'control/orogen/joint_dispatcher'
         orogen_package 'image_processing/orogen/viso2'
         orogen_package 'simulation/orogen/imumodel'
         orogen_package 'data_processing/orogen/statistics'
