@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'drivers/orogen/servo_dynamixel'
 
     in_flavor 'master' do
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
