@@ -21,7 +21,7 @@ ffmpeg:
     ubuntu: 
         9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-    debian: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+    debian: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
 
 sysfs:
