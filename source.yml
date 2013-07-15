@@ -174,3 +174,8 @@ version_control:
         url: http://www.phidgets.com/downloads/libraries/libphidget_2.1.8.20130320.tar.gz
         update_cached_file: false
 
+    - tools/rbind:
+        type: git
+        url: git://github.com/D-Alex/rbind.git
+        push_to: git@github.com:D-Alex/rbind.git
+
