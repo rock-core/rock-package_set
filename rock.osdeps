@@ -256,6 +256,9 @@ wget:
 ffi:
     debian,ubuntu: libffi-dev
 
+mpfi:
+    debian,ubuntu: libmpfi-dev
+
 tools/rbind:
     gem: rbind
     debian,ubuntu: libffi-dev
