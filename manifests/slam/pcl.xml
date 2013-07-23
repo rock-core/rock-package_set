@@ -15,5 +15,5 @@
   <depend package='qhull' />
 
   <rosdep name='vtk'/>
-  <rosdep name='vtk-qt'/>
+  <rosdep name='vtk-qt4'/>
 </package>
