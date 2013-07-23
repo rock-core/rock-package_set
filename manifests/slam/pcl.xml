@@ -13,4 +13,7 @@
   <depend package='flann' />
   <depend package='external/cminpack' />
   <depend package='qhull' />
+
+  <rosdep name='vtk'/>
+  <rosdep name='vtk-qt'/>
 </package>
