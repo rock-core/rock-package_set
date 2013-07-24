@@ -179,7 +179,7 @@ version_control:
         url: git://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
-    - data_processing/openANN:
+    - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
         branch: persistence
