@@ -262,3 +262,19 @@ mpfi:
 tools/rbind:
     gem: rbind
     debian,ubuntu: libffi-dev
+
+python:
+    debian, ubuntu: python-dev
+
+numpy:
+    debian, ubuntu: python-numpy
+
+cython:
+    debian, ubuntu: cython
+
+libxmu:
+    debian, ubuntu: libxmu-dev
+
+unzip:
+    debian, ubuntu: unzip
+
