@@ -400,7 +400,7 @@ only_in_flavor 'master','next' do
     cmake_package 'drivers/actuator_dispatcher'
 end
 
-only_in_flavor 'master' do
+only_in_flavor 'master', 'next' do
     setup_package 'drivers/camera_prosilica' do |pkg|
         if pkg.respond_to?(:source_tree_excludes)
             pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
