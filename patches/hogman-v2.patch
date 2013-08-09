@@ -1,0 +1,152 @@
+Index: aislib/hogman.pc.in
+===================================================================
+--- aislib/hogman.pc.in	(revision 0)
++++ aislib/hogman.pc.in	(revision 0)
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: @DEPS_PKGCONFIG@
++Libs: -L${libdir} -l@TARGET_NAME@
++Cflags: -I${includedir}/hogman -I${includedir}/hogman/aislib
++
+Index: aislib/CMakeLists.txt
+===================================================================
+--- aislib/CMakeLists.txt	(revision 0)
++++ aislib/CMakeLists.txt	(revision 0)
+@@ -0,0 +1,93 @@
++#
++# add the csparse stuff here, since convenience libraries
++# are not really supported in cmake yet
++#
++set(CSPARSE_DIR ${PROJECT_SOURCE_DIR}/EXTERNAL/csparse)
++
++file(GLOB CSPARSE_FILES 
++    RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
++    ${CSPARSE_DIR}/*.c)
++
++install(FILES
++    ${CSPARSE_DIR}/cs.h
++    DESTINATION ${HOGMAN_INSTALL}/EXTERNAL/csparse)
++
++rock_library(hogman
++    graph/dijkstra.cpp
++    graph/graph.cpp
++    graph/loadEdges3d.cpp
++    graph_optimizer/graph_optimizer2d_aux.cpp
++    graph_optimizer_hogman/csparse_helper.cpp
++    graph/posegraph2d.cpp
++    graph/posegraph3d.cpp
++    stuff/filesys_tools.cpp
++    stuff/runtime_error.cpp
++    stuff/string_tools.cpp
++    ${CSPARSE_FILES}
++)
++
++install(FILES 
++    graph/dijkstra.h
++    graph/graph.h
++    graph/loadEdges3d.h
++    graph/posegraph2d.h
++    graph/posegraph3d_gradient.h
++    graph/posegraph3d.h
++    graph/posegraph.h
++    graph/posegraph.hpp
++    DESTINATION ${HOGMAN_INSTALL}/graph)
++
++install(FILES 
++    graph_optimizer/graph_optimizer2d_aux.h
++    graph_optimizer/graph_optimizer2d.h
++    graph_optimizer/graph_optimizer3d.h
++    graph_optimizer/graph_optimizer.h
++    graph_optimizer_hogman/csparse_helper.h
++    graph_optimizer_hogman/graph_optimizer2d_chol.h
++    graph_optimizer_hogman/graph_optimizer2d_hchol.h
++    graph_optimizer_hogman/graph_optimizer3d_chol.h
++    graph_optimizer_hogman/graph_optimizer3d_hchol.h
++    graph_optimizer_hogman/graph_optimizer_chol.h
++    graph_optimizer_hogman/graph_optimizer_hchol.h
++    graph_optimizer/graph_optimizer.hpp
++    graph_optimizer_hogman/graph_optimizer_chol.hpp
++    graph_optimizer_hogman/graph_optimizer_hchol_aux.hpp
++    graph_optimizer_hogman/graph_optimizer_hchol_batch.hpp
++    graph_optimizer_hogman/graph_optimizer_hchol.hpp
++    graph_optimizer_hogman/graph_optimizer_hchol_incremental.hpp
++    DESTINATION ${HOGMAN_INSTALL}/graph_optimizer)
++
++install(FILES 
++    math/angle.h
++    math/axis_angle.h
++    math/matrix_n.h
++    math/quaternion.h
++    math/rotation_matrix.h
++    math/transformation.h
++    math/vector_n.h
++    math/axis_angle.hpp
++    math/matrix_n.hpp
++    math/quaternion.hpp
++    math/rotation_matrix.hpp
++    math/vector_n.hpp
++    DESTINATION ${HOGMAN_INSTALL}/math)
++
++install(FILES 
++    stuff/array_allocator.h
++    stuff/color_macros.h
++    stuff/filesys_tools.h
++    stuff/macros.h
++    stuff/os_specific.h
++    stuff/runtime_error.h
++    stuff/string_tools.h
++    DESTINATION ${HOGMAN_INSTALL}/stuff)
++
++rock_executable(hogman2d
++    graph_optimizer_hogman/hogman2d.cpp
++    DEPS hogman 
++)
++
++rock_executable(hogman3d
++    graph_optimizer_hogman/hogman3d.cpp
++    DEPS hogman 
++)
+Index: manifest.xml
+===================================================================
+--- manifest.xml	(revision 0)
++++ manifest.xml	(revision 0)
+@@ -0,0 +1,17 @@
++<package>
++    <description brief="HOG-Man - Hierarchical Optimization for Pose Graphs on Manifolds">
++	HOG-Man is an optimization approach for graph-based SLAM. It provides a
++	highly efficient error minimization procedure that considers the the
++	underlying space is a manifold and not a Euclidian space. It
++	furthermore generates a hierarchy of pose-graphs which is used perform
++	the operations during online mapping in a highly efficient way. The
++	approach works in 2D and 3D.
++    </description>
++    <author>Giorgio Grisetti; Rainer Kuemmerle; Cyrill Stachniss;</author>
++    <copyright>
++	Copyright and V.i.S.d.P.: Giorgio Grisetti; Rainer Kuemmerle; Cyrill Stachniss;
++    </copyright>
++    <license>LGPL v.3</license>
++    <url>http://www.openslam.org/hog-man.html</url>
++    <depend package="base/cmake" />
++</package>
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 0)
++++ CMakeLists.txt	(revision 0)
+@@ -0,0 +1,10 @@
++cmake_minimum_required(VERSION 2.6)
++find_package(Rock)
++
++rock_init(hogman 1.0)
++
++set(HOGMAN_INSTALL include/hogman/aislib)
++
++include_directories(. aislib)
++add_subdirectory(aislib)
++

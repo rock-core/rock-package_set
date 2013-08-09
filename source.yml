@@ -110,7 +110,7 @@ version_control:
         type: svn
         url: http://svn.openslam.org/data/svn/hog-man/trunk 
         patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/hogman.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
     
     - slam/g2o:
         type: svn

@@ -325,10 +325,7 @@ in_flavor 'master', 'next', 'stable' do
         end
     end
     remove_from_default 'slam/pcl'
-    cmake_package 'slam/hogman' do |pkg|
-        # HogMan has been patched to use Rock's build system
-        pkg.depends_on 'base/types'
-    end
+    cmake_package 'slam/hogman'
     cmake_package 'slam/quater_ukf'
     cmake_package 'slam/odometry'
     cmake_package 'slam/graph_slam'
