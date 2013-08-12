@@ -89,7 +89,6 @@ graphviz:
     gentoo: graphviz
     fedora: graphviz
 
-rice: gem
 net-ssh: gem
 net-scp: gem
 
