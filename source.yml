@@ -92,7 +92,7 @@ version_control:
 
     - slam/pcl:
         type: archive
-        url: 'http://sourceforge.net/projects/pointclouds/files/1.6.0/PCL-1.6.0-Source.tar.bz2'
+        url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.0.tar.gz'
         update_cached_file: false
 
     - slam/flann:
