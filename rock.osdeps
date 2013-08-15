@@ -278,5 +278,6 @@ unzip:
     debian, ubuntu: unzip
 
 libqglviewer:
-    debian, ubuntu: libqglviewer-qt4-dev
+    ubuntu: libqglviewer-qt4-dev
+    debian: libqglviewer-dev
 
