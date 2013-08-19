@@ -7,7 +7,14 @@ remove_from_default 'data_processing/openann'
 
 cmake_package 'gui/robot_model'
 cmake_package 'gui/control_ui'
+# The following package will be removed as soon as we are done converting to the
+# OSRF-provided URDF packages
 cmake_package 'control/urdf'
+remove_from_default 'control/urdf'
+cmake_package 'control/urdfdom' do |pkg|
+    pkg.depends_on 'control/urdfdom_headers'
+end
+cmake_package 'control/urdfdom_headers'
 cmake_package 'control/kdl_parser'
 
 cmake_package 'planning/openrave' do |pkg|

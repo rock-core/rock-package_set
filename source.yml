@@ -13,6 +13,12 @@ version_control:
         gitorious: rock-control/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
+    - control/urdfdom_headers:
+        github: ros/urdfdom_headers
+
+    - control/urdfdom:
+        github: ros/urdfdom
+
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
