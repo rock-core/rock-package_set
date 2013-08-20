@@ -14,6 +14,7 @@ cmake_package 'control/urdf'
 remove_from_default 'control/urdf'
 cmake_package 'control/urdfdom' do |pkg|
     pkg.depends_on 'control/urdfdom_headers'
+    pkg.depends_on 'base/console_bridge'
 end
 cmake_package 'control/urdfdom_headers'
 cmake_package 'control/kdl_parser'
