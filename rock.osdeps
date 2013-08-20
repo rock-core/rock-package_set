@@ -114,6 +114,10 @@ blas:
     gentoo: blas
     fedora: blas-devel
 
+atlas-base:
+    debian,ubuntu: libatlas-base-dev
+    fedora: atlas-devel
+
 lapack:
     debian,ubuntu: liblapack-dev
     gentoo: lapack
