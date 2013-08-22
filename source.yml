@@ -193,9 +193,5 @@ version_control:
         type: svn
         url: http://svn.openslam.org/data/svn/MTK/trunk/cpp
         patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk_cmake.patch
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk_cmake_modules.patch
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk_example.patch
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk_ukfom.patch
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk_unit_test.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/mtk.patch
 

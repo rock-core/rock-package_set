@@ -1,0 +1,308 @@
+Index: ukfom/mtkwrap.hpp
+===================================================================
+--- ukfom/mtkwrap.hpp	(revision 25)
++++ ukfom/mtkwrap.hpp	(working copy)
+@@ -48,7 +48,7 @@
+ 
+ 
+ // import most common Eigen types 
+-USING_PART_OF_NAMESPACE_EIGEN
++using namespace Eigen;
+ 
+ 
+ /**
+@@ -59,8 +59,8 @@
+ struct mtkwrap : public M{
+ 	typedef mtkwrap<M> self;
+ public:
+-	typedef double scalar; // MTK only works with double
+-	typedef scalar scalar_type;
++	//typedef double scalar; // MTK only works with double
++	typedef typename M::scalar scalar_type;
+ 
+ 	enum {
+ 		DOF = M::DOF
+@@ -77,7 +77,7 @@
+ 	 */
+ 	self& operator+=(const vectorized_type &delta_state)
+ 	{
+-		assert(delta_state.stride() == DOF);
++		assert(delta_state.size() == DOF);
+ 		M::boxplus(delta_state.data());
+ 		return *this;
+ 	}
+@@ -96,7 +96,7 @@
+ 	const vectorized_type operator-(const self &other) const
+ 	{
+ 		vectorized_type result;
+-		assert(result.stride()==DOF);
++		assert(result.rows()==DOF);
+ 		M::boxminus(result.data(), other);
+ 
+ 		return result;
+Index: ukfom/ukf.hpp
+===================================================================
+--- ukfom/ukf.hpp	(revision 25)
++++ ukfom/ukf.hpp	(working copy)
+@@ -43,8 +43,12 @@
+ #include <boost/bind.hpp>
+ 
+ #include <Eigen/Core>
+-#include <Eigen/LU> 
++#include <Eigen/LU>
+ 
++#if EIGEN_VERSION_AT_LEAST(3,0,0)
++    #include <Eigen/Eigenvalues>
++#endif
++
+ #include <Eigen/QR>
+ 
+ #include "lapack/cholesky.hpp"
+@@ -54,7 +58,7 @@
+ namespace ukfom {
+ 	
+ // import most common Eigen types 
+-USING_PART_OF_NAMESPACE_EIGEN
++using namespace Eigen;
+ 
+ template <typename state>
+ class ukf {
+@@ -90,7 +94,7 @@
+ 		state_vector X(2 * n + 1);
+ 		generate_sigma_points(mu_, sigma_, X);
+ 		
+-		std::transform(X.begin(), X.end(), X.begin(), g);
++	        std::transform(X.begin(), X.end(), X.begin(), g);
+ 
+ 		mu_ = sigma_points_mean(X);
+ 
+@@ -149,7 +153,7 @@
+ 		const cross_cov covXZ = sigma_points_cross_cov<measurement_rows>(mu_, meanZ, X, Z);
+ 
+ 		measurement_cov S_inverse;
+-		S.computeInverse(&S_inverse);
++		S_inverse = S.inverse();
+ 
+ 		const cross_cov K = covXZ * S_inverse;
+ 		
+@@ -196,8 +200,9 @@
+ 		
+ 		assert(L.isSPD());
+ 
++		
+ 		/*
+-		std::cout << ">> L" << std::endl
++               std::cout << ">> L" << std::endl
+ 				  << L.getL() << std::endl
+ 				  << "<< L" << std::endl;
+ 		*/
+Index: ukfom/lapack/cholesky.hpp
+===================================================================
+--- ukfom/lapack/cholesky.hpp	(revision 25)
++++ ukfom/lapack/cholesky.hpp	(working copy)
+@@ -43,7 +43,7 @@
+ namespace lapack {
+ 
+ // import most common Eigen types 
+-USING_PART_OF_NAMESPACE_EIGEN
++using namespace Eigen;
+ 
+ template<size_t M>
+ class cholesky
+Index: ukfom/lapack/invert.hpp
+===================================================================
+--- ukfom/lapack/invert.hpp	(revision 25)
++++ ukfom/lapack/invert.hpp	(working copy)
+@@ -43,7 +43,7 @@
+ namespace lapack {
+ 
+ // import most common Eigen types 
+-USING_PART_OF_NAMESPACE_EIGEN
++using namespace Eigen;
+ 
+ template<size_t P>
+ Matrix<double, P, P> invert(const Matrix<double, P, P> &m)
+Index: example/CMakeLists.txt
+===================================================================
+--- example/CMakeLists.txt	(revision 25)
++++ example/CMakeLists.txt	(working copy)
+@@ -1,4 +1,4 @@
+-include_directories( ${EIGEN2_INCLUDE_DIR} )
++include_directories( ${Eigen3_INCLUDE_DIRS} )
+ INCLUDE_DIRECTORIES( ${CMAKE_SOURCE_DIR})
+ INCLUDE_DIRECTORIES( ${CMAKE_SOURCE_DIR}/slom)
+ 
+Index: mtk/src/vectview.hpp
+===================================================================
+--- mtk/src/vectview.hpp	(revision 25)
++++ mtk/src/vectview.hpp	(working copy)
+@@ -69,9 +69,14 @@
+ 	//! construct from another @c vectview
+ 	vectview(const vectview &v) : base(v) {}
+ 	//! construct from Eigen::Block:
+-#if MTK_EIGEN >= 300
++#if EIGEN_VERSION_AT_LEAST(3,2,0)
+ 	template<class Base>
+ 	vectview(Eigen::VectorBlock<Base, dim> block) : base(&block.coeffRef(0)) {}
++	template<class Base, bool PacketAccess>
++	vectview(Eigen::Block<Base, dim, 1, PacketAccess> block) : base(&block.coeffRef(0)) {}
++#elif EIGEN_VERSION_AT_LEAST(3,0,0)
++	template<class Base>
++	vectview(Eigen::VectorBlock<Base, dim> block) : base(&block.coeffRef(0)) {}
+ 	template<class Base, bool PacketAccess, bool DirectAccessStatus>
+ 	vectview(Eigen::Block<Base, dim, 1, PacketAccess, DirectAccessStatus> block) : base(&block.coeffRef(0)) {}
+ #else
+@@ -118,9 +123,14 @@
+ 	 * Construct from Block
+ 	 * @todo adapt this, when Block gets const-correct
+ 	 */
+-#if MTK_EIGEN >= 300
++#if EIGEN_VERSION_AT_LEAST(3,2,0)
+ 	template<class Base>
+ 	vectview(Eigen::VectorBlock<Base, dim> block) : base(&block.coeffRef(0)) {}
++	template<class Base, bool PacketAccess>
++	vectview(Eigen::Block<Base, dim, 1, PacketAccess> block) : base(&block.coeffRef(0)) {}
++#elif EIGEN_VERSION_AT_LEAST(3,0,0)
++	template<class Base>
++	vectview(Eigen::VectorBlock<Base, dim> block) : base(&block.coeffRef(0)) {}
+ 	template<class Base, bool PacketAccess, bool DirectAccessStatus>
+ 	vectview(Eigen::Block<Base, dim, 1, PacketAccess, DirectAccessStatus> block) : base(&block.coeffRef(0)) {}
+ #else
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 25)
++++ CMakeLists.txt	(working copy)
+@@ -1,34 +1,26 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
++cmake_minimum_required(VERSION 2.6)
++project(mtk)
+ 
++add_definitions(-Wall -Wno-unused-function -march=native -msse2 -mssse3 -mfpmath=sse)
++option(SLOM_BUILD_EXAMPLES "Build the example code" OFF)
++if (SLOM_BUILD_LIBONLY)
++    set(SLOM_BUILD_EXAMPLES OFF)
++endif()
+ 
+-IF(NOT CMAKE_BUILD_TYPE)
+-  SET(CMAKE_BUILD_TYPE RELEASE CACHE STRING
+-      "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
+-      FORCE)
+-ENDIF(NOT CMAKE_BUILD_TYPE)
++list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules)
+ 
+-IF(NOT SLOM_BUILD_LIBONLY)
+-	SET(CMAKE_CXX_FLAGS_DEBUG  "-ggdb -O0 -Wall -march=native -msse2 -mfpmath=sse")
+-	SET(CMAKE_CXX_FLAGS_RELEASE  "-ggdb -O3 -Wall -Wno-unused-function -march=native -msse2 -mssse3 -mfpmath=sse")
+-	SET(SLOM_BUILD_EXAMPLES ON)
+-ENDIF(NOT SLOM_BUILD_LIBONLY)
+-
+-
+-# find include dirs:
+-
+-SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules)
+-
+ FIND_PACKAGE(CXSparse REQUIRED) 
+-FIND_PACKAGE(Eigen2)
+-FIND_PACKAGE(Boost 1.36.0 REQUIRED COMPONENTS program_options unit_test_framework)
++FIND_PACKAGE(LAPACK)
++find_package(PkgConfig)
++pkg_check_modules(Eigen3 REQUIRED eigen3)
+ 
+ INCLUDE_DIRECTORIES(${CXSPARSE_INCLUDE_DIR} )
+-INCLUDE_DIRECTORIES(${EIGEN2_INCLUDE_DIR} )
++INCLUDE_DIRECTORIES(${Eigen3_INCLUDE_DIRS} )
+ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} )
+ 
+ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+ 
+-ADD_LIBRARY( slom STATIC slom/src/Estimator.cpp slom/src/SparseFunction.cpp)
++ADD_LIBRARY(slom slom/src/Estimator.cpp slom/src/SparseFunction.cpp)
+ 
+ 
+ TARGET_LINK_LIBRARIES(slom
+@@ -36,10 +28,50 @@
+ )
+ 
+ IF(SLOM_BUILD_EXAMPLES)
+-	ENABLE_TESTING()
+-	ADD_EXECUTABLE( min_example doc/example.cpp)
+-	TARGET_LINK_LIBRARIES(min_example slom)
+-	
+-	ADD_SUBDIRECTORY (example)
+-	ADD_SUBDIRECTORY (unit_test)
++    FIND_PACKAGE(Boost 1.36.0 REQUIRED COMPONENTS program_options unit_test_framework)
++    ENABLE_TESTING()
++    ADD_EXECUTABLE( min_example doc/example.cpp)
++    TARGET_LINK_LIBRARIES(min_example slom)
++
++    ADD_SUBDIRECTORY (example)
++    ADD_SUBDIRECTORY (unit_test)
+ ENDIF()
++
++INSTALL(FILES
++    mtk/startIdx.hpp
++    mtk/build_manifold.hpp
++    mtk/mean_and_covar.hpp
++    DESTINATION include/mtk)
++
++INSTALL(FILES
++    mtk/src/eigen.hpp
++    mtk/src/mtkmath.hpp
++    mtk/src/SubManifold.hpp
++    mtk/src/vectview.hpp
++    DESTINATION include/mtk/src)
++
++INSTALL(FILES
++    mtk/types/pose.hpp
++    mtk/types/S2.hpp
++    mtk/types/SOn.hpp
++    mtk/types/vect.hpp
++    DESTINATION include/mtk/types)
++
++INSTALL(FILES
++    ukfom/mtkwrap.hpp
++    ukfom/util.hpp
++    ukfom/ukf.hpp
++    DESTINATION include/ukfom)
++
++INSTALL(FILES
++    ukfom/lapack/cholesky.hpp
++    ukfom/lapack/invert.hpp
++    ukfom/lapack/lapack.h
++    DESTINATION include/ukfom/lapack)
++
++INSTALL(FILES
++    ukfom/traits/dof.hpp
++    DESTINATION include/ukfom/traits)
++
++install(TARGETS slom
++    DESTINATION lib)
+Index: unit_test/CMakeLists.txt
+===================================================================
+--- unit_test/CMakeLists.txt	(revision 25)
++++ unit_test/CMakeLists.txt	(working copy)
+@@ -1,4 +1,4 @@
+-include_directories( ${EIGEN2_INCLUDE_DIR} )
++include_directories( ${EIGEN3_INCLUDE_DIR} )
+ INCLUDE_DIRECTORIES( ${CMAKE_SOURCE_DIR})
+ 
+ INCLUDE_DIRECTORIES( ${CMAKE_SOURCE_DIR}/slom)
+@@ -6,14 +6,16 @@
+ 
+ 
+ MACRO(MAKE_TEST name scalar)
+-	ADD_TEST(${name}_${scalar} ${name}_${scalar})
++        ADD_TEST(${name}_${scalar} ${name}_${scalar})
+ 	ADD_EXECUTABLE(${name}_${scalar} ${name}.cc)
+ 	SET_TARGET_PROPERTIES(${name}_${scalar} PROPERTIES COMPILE_FLAGS -DSCALAR=${scalar})
+-	TARGET_LINK_LIBRARIES(${name}_${scalar} boost_unit_test_framework-mt)
++        TARGET_LINK_LIBRARIES(${name}_${scalar} boost_unit_test_framework-mt ${LAPACK_LIBRARIES})
+ ENDMACRO()
+ 
+ 
+ MAKE_TEST(mtk_test float)
+ MAKE_TEST(mtk_test double)
+ MAKE_TEST(slom_choleskytest double)
++MAKE_TEST(ukfom_test double)
+ 
++
