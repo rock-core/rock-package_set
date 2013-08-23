@@ -114,6 +114,10 @@ blas:
     gentoo: blas
     fedora: blas-devel
 
+atlas-base:
+    debian,ubuntu: libatlas-base-dev
+    fedora: atlas-devel
+
 lapack:
     debian,ubuntu: liblapack-dev
     gentoo: lapack
@@ -278,6 +282,7 @@ unzip:
     debian, ubuntu: unzip
 
 libqglviewer:
-    debian, ubuntu: libqglviewer-qt4-dev
+    ubuntu: libqglviewer-qt4-dev
+    debian: libqglviewer-dev
     darwin: libqglviewer
 
