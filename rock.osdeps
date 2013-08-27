@@ -285,3 +285,8 @@ libqglviewer:
     ubuntu: libqglviewer-qt4-dev
     debian: libqglviewer-dev
 
+gem-hooks:
+    gem: hooks
+
+clang-dev:
+    debian,ubuntu: libclang-dev

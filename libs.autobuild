@@ -1,6 +1,9 @@
 # IMPORTANT: new packages must be added at the top of this file
 cmake_package 'slam/mtk'
-ruby_package 'tools/rbind'
+ruby_package 'tools/rbind' do |pkg|
+    pkg.depends_on 'gem-hooks'
+    pkg.depends_on 'clang-dev'
+end
 cmake_package 'data_processing/openann'
 remove_from_default 'data_processing/openann'
 # This is removed from default for now as it requires the joint_state branch on
