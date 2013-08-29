@@ -24,6 +24,7 @@ if package_enabled?('orogen')
 
         orogen_package 'planning/orogen/pddl_planner'
 	orogen_package 'planning/orogen/simple_path_planner'
+        orogen_package 'planning/orogen/heading_calculator'
 
         orogen_package 'drivers/orogen/phidgets'
 	orogen_package 'drivers/orogen/stim300'
