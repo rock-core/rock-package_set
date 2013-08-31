@@ -25,6 +25,7 @@ remove_from_default 'control/urdf'
 #################################################################################"
 
 in_flavor 'master' do
+<<<<<<< HEAD
     cmake_package 'control/urdfdom' do |pkg|
         pkg.depends_on 'control/urdfdom_headers'
         pkg.depends_on 'base/console_bridge'
@@ -50,10 +51,14 @@ in_flavor 'master' do
     end
     remove_from_default 'planning/openrave'
 
-    autotools_package 'drivers/phidgets'
+    autotools_package 'drivers/phidgets' do |pkg|
+        pkg.disable_doc
+    end
     cmake_package 'data_processing/type_to_vector'
 
-    cmake_package 'image_processing/viso2'
+    cmake_package 'image_processing/viso2' do |pkg|
+        pkg.disable_doc
+    end
     cmake_package 'simulation/imumodel'
 
     cmake_package 'planning/lama'
@@ -73,6 +78,15 @@ in_flavor 'master' do
         pkg.define "BUILD_FAKENECT", "OFF"
         pkg.define "BUILD_EXAMPLES", "OFF"
         pkg.define "BUILD_C_SYNC", "OFF"
+        pkg.source_tree_excludes << /doc/
+        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
+        pkg.doc_task do
+            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
+                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "Doxyfile")
+                end
+            end
+        end
     end
 
     cmake_package 'gui/map2d'
@@ -325,6 +339,8 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'slam/pose_ekf'
     cmake_package 'slam/quater_ikf'
     cmake_package 'external/cminpack' do |pkg|
+        pkg.doc_dir = File.join(pkg.srcdir, 'doc')
+        pkg.doc_task {}
         pkg.define("CMAKE_BUILD_TYPE","Release")
     end
     cmake_package 'slam/flann' do |pkg|
@@ -360,7 +376,17 @@ in_flavor 'master', 'next', 'stable' do
         end
     end
     remove_from_default 'slam/pcl'
-    cmake_package 'slam/hogman'
+    cmake_package 'slam/hogman' do |pkg|
+        pkg.source_tree_excludes << /doc/
+        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
+        pkg.doc_task do
+            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
+                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "hogman.dox")
+                end
+            end
+        end
+    end
     cmake_package 'slam/quater_ukf'
     cmake_package 'slam/odometry'
     cmake_package 'slam/graph_slam'
