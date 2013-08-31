@@ -368,6 +368,15 @@ in_flavor 'master', 'next', 'stable' do
         pkg.depends_on 'libqglviewer'
         pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
         pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
+        pkg.source_tree_excludes << /doc\/doxygen/
+        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'doxygen', 'html')
+        pkg.doc_task do
+            pkg.in_dir(File.join(pkg.srcdir, 'doc', 'doxygen')) do
+                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "doxy.config")
+                end
+            end
+        end
     end
 
     ##### Graphical User Interface related packages 
