@@ -425,6 +425,14 @@ only_in_flavor 'master','next','stable' do
     end
 end
 
+only_in_flavor 'master' do
+    setup_package 'external/opencv' do |pkg|
+        update_archive(pkg, "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz", "2.4.5") do
+            File.readlines(File.join(pkg.srcdir,"modules","java","generator","src","java","android+OpenCVLoader.java")).grep(/OPENCV_VERSION_2_4_5/) == []
+        end
+    end
+end
+
 only_in_flavor 'master','next' do
     #Depends on newer types that not (yet) jun. '13 in stable
     #move to all in next "next merge window"
