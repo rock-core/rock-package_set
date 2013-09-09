@@ -2,9 +2,9 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'drivers/orogen/servo_dynamixel'
 
     in_flavor 'master' do
+        orogen_package 'drivers/orogen/servo_dynamixel'
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'image_processing/orogen/video_streamer'
         end
@@ -50,12 +50,12 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
-        orogen_package 'control/orogen/kdl'	
-        orogen_package 'drivers/orogen/ptu_directedperception'
-        orogen_package 'drivers/orogen/aria'
     end
     
     in_flavor 'master', 'next', 'stable' do
+        orogen_package 'control/orogen/kdl'	
+        orogen_package 'drivers/orogen/ptu_directedperception'
+        orogen_package 'drivers/orogen/aria'
         orogen_package 'control/orogen/trajectory_follower'
         orogen_package 'control/orogen/waypoint_navigation'
         orogen_package 'control/orogen/skid4_control'
