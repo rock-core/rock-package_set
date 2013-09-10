@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'control/orogen/trajectory_generation'
 
     in_flavor 'master' do
         orogen_package 'drivers/orogen/servo_dynamixel'
