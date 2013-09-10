@@ -75,6 +75,7 @@ boost:
         - libboost-iostreams-dev
     gentoo: dev-libs/boost
     fedora: boost-devel
+    darwin: boost
 
 ncurses:
     debian,ubuntu: libncurses5-dev
@@ -139,6 +140,7 @@ osg:
     debian,ubuntu: libopenscenegraph-dev
     gentoo: dev-games/openscenegraph
     fedora: OpenSceneGraph-devel
+    darwin: OpenSceneGraph-devel
 
 qt4:
     # QMake is needed for the CMake macro for Qt4
@@ -147,6 +149,7 @@ qt4:
         - qt-core 
         - qt-gui
     fedora: qt-devel
+    darwin: qt4-mac
 
 qt4-opengl:
     debian,ubuntu: libqt4-opengl-dev
