@@ -1,45 +1,17 @@
 # IMPORTANT: new packages must be added at the top of this file
-cmake_package 'slam/mtk'
-ruby_package 'tools/rbind'
+ruby_package 'tools/rbind' do |pkg|
+    pkg.depends_on 'gem-hooks'
+    pkg.depends_on 'clang-dev'
+end
 cmake_package 'data_processing/openann'
 remove_from_default 'data_processing/openann'
 # This is removed from default for now as it requires the joint_state branch on
 # base/types
 
-cmake_package 'gui/robot_model'
-cmake_package 'gui/control_ui'
 # The following package will be removed as soon as we are done converting to the
 # OSRF-provided URDF packages
 cmake_package 'control/urdf'
 remove_from_default 'control/urdf'
-cmake_package 'control/urdfdom' do |pkg|
-    pkg.depends_on 'control/urdfdom_headers'
-    pkg.depends_on 'base/console_bridge'
-end
-cmake_package 'control/urdfdom_headers'
-cmake_package 'control/kdl_parser'
-
-cmake_package 'planning/openrave' do |pkg|
-    pkg.depends_on 'assimp'
-    pkg.depends_on 'sympy'
-    pkg.depends_on 'soqt'
-    pkg.depends_on 'ode'
-    pkg.depends_on 'boost-python'
-    pkg.depends_on 'numpy'
-    pkg.depends_on 'scipy'
-
-    Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
-end
-remove_from_default 'planning/openrave'
-
-## 
-# Remove this package. It's not working properly (has memory leak) and sometime
-# does not build at all
-#
-# ruby_package 'gui/ffmpeg-ruby' do |pkg|
-#     pkg.depends_on 'ffmpeg'
-#     Autoproj.env_add_path "RUBYLIB", File.join(pkg.srcdir, "ext")
-# end
 
 #################################################################################"
 #################################################################################"
@@ -51,6 +23,31 @@ remove_from_default 'planning/openrave'
 #################################################################################"
 
 in_flavor 'master' do
+    cmake_package 'control/urdfdom' do |pkg|
+        pkg.depends_on 'control/urdfdom_headers'
+        pkg.depends_on 'base/console_bridge'
+    end
+    cmake_package 'control/urdfdom_headers'
+    cmake_package 'control/kdl_parser'
+
+    cmake_package 'control/reflexxes'
+    cmake_package 'slam/mtk'
+    cmake_package 'gui/robot_model'
+    cmake_package 'gui/control_ui'
+
+    cmake_package 'planning/openrave' do |pkg|
+        pkg.depends_on 'assimp'
+        pkg.depends_on 'sympy'
+        pkg.depends_on 'soqt'
+        pkg.depends_on 'ode'
+        pkg.depends_on 'boost-python'
+        pkg.depends_on 'numpy'
+        pkg.depends_on 'scipy'
+
+        Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
+    end
+    remove_from_default 'planning/openrave'
+
     autotools_package 'drivers/phidgets'
     cmake_package 'data_processing/type_to_vector'
 
@@ -92,6 +89,10 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'next' do
+end
+
+in_flavor 'master', 'next', 'stable' do
+    cmake_package 'drivers/actuator_dispatcher'
     bundle_package 'bundles/rock_ugv_nav'
     cmake_package 'control/kdl' do |pkg|
         pkg.depends_on 'base/types'
@@ -164,13 +165,12 @@ in_flavor 'master', 'next' do
             end
         end
     end
-end
-
-in_flavor 'master', 'next', 'stable' do
     bundle_package 'bundles/rock'
 
     ##### External libraries not available as binary packages
-    cmake_package 'external/yaml-cpp'
+    cmake_package 'external/yaml-cpp' do |pkg|
+        pkg.define("BUILD_SHARED_LIBS","ON")
+    end
     cmake_package 'external/tinyxml' do |pkg|
         # tinyxml is patched to use Rock macros
         pkg.depends_on 'base/types'
@@ -268,7 +268,12 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/controldev'
     cmake_package 'drivers/parport'
     cmake_package 'drivers/camera_interface'
-    cmake_package 'drivers/camera_prosilica'
+    cmake_package 'drivers/camera_prosilica' do |pkg|
+        if pkg.respond_to?(:source_tree_excludes)
+            pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
+        end
+    end
+
     cmake_package 'drivers/camera_usb'
     cmake_package 'drivers/dvl_teledyne'
     cmake_package 'drivers/camera_firewire'
@@ -412,26 +417,10 @@ autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
-
-only_in_flavor 'master','next','stable' do
-    setup_package 'external/yaml-cpp' do |pkg|
-        pkg.define("BUILD_SHARED_LIBS","ON")
-        update_archive(pkg, "http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz", "0.3.0") do
-            File.readlines(File.join(pkg.srcdir,"CMakeLists.txt")).grep(/YAML_CPP_VERSION_MINOR "3"/) == []
-        end
-    end
-end
-
-only_in_flavor 'master','next' do
-    #Depends on newer types that not (yet) jun. '13 in stable
-    #move to all in next "next merge window"
-    cmake_package 'drivers/actuator_dispatcher'
-end
-
-only_in_flavor 'master', 'next' do
-    setup_package 'drivers/camera_prosilica' do |pkg|
-        if pkg.respond_to?(:source_tree_excludes)
-            pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
+only_in_flavor 'master' do
+    setup_package 'external/opencv' do |pkg|
+        update_archive(pkg, "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz", "2.4.5") do
+            File.readlines(File.join(pkg.srcdir,"modules","java","generator","src","java","android+OpenCVLoader.java")).grep(/OPENCV_VERSION_2_4_5/) == []
         end
     end
 end

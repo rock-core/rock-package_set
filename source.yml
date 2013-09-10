@@ -88,7 +88,7 @@ version_control:
 
     - external/yaml-cpp:
         type: archive
-        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.2.5.tar.gz
+        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
         update_cached_file: false
 
     - external/opencv:

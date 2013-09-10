@@ -289,3 +289,8 @@ libqglviewer:
     debian: libqglviewer-dev
     darwin: libqglviewer
 
+gem-hooks:
+    gem: hooks
+
+clang-dev:
+    debian,ubuntu: libclang-dev
