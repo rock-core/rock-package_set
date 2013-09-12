@@ -1,0 +1,15 @@
+<package>
+  <description brief="URDF (U-Robot Description Format) library">
+  The URDF (U-Robot Description Format)  provides core data structures and a simple XML parsers
+  for populating the class data structures from an URDF file.
+  </description>
+  <author>Willow Garage</author>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/urdf</url>
+
+  <depend package="external/tinyxml"/>
+  <depend package="boost"/>
+  <depend package="base/console_bridge"/>
+  <depend package="control/urdfdom_headers" />
+</package>
+
