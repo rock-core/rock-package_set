@@ -153,8 +153,7 @@ version_control:
         push_to: http://git.mech.kuleuven.be/robotics/orocos_kinematics_dynamics.git
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
-            - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen.patch, 1]
-            - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_fix_eigen3_fallback.patch
+            - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen_v2.patch, 1]
 
     - external/freenect:
         type: git
