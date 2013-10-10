@@ -25,7 +25,6 @@ remove_from_default 'control/urdf'
 #################################################################################"
 
 in_flavor 'master' do
-<<<<<<< HEAD
     cmake_package 'control/urdfdom' do |pkg|
         pkg.depends_on 'control/urdfdom_headers'
         pkg.depends_on 'base/console_bridge'
