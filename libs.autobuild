@@ -15,6 +15,19 @@ cmake_package 'gui/point_cloud'
 cmake_package 'control/urdf'
 remove_from_default 'control/urdf'
 
+cmake_package 'gui/vizkit3d' do |pkg|
+    if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+        pkg.define "OROCOS_TARGET", user_config('rtt_target')
+    end
+    Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
+
+    # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+    # to list the place where they install themselves
+    # TODO the path should be renamed to VIZKIT3D_PLUGIN_PATH
+    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+end
+
 #################################################################################"
 #################################################################################"
 ## 
@@ -101,6 +114,7 @@ in_flavor 'master' do
     cmake_package 'drivers/ucm_schilling'
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
+
 end
 
 in_flavor 'master', 'next' do
@@ -405,19 +419,6 @@ in_flavor 'master', 'next', 'stable' do
     end
 
     ##### Graphical User Interface related packages 
-    cmake_package 'gui/vizkit' do |pkg|
-        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
-            pkg.define "OROCOS_TARGET", user_config('rtt_target')
-        end
-        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
-        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
-        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
-        # to list the place where they install themselves
-        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
-        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
-    end
     cmake_package 'gui/rock_widget_collection' do |pkg|
         Autoproj.env_add_path 'QT_PLUGIN_PATH', File.join(pkg.prefix, "lib", "qt")
     end
@@ -454,10 +455,32 @@ autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
+only_in_flavor 'next', 'stable' do
+    # THIS HAS TO BE MOVED TO ONLY STABLE BEFORE RELEASED
+    cmake_package 'gui/vizkit' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
+        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"ruby/lib")
+        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir,"build/lib")
+        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
+        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+        # to list the place where they install themselves
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+    end
+end
+
+
 only_in_flavor 'master' do
     setup_package 'external/opencv' do |pkg|
         pkg.importer.relocate "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz"
     end
+
+    ##### Graphical User Interface related packages
+    # THIS HAS TO BE MOVED TO MASTER NEXT BEFORE RELEASED
+    ruby_package 'gui/vizkit'
 end
 
 create_metapackages
