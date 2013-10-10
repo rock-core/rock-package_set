@@ -456,9 +456,7 @@ Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
 only_in_flavor 'master' do
     setup_package 'external/opencv' do |pkg|
-        update_archive(pkg, "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz", "2.4.5") do
-            File.readlines(File.join(pkg.srcdir,"modules","java","generator","src","java","android+OpenCVLoader.java")).grep(/OPENCV_VERSION_2_4_5/) == []
-        end
+        pkg.importer.relocate "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz"
     end
 end
 
