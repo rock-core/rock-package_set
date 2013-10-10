@@ -1,0 +1,11 @@
+--- orocos_kdl/CMakeLists.txt.orig	2013-02-11 12:07:07.458737656 +0100
++++ orocos_kdl/CMakeLists.txt	2013-02-11 12:07:16.014844117 +0100
+@@ -44,7 +44,7 @@ ENDIF ( NOT CMAKE_BUILD_TYPE )
+ SET( KDL_CFLAGS "" CACHE INTERNAL "")
+ 
+ rock_find_pkgconfig(Eigen3 eigen3 REQUIRED)
+-if(NOT Eigen_DIR)
++if(NOT Eigen3_FOUND)
+ include(${PROJ_SOURCE_DIR}/config/FindEigen3.cmake)
+ include_DIRECTORIES(${EIGEN3_INCLUDE_DIR})
+ endif()

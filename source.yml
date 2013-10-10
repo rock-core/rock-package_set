@@ -154,6 +154,7 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
             - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen.patch, 1]
+            - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_fix_eigen3_fallback.patch
 
     - external/freenect:
         type: git

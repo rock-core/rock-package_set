@@ -1,11 +1,12 @@
---- kdl/orocos_kdl/CMakeLists.txt	2013-10-09 10:35:29.304830000 +0200
-+++ kdl_new/orocos_kdl/CMakeLists.txt	2013-10-09 10:36:29.729936000 +0200
+diff -urN kdl/orocos_kdl/CMakeLists.txt kdl_new/orocos_kdl/CMakeLists.txt
+--- kdl/orocos_kdl/CMakeLists.txt	2013-02-08 14:25:12.688429140 +0100
++++ kdl_new/orocos_kdl/CMakeLists.txt	2013-02-08 14:19:01.688445787 +0100
 @@ -43,7 +43,7 @@
  
- SET( KDL_CFLAGS "")
+ SET( KDL_CFLAGS "" CACHE INTERNAL "")
  
 -find_package(Eigen 3.0 QUIET)
-+rock_find_pkgconfig(Eigen 3.0 QUIET)
- if(NOT Eigen_FOUND)
-   include(${PROJ_SOURCE_DIR}/config/FindEigen3.cmake)
-   set(Eigen_INCLUDE_DIR ${EIGEN3_INCLUDE_DIR})
++rock_find_pkgconfig(Eigen3 eigen3 REQUIRED)
+ if(NOT Eigen_DIR)
+ include(${PROJ_SOURCE_DIR}/config/FindEigen3.cmake)
+ include_DIRECTORIES(${EIGEN3_INCLUDE_DIR})
