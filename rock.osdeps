@@ -10,12 +10,14 @@ opencv:
                 - libhighgui-dev
     gentoo: media-libs/opencv
     fedora: opencv-devel
+    arch,manjarolinux: opencv
 
 flann:
     ubuntu:
         9.04,9.10,10.04,10.10,11.04,11.10: nonexistent
         default: libflann-dev
     debian: libflann-dev
+    arch,manjarolinux: ignore
 
 ffmpeg:
     ubuntu: 
@@ -23,11 +25,13 @@ ffmpeg:
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     debian: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
+    arch,manjarolinux: ffmpeg
 
 sysfs:
     debian,ubuntu: libsysfs-dev
     gentoo: sys-fs/sysfsutils
     fedora: libsysfs-devel
+    arch,manjarolinux: sysfsutils
 
 libusb-old:
     debian,ubuntu: libusb-dev
@@ -36,14 +40,17 @@ gdal:
     debian,ubuntu: libgdal1-dev
     gentoo: sci-libs/gdal
     fedora: gdal-devel
+    arch,manjarolinux: gdal
 
 swig: 
     debian,ubuntu: swig
+    arch,manjarolinux: swig
 
 proj:
     debian,ubuntu: libproj-dev
     gentoo: sci-libs/proj
     fedora: proj-devel
+    arch,manjarolinux: proj
 
 freeglut3:
     debian,ubuntu: freeglut3-dev
@@ -58,11 +65,13 @@ libgps:
   debian,ubuntu: libgps-dev
   gentoo: sci-geosciences/gpsd
   fedora: gpsd-devel
+  arch,manjarolinux: gpsd
 
 gpsd:
   debian,ubuntu: libgps-dev
   gentoo: sci-geosciences/gpsd
   fedora: gpsd-devel
+  arch,manjarolinux: gpsd
 
 boost:
     debian,ubuntu:
@@ -76,19 +85,27 @@ boost:
     gentoo: dev-libs/boost
     fedora: boost-devel
     darwin: boost
+    arch,manjarolinux:
+        - boost
+        - boost-libs
 
 ncurses:
     debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
     fedora: ncurses-devel
+    arch,manjarolinux: ncurses
+
 doxygen:
     debian,ubuntu: doxygen
     gentoo: app-doc/doxygen
     fedora: doxygen
+    arch,manjarolinux: doxygen
+
 graphviz:
     debian,ubuntu: graphviz
     gentoo: graphviz
     fedora: graphviz
+    arch,manjarolinux: graphviz
 
 net-ssh: gem
 net-scp: gem
@@ -97,6 +114,7 @@ yaml:
     debian,ubuntu: libyaml-dev
     gentoo: dev-libs/libyaml
     fedora: libyaml-devel
+    arch,manjarolinux: libyaml
 
 cgal:
     debian,ubuntu: libcgal-dev
@@ -114,6 +132,7 @@ blas:
     debian,ubuntu: libblas-dev
     gentoo: blas
     fedora: blas-devel
+    arch,manjarolinux: blas
 
 atlas-base:
     debian,ubuntu: libatlas-base-dev
@@ -123,11 +142,13 @@ lapack:
     debian,ubuntu: liblapack-dev
     gentoo: lapack
     fedora: lapack-devel
+    arch,manjarolinux: lapack
 
 autoconf-archive:
     debian,ubuntu: autoconf-archive
     gentoo: sys-devel/autoconf-archive
     fedora: autoconf-archive
+    arch,manjarolinux: autoconf-archive
 
 osgEarth:
     debian: [libosgearth-dev, libosgearth1]
@@ -141,6 +162,7 @@ osg:
     gentoo: dev-games/openscenegraph
     fedora: OpenSceneGraph-devel
     darwin: OpenSceneGraph-devel
+    arch,manjarolinux: openscenegraph
 
 qt4:
     # QMake is needed for the CMake macro for Qt4
@@ -150,6 +172,7 @@ qt4:
         - qt-gui
     fedora: qt-devel
     darwin: qt4-mac
+    arch,manjarolinux: qt4
 
 qt4-opengl:
     debian,ubuntu: libqt4-opengl-dev
@@ -183,6 +206,7 @@ libnl2:
 v4l:
     debian,ubuntu: libv4l-dev
     fedora: libv4l-devel
+    arch,manjarolinux: v4l-utils
 
 qhull:
     debian,ubuntu: libqhull-dev
