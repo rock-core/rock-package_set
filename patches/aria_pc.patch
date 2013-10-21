@@ -1,4 +1,4 @@
-Index: aria.pc.in
+Index: aria.pc.in Makefile
 ===================================================================
 --- aria.pc.in	(revision 0)
 +++ aria.pc.in	(revision 0)
@@ -12,6 +12,17 @@ Index: aria.pc.in
 +Description: 
 +Version: @PROJECT_VERSION@
 +Requires: 
-+Libs: -L${libdir} -lAria
++Libs: -L${libdir} -lAria -lpthread -ldl -lrt
 +Cflags: -I${includedir}/aria
 +
+--- Makefile	2012-08-01 18:22:40.000000000 +0200
++++ Makefile	2013-10-21 17:48:50.320975024 +0200
+@@ -535,7 +535,7 @@
+ ####
+ 
+ lib/libAria.so: $(OFILES) Makefile.dep 
+-	$(CXX) -shared -o $(@) $(OFILES)
++	$(CXX) -shared -o $(@) $(OFILES) -lpthread -ldl
+ 
+ lib/libAria.a: $(OFILES) Makefile.dep 
+ 	ar -cr $(@) $(OFILES)
