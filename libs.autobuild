@@ -9,6 +9,7 @@ remove_from_default 'data_processing/openann'
 # base/types
 
 cmake_package 'gui/point_cloud'
+cmake_package 'control/kdl_conversions'
 
 # The following package will be removed as soon as we are done converting to the
 # OSRF-provided URDF packages
