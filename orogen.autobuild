@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'image_processing/orogen/virtual_view'
     orogen_package 'control/orogen/trajectory_generation'
     orogen_package 'control/orogen/cart_ctrl_wdls'
 

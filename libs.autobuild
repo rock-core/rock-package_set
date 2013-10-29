@@ -3,6 +3,7 @@ ruby_package 'tools/rbind' do |pkg|
     pkg.depends_on 'gem-hooks'
     pkg.depends_on 'clang-dev'
 end
+cmake_package 'image_processing/projection'
 cmake_package 'data_processing/openann'
 remove_from_default 'data_processing/openann'
 # This is removed from default for now as it requires the joint_state branch on
