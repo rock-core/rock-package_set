@@ -191,6 +191,10 @@ version_control:
     - slam/mtk:
         type: svn
         url: http://svn.openslam.org/data/svn/MTK/trunk/cpp
-        patches:
+        patches: 
             - $AUTOPROJ_SOURCE_DIR/patches/mtk.patch
+
+    - slam/octomap:
+        type: git
+        url: git://github.com/OctoMap/octomap.git
 
