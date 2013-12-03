@@ -2,6 +2,7 @@
 
 cmake_package 'slam/octomap'
 
+bundle_package 'bundles/rock_auv'
 ruby_package 'tools/rbind' do |pkg|
     pkg.depends_on 'gem-hooks'
     pkg.depends_on 'clang-dev'
