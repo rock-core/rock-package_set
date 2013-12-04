@@ -1,0 +1,13 @@
+<package>
+  <description brief="Instantaneous computation of motion trajectories">
+  Highly reactive robots and machines: instantaneous changes from sensor-guided
+  to trajectory following control; deterministic reactions to sensor events and
+  sensor failures; instantaneously changing reference frames; simple and robust
+  visual servo control; online synchronization of electrical motors;
+  interruptible motion primitives.
+  </description>
+  <author>Reflexxes</author>
+  <license>LGPL V3.0</license>
+  <url>http://www.reflexxes.com</url>
+  <depend package="base/cmake" />
+</package>
