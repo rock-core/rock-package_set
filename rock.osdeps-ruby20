@@ -1,11 +1,10 @@
 qtruby:
     debian,ubuntu:
-        gem: qtbindings
+        gem: "qtbindings = 4.8.3.0"
     gentoo:
         kde-base/kdebindings-ruby
     fedora:
         "17": ruby-qt
         default:
-            gem:
-                qtbindings
+            gem: "qtbindings = 4.8.3.0"
     arch,manjarolinux: kdebindings-qtruby

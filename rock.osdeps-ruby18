@@ -18,6 +18,5 @@ qtruby:
     fedora:
         "16": ruby-qt
         default:
-            gem:
-                qtbindings
+            gem: "qtbindings = 4.8.3.0"
 
