@@ -349,8 +349,13 @@ in_flavor 'master', 'next', 'stable' do
 
     ##### Localisation and Mapping related packages
     autotools_package 'external/libply' do |pkg|
+        pkg.using[:autoconf] = true
+        pkg.using[:automake] = true
         pkg.using[:libtool] = true
         pkg.using[:autoheader] = true
+        if pkg.respond_to?(:automake_flags)
+            pkg.automake_flags = "--add-missing" 
+        end
     end
     cmake_package 'slam/envire' do |pkg| 
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
