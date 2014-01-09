@@ -309,7 +309,9 @@ unzip:
     debian, ubuntu: unzip
 
 libqglviewer:
-    ubuntu: libqglviewer-qt4-dev
+    ubuntu:
+        '12.04,12.10,13.04': libqglviewer-qt4-dev
+        default: libqglviewer-dev
     debian: libqglviewer-dev
     darwin: libqglviewer
 
