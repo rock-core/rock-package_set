@@ -15,6 +15,7 @@ remove_from_default 'data_processing/openann'
 
 cmake_package 'gui/point_cloud'
 cmake_package 'control/kdl_conversions'
+cmake_package 'drivers/gsf'
 
 # The following package will be removed as soon as we are done converting to the
 # OSRF-provided URDF packages

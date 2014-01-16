@@ -202,3 +202,10 @@ version_control:
         type: git
         url: git://github.com/OctoMap/octomap.git
 
+    - drivers/gsf:
+        type: archive
+        url: http://www.saic.com/maritime/gsf/download/gsf_0304.zip
+        no_subdirectory: true
+        patches:
+            - [$AUTOPROJ_SOURCE_DIR/patches/gsf-cmake.patch, 1]
+
