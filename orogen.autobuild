@@ -2,12 +2,12 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
-    orogen_package 'image_processing/orogen/projection'
-    orogen_package 'image_processing/orogen/virtual_view'
-    orogen_package 'control/orogen/trajectory_generation'
-    orogen_package 'control/orogen/cart_ctrl_wdls'
-
     in_flavor 'master' do
+        orogen_package 'image_processing/orogen/projection'
+        orogen_package 'image_processing/orogen/virtual_view'
+        orogen_package 'control/orogen/trajectory_generation'
+        orogen_package 'control/orogen/cart_ctrl_wdls'
+
         orogen_package 'drivers/orogen/servo_dynamixel'
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'image_processing/orogen/video_streamer'
@@ -52,11 +52,11 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
-    	orogen_package 'control/orogen/auv_rel_pos_controller'
-    	orogen_package 'control/orogen/auv_control'
     end
     
     in_flavor 'master', 'next', 'stable' do
+    	orogen_package 'control/orogen/auv_rel_pos_controller'
+    	orogen_package 'control/orogen/auv_control'
         orogen_package 'control/orogen/kdl'	
         orogen_package 'drivers/orogen/ptu_directedperception'
         orogen_package 'drivers/orogen/aria'
@@ -91,9 +91,7 @@ if package_enabled?('orogen')
     	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
     	end
 
-        only_on 'debian' do
-            orogen_package 'drivers/orogen/taskmon'
-        end
+        orogen_package 'drivers/orogen/taskmon'
 
 	orogen_package 'slam/orogen/orientation_estimator'
 	orogen_package 'slam/orogen/envire'

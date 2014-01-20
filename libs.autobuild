@@ -1,40 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
 
-cmake_package 'slam/octomap'
-
-bundle_package 'bundles/rock_auv'
-ruby_package 'tools/rbind' do |pkg|
-    pkg.depends_on 'gem-hooks'
-    pkg.depends_on 'clang-dev'
-end
-cmake_package 'image_processing/projection'
-cmake_package 'data_processing/openann'
-remove_from_default 'data_processing/openann'
-# This is removed from default for now as it requires the joint_state branch on
-# base/types
-
-cmake_package 'gui/point_cloud'
-cmake_package 'control/kdl_conversions'
-cmake_package 'drivers/gsf'
-
-# The following package will be removed as soon as we are done converting to the
-# OSRF-provided URDF packages
-cmake_package 'control/urdf'
-remove_from_default 'control/urdf'
-
-cmake_package 'gui/vizkit3d' do |pkg|
-    if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
-        pkg.define "OROCOS_TARGET", user_config('rtt_target')
-    end
-    Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
-
-    # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
-    # to list the place where they install themselves
-    # TODO the path should be renamed to VIZKIT3D_PLUGIN_PATH
-    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
-    Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
-end
-
 #################################################################################"
 #################################################################################"
 ## 
@@ -45,6 +10,41 @@ end
 #################################################################################"
 
 in_flavor 'master' do
+    cmake_package 'slam/octomap'
+
+    bundle_package 'bundles/rock_auv'
+    ruby_package 'tools/rbind' do |pkg|
+        pkg.depends_on 'gem-hooks'
+        pkg.depends_on 'clang-dev'
+    end
+    cmake_package 'image_processing/projection'
+    cmake_package 'data_processing/openann'
+    remove_from_default 'data_processing/openann'
+    # This is removed from default for now as it requires the joint_state branch on
+    # base/types
+
+    cmake_package 'gui/point_cloud'
+    cmake_package 'control/kdl_conversions'
+    cmake_package 'drivers/gsf'
+
+    # The following package will be removed as soon as we are done converting to the
+    # OSRF-provided URDF packages
+    cmake_package 'control/urdf'
+    remove_from_default 'control/urdf'
+
+    cmake_package 'gui/vizkit3d' do |pkg|
+        if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
+            pkg.define "OROCOS_TARGET", user_config('rtt_target')
+        end
+        Autoproj.env_add_path 'OSG_FILE_PATH', File.join(pkg.prefix, "share", "vizkit" )
+
+        # Add our prefix to the VIZKIT_PLUGIN_RUBY_PATH. Relevant packages will have
+        # to list the place where they install themselves
+        # TODO the path should be renamed to VIZKIT3D_PLUGIN_PATH
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib')
+        Autoproj.env_add_path 'VIZKIT_PLUGIN_RUBY_PATH', File.join(pkg.prefix, 'lib', 'vizkit')
+    end
+
     cmake_package 'control/urdfdom' do |pkg|
         pkg.depends_on 'control/urdfdom_headers'
         pkg.depends_on 'base/console_bridge'
@@ -129,6 +129,7 @@ end
 
 in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/actuator_dispatcher'
+
     bundle_package 'bundles/rock_ugv_nav'
     cmake_package 'control/kdl' do |pkg|
         pkg.depends_on 'base/types'
@@ -467,7 +468,7 @@ autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
-only_in_flavor 'next', 'stable' do
+only_in_flavor 'stable' do
     # THIS HAS TO BE MOVED TO ONLY STABLE BEFORE RELEASED
     cmake_package 'gui/vizkit' do |pkg|
         if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
@@ -485,7 +486,7 @@ only_in_flavor 'next', 'stable' do
 end
 
 
-only_in_flavor 'master' do
+only_in_flavor 'master', 'next' do
     setup_package 'external/opencv' do |pkg|
         pkg.importer.relocate "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz"
     end
