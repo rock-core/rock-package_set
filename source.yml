@@ -15,9 +15,11 @@ version_control:
 
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
+        branch: master
 
     - control/urdfdom:
         github: ros/urdfdom
+        branch: master
 
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
