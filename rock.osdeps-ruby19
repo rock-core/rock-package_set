@@ -1,5 +1,12 @@
 qtruby:
-    debian,ubuntu:
+    debian:
+        stable:
+            gem: "qtbindings = 4.8.3.0"
+        default:
+            - ruby-qt4
+            - ruby-qt4-webkit
+            - ruby-qt4-uitools
+    ubuntu:
         gem: "qtbindings = 4.8.3.0"
     gentoo:
         kde-base/kdebindings-ruby
