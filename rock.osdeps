@@ -320,3 +320,6 @@ gem-hooks:
 
 clang-dev:
     debian,ubuntu: libclang-dev
+
+ruby-statsample:
+    gem: statsample
