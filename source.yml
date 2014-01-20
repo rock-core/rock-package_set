@@ -203,6 +203,7 @@ version_control:
     - slam/octomap:
         type: git
         url: git://github.com/OctoMap/octomap.git
+        branch: master
 
     - drivers/gsf:
         type: archive
