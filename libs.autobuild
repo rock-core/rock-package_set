@@ -10,8 +10,6 @@
 #################################################################################"
 
 in_flavor 'master' do
-    cmake_package 'slam/octomap'
-
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|
         pkg.depends_on 'gem-hooks'
@@ -19,12 +17,8 @@ in_flavor 'master' do
     end
     cmake_package 'image_processing/projection'
     cmake_package 'data_processing/openann'
-    remove_from_default 'data_processing/openann'
-    # This is removed from default for now as it requires the joint_state branch on
-    # base/types
 
     cmake_package 'gui/point_cloud'
-    cmake_package 'control/kdl_conversions'
     cmake_package 'drivers/gsf'
 
     # The following package will be removed as soon as we are done converting to the
@@ -32,17 +26,8 @@ in_flavor 'master' do
     cmake_package 'control/urdf'
     remove_from_default 'control/urdf'
 
-    cmake_package 'control/urdfdom' do |pkg|
-        pkg.depends_on 'control/urdfdom_headers'
-        pkg.depends_on 'base/console_bridge'
-    end
-    cmake_package 'control/urdfdom_headers'
-    cmake_package 'control/kdl_parser'
-
     cmake_package 'control/reflexxes'
     cmake_package 'slam/mtk'
-    cmake_package 'gui/robot_model'
-    cmake_package 'gui/control_ui'
 
     cmake_package 'planning/openrave' do |pkg|
         pkg.depends_on 'assimp'
@@ -72,7 +57,6 @@ in_flavor 'master' do
     cmake_package 'planning/simple_path_planner'
 
     cmake_package 'control/hysteresis_model'
-    cmake_package 'control/joint_dispatcher'
 
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
@@ -108,10 +92,22 @@ in_flavor 'master' do
     cmake_package 'drivers/ucm_schilling'
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
-
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'slam/octomap'
+
+    cmake_package 'control/urdfdom' do |pkg|
+        pkg.depends_on 'control/urdfdom_headers'
+        pkg.depends_on 'base/console_bridge'
+    end
+    cmake_package 'control/urdfdom_headers'
+    cmake_package 'control/kdl_parser'
+    cmake_package 'gui/robot_model'
+    cmake_package 'gui/control_ui'
+    cmake_package 'control/joint_dispatcher'
+    cmake_package 'control/kdl_conversions'
+
     cmake_package 'gui/vizkit3d' do |pkg|
         if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
             pkg.define "OROCOS_TARGET", user_config('rtt_target')
