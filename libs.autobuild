@@ -126,12 +126,6 @@ in_flavor 'master', 'next' do
     end
 end
 only_in_flavor 'master', 'next' do
-    setup_package 'external/opencv' do |pkg|
-        pkg.importer.relocate "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz"
-    end
-
-    ##### Graphical User Interface related packages
-    # THIS HAS TO BE MOVED TO MASTER NEXT BEFORE RELEASED
     ruby_package 'gui/vizkit'
 end
 
@@ -481,6 +475,12 @@ in_flavor 'master', 'next', 'stable' do
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl' do |pkg|
         pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+    end
+end
+
+only_in_flavor 'master', 'next' do
+    setup_package 'external/opencv' do |pkg|
+        pkg.importer.relocate "http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.5/opencv-2.4.5.tar.gz"
     end
 end
 
