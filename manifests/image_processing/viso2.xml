@@ -17,5 +17,7 @@
     <license>GPL</license>
     <url>http://www.cvlibs.net/software/libviso</url>
     <tags>stable</tags>
-    <depend package="base/types" />
+    <depend package="eigen3" />
+
+    <rosdep name='png++' optional="1" />
 </package>

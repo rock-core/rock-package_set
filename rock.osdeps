@@ -323,3 +323,7 @@ clang-dev:
 
 ruby-statsample:
     gem: statsample
+
+png++:
+    debian,ubuntu: libpng++-dev
+    gentoo: media-libs/libpng
