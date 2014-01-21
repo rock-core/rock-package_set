@@ -312,7 +312,9 @@ libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
         default: libqglviewer-dev
-    debian: libqglviewer-dev
+    debian: 
+        '7.3':   libqglviewer-qt4-dev
+        default: libqglviewer-dev
     darwin: libqglviewer
 
 gem-hooks:
