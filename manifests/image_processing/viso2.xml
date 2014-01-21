@@ -1,0 +1,21 @@
+<package>
+    <description brief="LIBVISO2: C++ Library for Visual Odometry 2">
+        LIBVISO2 (Library for Visual Odometry 2) is a very fast cross-platfrom (Linux, Windows)
+        C++ library with MATLAB wrappers for computing the 6 DOF motion of a moving mono/stereo
+        camera. The stereo version is based on minimizing the reprojection error of sparse
+        feature matches and is rather general (no motion model or setup restrictions except that
+        the input images must be rectified and calibration parameters are known). The monocular
+        version is still very experimental and uses the 8-point algorithm for fundamental matrix
+        estimation. It further assumes that the camera is moving at a known and fixed height over
+        ground (for estimating the scale). Due to the 8 correspondences needed for the 8-point
+        algorithm, many more RANSAC samples need to be drawn, which makes the monocular algorithm
+        slower than the stereo algorithm, for which 3 correspondences are sufficent to estimate
+        parameters
+
+    </description>
+    <author>Andreas Geiger/geiger@kit.edu</author>
+    <license>GPL</license>
+    <url>http://www.cvlibs.net/software/libviso</url>
+    <tags>stable</tags>
+    <depend package="base/types" />
+</package>

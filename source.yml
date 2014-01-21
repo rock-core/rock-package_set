@@ -179,7 +179,7 @@ version_control:
         url: http://rock-robotics.org/archives/ARIA-2.7.5.2.tgz
         update_cached_file: false
         patches: $AUTOPROJ_SOURCE_DIR/patches/aria_pc.patch
-        
+
     - drivers/phidgets:
         type: archive
         url: http://www.phidgets.com/downloads/libraries/libphidget_2.1.8.20130320.tar.gz
@@ -211,4 +211,12 @@ version_control:
         no_subdirectory: true
         patches:
             - [$AUTOPROJ_SOURCE_DIR/patches/gsf-cmake.patch, 1]
+
+    - image_processing/viso2:
+        type: archive
+        url: http://www.cvlibs.net/downloads/libviso2.zip
+        no_subdirectory: true
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/viso2.patch
+
 

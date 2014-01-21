@@ -1,0 +1,72 @@
+diff -ruN ../libviso2/CMakeLists.txt ./CMakeLists.txt
+--- ../libviso2/CMakeLists.txt	2013-09-09 10:22:40.000000000 +0200
++++ ./CMakeLists.txt	2014-01-21 13:33:54.361211240 +0100
+@@ -1,7 +1,7 @@
+ # project
+ cmake_minimum_required (VERSION 2.6)
+-project (libviso2)
+-
++find_package(Rock)
++rock_init(viso2 0.1)
+ # directories
+ set (LIBVISO2_SRC_DIR src)
+ 
+@@ -18,6 +18,9 @@
+ set(CMAKE_BUILD_TYPE Release)
+ 
+ # demo program
+-add_executable(viso2 ${LIBVISO2_SRC_FILES})
+-target_link_libraries (viso2 png)
++add_executable(viso2_bin ${LIBVISO2_SRC_FILES})
++target_link_libraries (viso2_bin png)
++
++#install
++add_subdirectory("${LIBVISO2_SRC_DIR}")
+ 
+diff -ruN ../libviso2/src/CMakeLists.txt ./src/CMakeLists.txt
+--- ../libviso2/src/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./src/CMakeLists.txt	2014-01-21 13:09:49.433209385 +0100
+@@ -0,0 +1,28 @@
++set(VISO2_SRCS
++    filter.cpp
++    matcher.cpp
++    matrix.cpp
++    reconstruction.cpp
++    triangle.cpp
++    viso.cpp
++    viso_mono.cpp
++    viso_stereo.cpp
++    )
++
++set (VISO2_HDRS
++    filter.h
++    matcher.h
++    matrix.h
++    reconstruction.h
++    timer.h
++    triangle.h
++    viso.h
++    viso_mono.h
++    viso_stereo.h
++    )
++
++
++rock_library(viso2
++    ${VISO2_SRCS}
++    HEADERS ${VISO2_HDRS})
++
+diff -ruN ../libviso2/src/viso2.pc.in ./src/viso2.pc.in
+--- ../libviso2/src/viso2.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./src/viso2.pc.in	2014-01-21 13:10:18.617209422 +0100
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++ 
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: @DEPS_PKGCONFIG@
++Libs: -L${libdir} -l@TARGET_NAME@
++Cflags: -I${includedir} -msse2
