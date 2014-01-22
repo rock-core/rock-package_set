@@ -18,7 +18,6 @@ if package_enabled?('orogen')
         orogen_package 'data_processing/orogen/statistics'
         orogen_package 'data_processing/orogen/type_to_vector'
 
-        orogen_package 'control/orogen/motor_controller'
 	orogen_package 'control/orogen/torque_estimator'
 
 	orogen_package 'slam/orogen/terrain_estimator'
@@ -52,6 +51,7 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
+        orogen_package 'control/orogen/motor_controller'
     end
     
     in_flavor 'master', 'next', 'stable' do
