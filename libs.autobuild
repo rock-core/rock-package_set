@@ -49,6 +49,7 @@ in_flavor 'master' do
 
     cmake_package 'image_processing/viso2' do |pkg|
         pkg.disable_doc
+        pkg.depends_on 'base/cmake'
     end
     cmake_package 'simulation/imumodel'
 
