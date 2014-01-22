@@ -50,7 +50,27 @@ in_flavor 'master' do
     cmake_package 'image_processing/viso2' do |pkg|
         pkg.disable_doc
         pkg.depends_on 'base/cmake'
+
+        # Seamlessly migrate from the SVN to the archive. We must delete the svn
+        # directory !
+        if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".git"))
+            Autoproj.configuration_option "UPDATE_VISO2_FROM_GIT", "boolean",
+                :doc => ["delete image_processing/viso2 to update to a release tarball ?",
+                    "Rock was previously checking out from a Git repository but just switched to",
+                    "using the release tarball. Updating requires the deletion of the",
+                    "currently checked out image_processing/viso2 directory.",
+                    "Should I do it ? This is required to continue building"],
+                :default => 'yes'
+
+            if Autoproj.user_config("UPDATE_VISO2_FROM_GIT")
+                Autoproj.warn "deleting Viso2 source directory to migrate from the Git checkout to the release tarball"
+                FileUtils.rm_rf pkg.srcdir
+            else
+                raise ConfigError, "user refused to delete image_processing/viso2, aborting the build"
+            end
+        end
     end
+
     cmake_package 'simulation/imumodel'
 
     cmake_package 'planning/lama'
