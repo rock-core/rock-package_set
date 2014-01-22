@@ -80,6 +80,7 @@ in_flavor 'master' do
         end
     end
 
+    cmake_package 'slam/openni'
     cmake_package 'gui/map2d'
     cmake_package 'gui/vizkit_3d_plugins'
 
@@ -398,6 +399,7 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")
         env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+        pkg.parallel_build_level = 1
 
         # Seamlessly migrate from the SVN to the archive. We must delete the svn
         # directory !

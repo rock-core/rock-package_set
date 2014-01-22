@@ -102,6 +102,10 @@ version_control:
         url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.3/OpenCV-2.3.0.tar.bz2
         update_cached_file: false
 
+    - slam/openni:
+        type: git
+        url: https://github.com/OpenNI/OpenNI
+
     - slam/pcl:
         type: archive
         url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.0.tar.gz'
@@ -109,8 +113,8 @@ version_control:
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.6.11-src.zip 
-        archive_dir: flann-1.6.11-src
+        url: http://www.cs.ubc.ca/research/flann/uploads/FLANN/flann-1.8.4-src.zip
+        archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
