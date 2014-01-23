@@ -1,0 +1,26 @@
+From 39a209102ac242f0496492fe9f302b05a657adb2 Mon Sep 17 00:00:00 2001
+From: Sylvain Joyeux <sylvain.joyeux@m4x.org>
+Date: Thu, 22 Aug 2013 06:18:02 +0200
+Subject: [PATCH] remove unused include
+
+This particular include made gccxml choke on systems that have gcc 4.8.
+It is actually unused, so ...
+---
+ src/matcher.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/matcher.h b/src/matcher.h
+index c70f065..beff497 100755
+--- a/src/matcher.h
++++ b/src/matcher.h
+@@ -27,7 +27,6 @@ Street, Fifth Floor, Boston, MA 02110-1301, USA
+ #include <string.h>
+ #include <iostream>
+ #include <math.h>
+-#include <emmintrin.h>
+ #include <algorithm>
+ #include <vector>
+ 
+-- 
+1.8.5.2
+

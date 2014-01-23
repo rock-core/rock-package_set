@@ -218,5 +218,6 @@ version_control:
         no_subdirectory: true
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/viso2.patch
+            - [$AUTOPROJ_SOURCE_DIR/patches/viso2-remove-unused-xmmintr-include.patch, 1]
 
 
