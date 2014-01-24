@@ -193,6 +193,7 @@ version_control:
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
+        branch: master
 
     - slam/mtk:
         type: svn
