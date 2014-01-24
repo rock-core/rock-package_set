@@ -16,36 +16,15 @@ in_flavor 'master' do
         pkg.depends_on 'clang-dev'
     end
     cmake_package 'image_processing/projection'
-    cmake_package 'data_processing/openann'
 
     cmake_package 'gui/point_cloud'
-    cmake_package 'drivers/gsf'
 
     # The following package will be removed as soon as we are done converting to the
     # OSRF-provided URDF packages
     cmake_package 'control/urdf'
     remove_from_default 'control/urdf'
 
-    cmake_package 'control/reflexxes'
     cmake_package 'slam/mtk'
-
-    cmake_package 'planning/openrave' do |pkg|
-        pkg.depends_on 'assimp'
-        pkg.depends_on 'sympy'
-        pkg.depends_on 'soqt'
-        pkg.depends_on 'ode'
-        pkg.depends_on 'boost-python'
-        pkg.depends_on 'numpy'
-        pkg.depends_on 'scipy'
-
-        Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
-    end
-    remove_from_default 'planning/openrave'
-
-    autotools_package 'drivers/phidgets' do |pkg|
-        pkg.disable_doc
-    end
-    cmake_package 'data_processing/type_to_vector'
 
     cmake_package 'image_processing/viso2' do |pkg|
         pkg.disable_doc
@@ -71,8 +50,6 @@ in_flavor 'master' do
         end
     end
 
-    cmake_package 'simulation/imumodel'
-
     cmake_package 'planning/lama'
     cmake_package 'planning/pddl_planner'
     cmake_package 'planning/simple_path_planner'
@@ -83,22 +60,6 @@ in_flavor 'master' do
     cmake_package 'slam/eslam'
     cmake_package 'slam/polygonnet'
     remove_from_default 'slam/polygonnet'
-
-    cmake_package "external/freenect" do |pkg|
-        pkg.define "BUILD_AUDIO", "ON"
-        pkg.define "BUILD_FAKENECT", "OFF"
-        pkg.define "BUILD_EXAMPLES", "OFF"
-        pkg.define "BUILD_C_SYNC", "OFF"
-        pkg.source_tree_excludes << /doc/
-        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
-        pkg.doc_task do
-            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
-                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
-                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "Doxyfile")
-                end
-            end
-        end
-    end
 
     cmake_package 'gui/map2d'
     cmake_package 'gui/vizkit_3d_plugins'
@@ -116,7 +77,26 @@ end
 
 in_flavor 'master', 'next' do
     cmake_package 'drivers/base_schilling'
+    cmake_package 'simulation/imumodel'
+
     cmake_package 'slam/octomap'
+
+    cmake_package "external/freenect" do |pkg|
+        pkg.define "BUILD_AUDIO", "ON"
+        pkg.define "BUILD_FAKENECT", "OFF"
+        pkg.define "BUILD_EXAMPLES", "OFF"
+        pkg.define "BUILD_C_SYNC", "OFF"
+        pkg.source_tree_excludes << /doc/
+        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
+        pkg.doc_task do
+            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
+                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "Doxyfile")
+                end
+            end
+        end
+    end
+
 
     cmake_package 'control/urdfdom' do |pkg|
         pkg.depends_on 'control/urdfdom_headers'
@@ -128,6 +108,27 @@ in_flavor 'master', 'next' do
     cmake_package 'gui/control_ui'
     cmake_package 'control/joint_dispatcher'
     cmake_package 'control/kdl_conversions'
+    cmake_package 'data_processing/openann'
+    cmake_package 'data_processing/type_to_vector'
+    autotools_package 'drivers/phidgets' do |pkg|
+        pkg.disable_doc
+    end
+    cmake_package 'drivers/gsf'
+    cmake_package 'control/reflexxes'
+
+    cmake_package 'planning/openrave' do |pkg|
+        pkg.depends_on 'assimp'
+        pkg.depends_on 'sympy'
+        pkg.depends_on 'soqt'
+        pkg.depends_on 'ode'
+        pkg.depends_on 'boost-python'
+        pkg.depends_on 'numpy'
+        pkg.depends_on 'scipy'
+
+        Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
+    end
+    remove_from_default 'planning/openrave'
+
 
     cmake_package 'gui/vizkit3d' do |pkg|
         if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target

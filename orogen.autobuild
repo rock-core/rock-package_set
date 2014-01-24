@@ -8,15 +8,10 @@ if package_enabled?('orogen')
         orogen_package 'control/orogen/trajectory_generation'
         orogen_package 'control/orogen/cart_ctrl_wdls'
 
-        orogen_package 'drivers/orogen/servo_dynamixel'
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'image_processing/orogen/video_streamer'
         end
-        orogen_package 'control/orogen/joint_dispatcher'
         orogen_package 'image_processing/orogen/viso2'
-        orogen_package 'simulation/orogen/imumodel'
-        orogen_package 'data_processing/orogen/statistics'
-        orogen_package 'data_processing/orogen/type_to_vector'
 
 	orogen_package 'control/orogen/torque_estimator'
 
@@ -51,7 +46,12 @@ if package_enabled?('orogen')
     #################################################################################"
 
     in_flavor 'master', 'next' do
+        orogen_package 'simulation/orogen/imumodel'
+        orogen_package 'drivers/orogen/servo_dynamixel'
         orogen_package 'control/orogen/motor_controller'
+        orogen_package 'control/orogen/joint_dispatcher'
+        orogen_package 'data_processing/orogen/statistics'
+        orogen_package 'data_processing/orogen/type_to_vector'
     end
     
     in_flavor 'master', 'next', 'stable' do
