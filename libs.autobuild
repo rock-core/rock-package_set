@@ -106,7 +106,6 @@ in_flavor 'master' do
     cmake_package 'drivers/stim300'
     cmake_package 'drivers/imar'
     cmake_package 'drivers/alt_imagenex'
-    cmake_package 'drivers/base_schilling'
     cmake_package 'drivers/ctd_seabird'
     cmake_package 'drivers/mbeam_imagenex'
     cmake_package 'drivers/pressure_paroscientific'
@@ -116,6 +115,7 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'next' do
+    cmake_package 'drivers/base_schilling'
     cmake_package 'slam/octomap'
 
     cmake_package 'control/urdfdom' do |pkg|
