@@ -73,6 +73,7 @@ in_flavor 'master' do
     cmake_package 'drivers/ucm_schilling'
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
+    cmake_package 'drivers/velodyne_lidar'
 end
 
 in_flavor 'master', 'next' do

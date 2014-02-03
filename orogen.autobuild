@@ -33,6 +33,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/act_schilling'
         orogen_package 'drivers/orogen/phins_ixsea'
         orogen_package 'drivers/orogen/kinect'
+        orogen_package 'drivers/orogen/velodyne_lidar'
     end
 
     #################################################################################"
