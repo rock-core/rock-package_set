@@ -18,6 +18,7 @@ in_flavor 'master' do
     cmake_package 'image_processing/projection'
 
     cmake_package 'gui/point_cloud'
+    cmake_package 'gui/qcam_calib'
 
     # The following package will be removed as soon as we are done converting to the
     # OSRF-provided URDF packages
@@ -512,6 +513,5 @@ remove_from_default 'multiagent/fipa_acl'
 autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
-
 
 create_metapackages
