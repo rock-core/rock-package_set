@@ -329,3 +329,9 @@ ruby-statsample:
 png++:
     debian,ubuntu: libpng++-dev
     gentoo: media-libs/libpng
+
+udt:
+    debian,ubuntu: [ libudt-dev, libudt0 ]
+
+uuid:
+    debian,ubuntu: [uuid-dev]

@@ -2,6 +2,8 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'multiagent/orogen/fipa_services'
+
     in_flavor 'master' do
         orogen_package 'image_processing/orogen/projection'
         orogen_package 'image_processing/orogen/virtual_view'
