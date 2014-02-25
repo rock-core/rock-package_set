@@ -233,3 +233,9 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/snap_makefile.patch
 
+    - external/gexf:
+      type: archive
+      url: https://launchpad.net/libgexf/unstable/0.1.2/+download/libgexf-src-0.1.2.tar.gz
+      patches:
+         - $AUTOPROJ_SOURCE_DIR/patches/gexf_cmake.patch
+

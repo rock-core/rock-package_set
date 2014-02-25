@@ -1,6 +1,9 @@
 # IMPORTANT: new packages must be added at the top of this file
 cmake_package 'external/lemon'
 cmake_package 'external/snap'
+cmake_package 'external/gexf' do |pkg|
+    pkg.depends_on 'libxml2'
+end
 cmake_package 'multiagent/fipa_services'
 
 #################################################################################"

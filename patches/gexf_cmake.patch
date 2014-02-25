@@ -1,0 +1,91 @@
+diff -urN ../gexf_orig/CMakeLists.txt ./CMakeLists.txt
+--- ../gexf_orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./CMakeLists.txt	2013-12-11 16:20:35.917213611 +0100
+@@ -0,0 +1,71 @@
++cmake_minimum_required(VERSION 2.6)
++find_package(Rock)
++rock_init(libgexf 1.2)
++set(PROJECT_DESCRIPTION "Library for handling gexf file format")
++
++set(SOURCES
++    abstractparser.cpp
++    attributeiter.cpp
++    attvalueiter.cpp
++    conv.cpp
++    data.cpp
++    directedgraph.cpp
++    dynamicgraph.cpp
++    edgeiter.cpp
++    filereader.cpp
++    filewriter.cpp
++    gexf.cpp
++    gexfparser.cpp
++    graph.cpp
++    legacyparser.cpp
++    legacywriter.cpp
++    memoryvalidator.cpp
++    metadata.cpp
++    nodeiter.cpp
++    rngvalidator.cpp
++    schemavalidator.cpp
++    undirectedgraph.cpp
++)
++
++set(HEADERS
++    abstractiter.h
++    abstractparser.h
++    attributeiter.h
++    attvalueiter.h
++    conv.h
++    data.h
++    directedgraph.h
++    dynamicgraph.h
++    edgeiter.h
++    exceptions.h
++    filereader.h
++    filewriter.h
++    gexf.h
++    gexfparser.h
++    graph.h
++    legacyparser.h
++    legacywriter.h
++    libgexf.h
++    memoryvalidator.h
++    metadata.h
++    nodeiter.h
++    rngvalidator.h
++    schemavalidator.h
++    typedefs.h
++    undirectedgraph.h
++)
++
++rock_library(gexf 
++    SOURCES ${SOURCES}
++    HEADERS ${HEADERS}
++    DEPS_PKGCONFIG libxml-2.0
++    NOINSTALL)
++
++rock_install_headers(${HEADERS})
++
++set(TARGET_NAME ${PROJECT_NAME})
++rock_prepare_pkgconfig(${TARGET_NAME} ON)
++
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libgexf.so
++    DESTINATION lib/
++)
+diff -urN ../gexf_orig/gexf.pc.in ./gexf.pc.in
+--- ../gexf_orig/gexf.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./gexf.pc.in	2013-12-11 16:23:04.301217410 +0100
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: libxml-2.0
++Libs: -L${libdir} -l@TARGET_NAME@
++Cflags: -I${includedir} @PKG_CONFIG_CFLAGS@
++
