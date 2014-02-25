@@ -1,4 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'external/lemon'
 cmake_package 'multiagent/fipa_services'
 
 #################################################################################"
