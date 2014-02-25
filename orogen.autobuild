@@ -17,6 +17,7 @@ if package_enabled?('orogen')
 
 	orogen_package 'slam/orogen/terrain_estimator'
         orogen_package 'slam/orogen/eslam'
+        orogen_package 'slam/orogen/local_mapper'
 
         orogen_package 'planning/orogen/pddl_planner'
 	orogen_package 'planning/orogen/simple_path_planner'
