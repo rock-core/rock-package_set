@@ -1,0 +1,260 @@
+diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
+--- ../snap_orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./CMakeLists.txt	2013-12-05 16:54:56.339166062 +0100
+@@ -0,0 +1,241 @@
++# CMakeLists.txt has to be located in the project folder and cmake has to be
++# executed from 'project/build' with 'cmake ../'.
++cmake_minimum_required(VERSION 2.6)
++find_package(Rock)
++rock_init(snap 2.1)
++set(PROJECT_DESCRIPTION "Stanford Network Analysis Project")
++
++execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} -C ${CMAKE_CURRENT_SOURCE_DIR} lib)
++
++set(SNAP_CORE_HEADERS
++    snap-core/Snap.h
++    snap-core/alg.h
++    snap-core/anf.h
++    snap-core/bfsdfs.h
++    snap-core/bignet.h
++    snap-core/centr.h
++    snap-core/cmty.h
++    snap-core/cncom.h
++    snap-core/ff.h
++    snap-core/gbase.h
++    snap-core/ggen.h
++    snap-core/ghash.h
++    snap-core/gio.h
++    snap-core/graph.h
++    snap-core/gstat.h
++    snap-core/gsvd.h
++    snap-core/gviz.h
++    snap-core/kcore.h
++    snap-core/network.h
++    snap-core/statplot.h
++    snap-core/stdafx.h
++    snap-core/subgraph.h
++    snap-core/timenet.h
++    snap-core/triad.h
++    snap-core/util.h
++)
++
++set(GLIB_CORE_HEADERS
++    glib-core/app.h
++    glib-core/base.h
++    glib-core/bd.h
++    glib-core/bits.h
++    glib-core/blobbs.h
++    glib-core/console.h
++    glib-core/ds.h
++    glib-core/dt.h
++    glib-core/env.h
++    glib-core/exp.h
++    glib-core/fds.h
++    glib-core/fl.h
++    glib-core/gnuplot.h
++    glib-core/hash.h
++    glib-core/html.h
++    glib-core/http.h
++    glib-core/json.h
++    glib-core/linalg.h
++    glib-core/lx.h
++    glib-core/macro.h
++    glib-core/md5.h
++    glib-core/os.h
++    glib-core/pp.h
++    glib-core/shash.h
++    glib-core/ss.h
++    glib-core/stdafx.h
++    glib-core/tm.h
++    glib-core/unicode.h
++    glib-core/unicodestring.h
++    glib-core/url.h
++    glib-core/ut.h
++    glib-core/wch.h
++    glib-core/xdt.h
++    glib-core/xfl.h
++    glib-core/xmath.h
++    glib-core/xml.h
++    glib-core/xmlser.h
++    glib-core/zipfl.h
++)
++
++set(GLIB_ADV_HEADERS
++    glib-adv/acquis.h
++    glib-adv/adox.h
++    glib-adv/aest.h
++    glib-adv/amazon.h
++    glib-adv/appsrv.h
++    glib-adv/bde.h
++    glib-adv/biling.h
++    glib-adv/bix.h
++    glib-adv/book.h
++    glib-adv/bowactlearn.h
++    glib-adv/bowbs.h
++    glib-adv/bowclust.h
++    glib-adv/bowfl.h
++    glib-adv/bowflx.h
++    glib-adv/bowlearn.h
++    glib-adv/bowlinalg.h
++    glib-adv/bowmatrix.h
++    glib-adv/bowmd.h
++    glib-adv/btaServer.h
++    glib-adv/btalarms.h
++    glib-adv/cache.h
++    glib-adv/casino.h
++    glib-adv/ccar.h
++    glib-adv/cfyres.h
++    glib-adv/cgi.h
++    glib-adv/ciawfb.h
++    glib-adv/conjgrad.h
++    glib-adv/cordis.h
++    glib-adv/corrgr.h
++    glib-adv/cpdoc.h
++    glib-adv/crawler.h
++    glib-adv/cyc.h
++    glib-adv/dm.h
++    glib-adv/dmhd.h
++    glib-adv/dmine.h
++    glib-adv/dmoz.h
++    glib-adv/dnet.h
++    glib-adv/dzs.h
++    glib-adv/email.h
++    glib-adv/euproj.h
++    glib-adv/exset.h
++    glib-adv/fa.h
++    glib-adv/flx.h
++    glib-adv/ftrgen.h
++    glib-adv/geoip.h
++    glib-adv/gix.h
++    glib-adv/gks.h
++    glib-adv/gksmfc.h
++    glib-adv/gksvcl.h
++    glib-adv/gksvml.h
++    glib-adv/gkswf.h
++    glib-adv/google.h
++    glib-adv/googlex.h
++    glib-adv/graph.h
++    glib-adv/gridvcl.h
++    glib-adv/gsearch.h
++    glib-adv/guid.h
++    glib-adv/hc.h
++    glib-adv/hldoc.h
++    glib-adv/infonet.h
++    glib-adv/kernelmethods.h
++    glib-adv/logreg.h
++    glib-adv/lsionto.h
++    glib-adv/md.h
++    glib-adv/mdtr.h
++    glib-adv/medline.h
++    glib-adv/mg.h
++    glib-adv/mindset.h
++    glib-adv/mine.h
++    glib-adv/mkcca.h
++    glib-adv/mte.h
++    glib-adv/mtr.h
++    glib-adv/net.h
++    glib-adv/netobj.h
++    glib-adv/nlpwinlf.h
++    glib-adv/nmen.h
++    glib-adv/nmobj.h
++    glib-adv/nntp.h
++    glib-adv/nyta.h
++    glib-adv/nytngrams.h
++    glib-adv/odbc.h
++    glib-adv/ontolight.h
++    glib-adv/pest.h
++    glib-adv/phrase.h
++    glib-adv/pi.h
++    glib-adv/postag.h
++    glib-adv/prolog.h
++    glib-adv/prologparser.h
++    glib-adv/proxy.h
++    glib-adv/rdbms.h
++    glib-adv/roget.h
++    glib-adv/sappsrv.h
++    glib-adv/sch.h
++    glib-adv/semspace.h
++    glib-adv/sgraph.h
++    glib-adv/skygrid.h
++    glib-adv/smtp.h
++    glib-adv/soap.h
++    glib-adv/sock-new.h
++    glib-adv/sock.h
++    glib-adv/sqlite3.h
++    glib-adv/sqlitedb.h
++    glib-adv/ssch.h
++    glib-adv/sskj.h
++    glib-adv/ssql.h
++    glib-adv/ssqldm.h
++    glib-adv/stemming.h
++    glib-adv/stopword.h
++    glib-adv/strkernel.h
++    glib-adv/strut.h
++    glib-adv/subprocess.h
++    glib-adv/svmPrLoqo.h
++    glib-adv/svmbasic.h
++    glib-adv/svmmodels.h
++    glib-adv/tagcloud.h
++    glib-adv/tb.h
++    glib-adv/tbhc.h
++    glib-adv/tbval.h
++    glib-adv/term.h
++    glib-adv/tmine.h
++    glib-adv/tnt.h
++    glib-adv/tql.h
++    glib-adv/ts.h
++    glib-adv/txtbs.h
++    glib-adv/ultra.h
++    glib-adv/valds.h
++    glib-adv/valret.h
++    glib-adv/vizmap.h
++    glib-adv/vizmapgks.h
++    glib-adv/wbmp.h
++    glib-adv/webbsfetch.h
++    glib-adv/webmb.h
++    glib-adv/webnetobj.h
++    glib-adv/webold.h
++    glib-adv/webpgfetch.h
++    glib-adv/websrv.h
++    glib-adv/webtrv.h
++    glib-adv/webtxtbs.h
++    glib-adv/wikipedia.h
++    glib-adv/wix.h
++    glib-adv/wixexp.h
++    glib-adv/wmine.h
++    glib-adv/wordco.h
++    glib-adv/wordnet.h
++    glib-adv/xql.h
++    glib-adv/yahoobs.h
++    glib-adv/yahoodm.h
++    glib-adv/yahooex.h
++    glib-adv/zipcode.h
++)
++
++rock_install_headers(${GLIB_CORE_HEADERS})
++rock_install_headers(${GLIB_ADV_HEADERS})
++rock_install_headers(${SNAP_CORE_HEADERS})
++
++set(TARGET_NAME ${PROJECT_NAME})
++set(PKG_CONFIG_CFLAGS " -lrt -I\${includedir}/snap/glib-adv -I\${includedir}/snap/glib-core -I\${includedir}/snap/snap-core")
++rock_prepare_pkgconfig(${TARGET_NAME} ON)
++
++install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/snap-core/libsnap.a
++    DESTINATION lib/
++)
+diff -urN ../snap_orig/snap.pc.in ./snap.pc.in
+--- ../snap_orig/snap.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./snap.pc.in	2013-12-05 16:55:09.423165937 +0100
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lrt -l@TARGET_NAME@
++Cflags: -I${includedir} @PKG_CONFIG_CFLAGS@
++
