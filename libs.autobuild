@@ -1,6 +1,8 @@
 # IMPORTANT: new packages must be added at the top of this file
 cmake_package 'external/lemon'
-cmake_package 'external/snap'
+cmake_package 'external/snap' do |pkg|
+    pkg.depends_on 'base/cmake'
+end
 cmake_package 'external/gexf' do |pkg|
     pkg.depends_on 'libxml2'
 end
@@ -116,7 +118,9 @@ in_flavor 'master', 'next' do
     cmake_package 'gui/control_ui'
     cmake_package 'control/joint_dispatcher'
     cmake_package 'control/kdl_conversions'
-    cmake_package 'data_processing/openann'
+    cmake_package 'data_processing/openann' do |pkg|
+        pkg.depends_on 'base/cmake'
+    end
     cmake_package 'data_processing/type_to_vector'
     autotools_package 'drivers/phidgets' do |pkg|
         pkg.disable_doc
