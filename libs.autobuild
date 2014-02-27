@@ -121,7 +121,8 @@ in_flavor 'master', 'next' do
     autotools_package 'drivers/phidgets' do |pkg|
         pkg.disable_doc
     end
-    cmake_package 'drivers/gsf'
+
+#    cmake_package 'drivers/gsf' #Link iscurrently death, no new one could be found.
     cmake_package 'control/reflexxes'
 
     cmake_package 'planning/openrave' do |pkg|
