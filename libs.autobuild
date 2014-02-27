@@ -4,6 +4,7 @@ cmake_package 'external/snap' do |pkg|
     pkg.depends_on 'base/cmake'
 end
 cmake_package 'external/gexf' do |pkg|
+    pkg.depends_on 'base/cmake'
     pkg.depends_on 'libxml2'
 end
 cmake_package 'multiagent/fipa_services'
