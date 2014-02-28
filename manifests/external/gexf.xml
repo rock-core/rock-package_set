@@ -1,0 +1,12 @@
+<package>
+    <description brief="Graph Exchange XML Format">
+        GEXF (Graph Exchange XML Format) is a language for describing complex networks structures, their
+        associated data and dynamics. Started in 2007 at Gephi project by different actors, deeply involved
+        in graph exchange issues, the gexf specifications are mature enough to claim being both extensible
+        and open, and suitable for real specific applications. 
+  </description>
+  <authors>GEXF Working Group</authors>
+  <license>MIT</license>
+  <url>http://gexf.net/format/</url>
+</package>
+

@@ -1,0 +1,18 @@
+<package>
+    <description brief="Library for Efficient Modeling and Optimization in Networks">
+        LEMON stands for Library for Efficient Modeling and Optimization in Networks. It is a C++
+        template library providing efficient implementations of common data structures and
+        algorithms with focus on combinatorial optimization tasks connected mainly with graphs and
+        networks.
+        LEMON is a member of the COIN-OR initiative, a collection of OR related open source
+        projects. You are free to use it in your commercial or non-commercial applications under
+        very permissive license terms.
+        The project was launched by the Egerváry Research Group on Combinatorial Optimization
+        (EGRES) at the Department of Operations Research, Eötvös Loránd University, Budapest,
+        Hungary in 2003. Up to this point, the developers of the library work at the Eötvös Loránd
+        University, Budapest and at the Budapest University of Technology and Economics. 
+    </description>
+    <license>Boost Software License</license>
+    <url>http://lemon.cs.elte.hu</url>
+</package>
+
