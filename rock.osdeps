@@ -88,6 +88,8 @@ boost:
     arch,manjarolinux:
         - boost
         - boost-libs
+    opensuse project:
+        boost-devel
 
 ncurses:
     debian,ubuntu: libncurses5-dev
