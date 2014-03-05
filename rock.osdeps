@@ -264,6 +264,9 @@ libproc:
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
 
+libudev:
+    ubuntu,debian:  libudev-dev
+
 libxmu:
     ubuntu,debian:  libxmu-dev 
 
