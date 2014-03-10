@@ -37,6 +37,7 @@ if package_enabled?('orogen')
         orogen_package 'drivers/orogen/phins_ixsea'
         orogen_package 'drivers/orogen/kinect'
         orogen_package 'drivers/orogen/velodyne_lidar'
+        orogen_package 'drivers/orogen/tofcamera_mesasr'
     end
 
     #################################################################################"

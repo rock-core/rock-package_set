@@ -8,6 +8,7 @@ cmake_package 'external/gexf' do |pkg|
     pkg.depends_on 'libxml2'
 end
 cmake_package 'multiagent/fipa_services'
+cmake_package 'drivers/tofcamera_mesasr'
 
 #################################################################################"
 #################################################################################"
