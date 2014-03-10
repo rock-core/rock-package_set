@@ -14,5 +14,5 @@ qtruby:
         "17": ruby-qt
         default:
             gem: "qtbindings = 4.8.3.0"
-    opensuse project:
+    opensuse:
         ruby-qt4-devel

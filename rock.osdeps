@@ -88,7 +88,7 @@ boost:
     arch,manjarolinux:
         - boost
         - boost-libs
-    opensuse project:
+    opensuse:
         boost-devel
 
 ncurses:
