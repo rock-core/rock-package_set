@@ -9,6 +9,7 @@ end
 # on debian testing
 only_on 'debian' do
   cmake_package 'typelib' do |pkg|
+      pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
       pkg.define "GLIBC_HAVE_LONG_LONG"
   end  
 end
