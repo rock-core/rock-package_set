@@ -22,7 +22,6 @@ flann:
 ffmpeg:
     ubuntu: 
         9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     debian: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
@@ -89,7 +88,7 @@ boost:
     arch,manjarolinux:
         - boost
         - boost-libs
-    opensuse:
+    opensuse project:
         boost-devel
 
 ncurses:
@@ -171,8 +170,8 @@ qt4:
     # QMake is needed for the CMake macro for Qt4
     debian,ubuntu: [libqt4-dev, qt4-qmake]
     gentoo:
-        - qt-core 
-        - qt-gui
+        - dev-qt/qtcore 
+        - dev-qt/qtgui
     fedora: qt-devel
     darwin: qt4-mac
     arch,manjarolinux: qt4
@@ -255,7 +254,6 @@ libproc:
                 - libprocps0-dev
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
-        '14.04': libprocps3-dev
         default: libprocps0-dev
     fedora: procps-devel
 
