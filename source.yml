@@ -232,6 +232,7 @@ version_control:
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/snap_makefile.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/snap_fpic.patch
 
     - external/gexf:
       type: archive
