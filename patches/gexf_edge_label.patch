@@ -1,0 +1,19 @@
+--- filewriter.cpp	2009-10-29 11:49:51.000000000 +0100
++++ ../../gexf_adapt/filewriter.cpp	2014-03-19 19:16:12.867657737 +0100
+@@ -372,6 +372,16 @@
+         throw FileWriterException( "Error at xmlTextWriterWriteAttribute");
+     }
+ 
++    /* Add an attribute with name "label" */
++    const string label = _gexf->getData().getEdgeLabel(edge_id);
++    if(!label.empty())
++    {
++        rc = xmlTextWriterWriteAttribute(writer, BAD_CAST "label", BAD_CAST label.c_str());
++        if(rc < 0) {
++            throw FileWriterException( "Error at xmlTextWriterWriteAttribute");
++        }
++    }
++
+     /* Add an attribute with name "weight" */
+     if(weight.compare("1") > 0) {
+         /* 1 is a defaultValue and can be omitted */
