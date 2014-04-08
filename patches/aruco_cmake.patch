@@ -1,0 +1,27 @@
+diff -urN ../new/aruco-1.2.4/aruco.pc.in ./aruco.pc.in
+--- ../new/aruco-1.2.4/aruco.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./aruco.pc.in	2014-04-08 16:23:07.350287259 +0200
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: @DEPS_PKGCONFIG@
++Libs: -L${libdir} -laruco
++Cflags: -I${includedir}
+diff -urN ../new/aruco-1.2.4/CMakeLists.txt ./CMakeLists.txt
+--- ../new/aruco-1.2.4/CMakeLists.txt	2012-06-14 15:42:30.000000000 +0200
++++ ./CMakeLists.txt	2014-04-08 16:26:39.446292689 +0200
+@@ -293,3 +293,8 @@
+ MESSAGE( STATUS )
+ MESSAGE( STATUS "Change a value with: cmake -D<Variable>=<Value>" )
+ MESSAGE( STATUS )
++
++find_package(rock)
++set(PROJECT_DESCRIPTION "ArUco: a minimal library for Augmented Reality applications based on OpenCv")
++set(TARGET_NAME aruco)
++rock_prepare_pkgconfig(${TARGET_NAME} ON)

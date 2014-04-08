@@ -241,3 +241,9 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_edge_label.patch
 
+    - external/aruco:
+      type: archive
+      url: http://downloads.sourceforge.net/project/aruco/1.2.4/aruco-1.2.4.tgz
+      patches:
+         - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
