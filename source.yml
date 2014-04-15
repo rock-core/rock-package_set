@@ -104,7 +104,7 @@ version_control:
 
     - slam/pcl:
         type: archive
-        url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.0.tar.gz'
+        url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.1.tar.gz'
         update_cached_file: false
 
     - slam/flann:
