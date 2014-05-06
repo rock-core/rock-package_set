@@ -14,14 +14,14 @@ opencv:
 
 flann:
     ubuntu:
-        9.04,9.10,10.04,10.10,11.04,11.10: nonexistent
+        '9.04,9.10,10.04,10.10,11.04,11.10': nonexistent
         default: libflann-dev
     debian: libflann-dev
     arch,manjarolinux: ignore
 
 ffmpeg:
     ubuntu: 
-        9.04,9.10,10.04: [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     debian: 
@@ -200,7 +200,7 @@ qsqlite:
 libnl2:
     debian: libnl2-dev
     ubuntu:
-        9.04,9.10,10.04:
+        '9.04,9.10,10.04':
                 - libnl-dev
         '14.04':
                 - libnl-3-dev
