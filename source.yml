@@ -129,6 +129,7 @@ version_control:
         url: http://svn.openslam.org/data/svn/g2o/trunk
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/g2o_linker.patch
     
     - external/tinyxml: 
         type: archive

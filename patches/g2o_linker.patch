@@ -1,0 +1,12 @@
+diff -Naur g2o/apps/g2o_viewer/CMakeLists.txt g2o/apps/g2o_viewer/CMakeLists.txt
+--- g2o/apps/g2o_viewer/CMakeLists.txt	2014-05-09 13:49:57.317235978 +0200
++++ g2o/apps/g2o_viewer/CMakeLists.txt	2014-05-09 13:52:26.939359250 +0200
+@@ -24,7 +24,7 @@
+ 
+ SET_TARGET_PROPERTIES(g2o_viewer PROPERTIES OUTPUT_NAME g2o_viewer${EXE_POSTFIX})
+ 
+-TARGET_LINK_LIBRARIES(viewer_library core g2o_cli_library ${QGLVIEWER_LIBRARY} ${QT_LIBRARIES})
++TARGET_LINK_LIBRARIES(viewer_library core g2o_cli_library ${QGLVIEWER_LIBRARY} ${QT_LIBRARIES} ${OPENGL_LIBRARY})
+ TARGET_LINK_LIBRARIES(viewer_library core opengl_helper)
+ TARGET_LINK_LIBRARIES(g2o_viewer viewer_library)
+ 
