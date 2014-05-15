@@ -17,6 +17,7 @@ if package_enabled?('orogen')
 
 	orogen_package 'control/orogen/torque_estimator'
 
+        orogen_package 'slam/orogen/north_seeker'
 	orogen_package 'slam/orogen/terrain_estimator'
         orogen_package 'slam/orogen/eslam'
         orogen_package 'slam/orogen/local_mapper'
