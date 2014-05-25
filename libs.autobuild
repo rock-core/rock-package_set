@@ -384,13 +384,13 @@ in_flavor 'master', 'next', 'stable' do
     ##### Image Processing
     cmake_package 'image_processing/stereo'
     cmake_package 'image_processing/jpeg_conversion' do |pkg|
-        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+        pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
     end
     cmake_package 'image_processing/frame_helper' do |pkg|
         if Autoproj.manifest.package_enabled?('rtt', false) # the toolchain is built, add it to the rtt_target
             pkg.define "OROCOS_TARGET", user_config('rtt_target')
         end
-        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+        pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
     end
     cmake_package 'image_processing/libelas' do |pkg|
         # Build system from libelas has been patched into a Rock/CMake-based one
@@ -509,7 +509,7 @@ in_flavor 'master', 'next', 'stable' do
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl' do |pkg|
-        pkg.define "RUBY_EXECUTABLE", Autoproj.find_in_path(RbConfig::CONFIG['RUBY_INSTALL_NAME'])
+        pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
     end
 end
 
