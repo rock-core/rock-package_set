@@ -97,11 +97,6 @@ version_control:
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
         update_cached_file: false
 
-    - external/opencv:
-        type: archive
-        url: http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.3/OpenCV-2.3.0.tar.bz2
-        update_cached_file: false
-
     - slam/pcl:
         type: archive
         url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.1.tar.gz'
