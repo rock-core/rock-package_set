@@ -2,7 +2,7 @@ name: rock
 required_autoproj_version: 1.7.4
 
 imports:
-    - gitorious: rock-base/package_set
+    - github: rock-core/package_set
 
 version_control:
     - control/.*:
