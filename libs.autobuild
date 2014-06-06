@@ -10,6 +10,7 @@ cmake_package 'external/gexf' do |pkg|
 end
 cmake_package 'multiagent/fipa_services'
 cmake_package 'drivers/tofcamera_mesasr'
+cmake_package 'planning/motion_planning_libraries'
 
 #################################################################################"
 #################################################################################"
