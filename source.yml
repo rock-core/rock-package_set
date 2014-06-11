@@ -253,3 +253,8 @@ version_control:
         type: svn
         url: http://svn.openslam.org/data/svn/gmapping/trunk
         patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
+
+    - planning/openrave:
+      github: rdiankov/openrave
+      branch: latest_stable
+
