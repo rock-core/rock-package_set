@@ -6,8 +6,8 @@ index b93fe2c..891f16e 100644
    # Linux flags
    CC = g++
    CXXFLAGS += -std=c++98 -Wall
--  CXXFLAGS += -O3 -DNDEBUG -DRUSAGE_THREAD
-+  CXXFLAGS += -O3 -DNDEBUG -DRUSAGE_THREAD -fPIC
+-  CXXFLAGS += -O3 -DNDEBUG
++  CXXFLAGS += -O3 -DNDEBUG -fPIC
    # turn on for crash debugging, get symbols with <prog> 2>&1 | c++filt
    #CXXFLAGS += -g -rdynamic
    CXXOPENMP = -fopenmp
