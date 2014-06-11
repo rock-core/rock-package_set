@@ -1,0 +1,106 @@
+diff -rupN ../gmapping_svn/CMakeLists.txt ./CMakeLists.txt
+--- ../gmapping_svn/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./CMakeLists.txt	2014-03-18 16:01:09.584648625 +0100
+@@ -0,0 +1,30 @@
++PROJECT(gmapping)
++CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
++
++ADD_DEFINITIONS(-DLINUX)
++SET(BUILD_SHARED_LIBS ON)
++
++INCLUDE_DIRECTORIES(./)
++ADD_SUBDIRECTORY(gridfastslam)
++ADD_SUBDIRECTORY(scanmatcher)
++ADD_SUBDIRECTORY(sensor)
++ADD_SUBDIRECTORY(utils)
++
++INSTALL(DIRECTORY gridfastslam 
++                  scanmatcher 
++                  sensor
++                  utils
++                  particlefilter
++                  log
++                  grid
++    DESTINATION include/gmapping/
++    FILES_MATCHING
++    PATTERN "*.h"
++    PATTERN "*.hxx"
++    PATTERN "*.hpp"
++    PATTERN ".svn" EXCLUDE)
++
++SET(PC_FILE ${CMAKE_BINARY_DIR}/gmapping.pc)
++CONFIGURE_FILE("gmapping.pc.in" ${PC_FILE} @ONLY)
++INSTALL(FILES ${PC_FILE} DESTINATION lib/pkgconfig)
++
+diff -rupN ../gmapping_svn/gmapping.pc.in ./gmapping.pc.in
+--- ../gmapping_svn/gmapping.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./gmapping.pc.in	2014-03-18 11:22:45.072924000 +0100
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: gmapping
++Description: @PROJECT_DESCRIPTION@
++Requires: @DEPS_PKGCONFIG@
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lgridfastslam -lscanmatcher -lsensor_base -lsensor_odometry -lsensor_range -lutils
++Cflags: -I${includedir}
+diff -rupN ../gmapping_svn/gridfastslam/CMakeLists.txt ./gridfastslam/CMakeLists.txt
+--- ../gmapping_svn/gridfastslam/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./gridfastslam/CMakeLists.txt	2014-03-17 18:19:30.545938172 +0100
+@@ -0,0 +1,9 @@
++ADD_LIBRARY(gridfastslam
++      gfsreader.cpp
++      gridslamprocessor.cpp
++      gridslamprocessor_tree.cpp
++      motionmodel.cpp
++)
++
++TARGET_LINK_LIBRARIES(gridfastslam scanmatcher sensor_range)
++INSTALL(TARGETS gridfastslam DESTINATION lib)
+diff -rupN ../gmapping_svn/scanmatcher/CMakeLists.txt ./scanmatcher/CMakeLists.txt
+--- ../gmapping_svn/scanmatcher/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./scanmatcher/CMakeLists.txt	2014-03-18 11:02:27.660944546 +0100
+@@ -0,0 +1,4 @@
++add_library(scanmatcher eig3.cpp scanmatcher.cpp scanmatcherprocessor.cpp smmap.cpp)
++target_link_libraries(scanmatcher sensor_range utils)
++INSTALL(TARGETS scanmatcher DESTINATION lib)
++
+diff -rupN ../gmapping_svn/sensor/CMakeLists.txt ./sensor/CMakeLists.txt
+--- ../gmapping_svn/sensor/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./sensor/CMakeLists.txt	2014-03-11 17:02:28.346499513 +0100
+@@ -0,0 +1,3 @@
++add_subdirectory(sensor_base)
++add_subdirectory(sensor_range)
++add_subdirectory(sensor_odometry)
+diff -rupN ../gmapping_svn/sensor/sensor_base/CMakeLists.txt ./sensor/sensor_base/CMakeLists.txt
+--- ../gmapping_svn/sensor/sensor_base/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./sensor/sensor_base/CMakeLists.txt	2014-03-18 10:57:47.792949167 +0100
+@@ -0,0 +1,3 @@
++include_directories(./)
++add_library(sensor_base sensor.cpp sensorreading.cpp)
++INSTALL(TARGETS sensor_base DESTINATION lib)
+diff -rupN ../gmapping_svn/sensor/sensor_odometry/CMakeLists.txt ./sensor/sensor_odometry/CMakeLists.txt
+--- ../gmapping_svn/sensor/sensor_odometry/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./sensor/sensor_odometry/CMakeLists.txt	2014-03-18 10:58:10.852948786 +0100
+@@ -0,0 +1,3 @@
++add_library(sensor_odometry odometryreading.cpp odometrysensor.cpp)
++target_link_libraries(sensor_odometry sensor_base)
++INSTALL(TARGETS sensor_odometry DESTINATION lib)
+diff -rupN ../gmapping_svn/sensor/sensor_range/CMakeLists.txt ./sensor/sensor_range/CMakeLists.txt
+--- ../gmapping_svn/sensor/sensor_range/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./sensor/sensor_range/CMakeLists.txt	2014-03-18 10:58:38.068948337 +0100
+@@ -0,0 +1,3 @@
++add_library(sensor_range rangereading.cpp rangesensor.cpp)
++target_link_libraries(sensor_range sensor_base)
++INSTALL(TARGETS sensor_range DESTINATION lib)
+Binary files ../gmapping_svn/.svn/wc.db and ./.svn/wc.db differ
+diff -rupN ../gmapping_svn/utils/CMakeLists.txt ./utils/CMakeLists.txt
+--- ../gmapping_svn/utils/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./utils/CMakeLists.txt	2014-03-18 10:57:05.824949860 +0100
+@@ -0,0 +1,3 @@
++include_directories(./)
++add_library(utils movement.cpp stat.cpp)
++INSTALL(TARGETS utils DESTINATION lib)
