@@ -251,7 +251,7 @@ gstreamer:
 
 libproc:
     debian:
-        jessie: libprocps3-dev 
+        jessie,sid: libprocps3-dev 
         squeeze:
                 - libproc-dev
         default:
