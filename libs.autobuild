@@ -1,5 +1,6 @@
 # IMPORTANT: new packages must be added at the top of this file
 cmake_package 'drivers/video_streamer_vlc'
+remove_from_default 'drivers/video_streamer_vlc' #needs properitary osdeps, remove from default
 cmake_package 'external/aruco'
 cmake_package 'external/lemon'
 cmake_package 'external/snap' do |pkg|
