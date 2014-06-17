@@ -345,3 +345,8 @@ udt:
 
 uuid:
     debian,ubuntu: [uuid-dev]
+
+libvlc:
+    debian: libvlccore-dev, libvlc-dev
+    ubuntu: libvlc-dev
+
