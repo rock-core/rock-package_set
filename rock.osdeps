@@ -347,6 +347,6 @@ uuid:
     debian,ubuntu: [uuid-dev]
 
 libvlc:
-    debian: libvlccore-dev, libvlc-dev
+    debian: libvlc-dev
     ubuntu: libvlc-dev
 
