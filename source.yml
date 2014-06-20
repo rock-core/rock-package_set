@@ -259,3 +259,7 @@ version_control:
       github: rdiankov/openrave
       branch: latest_stable
 
+    - drivers/aravis:
+        type: git
+        url: git://git.gnome.org/aravis
+        patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch

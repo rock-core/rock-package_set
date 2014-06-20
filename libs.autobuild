@@ -1,4 +1,13 @@
 # IMPORTANT: new packages must be added at the top of this file
+
+autotools_package 'drivers/aravis' do |pkg|
+    pkg.depends_on 'gobject-introspection'
+    pkg.depends_on 'gstreamer'
+    pkg.depends_on 'gtk+-2.0'
+    pkg.depends_on 'gtk-doc-tools'
+end
+cmake_package 'drivers/camera_aravis'
+
 cmake_package 'drivers/video_streamer_vlc'
 remove_from_default 'drivers/video_streamer_vlc' #needs properitary osdeps, remove from default
 cmake_package 'external/aruco'

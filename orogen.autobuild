@@ -2,6 +2,7 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'drivers/orogen/camera_aravis'
     orogen_package 'multiagent/orogen/fipa_services'
     orogen_package 'slam/orogen/gmapping'
     orogen_package 'planning/orogen/motion_planning_libraries'
