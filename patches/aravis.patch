@@ -1,0 +1,16 @@
+--- autogen.sh.old	2013-05-23 19:18:07.723926088 +0200
++++ autogen.sh	2013-05-23 19:18:31.548044200 +0200
+@@ -163,13 +163,3 @@
+     )
+   fi
+ done
+-
+-conf_flags="--enable-maintainer-mode"
+-
+-if test x$NOCONFIGURE = x; then
+-  echo Running $srcdir/configure $conf_flags "$@" ...
+-  $srcdir/configure $conf_flags "$@" \
+-  && echo Now type \`make\' to compile. || exit 1
+-else
+-  echo Skipping configure process.
+-fi
