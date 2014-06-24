@@ -7,7 +7,6 @@ if package_enabled?('orogen')
     orogen_package 'slam/orogen/gmapping'
     orogen_package 'planning/orogen/motion_planning_libraries'
     orogen_package 'drivers/orogen/video_streamer_vlc'
-    remove_from_default 'drivers/orogen/video_streamer_vlc' #needs properitary osdeps, remove from default
 
     in_flavor 'master' do
         orogen_package 'image_processing/orogen/projection'
