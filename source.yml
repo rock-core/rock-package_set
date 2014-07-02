@@ -109,8 +109,8 @@ version_control:
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.6.11-src.zip 
-        archive_dir: flann-1.6.11-src
+        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip 
+        archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
