@@ -221,7 +221,6 @@ in_flavor 'master', 'next', 'stable' do
             end
         end
     end
-    bundle_package 'bundles/rock'
 
     ##### External libraries not available as binary packages
     cmake_package 'external/yaml-cpp' do |pkg|

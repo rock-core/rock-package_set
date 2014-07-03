@@ -53,10 +53,6 @@ version_control:
         gitorious: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
-    - bundles/rock:
-        gitorious: rock/bundle.git
-        branch: $ROCK_FLAVOR
-
     - bundles/rock_ugv_nav:
         gitorious: rock/bundle-rock_ugv_nav.git
         branch: $ROCK_FLAVOR
