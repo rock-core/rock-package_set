@@ -100,8 +100,8 @@ version_control:
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.6.11-src.zip 
-        archive_dir: flann-1.6.11-src
+        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip 
+        archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
@@ -221,6 +221,7 @@ version_control:
     - external/snap:
       type: git
       url: https://github.com/snap-stanford/snap.git
+      commit: daa1eca9d924f3577b23882d781a48a0bc09cff7
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/snap_makefile.patch
@@ -239,8 +240,25 @@ version_control:
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
+         
+    - external/gmapping:
+        type: svn
+        url: http://svn.openslam.org/data/svn/gmapping/trunk
+        patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
 
     - planning/openrave:
       github: rdiankov/openrave
       branch: latest_stable
+      
+    - external/sbpl:
+      type: git
+      url: https://github.com/sbpl/sbpl.git
+      
+    - external/ompl:
+      type: archive
+      url: https://bitbucket.org/ompl/ompl/downloads/ompl-0.14.0-Source.tar.gz  
 
+    - drivers/aravis:
+        type: git
+        url: git://git.gnome.org/aravis
+        patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch

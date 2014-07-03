@@ -1,4 +1,17 @@
 # IMPORTANT: new packages must be added at the top of this file
+
+cmake_package 'external/sbpl'
+cmake_package 'external/ompl'
+
+autotools_package 'drivers/aravis' do |pkg|
+    pkg.depends_on 'gobject-introspection'
+    pkg.depends_on 'gstreamer'
+    pkg.depends_on 'gtk+-2.0'
+    pkg.depends_on 'gtk-doc-tools'
+end
+cmake_package 'drivers/camera_aravis'
+
+cmake_package 'drivers/video_streamer_vlc'
 cmake_package 'external/aruco'
 cmake_package 'external/lemon'
 cmake_package 'external/snap' do |pkg|
@@ -10,6 +23,7 @@ cmake_package 'external/gexf' do |pkg|
 end
 cmake_package 'multiagent/fipa_services'
 cmake_package 'drivers/tofcamera_mesasr'
+cmake_package 'planning/motion_planning_libraries'
 
 #################################################################################"
 #################################################################################"
@@ -35,8 +49,6 @@ in_flavor 'master' do
     # OSRF-provided URDF packages
     cmake_package 'control/urdf'
     remove_from_default 'control/urdf'
-
-    cmake_package 'slam/mtk'
 
     cmake_package 'image_processing/viso2' do |pkg|
         pkg.disable_doc
@@ -68,6 +80,8 @@ in_flavor 'master' do
 
     cmake_package 'control/hysteresis_model'
 
+    cmake_package 'slam/mtk'
+    cmake_package 'slam/pose_estimation'
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
     cmake_package 'slam/polygonnet'
@@ -376,7 +390,8 @@ in_flavor 'master', 'next', 'stable' do
         pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
     end
     Autoproj.add_osdeps_overrides 'flann', :package => 'slam/flann'
-    remove_from_default 'slam/flann'
+    #remove_from_default 'slam/flann' # The debian package is currently broken, so we install flann everwhere on our own currently
+
     cmake_package 'slam/pcl' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")

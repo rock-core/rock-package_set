@@ -2,7 +2,11 @@
 # package_enabled ...)
 
 if package_enabled?('orogen')
+    orogen_package 'drivers/orogen/camera_aravis'
     orogen_package 'multiagent/orogen/fipa_services'
+    orogen_package 'slam/orogen/gmapping'
+    orogen_package 'planning/orogen/motion_planning_libraries'
+    orogen_package 'drivers/orogen/video_streamer_vlc'
 
     in_flavor 'master' do
         orogen_package 'image_processing/orogen/projection'
@@ -22,6 +26,7 @@ if package_enabled?('orogen')
         orogen_package 'slam/orogen/eslam'
         orogen_package 'slam/orogen/local_mapper'
         orogen_package 'slam/orogen/localization'
+        orogen_package 'slam/orogen/pose_estimation'
 
         orogen_package 'planning/orogen/pddl_planner'
 	orogen_package 'planning/orogen/simple_path_planner'
