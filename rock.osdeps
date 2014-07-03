@@ -297,3 +297,11 @@ libvlc:
     debian: libvlc-dev
     ubuntu: libvlc-dev
 
+gtk+-2.0:
+    debian,ubuntu: libgtk2.0-dev
+
+gtk-doc-tools:
+    debian,ubuntu: gtk-doc-tools
+
+gobject-introspection:
+    debian,ubuntu: gobject-introspection
