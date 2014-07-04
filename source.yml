@@ -1,5 +1,5 @@
 name: rock
-required_autoproj_version: 1.7.4
+required_autoproj_version: '1.10.2'
 
 imports:
     - github: rock-core/package_set
