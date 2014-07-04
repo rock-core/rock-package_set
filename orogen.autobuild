@@ -1,7 +1,6 @@
 # IMPORTANT: new packages must be added at the top of this file (after if
 # package_enabled ...)
 
-if package_enabled?('orogen')
     orogen_package 'drivers/orogen/camera_aravis'
     orogen_package 'multiagent/orogen/fipa_services'
     orogen_package 'slam/orogen/gmapping'
@@ -120,11 +119,5 @@ if package_enabled?('orogen')
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
     end
-
-else
-    Autoproj.warn "the rock.toolchain package set is not enabled, skipping the oroGen packages!\n\t\
-If you think oroGen should be enabled, then check your manifest: rock.toolchain package set \
-has to be included before the rock package set"
-end
 
 create_metapackages
