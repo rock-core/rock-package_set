@@ -141,10 +141,7 @@ in_flavor 'master', 'next' do
     cmake_package 'data_processing/type_to_vector'
     autotools_package 'drivers/phidgets' do |pkg|
         pkg.disable_doc
-        pkg.using[:autoconf] = true
-        pkg.using[:automake] = true
-        pkg.using[:libtool] = true
-        pkg.using[:autoheader] = true
+        pkg.using[:autoheader] = false
         if pkg.respond_to?(:automake_flags)
             pkg.automake_flags = "--add-missing"
         end
