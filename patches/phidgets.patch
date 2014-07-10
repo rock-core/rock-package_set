@@ -1,0 +1,12 @@
+diff -urN ./configure.ac ./configure.ac
+--- ./configure.ac
++++ ./configure.ac
+@@ -2,7 +2,7 @@
+ # Process this file with autoconf to produce a configure script.
+ 
+ AC_INIT([Phidget21 C Library],m4_esyscmd([./version.sh]),[support@phidgets.com],[libphidget],[www.phidgets.com])
+-AM_INIT_AUTOMAKE([-Wall])
++AM_INIT_AUTOMAKE([-Wall -Wno-extra-portability foreign])
+ AC_CONFIG_MACRO_DIR([m4])
+ LT_INIT
+ AC_CONFIG_SRCDIR([cphidgetir.h])
