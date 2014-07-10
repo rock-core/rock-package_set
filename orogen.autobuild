@@ -5,7 +5,9 @@
     orogen_package 'multiagent/orogen/fipa_services'
     orogen_package 'slam/orogen/gmapping'
     orogen_package 'planning/orogen/motion_planning_libraries'
-    orogen_package 'drivers/orogen/video_streamer_vlc'
+    orogen_package 'drivers/orogen/video_streamer_vlc' do |pkg|
+        Autoproj.env_add_path 'PATH', File.join(pkg.srcdir,"bin")
+    end
 
     in_flavor 'master' do
         orogen_package 'image_processing/orogen/projection'
