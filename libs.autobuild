@@ -11,6 +11,7 @@ autotools_package 'drivers/aravis' do |pkg|
 end
 cmake_package 'drivers/camera_aravis'
 
+cmake_package 'drivers/video_capture_vlc'
 cmake_package 'drivers/video_streamer_vlc'
 cmake_package 'external/aruco'
 cmake_package 'external/lemon'
