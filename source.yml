@@ -176,6 +176,7 @@ version_control:
         type: archive
         url: http://www.phidgets.com/downloads/libraries/libphidget_2.1.8.20130320.tar.gz
         update_cached_file: false
+        patches: $AUTOPROJ_SOURCE_DIR/patches/phidgets.patch
 
     - tools/rbind:
         type: git

@@ -142,6 +142,10 @@ in_flavor 'master', 'next' do
     cmake_package 'data_processing/type_to_vector'
     autotools_package 'drivers/phidgets' do |pkg|
         pkg.disable_doc
+        pkg.using[:autoheader] = false
+        if pkg.respond_to?(:automake_flags)
+            pkg.automake_flags = "--add-missing"
+        end
     end
 
 #    cmake_package 'drivers/gsf' #Link iscurrently death, no new one could be found.
