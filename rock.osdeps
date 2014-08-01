@@ -305,3 +305,6 @@ gtk-doc-tools:
 
 gobject-introspection:
     debian,ubuntu: gobject-introspection
+
+box2d:
+    debian,ubuntu: libbox2d-dev
