@@ -1,0 +1,14 @@
+<package>
+  <description brief="Open source C++ library for modeling and solving large complicated nonlinear least squares problems.">
+      Ceres Solver is an open source C++ library for modeling and solving large
+      complicated nonlinear least squares problems. It is a feature rich, mature and
+      performant library which has been used in production since 2010.
+  </description>
+  <author>Sameer Agarwal and Keir Mierle and Others</author>
+  <license>BSD</license>
+  <url>http://ceres-solver.org</url>
+  <depend package="eigen3" />
+  <depend package='glog' />
+  <depend package='suitesparse' />
+  <tags>stable</tags>
+</package>

@@ -199,6 +199,13 @@ version_control:
         url: git://github.com/OctoMap/octomap.git
         branch: master
 
+    - slam/ceres_solver:
+        type: git
+        url: https://ceres-solver.googlesource.com/ceres-solver
+        branch: master
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/ceres_solver.patch
+
     - drivers/gsf:
         type: archive
         url: http://www.saic.com/maritime/gsf/download/gsf_0304.zip
