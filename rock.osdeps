@@ -241,6 +241,7 @@ wget:
     debian,ubuntu: wget
 
 ffi:
+    gem: ffi
     debian,ubuntu: libffi-dev
 
 mpfi:
