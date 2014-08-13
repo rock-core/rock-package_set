@@ -109,6 +109,11 @@ version_control:
         url: http://devernay.free.fr/hacks/cminpack/cminpack-1.1.3.tar.gz 
         update_cached_file: false
 
+    - slam/gmapping:
+        type: svn
+        url: http://svn.openslam.org/data/svn/gmapping/trunk
+        patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
+
     - slam/hogman:
         type: svn
         url: http://svn.openslam.org/data/svn/hog-man/trunk 

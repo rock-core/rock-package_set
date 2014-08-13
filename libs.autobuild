@@ -86,6 +86,7 @@ in_flavor 'master' do
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
     cmake_package 'slam/polygonnet'
+    cmake_package 'slam/gmapping'
     remove_from_default 'slam/polygonnet'
 
     cmake_package 'gui/map2d'
