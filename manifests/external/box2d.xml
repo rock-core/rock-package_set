@@ -1,0 +1,8 @@
+<package>
+  <description brief="A 2D Physics Engine for Games">
+    A 2D Physics Engine for Games
+  </description>
+  <url>http://http://box2d.org/</url>
+  <tags>stable</tags>
+</package>
+
