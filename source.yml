@@ -263,3 +263,12 @@ version_control:
         type: git
         url: git://git.gnome.org/aravis
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
+
+    # Packages that have been migrated to github
+    - drivers/(sonar_tritech):
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+    - drivers/orogen/(sonar_tritech):
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
