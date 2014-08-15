@@ -166,6 +166,7 @@ version_control:
     - external/freenect:
         type: git
         url: git://github.com/OpenKinect/libfreenect.git
+        tag: v0.5.0
         branch: master
 
     - data_processing/*:
@@ -260,10 +261,12 @@ version_control:
     - planning/openrave:
       github: rdiankov/openrave
       branch: latest_stable
+      commit: 5cfc744410adfee464a35d19964f525efb819552
       
     - external/sbpl:
       type: git
       url: https://github.com/sbpl/sbpl.git
+      tag: 1.2.0
       
     - external/ompl:
       type: archive
