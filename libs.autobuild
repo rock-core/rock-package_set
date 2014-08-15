@@ -442,28 +442,29 @@ cmake_package 'planning/motion_planning_libraries'
     cmake_package 'multiagent/fipa_acl' do |pkg|
         pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
     end
-end
 
-# There is a problem with GCC and fipa_acl. Three of its files are taking
-# something north of 3G to compile ... each
-#
-# Don't build unless really really needed
-remove_from_default 'multiagent/fipa_acl'
+    # There is a problem with GCC and fipa_acl. Three of its files are taking
+    # so mething north of 3G to compile ... each
+    #
+    # Don't build unless really really needed
+    remove_from_default 'multiagent/fipa_acl'
 
-autotools_package 'external/kdtree'
-remove_from_default 'external/kdtree'
-Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
-
-name, version = Autoproj::OSDependencies.operating_system
-#puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
+    autotools_package 'external/kdtree'
+    remove_from_default 'external/kdtree'
+    Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
     cmake_package 'external/box2d' do |pkg|
         pkg.define("BOX2D_BUILD_SHARED", "ON")
         pkg.define("BOX2D_BUILD_STATIC", "OFF")
         pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
     end
+    Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 
-remove_from_default 'external/box2d'
+    remove_from_default 'external/box2d'
+
+
+end
+
 
 
 

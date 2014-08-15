@@ -322,4 +322,7 @@ gobject-introspection:
     debian,ubuntu: gobject-introspection
 
 box2d:
-    debian,ubuntu: libbox2d-dev
+    ubuntu:
+        '14.04': libbox2d-dev
+    debian: 
+        default: libbox2d-dev
