@@ -113,13 +113,13 @@ version_control:
 
     - slam/gmapping:
         type: svn
-	#FIXME stick ro rev 53
+#FIXME stick ro rev 53
         url: http://svn.openslam.org/data/svn/gmapping/trunk
         patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
 
     - slam/hogman:
         type: svn
-	#FIXME stick ro rev 21
+#FIXME stick ro rev 21
         url: http://svn.openslam.org/data/svn/hog-man/trunk 
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
@@ -127,7 +127,7 @@ version_control:
     
     - slam/g2o:
         type: svn
-	#FIXME stick ro rev 54
+#FIXME stick ro rev 54
         url: http://svn.openslam.org/data/svn/g2o/trunk
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
@@ -204,7 +204,7 @@ version_control:
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
-	commit: a63e14383918aebb728b298b659cf9f3c5f6db3a
+        commit: a63e14383918aebb728b298b659cf9f3c5f6db3a
         branch: master
 
     - slam/mtk:
