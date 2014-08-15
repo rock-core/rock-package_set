@@ -7,7 +7,7 @@
     orogen_package 'planning/orogen/motion_planning_libraries'
     orogen_package 'drivers/orogen/video_streamer_vlc'
 
-    in_flavor 'master' do
+    in_flavor 'rock1408_rc1' do
         orogen_package 'image_processing/orogen/projection'
         orogen_package 'image_processing/orogen/virtual_view'
         orogen_package 'control/orogen/trajectory_generation'
@@ -42,7 +42,6 @@
         orogen_package 'drivers/orogen/ucm_schilling'
         orogen_package 'drivers/orogen/act_schilling'
         orogen_package 'drivers/orogen/phins_ixsea'
-        orogen_package 'drivers/orogen/kinect'
         orogen_package 'drivers/orogen/velodyne_lidar'
         orogen_package 'drivers/orogen/tofcamera_mesasr'
     end
@@ -57,7 +56,7 @@
     #################################################################################"
     #################################################################################"
 
-    in_flavor 'master', 'next' do
+    in_flavor 'rock1408_rc1' do
         orogen_package 'simulation/orogen/imumodel'
         orogen_package 'drivers/orogen/servo_dynamixel'
         orogen_package 'control/orogen/motor_controller'
@@ -66,7 +65,7 @@
         orogen_package 'data_processing/orogen/type_to_vector'
     end
     
-    in_flavor 'master', 'next', 'stable' do
+    in_flavor 'rock1408_rc1' do
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
         orogen_package 'control/orogen/kdl'	
@@ -99,9 +98,9 @@
     	orogen_package 'drivers/orogen/qualisys'
 	orogen_package 'drivers/orogen/laser_filter'
     	orogen_package 'drivers/orogen/camera_ids'
-    	if !has_ueye_api?
-    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    	end
+    	# if !has_ueye_api?
+    	#     Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    	# end
 
         orogen_package 'drivers/orogen/taskmon'
 

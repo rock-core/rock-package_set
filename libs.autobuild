@@ -1,3 +1,14 @@
+
+#################################################################################"
+#################################################################################"
+## 
+## Do not add anything below this line unless you know what you are doing
+## New packages MUST be added at the top of the file
+##
+#################################################################################"
+#################################################################################"
+
+in_flavor 'rock1408_rc1' do
 # IMPORTANT: new packages must be added at the top of this file
 
 cmake_package 'external/sbpl'
@@ -26,16 +37,7 @@ cmake_package 'multiagent/fipa_services'
 cmake_package 'drivers/tofcamera_mesasr'
 cmake_package 'planning/motion_planning_libraries'
 
-#################################################################################"
-#################################################################################"
-## 
-## Do not add anything below this line unless you know what you are doing
-## New packages MUST be added at the top of the file
-##
-#################################################################################"
-#################################################################################"
 
-in_flavor 'master' do
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|
         pkg.depends_on 'gem-hooks'
@@ -102,9 +104,6 @@ in_flavor 'master' do
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
     cmake_package 'drivers/velodyne_lidar'
-end
-
-in_flavor 'master', 'next' do
     cmake_package 'drivers/base_schilling'
     cmake_package 'simulation/imumodel'
 
@@ -164,9 +163,6 @@ in_flavor 'master', 'next' do
         Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
     end
     remove_from_default 'planning/openrave'
-end
-
-in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/actuator_dispatcher'
 
     bundle_package 'bundles/rock_ugv_nav'
@@ -351,9 +347,9 @@ in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/laserscanner_sick'
     cmake_package 'drivers/laser_filter'
     cmake_package 'drivers/camera_ids'
-    if !has_ueye_api? # defined in init.rb
-        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    end
+    # if !has_ueye_api? # defined in init.rb
+    #     Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    # end
 
     ##### Image Processing
     cmake_package 'image_processing/stereo'
@@ -470,16 +466,15 @@ Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
 name, version = Autoproj::OSDependencies.operating_system
 #puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
-if((name.include?("ubuntu") && version[1].to_f > 14.0) || name.include?("debian") && !name.include?("ubuntu")) 
-else
-    puts "Compiling box2d locally, as there is no box2d v2.3.1 Package availible"
+
     cmake_package 'external/box2d' do |pkg|
         pkg.define("BOX2D_BUILD_SHARED", "ON")
         pkg.define("BOX2D_BUILD_STATIC", "OFF")
         pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
     end
-    Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d', :force => true
-end
+
+remove_from_default 'external/box2d'
+
 
 
 create_metapackages
