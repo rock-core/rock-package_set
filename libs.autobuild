@@ -1,15 +1,4 @@
-
-#################################################################################"
-#################################################################################"
-## 
-## Do not add anything below this line unless you know what you are doing
-## New packages MUST be added at the top of the file
-##
-#################################################################################"
-#################################################################################"
-
 in_flavor 'rock1408_rc1' do
-# IMPORTANT: new packages must be added at the top of this file
 
 cmake_package 'external/sbpl'
 cmake_package 'external/ompl'
@@ -20,6 +9,7 @@ autotools_package 'drivers/aravis' do |pkg|
     pkg.depends_on 'gtk+-2.0'
     pkg.depends_on 'gtk-doc-tools'
 end
+
 cmake_package 'drivers/camera_aravis'
 
 cmake_package 'drivers/video_capture_vlc'

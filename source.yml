@@ -15,10 +15,12 @@ version_control:
 
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
+        tag: 0.3.0
         branch: master
 
     - control/urdfdom:
         github: ros/urdfdom
+        tag: 0.3.0	
         branch: master
 
     - drivers/.*:
@@ -111,11 +113,13 @@ version_control:
 
     - slam/gmapping:
         type: svn
+	#FIXME stick ro rev 53
         url: http://svn.openslam.org/data/svn/gmapping/trunk
         patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
 
     - slam/hogman:
         type: svn
+	#FIXME stick ro rev 21
         url: http://svn.openslam.org/data/svn/hog-man/trunk 
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
@@ -123,6 +127,7 @@ version_control:
     
     - slam/g2o:
         type: svn
+	#FIXME stick ro rev 54
         url: http://svn.openslam.org/data/svn/g2o/trunk
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
@@ -158,6 +163,7 @@ version_control:
         type: git
         branch: master
         url: http://git.mech.kuleuven.be/robotics/orocos_kinematics_dynamics.git
+        commit: 8e50979fdfb5e7a0ad1751162f39b3b32452efbc
         push_to: http://git.mech.kuleuven.be/robotics/orocos_kinematics_dynamics.git
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
@@ -193,10 +199,12 @@ version_control:
         type: git
         url: git://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
+        branch: $ROCK_FLAVOR
 
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
+	commit: a63e14383918aebb728b298b659cf9f3c5f6db3a
         branch: master
 
     - slam/mtk:
@@ -208,6 +216,7 @@ version_control:
     - slam/octomap:
         type: git
         url: git://github.com/OctoMap/octomap.git
+        tag: v1.6.6
         branch: master
 
     - drivers/gsf:
@@ -253,11 +262,6 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
          
-    - external/gmapping:
-        type: svn
-        url: http://svn.openslam.org/data/svn/gmapping/trunk
-        patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
-
     - planning/openrave:
       github: rdiankov/openrave
       branch: latest_stable
@@ -266,6 +270,7 @@ version_control:
     - external/sbpl:
       type: git
       url: https://github.com/sbpl/sbpl.git
+      branch: master
       tag: 1.2.0
       
     - external/ompl:
@@ -275,4 +280,6 @@ version_control:
     - drivers/aravis:
         type: git
         url: git://git.gnome.org/aravis
+        tag: ARAVIS_0_3_3
+        branch: master
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
