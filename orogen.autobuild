@@ -1,6 +1,7 @@
 # IMPORTANT: new packages must be added at the top of this file (after if
 # package_enabled ...)
 
+    orogen_package 'drivers/orogen/dps_desertstar_ssp1'
     orogen_package 'drivers/orogen/camera_aravis'
     orogen_package 'multiagent/orogen/fipa_services'
     orogen_package 'slam/orogen/gmapping'

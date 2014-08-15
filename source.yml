@@ -265,10 +265,10 @@ version_control:
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
 
     # Packages that have been migrated to github
-    - drivers/(sonar_tritech):
+    - drivers/(sonar_tritech|dps_desertstar_ssp1):
         github: rock-drivers/drivers-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
-    - drivers/orogen/(sonar_tritech):
+    - drivers/orogen/(sonar_tritech|dps_desertstar_ssp1):
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
