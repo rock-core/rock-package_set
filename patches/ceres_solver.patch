@@ -1,0 +1,20 @@
+--- CMakeLists.txt	2014-08-12 13:30:47.083237607 +0200
++++ CMakeLists.txt	2014-08-12 13:45:27.079250812 +0200
+@@ -171,7 +171,7 @@
+   UPDATE_CACHE_VARIABLE(BUILD_EXAMPLES OFF)
+   MESSAGE(STATUS "Building for iOS, will not build examples.")
+ 
+-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-abi-version=2 -fobjc-arc -isysroot ${CMAKE_OSX_SYSROOT}")
++  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fobjc-abi-version=2 -fobjc-arc -isysroot -fPIC ${CMAKE_OSX_SYSROOT}")
+   SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fobjc-abi-version=2 -fobjc-arc -isysroot ${CMAKE_OSX_SYSROOT}")
+ 
+   IF (${IOS_PLATFORM} STREQUAL "SIMULATOR" OR ${IOS_PLATFORM} STREQUAL "SIMULATOR64")
+@@ -665,7 +665,7 @@
+ IF (UNIX)
+   # GCC is not strict enough by default, so enable most of the warnings.
+   SET(CMAKE_CXX_FLAGS
+-    "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers")
++    "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -fPIC")
+ ENDIF (UNIX)
+ 
+ # Use a larger inlining threshold for Clang, since it hobbles Eigen,

@@ -25,6 +25,7 @@ end
 cmake_package 'multiagent/fipa_services'
 cmake_package 'drivers/tofcamera_mesasr'
 cmake_package 'planning/motion_planning_libraries'
+cmake_package 'slam/ceres_solver'
 
 #################################################################################"
 #################################################################################"

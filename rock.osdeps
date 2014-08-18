@@ -241,6 +241,7 @@ wget:
     debian,ubuntu: wget
 
 ffi:
+    gem: ffi
     debian,ubuntu: libffi-dev
 
 mpfi:
@@ -308,3 +309,9 @@ gobject-introspection:
 
 box2d:
     debian,ubuntu: libbox2d-dev
+
+glog:
+    debian,ubuntu: libgoogle-glog-dev
+
+suitesparse:
+    debian,ubuntu: libsuitesparse-dev
