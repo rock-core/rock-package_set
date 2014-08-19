@@ -2,6 +2,7 @@
 
 cmake_package 'external/sbpl'
 cmake_package 'external/ompl'
+cmake_package 'drivers/dps_desertstar_ssp1'
 
 autotools_package 'drivers/aravis' do |pkg|
     pkg.depends_on 'gobject-introspection'
