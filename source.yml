@@ -290,4 +290,19 @@ version_control:
     - drivers/orogen/iodrivers_base:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
+    - drivers/imu_imar:
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+    - drivers/orogen/imu_imar:
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+    - drivers/imu_stim300:
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+    - drivers/orogen/imu_stim300:
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
+
+
 
