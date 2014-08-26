@@ -1,0 +1,33 @@
+Gemeinsame Unterverzeichnisse: ../box2d2/Box2D und ./Box2D.
+diff -uN ../box2d2/box2d.pc.in ./box2d.pc.in
+--- ../box2d2/box2d.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./box2d.pc.in	2014-08-13 13:45:00.445243662 +0200
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++includedir=${prefix}/include
++
++Name: box2d
++Version: 2.3.1
++Description: A 2D Physics Engine for Games
++Cflags: -I${includedir}
++Libs: -L@CMAKE_INSTALL_PREFIX@/lib -lBox2D
++
+Gemeinsame Unterverzeichnisse: ../box2d2/Build und ./Build.
+diff -uN ../box2d2/CMakeLists.txt ./CMakeLists.txt
+--- ../box2d2/CMakeLists.txt	2014-08-13 13:38:36.709244157 +0200
++++ ./CMakeLists.txt	2014-08-13 13:45:00.445243662 +0200
+@@ -34,3 +34,6 @@
+ if(BOX2D_INSTALL_DOC)
+   install(DIRECTORY Documentation DESTINATION share/doc/Box2D PATTERN ".svn" EXCLUDE)
+ endif(BOX2D_INSTALL_DOC)
++
++configure_file(box2d.pc.in box2d.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/box2d.pc DESTINATION lib/pkgconfig)
+\ Kein Zeilenumbruch am Dateiende.
+Gemeinsame Unterverzeichnisse: ../box2d2/Documentation und ./Documentation.
+Gemeinsame Unterverzeichnisse: ../box2d2/glew und ./glew.
+Gemeinsame Unterverzeichnisse: ../box2d2/glfw und ./glfw.
+Gemeinsame Unterverzeichnisse: ../box2d2/HelloWorld und ./HelloWorld.
+Gemeinsame Unterverzeichnisse: ../box2d2/.svn und ./.svn.
+Gemeinsame Unterverzeichnisse: ../box2d2/Testbed und ./Testbed.

@@ -25,6 +25,21 @@ sysfs:
 libusb-old:
     debian,ubuntu: libusb-dev
 
+scipy:
+    debian,ubuntu: python-scipy
+
+ode:
+    debian,ubuntu: libode-dev
+
+soqt:
+    debian,ubuntu: libsoqt4-dev
+
+sympy:
+    debian,ubuntu: python-sympy
+
+assimp:
+    debian,ubuntu: libassimp-dev
+
 gdal:
     debian,ubuntu: libgdal1-dev
     gentoo: sci-libs/gdal
