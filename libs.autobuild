@@ -117,6 +117,7 @@ in_flavor 'master', 'next' do
         pkg.define "BUILD_FAKENECT", "OFF"
         pkg.define "BUILD_EXAMPLES", "OFF"
         pkg.define "BUILD_C_SYNC", "OFF"
+        pkg.depends_on 'libusb1_0_13'
         pkg.source_tree_excludes << /doc/
         pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
         pkg.doc_task do
