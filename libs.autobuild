@@ -470,18 +470,12 @@ autotools_package 'external/kdtree'
 remove_from_default 'external/kdtree'
 Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
 
-name, version = Autoproj::OSDependencies.operating_system
-#puts "VERSION IS: #{version[1].to_f} OS is: #{name}"
-if((name.include?("ubuntu") && version[1].to_f > 14.0) || name.include?("debian") && !name.include?("ubuntu")) 
-else
-    puts "Compiling box2d locally, as there is no box2d v2.3.1 Package availible"
-    cmake_package 'external/box2d' do |pkg|
-        pkg.define("BOX2D_BUILD_SHARED", "ON")
-        pkg.define("BOX2D_BUILD_STATIC", "OFF")
-        pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
-    end
-    Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d', :force => true
+cmake_package 'external/box2d' do |pkg|
+    pkg.define("BOX2D_BUILD_SHARED", "ON")
+    pkg.define("BOX2D_BUILD_STATIC", "OFF")
+    pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
 end
-
+remove_from_default 'external/box2d'
+Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 
 create_metapackages

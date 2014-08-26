@@ -323,7 +323,10 @@ gobject-introspection:
     debian,ubuntu: gobject-introspection
 
 box2d:
-    debian,ubuntu: libbox2d-dev
+    debian,ubuntu:
+        # Rock needs a version of box2d more recent than the one in 12.04
+        '12.04': nonexistent
+        default: libbox2d-dev
 
 glog:
     debian,ubuntu: libgoogle-glog-dev
