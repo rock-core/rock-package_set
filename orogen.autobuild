@@ -35,7 +35,9 @@
 
         orogen_package 'drivers/orogen/phidgets'
 	orogen_package 'drivers/orogen/imu_stim300'
+        metapackage 'drivers/orogen/stim300', 'drivers/orogen/imu_stim300'
 	orogen_package 'drivers/orogen/imu_imar'
+        metapackage 'drivers/orogen/imar', 'drivers/orogen/imu_imar'
         orogen_package 'drivers/orogen/alt_imagenex'
         orogen_package 'drivers/orogen/ctd_seabird'
         orogen_package 'drivers/orogen/mbeam_imagenex'
