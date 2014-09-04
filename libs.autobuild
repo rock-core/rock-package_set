@@ -94,8 +94,10 @@ in_flavor 'master' do
     cmake_package 'gui/map2d'
     cmake_package 'gui/vizkit_3d_plugins'
 
-    cmake_package 'drivers/stim300'
-    cmake_package 'drivers/imar'
+    cmake_package 'drivers/imu_stim300'
+    metapackage 'drivers/stim300', 'drivers/imu_stim300'
+    cmake_package 'drivers/imu_imar'
+    metapackage 'drivers/imar', 'drivers/imu_imar'
     cmake_package 'drivers/alt_imagenex'
     cmake_package 'drivers/ctd_seabird'
     cmake_package 'drivers/mbeam_imagenex'
