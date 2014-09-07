@@ -84,7 +84,7 @@ boost:
         - libboost-iostreams-dev
     gentoo: dev-libs/boost
     fedora: boost-devel
-    darwin: boost
+    macos-brew: boost
     arch,manjarolinux:
         - boost
         - boost-libs
@@ -162,6 +162,7 @@ osgEarth:
 qwt5:
     debian,ubuntu: libqwt5-qt4-dev
     fedora: qwt-devel
+    macos-brew: qwt
 
 qsqlite:
     debian,ubuntu: libqt4-sql-sqlite
@@ -248,9 +249,15 @@ external/tinyxml:
 
 csparse:
     debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
 
 cholmod: 
     debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
+
+suitesparse:
+    debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
 
 wget:
     debian,ubuntu: wget
@@ -288,13 +295,14 @@ libqglviewer:
     debian: 
         '7.3':   libqglviewer-qt4-dev
         default: libqglviewer-dev
-    darwin: libqglviewer
+    macos-brew: libqglviewer
 
 gem-hooks:
     gem: hooks
 
 clang-dev:
     debian,ubuntu: libclang-dev
+    macos-brew: ignore
 
 ruby-statsample:
     gem: statsample
@@ -327,6 +335,5 @@ box2d:
 
 glog:
     debian,ubuntu: libgoogle-glog-dev
+    macos-brew: glog
 
-suitesparse:
-    debian,ubuntu: libsuitesparse-dev
