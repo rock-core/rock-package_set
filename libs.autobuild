@@ -238,62 +238,6 @@ cmake_package 'planning/motion_planning_libraries'
         pkg.depends_on 'base/types'
     end
 
-    # Override for gdal, but don't force so we don't have to build gdal
-    # unecessarily
-    Autoproj.add_osdeps_overrides 'gdal', :package => 'external/gdal'
-    autotools_package 'external/gdal' do |pkg|
-        pkg.depends_on 'swig'
-        # GDAL doesn't support out of source builds
-        pkg.builddir = "."
-        pkg.configureflags = [
-                "--includedir=#{pkg.prefix}/include/gdal",
-                '--with-threads',
-                '--with-ogr',
-                '--with-geos',
-                '--without-libtool',
-                '--with-libz=internal',
-                '--with-libtiff=internal',
-                '--with-geotiff=internal',
-                '--with-jpeg',
-                '--with-ruby',
-                '--without-gif',
-                '--without-pg',
-                '--without-grass',
-                '--without-libgrass',
-                '--without-cfitsio',
-                '--without-pcraster',
-                '--without-netcdf',
-                '--without-png',
-                '--without-gif',
-                '--without-ogdi',
-                '--without-fme',
-                '--without-hdf4',
-                '--without-hdf5',
-                '--without-jasper',
-                '--without-ecw',
-                '--without-kakadu',
-                '--without-mrsid',
-                '--without-jp2mrsid',
-                '--without-bsb',
-                '--without-grib',
-                '--without-mysql',
-                '--without-ingres',
-                '--without-xerces',
-                '--without-expat',
-                '--without-odbc',
-                '--without-curl',
-                '--without-sqlite3',
-                '--without-dwgdirect',
-                '--without-panorama',
-                '--without-idb',
-                '--without-sde',
-                '--without-perl',
-                '--without-php',
-                '--without-python',
-                '--without-ogpython',
-                '--with-hide-internal-symbols']
-    end
-    remove_from_default "external/gdal"
     
     ##### Control-related libraries
     cmake_package 'control/motor_controller'
