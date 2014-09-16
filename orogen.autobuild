@@ -1,4 +1,4 @@
-in_flavor 'rock1408_rc1' do
+in_flavor 'rock1408' do
     orogen_package 'control/orogen/trajectory_generation'
     orogen_package 'control/orogen/cart_ctrl_wdls'
     orogen_package 'control/orogen/motor_controller'
