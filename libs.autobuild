@@ -53,9 +53,9 @@ in_flavor 'rock1408_rc1' do
     cmake_package 'drivers/laserscanner_sick'
     cmake_package 'drivers/laser_filter'
     cmake_package 'drivers/camera_ids'
-    # if !has_ueye_api? # defined in init.rb
-    #     Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    # end
+    if !has_ueye_api? # defined in init.rb
+        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+    end
     cmake_package 'drivers/ptu_directedperception'
     import_package 'drivers/aria' do |pkg|
         def pkg.do_build
