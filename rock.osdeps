@@ -325,4 +325,4 @@ box2d:
     ubuntu:
         '14.04': libbox2d-dev
     debian: 
-        default: libbox2d-dev
+        jessie,sid: libbox2d-dev
