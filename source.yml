@@ -7,11 +7,11 @@ imports:
 version_control:
     - control/.*:
         gitorious: rock-control/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - control/orogen/.*:
         gitorious: rock-control/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
@@ -23,70 +23,70 @@ version_control:
 
     - drivers/.*:
         gitorious: rock-drivers/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - drivers/orogen/.*:
         gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - planning/.*:
         gitorious: rock-planning/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - planning/orogen/.*:
         gitorious: rock-planning/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - simulation/imumodel:
         gitorious: rock-simulation/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - simulation/orogen/imumodel:
         gitorious: rock-simulation/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - external/libply:
         gitorious: rock-slam/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - slam/.*:
         gitorious: rock-slam/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - bundles/rock_ugv_nav:
         gitorious: rock/bundle-rock_ugv_nav.git
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - bundles/rock_auv:
         gitorious: rock/bundle-rock_auv.git
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - slam/orogen/.*:
         gitorious: rock-slam/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - gui/.*:
         gitorious: rock-gui/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - gui/ffmpeg-ruby:
         branch: master
       
     - image_processing/.*:
         gitorious: rock-image-processing/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - image_processing/orogen/.*:
         gitorious: rock-image-processing/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     
     - multiagent/.*:
         gitorious: rock-multiagent/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - multiagent/orogen/.*:
         gitorious: rock-multiagent/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - external/yaml-cpp:
         type: archive
@@ -170,11 +170,11 @@ version_control:
 
     - data_processing/*:
         gitorious: rock-data-processing/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - data_processing/orogen/.*:
         gitorious: rock-data-processing/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
     - drivers/aria:
         type: archive
@@ -284,34 +284,34 @@ version_control:
     # Packages that have been migrated to github
     - drivers/sonar_tritech:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/dps_desertstar_ssp1:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/iodrivers_base:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/orogen/sonar_tritech:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/orogen/dps_desertstar_ssp1:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/orogen/iodrivers_base:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/imu_imar:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/orogen/imu_imar:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/imu_stim300:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
     - drivers/orogen/imu_stim300:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
+        branch: $ROCK_BRANCH
 
 
 

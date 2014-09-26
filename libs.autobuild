@@ -1,33 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
 
-cmake_package 'external/sbpl'
-cmake_package 'external/ompl'
-cmake_package 'drivers/dps_desertstar_ssp1'
-
-autotools_package 'drivers/aravis' do |pkg|
-    pkg.depends_on 'gobject-introspection'
-    pkg.depends_on 'gstreamer'
-    pkg.depends_on 'gtk+-2.0'
-    pkg.depends_on 'gtk-doc-tools'
-end
-cmake_package 'drivers/camera_aravis'
-
-cmake_package 'drivers/video_capture_vlc'
-cmake_package 'drivers/video_streamer_vlc'
-cmake_package 'external/aruco'
-cmake_package 'external/lemon'
-cmake_package 'external/snap' do |pkg|
-    pkg.depends_on 'base/cmake'
-end
-cmake_package 'external/gexf' do |pkg|
-    pkg.depends_on 'base/cmake'
-    pkg.depends_on 'libxml2'
-end
-cmake_package 'multiagent/fipa_services'
-cmake_package 'drivers/tofcamera_mesasr'
-cmake_package 'planning/motion_planning_libraries'
-cmake_package 'slam/ceres_solver'
-
 #################################################################################"
 #################################################################################"
 ## 
@@ -38,6 +10,20 @@ cmake_package 'slam/ceres_solver'
 #################################################################################"
 
 in_flavor 'master' do
+    cmake_package 'external/ompl'
+    cmake_package 'external/aruco'
+    cmake_package 'external/lemon'
+    cmake_package 'external/snap' do |pkg|
+        pkg.depends_on 'base/cmake'
+    end
+    cmake_package 'external/gexf' do |pkg|
+        pkg.depends_on 'base/cmake'
+        pkg.depends_on 'libxml2'
+    end
+    cmake_package 'multiagent/fipa_services'
+    cmake_package 'planning/motion_planning_libraries'
+    cmake_package 'slam/ceres_solver'
+
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|
         pkg.depends_on 'gem-hooks'
@@ -47,11 +33,6 @@ in_flavor 'master' do
 
     cmake_package 'gui/point_cloud'
     cmake_package 'gui/qcam_calib'
-
-    # The following package will be removed as soon as we are done converting to the
-    # OSRF-provided URDF packages
-    cmake_package 'control/urdf'
-    remove_from_default 'control/urdf'
 
     cmake_package 'image_processing/viso2' do |pkg|
         pkg.disable_doc
@@ -87,12 +68,27 @@ in_flavor 'master' do
     cmake_package 'slam/pose_estimation'
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
-    cmake_package 'slam/polygonnet'
     cmake_package 'slam/gmapping'
+
+    cmake_package 'slam/polygonnet'
     remove_from_default 'slam/polygonnet'
 
     cmake_package 'gui/map2d'
     cmake_package 'gui/vizkit_3d_plugins'
+
+    cmake_package 'drivers/dps_desertstar_ssp1'
+
+    autotools_package 'drivers/aravis' do |pkg|
+        pkg.depends_on 'gobject-introspection'
+        pkg.depends_on 'gstreamer'
+        pkg.depends_on 'gtk+-2.0'
+        pkg.depends_on 'gtk-doc-tools'
+    end
+    cmake_package 'drivers/camera_aravis'
+
+    cmake_package 'drivers/video_capture_vlc'
+    cmake_package 'drivers/video_streamer_vlc'
+    cmake_package 'drivers/tofcamera_mesasr'
 
     cmake_package 'drivers/imu_stim300'
     metapackage 'drivers/stim300', 'drivers/imu_stim300'
@@ -108,7 +104,7 @@ in_flavor 'master' do
     cmake_package 'drivers/velodyne_lidar'
 end
 
-in_flavor 'master', 'next' do
+in_flavor 'master', 'stable' do
     cmake_package 'drivers/base_schilling'
     cmake_package 'simulation/imumodel'
 
@@ -169,9 +165,6 @@ in_flavor 'master', 'next' do
         Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
     end
     remove_from_default 'planning/openrave'
-end
-
-in_flavor 'master', 'next', 'stable' do
     cmake_package 'drivers/actuator_dispatcher'
 
     bundle_package 'bundles/rock_ugv_nav'
