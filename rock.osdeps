@@ -221,7 +221,7 @@ libproc:
                 - libprocps0-dev
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
-        '14.04': libprocps3-dev
+        '14.04,14.10': libprocps3-dev
         default: libprocps0-dev
     fedora: procps-devel
 
