@@ -22,9 +22,6 @@ sysfs:
     fedora: libsysfs-devel
     arch,manjarolinux: sysfsutils
 
-libusb-old:
-    debian,ubuntu: libusb-dev
-
 scipy:
     debian,ubuntu: python-scipy
 
@@ -229,8 +226,20 @@ libproc:
 # and rock.osdeps-ruby19) as we need to install different packages depending on
 # the Ruby version
 
+libusb-old:
+    debian,ubuntu: libusb-dev
+
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
+
+# libfreenect requires a specific version of libusb1
+libusb1_0_13:
+    ubuntu,debian:
+        '12.04': nonexistent
+        default:
+            osdep: libusb1
+    default:
+        osdep: libusb1
 
 libudev:
     ubuntu,debian:  libudev-dev
@@ -331,7 +340,10 @@ gobject-introspection:
     debian,ubuntu: gobject-introspection
 
 box2d:
-    debian,ubuntu: libbox2d-dev
+    debian,ubuntu:
+        # Rock needs a version of box2d more recent than the one in 12.04
+        '12.04': nonexistent
+        default: libbox2d-dev
 
 glog:
     debian,ubuntu: libgoogle-glog-dev
