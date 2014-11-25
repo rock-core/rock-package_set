@@ -60,16 +60,13 @@
     #################################################################################"
     #################################################################################"
 
-    in_flavor 'master', 'next' do
+    in_flavor 'master', 'stable' do
         orogen_package 'simulation/orogen/imumodel'
         orogen_package 'drivers/orogen/servo_dynamixel'
         orogen_package 'control/orogen/motor_controller'
         orogen_package 'control/orogen/joint_dispatcher'
         orogen_package 'data_processing/orogen/statistics'
         orogen_package 'data_processing/orogen/type_to_vector'
-    end
-    
-    in_flavor 'master', 'next', 'stable' do
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
         orogen_package 'control/orogen/kdl'	
