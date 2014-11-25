@@ -247,9 +247,6 @@ libudev:
 libxmu:
     ubuntu,debian:  libxmu-dev 
 
-gpsd:
-    debian,ubuntu: libgps-dev
-
 external/tinyxml:
     ubuntu:
         '10.04,10.10,11.04,11.10': nonexistent
@@ -290,9 +287,6 @@ numpy:
 
 cython:
     debian, ubuntu: cython
-
-libxmu:
-    debian, ubuntu: libxmu-dev
 
 unzip:
     debian, ubuntu: unzip
