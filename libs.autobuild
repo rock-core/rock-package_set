@@ -10,16 +10,6 @@
 #################################################################################"
 
 in_flavor 'master' do
-    cmake_package 'external/ompl'
-    cmake_package 'external/aruco'
-    cmake_package 'external/lemon'
-    cmake_package 'external/snap' do |pkg|
-        pkg.depends_on 'base/cmake'
-    end
-    cmake_package 'external/gexf' do |pkg|
-        pkg.depends_on 'base/cmake'
-        pkg.depends_on 'libxml2'
-    end
     cmake_package 'multiagent/fipa_services'
     cmake_package 'planning/motion_planning_libraries'
     cmake_package 'slam/ceres_solver'
@@ -64,7 +54,6 @@ in_flavor 'master' do
 
     cmake_package 'control/hysteresis_model'
 
-    cmake_package 'slam/mtk'
     cmake_package 'slam/pose_estimation'
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
@@ -104,6 +93,18 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'stable' do
+    cmake_package 'slam/mtk'
+    cmake_package 'external/sbpl'
+    cmake_package 'external/ompl'
+    cmake_package 'external/aruco'
+    cmake_package 'external/lemon'
+    cmake_package 'external/snap' do |pkg|
+        pkg.depends_on 'base/cmake'
+    end
+    cmake_package 'external/gexf' do |pkg|
+        pkg.depends_on 'base/cmake'
+        pkg.depends_on 'libxml2'
+    end
     cmake_package 'simulation/imumodel'
 
     cmake_package 'slam/octomap'
@@ -454,6 +455,18 @@ in_flavor 'master', 'stable' do
     cmake_package 'multiagent/fipa_acl' do |pkg|
         pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
     end
+
+    autotools_package 'external/kdtree'
+    remove_from_default 'external/kdtree'
+    Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
+
+    cmake_package 'external/box2d' do |pkg|
+        pkg.define("BOX2D_BUILD_SHARED", "ON")
+        pkg.define("BOX2D_BUILD_STATIC", "OFF")
+        pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
+    end
+    remove_from_default 'external/box2d'
+    Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 end
 
 # There is a problem with GCC and fipa_acl. Three of its files are taking
@@ -461,17 +474,5 @@ end
 #
 # Don't build unless really really needed
 remove_from_default 'multiagent/fipa_acl'
-
-autotools_package 'external/kdtree'
-remove_from_default 'external/kdtree'
-Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
-
-cmake_package 'external/box2d' do |pkg|
-    pkg.define("BOX2D_BUILD_SHARED", "ON")
-    pkg.define("BOX2D_BUILD_STATIC", "OFF")
-    pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
-end
-remove_from_default 'external/box2d'
-Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 
 create_metapackages

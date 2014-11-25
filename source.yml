@@ -205,8 +205,7 @@ version_control:
             - $AUTOPROJ_SOURCE_DIR/patches/mtk.patch
 
     - slam/octomap:
-        type: git
-        url: git://github.com/OctoMap/octomap.git
+        github: octomap/octomap
         branch: master
 
     - slam/ceres_solver:
