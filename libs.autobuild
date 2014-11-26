@@ -67,16 +67,6 @@ in_flavor 'master' do
 
     cmake_package 'drivers/dps_desertstar_ssp1'
 
-    autotools_package 'drivers/aravis' do |pkg|
-        pkg.depends_on 'gobject-introspection'
-        pkg.depends_on 'gstreamer'
-        pkg.depends_on 'gtk+-2.0'
-        pkg.depends_on 'gtk-doc-tools'
-    end
-    cmake_package 'drivers/camera_aravis'
-
-    cmake_package 'drivers/video_capture_vlc'
-    cmake_package 'drivers/video_streamer_vlc'
     cmake_package 'drivers/tofcamera_mesasr'
 
     cmake_package 'drivers/imu_stim300'
@@ -90,9 +80,16 @@ in_flavor 'master' do
     cmake_package 'drivers/ucm_schilling'
     cmake_package 'drivers/act_schilling'
     cmake_package 'drivers/phins_ixsea'
+    cmake_package 'drivers/camera_aravis'
 end
 
 in_flavor 'master', 'stable' do
+    autotools_package 'drivers/aravis' do |pkg|
+        pkg.depends_on 'gobject-introspection'
+        pkg.depends_on 'gstreamer'
+        pkg.depends_on 'gtk+-2.0'
+        pkg.depends_on 'gtk-doc-tools'
+    end
     cmake_package 'slam/mtk'
     cmake_package 'external/sbpl'
     cmake_package 'external/ompl'
@@ -141,6 +138,8 @@ in_flavor 'master', 'stable' do
         pkg.depends_on 'base/cmake'
     end
     cmake_package 'data_processing/type_to_vector'
+    cmake_package 'drivers/video_capture_vlc'
+    cmake_package 'drivers/video_streamer_vlc'
     autotools_package 'drivers/phidgets' do |pkg|
         pkg.disable_doc
         pkg.using[:autoheader] = false
