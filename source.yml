@@ -163,7 +163,7 @@ version_control:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
             - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen_v2.patch, 1]
 
-    - external/freenect:
+    - drivers/freenect:
         type: git
         url: git://github.com/OpenKinect/libfreenect.git
         branch: master
@@ -312,7 +312,9 @@ version_control:
     - drivers/orogen/imu_stim300:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
-
+    - drivers/orogen/kinect:
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
 
 
 

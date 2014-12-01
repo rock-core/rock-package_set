@@ -343,3 +343,7 @@ glog:
     debian,ubuntu: libgoogle-glog-dev
     macos-brew: glog
 
+freenect:
+    debian: libfreenect-dev
+    ubuntu:
+        '14.04': libfreenect-dev

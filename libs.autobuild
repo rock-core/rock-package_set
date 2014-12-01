@@ -114,7 +114,7 @@ in_flavor 'master', 'next' do
 
     cmake_package 'slam/octomap'
 
-    cmake_package "external/freenect" do |pkg|
+    cmake_package "drivers/freenect" do |pkg|
         pkg.define "BUILD_AUDIO", "ON"
         pkg.define "BUILD_FAKENECT", "OFF"
         pkg.define "BUILD_EXAMPLES", "OFF"
@@ -130,6 +130,8 @@ in_flavor 'master', 'next' do
             end
         end
     end
+    Autoproj.add_osdeps_overrides 'freenect', :package => 'drivers/freenect'
+    metapackage 'external/freenect', 'drivers/freenect'
 
 
     cmake_package 'control/urdfdom' do |pkg|
