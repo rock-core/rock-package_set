@@ -9,6 +9,7 @@ ffmpeg:
     ubuntu: 
         '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '14.10': [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         default: [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     debian: 
         jessie: [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
@@ -221,6 +222,7 @@ libproc:
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
         '14.04': libprocps3-dev
+        '14.10': libprocps3-dev
         default: libprocps0-dev
     fedora: procps-devel
 
