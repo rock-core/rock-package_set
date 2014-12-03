@@ -279,6 +279,7 @@ version_control:
         type: git
         url: git://git.gnome.org/aravis
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
+        branch: master
 
     # Packages that have been migrated to github
     - drivers/sonar_tritech:

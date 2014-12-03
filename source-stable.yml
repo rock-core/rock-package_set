@@ -21,3 +21,5 @@ version_control:
       tag: 'v1.6.6'
     - external/sbpl:
       tag: '1.2.0'
+    - drivers/aravis:
+      tag: 'ARAVIS_0_3_6'
