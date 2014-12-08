@@ -393,3 +393,20 @@ freenect:
     debian: libfreenect-dev
     ubuntu:
         '14.04': libfreenect-dev
+
+curl-dev:
+    debian,ubuntu:
+        libcurl4-openssl-dev
+
+thin:
+    gem: thin
+
+grape:
+    gem: grape
+
+faye-websocket:
+    gem: faye-websocket
+        
+rack-cors:
+    gem: rack-cors
+    

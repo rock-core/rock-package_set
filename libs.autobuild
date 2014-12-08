@@ -1,5 +1,8 @@
 # IMPORTANT: new packages must be added at the top of this file
 
+ruby_package 'tools/webapp'
+cmake_package 'control/webapp'
+
 #################################################################################"
 #################################################################################"
 ## 
