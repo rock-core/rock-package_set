@@ -193,6 +193,12 @@ version_control:
         url: git://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
+    - tools/webapp:
+      github: planthaber/rock-webapp
+      
+    - control/webapp:
+      github: planthaber/control-webapp
+
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
