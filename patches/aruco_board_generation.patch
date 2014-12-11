@@ -1,15 +1,14 @@
-diff -urN ../new/aruco-1.2.4/utils/aruco_create_board.cpp ./utils/aruco_create_board.cpp
---- ../new/aruco-1.2.4/utils/aruco_create_board.cpp	2012-06-14 15:42:30.000000000 +0200
-+++ ./utils/aruco_create_board.cpp	2014-04-08 16:56:26.638338451 +0200
-@@ -29,6 +29,7 @@
+--- ../../../Aruco/aruco-1.2.5/utils/aruco_create_board.cpp	2012-12-10 09:29:39.000000000 +0100
++++ ./utils/aruco_create_board.cpp	2015-01-16 11:31:41.206313177 +0100
+@@ -27,6 +27,7 @@
+ ********************************/
+ #include "board.h"
  #include <cstdio>
- #include <opencv/cv.h>
- #include <opencv/highgui.h>
 +#include <sstream>
+ #include <opencv2/highgui/highgui.hpp>
  #include "arucofidmarkers.h"
  using namespace std;
- using namespace cv;
-@@ -50,15 +51,20 @@
+@@ -49,7 +50,11 @@
  	int typeBoard=0;
          if (argc>=5) pixSize=atoi(argv[4]);
          if (argc>=6) typeBoard=atoi(argv[5]);
@@ -19,17 +18,6 @@ diff -urN ../new/aruco-1.2.4/utils/aruco_create_board.cpp ./utils/aruco_create_b
 +            ss << argv[6];
 +            ss >> interMarkerDistance;
 +        }
-+
          aruco::BoardConfiguration BInfo;
          Mat BoardImage;
          if (typeBoard==0)
--            BoardImage=aruco::FiducidalMarkers::createBoardImage(Size(XSize,YSize), pixSize,pixSize*0.2,BInfo);
-+            BoardImage=aruco::FiducidalMarkers::createBoardImage(Size(XSize,YSize), pixSize,pixSize*interMarkerDistance,BInfo);
-         else if (typeBoard==1)
-             BoardImage=aruco::FiducidalMarkers::createBoardImage_ChessBoard(Size(XSize,YSize), pixSize,BInfo);
-         else if (typeBoard==2)
--            BoardImage=aruco::FiducidalMarkers::createBoardImage_Frame(Size(XSize,YSize), pixSize,pixSize*0.2,BInfo);
-+            BoardImage=aruco::FiducidalMarkers::createBoardImage_Frame(Size(XSize,YSize), pixSize,pixSize*interMarkerDistance,BInfo);
- 	  
- 	  else {cerr<<"Incorrect board type"<<typeBoard<<endl;return -1;}
- 	  
