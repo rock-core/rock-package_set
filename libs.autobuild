@@ -48,6 +48,12 @@ in_flavor 'master' do
         end
     end
 
+    cmake_package 'planning/randward'
+    cmake_package 'planning/arvand_herd'
+    cmake_package 'planning/fd_cedalion'
+    cmake_package 'planning/fd_uniform'
+    cmake_package 'planning/bfsf'
+    cmake_package 'planning/fast_downward'
     cmake_package 'planning/lama'
     cmake_package 'planning/pddl_planner'
     cmake_package 'planning/simple_path_planner'

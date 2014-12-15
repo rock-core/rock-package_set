@@ -98,6 +98,35 @@ version_control:
         url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.1.tar.gz'
         update_cached_file: false
 
+    - planning/arvand_herd:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/fast_downward:
+        type: archive
+        url: http://hg.fast-downward.org/archive/4d52652adfee.tar.gz/src
+        filename: fastdownward-4d52652adfee.tar.gz
+        patches: $AUTOPROJ_SOURCE_DIR/patches/fast_downward.patch
+        update_cached_file: false
+
+    - planning/bfsf:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/fd_cedalion:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/fd_uniform:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/randward:
+        type: svn
+        url: 'svn://svn@pleiades.plg.inf.uc3m.es/ipc2011/data/planners/seq-sat/seq-sat-randward'
+        patches: $AUTOPROJ_SOURCE_DIR/patches/randward.patch
+        update_cached_file: false
+
     - slam/flann:
         type: archive
         url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip 

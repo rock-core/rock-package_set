@@ -1,0 +1,139 @@
+diff -Naur ../randward/build ./build
+--- ../randward/build	2014-12-10 12:29:44.332063713 +0100
++++ ./build	1970-01-01 01:00:00.000000000 +0100
+@@ -1,8 +0,0 @@
+-#! /bin/sh
+-
+-cd randward/preprocess && \
+-(make || exit 1)
+-cd ../.. && \
+-cd randward/search && \
+-(make release || exit 1)
+-cd ../..
+diff -Naur ../randward/CMakeLists.txt ./CMakeLists.txt
+--- ../randward/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./CMakeLists.txt	2014-12-10 11:51:56.965878373 +0100
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 2.6)
++find_package(Rock)
++rock_init(randward 0.1)
++add_definitions(-Wno-deprecated)
++add_definitions(-Wextra -Wno-sign-compare)
++add_definitions(-DUSE_LP=1)
++add_definitions(-DCOIN_USE_CLP=1)
++add_definitions(-DSTATE_VAR_BYTES=1)
++list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
++add_subdirectory(randward)
++
+diff -Naur ../randward/plan ./plan
+--- ../randward/plan	2014-12-10 12:29:44.656063703 +0100
++++ ./plan	2014-12-10 12:17:14.668085863 +0100
+@@ -1,9 +1,9 @@
+ #! /bin/sh
+ 
+ # Paths to planner components
+-TRANSLATE="./randward/translate/translate.py"
+-PREPROCESS="./randward/preprocess/preprocess"
+-SEARCH="./randward/search/release-search"
++TRANSLATE="$(dirname $(which randward-planner))/randward/translate/translate.py"
++PREPROCESS="$(dirname $(which randward-planner))/randward/preprocess/preprocess"
++SEARCH="$(dirname $(which randward-planner))/randward/search/release-search"
+ 
+ run_planner() {
+     echo "1. Running translator"
+diff -Naur ../randward/randward/CMakeLists.txt ./randward/CMakeLists.txt
+--- ../randward/randward/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ ./randward/CMakeLists.txt	2014-12-10 12:14:24.792090882 +0100
+@@ -0,0 +1,92 @@
++rock_library(${PROJECT_NAME}-search
++    SOURCES
++        search/axioms.cc
++        search/best_first_search.cc
++        search/closed_list.cc
++        search/domain_transition_graph.cc
++        search/ff_heuristic.cc
++        search/globals.cc
++        search/heuristic.cc
++        search/landmarks_count_heuristic.cc
++        search/landmarks_graph.cc
++        search/landmarks_graph_rpg_sasp.cc
++        search/open_list.cc
++        search/operator.cc
++        search/planner.cc
++        search/search_engine.cc
++        search/state.cc
++        search/successor_generator.cc
++        search/wa_star_search.cc
++    HEADERS  
++        search/axioms.h  
++        search/best_first_search.h  
++        search/closed_list.h  
++        search/domain_transition_graph.h  
++        search/ff_heuristic.h  
++        search/globals.h  
++        search/heuristic.h  
++        search/landmarks_count_heuristic.h  
++        search/landmarks_graph.h  
++        search/landmarks_graph_rpg_sasp.h  
++        search/landmarks_types.h  
++        search/open_list.h  
++        search/operator.h  
++        search/search_engine.h  
++        search/state.h  
++        search/successor_generator.h  
++        search/wa_star_search.h
++)
++
++rock_executable(${PROJECT_NAME}-planner-search
++        search/planner.cc
++        DEPS ${PROJECT_NAME}-search
++        NOINSTALL)
++
++rock_library(${PROJECT_NAME}-preprocess
++    SOURCES
++        preprocess/axiom.cc
++        preprocess/causal_graph.cc
++        preprocess/domain_transition_graph.cc
++        preprocess/helper_functions.cc
++        preprocess/max_dag.cc
++        preprocess/operator.cc
++        preprocess/planner.cc
++        preprocess/scc.cc
++        preprocess/state.cc
++        preprocess/successor_generator.cc
++        preprocess/variable.cc
++    HEADERS
++        preprocess/axiom.h
++        preprocess/causal_graph.h
++        preprocess/domain_transition_graph.h
++        preprocess/helper_functions.h
++        preprocess/max_dag.h
++        preprocess/operator.h
++        preprocess/scc.h
++        preprocess/state.h
++        preprocess/successor_generator.h
++        preprocess/variable.h
++)
++rock_executable(${PROJECT_NAME}-planner-preprocess
++        preprocess/planner.cc
++        DEPS ${PROJECT_NAME}-preprocess
++        NOINSTALL)
++
++# Installation of the driver directory
++# Python wrapper to facilitate running the system
++install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory
++\"${CMAKE_CURRENT_SOURCE_DIR}/translate\"
++\"${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME}/translate\") ")
++
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-planner-preprocess
++    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
++    DESTINATION bin/${PROJECT_NAME}/preprocess
++    RENAME preprocess)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-planner-search
++    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
++    DESTINATION bin/${PROJECT_NAME}/search
++    RENAME release-search)
++install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../plan
++    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
++    DESTINATION bin
++    RENAME randward-planner)

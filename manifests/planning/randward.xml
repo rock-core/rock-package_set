@@ -1,0 +1,13 @@
+<package>
+  <description brief="Randward planner">
+      This in an integration package for the Randward planner as of IPC-2011 planners data (see url below).
+      No additional functionality is provided, adaptations to the original source are made only to include the planner into the 
+      build infrastructure.
+  </description>
+  <author>Thomas Roehr/thomas.roehr@dfki.de</author>
+  <author>Petre Munteanu/petre_virgil.munteanu@dfki.de</author>
+  <license>GPL</license>
+  <url>svn://svn@pleiades.plg.inf.uc3m.es/ipc2011/data/planners/seq-sat/seq-sat-randward</url>
+  <depend package="base/cmake" />
+  <depend package="python" />
+</package>
