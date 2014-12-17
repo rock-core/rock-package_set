@@ -81,11 +81,11 @@ version_control:
         branch: $ROCK_BRANCH
     
     - multiagent/.*:
-        gitorious: rock-multiagent/$PACKAGE_BASENAME
+        github: rock-multiagent/multiagent-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - multiagent/orogen/.*:
-        gitorious: rock-multiagent/orogen-$PACKAGE_BASENAME
+        github: rock-multiagent/multiagent-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - external/yaml-cpp:
