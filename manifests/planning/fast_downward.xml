@@ -1,0 +1,12 @@
+<package>
+  <description brief="FastDownward">
+      This in an integration package for FastDownward. It can be used with aliases to run planner configurations as used in the IPC 2014 planning competition. 
+      No additional functionality is provided and benchmarks and experiments are stripped from the original archive. Adaptation to the original sources are made solely to facilicate integration of the planner into the build infrastructure.
+  </description>
+  <author>Thomas Roehr/thomas.roehr@dfki.de</author>
+  <license>GPL</license>
+  <url>www.fast-downward.org</url>
+  <depend package="base/cmake" />
+  <depend package="gawk" />
+  <depend package="python" />
+</package>
