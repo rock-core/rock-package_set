@@ -156,7 +156,7 @@ version_control:
     - control/kdl:
         type: git
         branch: master
-        url: git@github.com:orocos/orocos_kinematics_dynamics.git
+        github: orocos/orocos_kinematics_dynamics.git
         commit: 8e50979fdfb5e7a0ad1751162f39b3b32452efbc
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
