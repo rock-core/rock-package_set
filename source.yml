@@ -156,9 +156,8 @@ version_control:
     - control/kdl:
         type: git
         branch: master
-        url: http://git.mech.kuleuven.be/robotics/orocos_kinematics_dynamics.git
+        url: git@github.com:orocos/orocos_kinematics_dynamics.git
         commit: 8e50979fdfb5e7a0ad1751162f39b3b32452efbc
-        push_to: http://git.mech.kuleuven.be/robotics/orocos_kinematics_dynamics.git
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
             - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen_v2.patch, 1]
