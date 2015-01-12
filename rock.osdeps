@@ -393,3 +393,15 @@ freenect:
     debian: libfreenect-dev
     ubuntu:
         '14.04': libfreenect-dev
+
+bison:
+    debian,ubuntu: bison
+
+coinor:
+    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-libclp-dev]
+
+flex:
+    debian,ubuntu: flex
+
+gawk:
+    debian,ubuntu: gawk
