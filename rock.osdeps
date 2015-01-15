@@ -405,3 +405,6 @@ flex:
 
 gawk:
     debian,ubuntu: gawk
+
+bzip2:
+    debian,ubuntu: libbz2-dev
