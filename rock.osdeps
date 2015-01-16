@@ -231,11 +231,11 @@ gstreamer:
 
 libproc:
     debian:
-        jessie,sid: libprocps3-dev 
+        default: libprocps3-dev
+        wheezy:
+                - libprocps0-dev
         squeeze:
                 - libproc-dev
-        default:
-                - libprocps0-dev
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
         '12.10,13.04,13.10': libprocps0-dev
