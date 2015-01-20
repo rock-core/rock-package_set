@@ -36,14 +36,6 @@ version_control:
     - planning/orogen/.*:
         gitorious: rock-planning/orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
-        
-    - planning/motion_planning_libraries:
-        github: rock-planning/planning-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - planning/orogen/motion_planning_libraries:
-        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
 
     - simulation/imumodel:
         gitorious: rock-simulation/$PACKAGE_BASENAME
@@ -355,6 +347,12 @@ version_control:
         github: rock-planning/planning-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     - planning/orogen/pddl_planner:
+        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+    - planning/motion_planning_libraries:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+    - planning/orogen/motion_planning_libraries:
         github: rock-planning/planning-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
