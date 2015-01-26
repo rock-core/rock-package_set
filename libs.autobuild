@@ -48,7 +48,10 @@ in_flavor 'master' do
         end
     end
 
-    cmake_package 'planning/randward'
+    cmake_package 'planning/randward' do |pkg|
+        # The library has a 'build' script in it
+        pkg.builddir = 'build_dir'
+    end
     cmake_package 'planning/arvand_herd'
     cmake_package 'planning/fd_cedalion'
     cmake_package 'planning/fd_uniform'
