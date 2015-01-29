@@ -1,5 +1,11 @@
 # IMPORTANT: new packages must be added at the top of this file
 
+cmake_package 'tools/class_loader' do |pkg|
+    pkg.depends_on 'base/console_bridge'
+    pkg.depends_on 'poco'
+    pkg.define "BUILD_SHARED_LIBS", "ON"
+end
+
 #################################################################################"
 #################################################################################"
 ## 

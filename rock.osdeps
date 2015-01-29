@@ -408,3 +408,6 @@ gawk:
 
 bzip2:
     debian,ubuntu: libbz2-dev
+
+poco:
+    debian,ubuntu: libpoco-dev

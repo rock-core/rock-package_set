@@ -205,6 +205,10 @@ version_control:
         url: git://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
+    - tools/class_loader:
+        github: ros/class_loader
+        branch: indigo-devel
+
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
