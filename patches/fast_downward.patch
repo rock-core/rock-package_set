@@ -9,7 +9,7 @@ diff -urN ./CMakeLists.txt ../fast_downward_new/CMakeLists.txt
 +rock_init(fast_downward 0.1)
 +
 +add_definitions(-Wno-deprecated)
-+list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
++rock_activate_cxx11()
 +
 +add_subdirectory(src)
 +
