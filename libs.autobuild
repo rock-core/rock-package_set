@@ -98,7 +98,11 @@ in_flavor 'master', 'stable' do
     end
     cmake_package 'slam/mtk'
     cmake_package 'external/sbpl'
-    cmake_package 'external/ompl'
+    cmake_package 'external/ompl' do |pkg|
+        # this will prevent the ompl-CMakeLists from spawning a browser to
+        # register...
+        pkg.define("OMPL_REGISTRATION","Off")
+    end
     cmake_package 'external/aruco'
     cmake_package 'external/lemon'
     cmake_package 'external/snap' do |pkg|
