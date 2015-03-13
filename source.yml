@@ -6,11 +6,11 @@ imports:
 
 version_control:
     - control/.*:
-        gitorious: rock-control/$PACKAGE_BASENAME
+        github: rock-control/control-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - control/orogen/.*:
-        gitorious: rock-control/orogen-$PACKAGE_BASENAME
+        github: rock-control/control-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - control/urdfdom_headers:
@@ -24,19 +24,23 @@ version_control:
         branch: master
 
     - drivers/.*:
-        gitorious: rock-drivers/$PACKAGE_BASENAME
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - drivers/orogen/.*:
-        gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - planning/.*:
-        gitorious: rock-planning/$PACKAGE_BASENAME
+        github: rock-planning/planning-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - planning/orogen/.*:
-        gitorious: rock-planning/orogen-$PACKAGE_BASENAME
+        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_FLAVOR
+
+    - external/libply:
+        gitorious: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - simulation/imumodel:
@@ -47,12 +51,12 @@ version_control:
         gitorious: rock-simulation/orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
-    - external/libply:
-        gitorious: rock-slam/$PACKAGE_BASENAME
+    - slam/.*:
+        github: rock-slam/slam-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
-    - slam/.*:
-        gitorious: rock-slam/$PACKAGE_BASENAME
+    - slam/orogen/.*:
+        github: rock-slam/slam-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - bundles/rock_ugv_nav:
@@ -63,31 +67,27 @@ version_control:
         gitorious: rock/bundle-rock_auv.git
         branch: $ROCK_FLAVOR
 
-    - slam/orogen/.*:
-        gitorious: rock-slam/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
-
     - gui/.*:
-        gitorious: rock-gui/$PACKAGE_BASENAME
+        github: rock-gui/gui-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - gui/ffmpeg-ruby:
         branch: master
       
     - image_processing/.*:
-        gitorious: rock-image-processing/$PACKAGE_BASENAME
+        github: rock-image-processing/image_processing-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - image_processing/orogen/.*:
-        gitorious: rock-image-processing/orogen-$PACKAGE_BASENAME
+        github: rock-image-processing/image_processing-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
     
     - multiagent/.*:
-        gitorious: rock-multiagent/$PACKAGE_BASENAME
+        github: rock-multiagent/multiagent-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - multiagent/orogen/.*:
-        gitorious: rock-multiagent/orogen-$PACKAGE_BASENAME
+        github: rock-multiagent/multiagent-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - external/yaml-cpp:
@@ -169,11 +169,11 @@ version_control:
         branch: master
 
     - data_processing/*:
-        gitorious: rock-data-processing/$PACKAGE_BASENAME
+        github: rock-data-processing/data_processing-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - data_processing/orogen/.*:
-        gitorious: rock-data-processing/orogen-$PACKAGE_BASENAME
+        github: rock-data-processing/data_processing-orogen-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - drivers/aria:
