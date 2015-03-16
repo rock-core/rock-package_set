@@ -46,7 +46,7 @@ version_control:
         branch: $ROCK_BRANCH
 
     - external/libply:
-        github: rock-slam/$PACKAGE_BASENAME
+        github: rock-slam/external-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - slam/.*:
