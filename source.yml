@@ -270,11 +270,6 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
 
-    - external/gmapping:
-        type: svn
-        url: http://svn.openslam.org/data/svn/gmapping/trunk
-        patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
-
     - planning/openrave:
       github: rdiankov/openrave
       branch: latest_stable
