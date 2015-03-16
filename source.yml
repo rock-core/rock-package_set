@@ -54,11 +54,11 @@ version_control:
         branch: $ROCK_BRANCH
 
     - bundles/rock_ugv_nav:
-        github: rock/bundle-rock_ugv_nav.git
+        github: rock-bundles/bundles-rock_ugv_nav.git
         branch: $ROCK_BRANCH
 
     - bundles/rock_auv:
-        github: rock/bundle-rock_auv.git
+        github: rock-bundles/bundles-rock_auv.git
         branch: $ROCK_BRANCH
 
     - slam/orogen/.*:
