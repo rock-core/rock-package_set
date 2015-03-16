@@ -6,11 +6,11 @@ imports:
 
 version_control:
     - control/.*:
-        gitorious: rock-control/$PACKAGE_BASENAME
+        github: rock-control/control-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - control/orogen/.*:
-        gitorious: rock-control/orogen-$PACKAGE_BASENAME
+        github: rock-control/control-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - control/urdfdom_headers:
@@ -22,62 +22,62 @@ version_control:
         branch: master
 
     - drivers/.*:
-        gitorious: rock-drivers/$PACKAGE_BASENAME
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - drivers/orogen/.*:
-        gitorious: rock-drivers/orogen-$PACKAGE_BASENAME
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - planning/.*:
-        gitorious: rock-planning/$PACKAGE_BASENAME
+        github: rock-planning/planning-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - planning/orogen/.*:
-        gitorious: rock-planning/orogen-$PACKAGE_BASENAME
+        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - simulation/imumodel:
-        gitorious: rock-simulation/$PACKAGE_BASENAME
+        github: rock-simulation/$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - simulation/orogen/imumodel:
-        gitorious: rock-simulation/orogen-$PACKAGE_BASENAME
+        github: rock-simulation/orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - external/libply:
-        gitorious: rock-slam/$PACKAGE_BASENAME
+        github: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - slam/.*:
-        gitorious: rock-slam/$PACKAGE_BASENAME
+        github: rock-slam/slam-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - bundles/rock_ugv_nav:
-        gitorious: rock/bundle-rock_ugv_nav.git
+        github: rock/bundle-rock_ugv_nav.git
         branch: $ROCK_BRANCH
 
     - bundles/rock_auv:
-        gitorious: rock/bundle-rock_auv.git
+        github: rock/bundle-rock_auv.git
         branch: $ROCK_BRANCH
 
     - slam/orogen/.*:
-        gitorious: rock-slam/orogen-$PACKAGE_BASENAME
+        github: rock-slam/orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - gui/.*:
-        gitorious: rock-gui/$PACKAGE_BASENAME
+        github: rock-gui/gui-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - gui/ffmpeg-ruby:
         branch: master
       
     - image_processing/.*:
-        gitorious: rock-image-processing/$PACKAGE_BASENAME
+        github: rock-image-processing/image_processing-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - image_processing/orogen/.*:
-        gitorious: rock-image-processing/orogen-$PACKAGE_BASENAME
+        github: rock-image-processing/image_processing-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     
     - multiagent/.*:
@@ -181,11 +181,11 @@ version_control:
         branch: master
 
     - data_processing/*:
-        gitorious: rock-data-processing/$PACKAGE_BASENAME
+        github: rock-data-processing/data_processing-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - data_processing/orogen/.*:
-        gitorious: rock-data-processing/orogen-$PACKAGE_BASENAME
+        github: rock-data-processing/data_processing-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - drivers/aria:
