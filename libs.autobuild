@@ -365,7 +365,6 @@ in_flavor 'rock1408' do
     cmake_package 'slam/gmapping'
     remove_from_default 'slam/polygonnet'
     cmake_package 'slam/octomap'
-    cmake_package 'simulation/imumodel'
 
 
 

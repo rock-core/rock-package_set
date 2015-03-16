@@ -86,8 +86,6 @@ in_flavor 'rock1408' do
         pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
     end
 
-    orogen_package 'simulation/orogen/imumodel'
-
     orogen_package 'slam/orogen/orientation_estimator'
     orogen_package 'slam/orogen/envire'
     orogen_package 'slam/orogen/graph_slam'
