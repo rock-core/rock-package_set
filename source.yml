@@ -62,7 +62,7 @@ version_control:
         branch: $ROCK_BRANCH
 
     - slam/orogen/.*:
-        github: rock-slam/orogen-$PACKAGE_BASENAME
+        github: rock-slam/slam-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - gui/.*:
