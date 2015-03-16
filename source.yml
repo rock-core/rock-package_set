@@ -40,7 +40,7 @@ version_control:
         branch: $ROCK_FLAVOR
 
     - external/libply:
-        gitorious: rock-slam/$PACKAGE_BASENAME
+        github: rock-slam/external-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
     - slam/.*:
