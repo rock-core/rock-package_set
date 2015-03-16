@@ -43,14 +43,6 @@ version_control:
         gitorious: rock-slam/$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
 
-    - simulation/imumodel:
-        gitorious: rock-simulation/$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
-
-    - simulation/orogen/imumodel:
-        gitorious: rock-simulation/orogen-$PACKAGE_BASENAME
-        branch: $ROCK_FLAVOR
-
     - slam/.*:
         github: rock-slam/slam-$PACKAGE_BASENAME
         branch: $ROCK_FLAVOR
