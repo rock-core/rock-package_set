@@ -106,7 +106,7 @@ in_flavor 'master', 'stable' do
         pkg.define("OMPL_REGISTRATION","Off")
     end
     cmake_package 'external/aruco' do |pkg|
-        pkg.depends_on 'external/opencv'
+        pkg.depends_on 'opencv'
     end
     cmake_package 'external/lemon'
     cmake_package 'external/snap' do |pkg|
