@@ -276,7 +276,7 @@ version_control:
       
     - external/sbpl:
       type: git
-      url: https://github.com/sbpl/sbpl.git
+      url: https://github.com/shoppel/sbpl.git
       
     - external/ompl:
       type: archive
