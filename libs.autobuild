@@ -71,9 +71,6 @@ in_flavor 'master' do
     remove_from_default 'slam/polygonnet'
 
     cmake_package 'gui/map2d'
-    cmake_package 'gui/vizkit_3d_plugins'
-
-    cmake_package 'drivers/dps_desertstar_ssp1'
 
     cmake_package 'drivers/tofcamera_mesasr'
 
@@ -92,6 +89,9 @@ in_flavor 'master' do
 end
 
 in_flavor 'master', 'stable' do
+    cmake_package 'gui/vizkit_3d_plugins'
+    cmake_package 'drivers/dps_desertstar_ssp1'
+
     autotools_package 'drivers/aravis' do |pkg|
         pkg.depends_on 'gobject-introspection'
         pkg.depends_on 'gstreamer'
