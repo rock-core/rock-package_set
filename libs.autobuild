@@ -13,7 +13,6 @@ cmake_package 'gui/pose3d_editor'
 
 in_flavor 'master' do
     cmake_package 'multiagent/fipa_services'
-    cmake_package 'planning/motion_planning_libraries'
     cmake_package 'slam/ceres_solver'
 
     bundle_package 'bundles/rock_auv'
@@ -381,6 +380,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'planning/corridor_planner'
     cmake_package 'planning/vfh_star'
     cmake_package 'planning/corridor_navigation'
+    cmake_package 'planning/motion_planning_libraries'
 
     ##### Localisation and Mapping related packages
     autotools_package 'external/libply' do |pkg|
