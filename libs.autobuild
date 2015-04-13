@@ -145,6 +145,7 @@ in_flavor 'master', 'stable' do
         pkg.depends_on 'base/console_bridge'
     end
     cmake_package 'control/sdformat'
+    ruby_package 'control/ruby_sdformat'
     cmake_package 'control/urdfdom_headers'
     cmake_package 'control/kdl_parser'
     cmake_package 'gui/robot_model'
