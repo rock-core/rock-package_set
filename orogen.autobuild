@@ -5,7 +5,6 @@
     in_flavor 'master' do
         orogen_package 'multiagent/orogen/fipa_services'
         orogen_package 'slam/orogen/gmapping'
-        orogen_package 'planning/orogen/motion_planning_libraries'
         orogen_package 'image_processing/orogen/projection'
         orogen_package 'image_processing/orogen/virtual_view'
         orogen_package 'control/orogen/trajectory_generation'
@@ -118,6 +117,8 @@
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
+        
+        orogen_package 'planning/orogen/motion_planning_libraries'
     end
 
 create_metapackages
