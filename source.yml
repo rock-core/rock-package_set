@@ -79,11 +79,11 @@ version_control:
         branch: master
       
     - perception/.*:
-        github: rock-image-processing/perception-$PACKAGE_BASENAME
+        github: rock-perception/perception-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - perception/orogen/.*:
-        github: rock-image-processing/perception-orogen-$PACKAGE_BASENAME
+        github: rock-perception/perception-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     
     - multiagent/.*:
