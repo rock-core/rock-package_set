@@ -21,12 +21,12 @@ in_flavor 'master' do
         pkg.depends_on 'gem-hooks'
         pkg.depends_on 'clang-dev'
     end
-    cmake_package 'image_processing/projection'
+    cmake_package 'perception/projection'
 
     cmake_package 'gui/point_cloud'
     cmake_package 'gui/qcam_calib'
 
-    cmake_package 'image_processing/viso2' do |pkg|
+    cmake_package 'perception/viso2' do |pkg|
         pkg.disable_doc
         pkg.depends_on 'base/cmake'
 
@@ -34,10 +34,10 @@ in_flavor 'master' do
         # directory !
         if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".git"))
             Autoproj.configuration_option "UPDATE_VISO2_FROM_GIT", "boolean",
-                :doc => ["delete image_processing/viso2 to update to a release tarball ?",
+                :doc => ["delete perception/viso2 to update to a release tarball ?",
                     "Rock was previously checking out from a Git repository but just switched to",
                     "using the release tarball. Updating requires the deletion of the",
-                    "currently checked out image_processing/viso2 directory.",
+                    "currently checked out perception/viso2 directory.",
                     "Should I do it ? This is required to continue building"],
                 :default => 'yes'
 
@@ -45,7 +45,7 @@ in_flavor 'master' do
                 Autoproj.warn "deleting Viso2 source directory to migrate from the Git checkout to the release tarball"
                 FileUtils.rm_rf pkg.srcdir
             else
-                raise ConfigError, "user refused to delete image_processing/viso2, aborting the build"
+                raise ConfigError, "user refused to delete perception/viso2, aborting the build"
             end
         end
     end
@@ -371,8 +371,8 @@ in_flavor 'master', 'stable' do
     end
 
     ##### Image Processing
-    cmake_package 'image_processing/stereo'
-    cmake_package 'image_processing/libelas' do |pkg|
+    cmake_package 'perception/stereo'
+    cmake_package 'perception/libelas' do |pkg|
         # Build system from libelas has been patched into a Rock/CMake-based one
         pkg.depends_on 'base/types'
     end
