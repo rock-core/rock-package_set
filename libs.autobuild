@@ -22,6 +22,7 @@ in_flavor 'master' do
         pkg.depends_on 'clang-dev'
     end
     cmake_package 'perception/projection'
+    metapackage 'image_processing/projection', 'perception/projection'
 
     cmake_package 'gui/point_cloud'
     cmake_package 'gui/qcam_calib'
@@ -49,6 +50,7 @@ in_flavor 'master' do
             end
         end
     end
+    metapackage 'image_processing/viso2', 'perception/viso2'
 
     cmake_package 'planning/randward'
     cmake_package 'planning/arvand_herd'
@@ -372,10 +374,12 @@ in_flavor 'master', 'stable' do
 
     ##### Image Processing
     cmake_package 'perception/stereo'
+    metapackage 'image_processing/stereo', 'perception/stereo'
     cmake_package 'perception/libelas' do |pkg|
         # Build system from libelas has been patched into a Rock/CMake-based one
         pkg.depends_on 'base/types'
     end
+    metapackage 'image_processing/libelas', 'perception/libelas'
 
     ##### Planning
     cmake_package 'planning/nav_graph_search'
