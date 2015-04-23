@@ -1,7 +1,7 @@
 diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 --- ../snap_orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ ./CMakeLists.txt	2013-12-05 16:54:56.339166062 +0100
-@@ -0,0 +1,241 @@
+@@ -0,0 +1,243 @@
 +# CMakeLists.txt has to be located in the project folder and cmake has to be
 +# executed from 'project/build' with 'cmake ../'.
 +cmake_minimum_required(VERSION 2.6)
@@ -9,7 +9,8 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +rock_init(snap 2.1)
 +set(PROJECT_DESCRIPTION "Stanford Network Analysis Project")
 +
-+execute_process(COMMAND ${CMAKE_MAKE_PROGRAM} -C ${CMAKE_CURRENT_SOURCE_DIR} lib)
++add_custom_target(all ALL COMMAND ${CMAKE_MAKE_PROGRAM} -C ${CMAKE_CURRENT_SOURCE_DIR} lib)
++add_custom_target(clean COMMAND ${CMAKE_MAKE_PROGRAM} -C ${CMAKE_CURRENT_SOURCE_DIR} clean)
 +
 +set(SNAP_CORE_HEADERS
 +    snap-core/Snap.h
@@ -21,6 +22,7 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    snap-core/cmty.h
 +    snap-core/cncom.h
 +    snap-core/ff.h
++    snap-core/flow.h
 +    snap-core/gbase.h
 +    snap-core/ggen.h
 +    snap-core/ghash.h
