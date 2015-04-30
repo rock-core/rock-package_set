@@ -216,12 +216,6 @@ version_control:
         url: git://github.com/AlexanderFabisch/OpenANN.git
         branch: master
 
-    - slam/mtk:
-        type: svn
-        url: http://svn.openslam.org/data/svn/MTK/trunk/cpp
-        patches: 
-            - $AUTOPROJ_SOURCE_DIR/patches/mtk.patch
-
     - slam/octomap:
         github: octomap/octomap
         branch: master
