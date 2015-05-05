@@ -78,12 +78,12 @@ version_control:
     - gui/ffmpeg-ruby:
         branch: master
       
-    - image_processing/.*:
-        github: rock-image-processing/image_processing-$PACKAGE_BASENAME
+    - perception/.*:
+        github: rock-perception/perception-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
-    - image_processing/orogen/.*:
-        github: rock-image-processing/image_processing-orogen-$PACKAGE_BASENAME
+    - perception/orogen/.*:
+        github: rock-perception/perception-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     
     - multiagent/.*:
@@ -240,7 +240,7 @@ version_control:
         patches:
             - [$AUTOPROJ_SOURCE_DIR/patches/gsf-cmake.patch, 1]
 
-    - image_processing/viso2:
+    - perception/viso2:
         type: archive
         url: http://www.cvlibs.net/downloads/libviso2.zip
         no_subdirectory: true

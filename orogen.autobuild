@@ -7,15 +7,19 @@
         orogen_package 'multiagent/orogen/fipa_services'
         orogen_package 'slam/orogen/gmapping'
         orogen_package 'planning/orogen/motion_planning_libraries'
-        orogen_package 'image_processing/orogen/projection'
-        orogen_package 'image_processing/orogen/virtual_view'
+        orogen_package 'perception/orogen/projection'
+        metapackage 'image_processing/orogen/projection', 'perception/orogen/projection'
+        orogen_package 'perception/orogen/virtual_view'
+        metapackage 'image_processing/orogen/virtual_view', 'perception/orogen/virtual_view'
         orogen_package 'control/orogen/trajectory_generation'
         orogen_package 'control/orogen/cart_ctrl_wdls'
 
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
-            orogen_package 'image_processing/orogen/video_streamer'
+            orogen_package 'perception/orogen/video_streamer'
+            metapackage 'image_processing/orogen/video_streamer', 'perception/orogen/video_streamer'
         end
-        orogen_package 'image_processing/orogen/viso2'
+        orogen_package 'perception/orogen/viso2'
+        metapackage 'image_processing/orogen/viso2', 'perception/orogen/viso2'
 
 	orogen_package 'control/orogen/torque_estimator'
 
@@ -111,8 +115,10 @@
     	orogen_package 'slam/orogen/odometry'
     	orogen_package 'slam/orogen/tilt_scan'
 
-        orogen_package 'image_processing/orogen/image_preprocessing'
-        orogen_package 'image_processing/orogen/stereo'
+        orogen_package 'perception/orogen/image_preprocessing'
+        metapackage 'image_processing/orogen/image_preprocessing', 'perception/orogen/image_preprocessing'
+        orogen_package 'perception/orogen/stereo'
+        metapackage 'image_processing/orogen/stereo', 'perception/orogen/stereo'
 
 	orogen_package 'planning/orogen/corridor_navigation'
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
