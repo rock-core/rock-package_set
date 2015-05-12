@@ -52,7 +52,11 @@ in_flavor 'master' do
     end
     metapackage 'image_processing/viso2', 'perception/viso2'
 
-    cmake_package 'planning/randward'
+    cmake_package 'planning/randward' do |pkg|
+        #build is already a file in the repro, re have to rename the buildfolder
+        pkg.builddir = "build-rock"
+    end
+
     cmake_package 'planning/arvand_herd'
     cmake_package 'planning/fd_cedalion'
     cmake_package 'planning/fd_uniform'
