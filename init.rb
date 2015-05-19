@@ -16,3 +16,9 @@ end
 if Autoproj::Metapackage.method_defined?(:weak_dependencies?)
     metapackage('rock').weak_dependencies = true
 end
+if Autoproj::Metapackage.method_defined?(:weak_dependencies?)
+    metapackage('rock.drivers').weak_dependencies = true
+end
+if Autoproj::Metapackage.method_defined?(:weak_dependencies?)
+    metapackage('rock.all').weak_dependencies = true
+end
