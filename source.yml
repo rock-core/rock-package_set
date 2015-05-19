@@ -161,12 +161,6 @@ version_control:
         url: http://box2d.googlecode.com/svn/tags/v2.3.1/Box2D
         patches: $AUTOPROJ_SOURCE_DIR/patches/box2d_v2.3.1_pkgconfig.patch
 
-    - external/gdal:
-        type: archive
-        url: http://download.osgeo.org/gdal/gdal-1.9.2.tar.gz
-        update_cached_file: false
-        patches: [$AUTOPROJ_SOURCE_DIR/patches/gdal.patch, $AUTOPROJ_SOURCE_DIR/patches/gdal_close.patch]
-
     - control/kdl:
         type: git
         github: orocos/orocos_kinematics_dynamics.git
@@ -270,9 +264,9 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
 
-    - planning/openrave:
-      github: rdiankov/openrave
-      branch: latest_stable
+#    - planning/openrave:
+#      github: rdiankov/openrave
+#      branch: latest_stable
       
     - external/sbpl:
       type: git
