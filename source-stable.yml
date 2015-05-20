@@ -1,6 +1,6 @@
 version_control:
     - control/kdl:
-      commit: 8e50979fdfb5e7a0ad1751162f39b3b32452efbc
+      commit: 264ef3f7c4ad553e7a391e0f104fda1ec5051925
     - control/urdfdom:
       tag: '0.3.0'
     - control/urdfdom_headers:
