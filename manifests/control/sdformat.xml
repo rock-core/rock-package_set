@@ -7,7 +7,7 @@
         and extensible format capable of describing all aspects of robots,
         static and dynamic objects, lighting, terrain, and even physics.
     </description>
-    <rock_maintainer>Sylvain Joyeux/sylvain.joyeux@m4x.org</rock_maintainer>
+    <rock_maintainer>Thomio Watanabe/thomio.watanabe@gmail.com</rock_maintainer>
     <license>Apache</license>
     <url>http://sdformat.org</url>
 </package>
