@@ -196,7 +196,7 @@ version_control:
 
     - drivers/aria:
         type: archive
-        url: http://rock-robotics.org/archives/ARIA-2.7.5.2.tgz
+        url: http://robots.mobilerobots.com/ARIA/download/archives/ARIA-2.7.5+gcc4.3.tgz
         update_cached_file: false
         patches: $AUTOPROJ_SOURCE_DIR/patches/aria_pc.patch
 
