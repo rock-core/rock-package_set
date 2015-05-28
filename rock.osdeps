@@ -50,11 +50,13 @@ gdal:
     fedora: gdal-devel
     arch,manjarolinux: gdal
     # opensuse: [libgdal-devel, gdal, libgdal1] # available in repository Application:/Geo
+    macos-port: gdal
 
 swig: 
     debian,ubuntu: swig
     arch,manjarolinux: swig
     opensuse: swig
+    macos-port: swig
 
 proj:
     debian,ubuntu: libproj-dev
