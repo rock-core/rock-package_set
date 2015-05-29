@@ -96,8 +96,7 @@ boost:
         - libboost-iostreams-dev
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
-    macos-brew: boost
-    macos-port: boost
+    darwin: boost
     arch,manjarolinux:
         - boost
         - boost-libs
