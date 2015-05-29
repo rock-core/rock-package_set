@@ -97,6 +97,7 @@ boost:
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
     macos-brew: boost
+    macos-port: boost
     arch,manjarolinux:
         - boost
         - boost-libs
@@ -178,7 +179,7 @@ osgEarth:
 qwt5:
     debian,ubuntu: libqwt5-qt4-dev
     fedora,opensuse: qwt-devel
-    macos-brew: qwt
+    darwin: qwt
     arch: qwt5
 
 qsqlite:
