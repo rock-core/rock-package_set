@@ -411,3 +411,12 @@ gawk:
 
 bzip2:
     debian,ubuntu: libbz2-dev
+
+slam/pcl:
+    ubuntu:
+        default: libpcl-dev
+        '14.04': libpcl-1.7-all-dev
+        '12.04,12.10,13.04,13.10,14.10': nonexistent
+    debian: 
+        default: libpcl-dev
+        wheezy,squeeze: nonexistent
