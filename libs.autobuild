@@ -1,5 +1,6 @@
 # IMPORTANT: new packages must be added at the top of this file
 
+cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
 ruby_package 'control/ruby_sdformat'
 
