@@ -114,9 +114,9 @@ doxygen:
     arch,manjarolinux: doxygen
 
 graphviz:
-    debian,ubuntu: graphviz
+    debian,ubuntu: [ graphviz, graphviz-dev ]
     gentoo: graphviz
-    fedora: graphviz
+    fedora: [ graphviz, graphviz-devel ]
     arch,manjarolinux: graphviz
     opensuse: graphviz-devel
 
