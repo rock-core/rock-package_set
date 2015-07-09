@@ -4,6 +4,21 @@ cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
 ruby_package 'control/ruby_sdformat'
 
+require 'utilrb/pkgconfig'
+
+cmake_package 'gui/collada_dom' do |pkg|
+    pkg.define 'opt_collada15', 'off'
+end
+
+cmake_package 'gui/collada_osg' do |pkg|
+    pkg.depends_on "gui/collada_dom"
+    pkg.post_install do
+        osg = utilrb::pkgconfig.new 'openscenegraph-osg'
+        plugin_dir = "osgplugins-#{osg.version.map(&:to_s).join(".")}"
+        autoproj.env_add_path "osg_library_path", file.join(pkg.prefix, 'lib', plugin_dir)
+    end
+end
+
 #################################################################################"
 #################################################################################"
 ## 
