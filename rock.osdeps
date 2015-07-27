@@ -426,3 +426,13 @@ slam/pcl:
     debian: 
         default: libpcl-dev
         wheezy,squeeze: nonexistent
+
+zlib:
+    ubuntu,debian: zlib1g-dev
+
+libxml2:
+    ubuntu,debian: libxml2-dev
+
+libpcrecpp:
+    ubuntu,debian: libpcre3-dev
+
