@@ -192,6 +192,7 @@ in_flavor 'master', 'stable' do
 
     bundle_package 'bundles/rock_ugv_nav'
     cmake_package 'control/kdl' do |pkg|
+        pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.depends_on 'base/types'
         pkg.with_doc 'docs'
         pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
