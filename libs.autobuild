@@ -2,7 +2,118 @@
 
 cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
+
 ruby_package 'control/ruby_sdformat'
+cmake_package "drivers/glfw" do |pkg|
+    pkg.define "BUILD_SHARED_LIBS", "ON"
+end
+
+#Needed for kinect, the os packages does not (yet) work 06.15
+Autoproj.add_osdeps_overrides 'glfw', :package => 'drivers/glfw'
+remove_from_default 'drivers/glfw'
+
+
+import_package "drivers/glew" do |pkg|
+    pkg.depends_on "glfw"
+    pkg.depends_on "libturbojpeg"
+    
+    def pkg.buildstamp; "autobuild-stamp" end
+
+    def pkg.prepare
+        source_tree srcdir do |pkg2|
+            File.open(File.join(srcdir,".gitignore")).each_line do |excl|
+                pkg2.exclude << Regexp.new("^#{Regexp.quote(excl)}")
+            end
+        end
+
+        super
+
+        stamps = dependencies.map { |pkg2| Autobuild::Package[pkg2].installstamp }
+
+        file buildstamp => stamps do
+            isolate_errors do
+                build
+                progress_done
+            end
+        end
+        task "#{name}-build" => buildstamp
+        file installstamp => buildstamp
+        
+        Autoproj.env_set_path "GLEW_DEST", prefix
+
+        in_dir(srcdir) do 
+            run("prepare",Autobuild.tool(:make), 'extensions')
+        end 
+    end
+    
+    def pkg.build 
+        Autoproj.env_set_path "GLEW_DEST", prefix
+        in_dir(srcdir) do 
+            run("build",Autobuild.tool(:make))
+        end
+    end
+    def pkg.install
+        Autoproj.env_set_path "GLEW_DEST", prefix
+        in_dir(srcdir) do 
+            run("install", Autobuild.tool(:make), 'install.all')
+        end
+    end
+end
+#Needed for kinect, the os packages does not (yet) work 06.15
+Autoproj.add_osdeps_overrides 'glew', :package => 'drivers/glew'
+remove_from_default 'drivers/glew'
+
+cmake_package "drivers/freenect2" do |pkg|
+    pkg.depends_on "glew"
+    #It needs a patched version of libusb
+    pkg.depends_on "drivers/libusb"
+    pkg.importdir = pkg.name
+    pkg.define "DEPENDS_DIR", "false"
+    pkg.srcdir = File.join(pkg.srcdir,"examples","protonect")
+end
+
+#Needed for kinect, the os packages does not (yet) work 06.15 (see patch in this package set)
+import_package 'drivers/libusb' do |pkg|
+    pkg.depends_on "libudev"
+    def pkg.buildstamp; "autobuild-stamp" end
+    def pkg.prepare
+        source_tree srcdir do |pkg2|
+            File.open(File.join(srcdir,".gitignore")).each_line do |excl|
+                pkg2.exclude << Regexp.new("^#{Regexp.quote(excl)}")
+            end
+        end
+
+        super
+
+        stamps = dependencies.map { |pkg2| Autobuild::Package[pkg2].installstamp }
+
+        file buildstamp => stamps do
+            isolate_errors do
+                build
+                progress_done
+            end
+        end
+        task "#{name}-build" => buildstamp
+        file installstamp => buildstamp
+
+        in_dir(srcdir) do
+            run("prepare_bootstrap","./bootstrap.sh")
+            run("prepare_configure","./configure", "--prefix=#{Autobuild.prefix}")
+        end
+    end
+
+    def pkg.build
+        in_dir(srcdir) do
+            run("build", Autobuild.tool(:make))
+        end
+    end
+
+    def pkg.install
+        in_dir(srcdir) do
+            run("install", Autobuild.tool(:make), "install")
+        end
+    end
+end
 
 #################################################################################"
 #################################################################################"
