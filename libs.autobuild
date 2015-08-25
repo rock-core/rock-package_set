@@ -7,14 +7,10 @@ ruby_package 'control/ruby_sdformat'
 cmake_package "drivers/glfw" do |pkg|
     pkg.define "BUILD_SHARED_LIBS", "ON"
 end
-
-#Needed for kinect, the os packages does not (yet) work 06.15
-Autoproj.add_osdeps_overrides 'glfw', :package => 'drivers/glfw'
 remove_from_default 'drivers/glfw'
 
-
 import_package "drivers/glew" do |pkg|
-    pkg.depends_on "glfw"
+    pkg.depends_on "drivers/glfw"
     pkg.depends_on "libturbojpeg"
     
     def pkg.buildstamp; "autobuild-stamp" end
@@ -59,12 +55,10 @@ import_package "drivers/glew" do |pkg|
         end
     end
 end
-#Needed for kinect, the os packages does not (yet) work 06.15
-Autoproj.add_osdeps_overrides 'glew', :package => 'drivers/glew'
 remove_from_default 'drivers/glew'
 
 cmake_package "drivers/freenect2" do |pkg|
-    pkg.depends_on "glew"
+    pkg.depends_on "drivers/glew"
     #It needs a patched version of libusb
     pkg.depends_on "drivers/libusb"
     pkg.importdir = pkg.name
