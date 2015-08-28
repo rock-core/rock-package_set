@@ -1,0 +1,54 @@
+diff -ur ../gexf/abstractiter.h ./abstractiter.h
+--- ../gexf/abstractiter.h	2009-07-20 12:15:16.000000000 +0200
++++ ./abstractiter.h	2015-08-28 08:47:26.689222786 +0200
+@@ -44,6 +44,7 @@
+      *  \return an instance of the iterator
+      */
+     virtual AbstractIter* begin() = 0;
++    virtual ~AbstractIter(){};
+ 
+     /*!
+      *  \brief Test next element in collection.
+diff -ur ../gexf/abstractparser.h ./abstractparser.h
+--- ../gexf/abstractparser.h	2009-10-29 11:17:12.000000000 +0100
++++ ./abstractparser.h	2015-08-28 08:47:53.401223773 +0200
+@@ -45,7 +45,8 @@
+      *  \param gexf : Reference to a GEXF object
+      */
+     virtual void bind(libgexf::GEXF* gexf) = 0;
+-
++    
++    virtual ~AbstractParser(){};
+     /*!
+      *  \brief Start a process on an XML element
+      *
+diff -ur ../gexf/directedgraph.cpp ./directedgraph.cpp
+--- ../gexf/directedgraph.cpp	2009-11-02 19:07:52.000000000 +0100
++++ ./directedgraph.cpp	2015-08-28 08:49:32.697227439 +0200
+@@ -181,6 +181,7 @@
+             map<t_id,map<t_id,t_id> >::const_iterator it_e = _edges.find(*it_s);
+             map<t_id,t_id>::const_iterator it_t = (it_e->second).find(node_id);
+             map<t_id,map<t_edge_property,t_edge_value> >::const_iterator it_properties = _edges_properties.find(it_t->second); // it_t->second = edge_id
++            (void)it_properties; //Prevent compiler warning
+             /*if(it_properties != _edges_properties.end()) {
+                 map<t_edge_property,t_edge_value>::const_iterator it_count = (it_properties->second).find(EDGE_COUNT);
+                 if(it_count != (it_properties->second).end()) {
+@@ -210,6 +211,7 @@
+         map<t_id,t_id>::const_iterator it_t;
+         for ( it_t=(it_e->second).begin() ; it_t != (it_e->second).end(); ++it_t ) {
+             map<t_id,map<t_edge_property,t_edge_value> >::const_iterator it_properties = _edges_properties.find(it_t->second);
++            (void)it_properties;
+             /*if(it_properties != _edges_properties.end()) {
+                 map<t_edge_property,t_edge_value>::const_iterator it_count = (it_properties->second).find(EDGE_COUNT);
+                 if(it_count != (it_properties->second).end()) {
+diff -ur ../gexf/graph.cpp ./graph.cpp
+--- ../gexf/graph.cpp	2009-11-03 11:50:13.000000000 +0100
++++ ./graph.cpp	2015-08-28 08:49:50.337228091 +0200
+@@ -306,6 +306,7 @@
+         /* add weights */
+         for ( map<t_id,t_id>::const_iterator it_t=(it_e->second).begin() ; it_t != (it_e->second).end(); ++it_t ) {
+             map<t_id,map<t_edge_property,t_edge_value> >::const_iterator it_data = _edges_properties.find(it_t->second);
++            (void)it_data;
+             /*if(it_data != _edges_properties.end()) {
+                 map<t_edge_property,t_edge_value>::const_iterator it_count = (it_data->second).find(EDGE_COUNT);
+                 if(it_count != (it_data->second).end()) {

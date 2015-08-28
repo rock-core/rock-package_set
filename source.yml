@@ -262,6 +262,7 @@ version_control:
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_edge_label.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/gexf_compiler_warnings.patch
 
     - external/aruco:
       type: archive
