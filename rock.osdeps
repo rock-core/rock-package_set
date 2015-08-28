@@ -409,6 +409,13 @@ flex:
 gawk:
     debian,ubuntu: gawk
 
+libturbojpeg:
+    debian:
+        strech,sid: libturbojpeg0-dev
+        default: libturbojpeg1-dev
+    ubuntu:
+        '14.04,14.10,15.04': libjpeg-turbo8-dev
+
 bzip2:
     debian,ubuntu: libbz2-dev
 

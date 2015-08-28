@@ -3,6 +3,7 @@
 
 
     in_flavor 'master' do
+        orogen_package 'drivers/orogen/kinect2'
         orogen_package 'slam/orogen/threed_odometry'
         orogen_package 'multiagent/orogen/fipa_services'
         orogen_package 'slam/orogen/gmapping'
@@ -12,6 +13,7 @@
         metapackage 'image_processing/orogen/virtual_view', 'perception/orogen/virtual_view'
         orogen_package 'control/orogen/trajectory_generation'
         orogen_package 'control/orogen/cart_ctrl_wdls'
+        orogen_package 'control/orogen/auv_raw_command_converter'
 
         not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
             orogen_package 'perception/orogen/video_streamer'

@@ -205,6 +205,12 @@ version_control:
         url: git://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
+    - drivers/libusb:
+        github: libusb/libusb
+        commit: v1.0.19
+        patches:
+            -  $AUTOPROJ_SOURCE_DIR/patches/linux_usbfs_increase_max_iso_buffer_length.patch
+
     - data_processing/openann:
         type: git
         url: git://github.com/AlexanderFabisch/OpenANN.git
@@ -238,7 +244,7 @@ version_control:
 
     - external/lemon:
       type: archive
-      url: http://lemon.cs.elte.hu/pub/sources/lemon-1.3.tar.gz
+      url: http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
       update_cached_file: false
 
     - external/snap:
@@ -256,6 +262,7 @@ version_control:
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_edge_label.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/gexf_compiler_warnings.patch
 
     - external/aruco:
       type: archive
@@ -281,6 +288,15 @@ version_control:
         url: git://git.gnome.org/aravis
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
         branch: master
+
+    - drivers/freenect2:
+        github: OpenKinect/libfreenect2.git
+
+    - drivers/glfw:
+        github: glfw/glfw.git
+
+    - drivers/glew:
+        github: nigels-com/glew.git
 
     # Packages that have been migrated to github
     - drivers/sonar_tritech:
