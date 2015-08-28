@@ -10,4 +10,5 @@
   <license>LGPL V3.0</license>
   <url>http://www.reflexxes.com</url>
   <depend package="base/cmake" />
+  <tags>stable</tags>
 </package>

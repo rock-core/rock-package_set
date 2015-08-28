@@ -9,6 +9,7 @@ Library (KDL), distributed by the Orocos Project.
 
 <rosdep name="pkg-config"/>
 <rosdep name="eigen3"/>
+<tags>stable</tags>
 
 </package>
 
