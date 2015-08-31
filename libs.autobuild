@@ -177,7 +177,9 @@ in_flavor 'master' do
     cmake_package 'slam/pose_estimation'
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
-    cmake_package 'slam/gmapping'
+    cmake_package 'slam/gmapping' do |pkg|
+        pkg.define "BUILD_SHARED_LIBS", "ON"
+    end	
 
     cmake_package 'slam/polygonnet'
     remove_from_default 'slam/polygonnet'
