@@ -43,12 +43,13 @@ diff -urN ../apriltag-2015-03-18/CMakeLists.txt ./CMakeLists.txt
 diff -urN ../apriltag-2015-03-18/manifest.xml ./manifest.xml
 --- ../apriltag-2015-03-18/manifest.xml	1970-01-01 01:00:00.000000000 +0100
 +++ ./manifest.xml	2015-04-30 17:20:35.639306306 +0200
-@@ -0,0 +1,11 @@
+@@ -0,0 +1,12 @@
 +<package>
 +  <description brief="Apriltags Marker Detection, source file can be find in http://april.eecs.umich.edu/wiki/index.php/AprilTags">
 +  
 +  </description>
 +  <author>April Robotics Laboratory, Diego Cesar/diego.cesar@dfki.de</author>
++  <maintainer>Diego Cesar/diego.cesar@dfki.de</maintainer>
 +  <license></license>
 +  <url>http://</url>
 +  <logo>http://</logo>
