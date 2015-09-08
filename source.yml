@@ -234,6 +234,12 @@ version_control:
         patches:
             - [$AUTOPROJ_SOURCE_DIR/patches/gsf-cmake.patch, 1]
 
+    - perception/apriltags:
+        type: archive
+        url: http://april.eecs.umich.edu/software/apriltag-2015-03-18.tgz
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/apriltags.patch
+
     - perception/viso2:
         type: archive
         url: http://www.cvlibs.net/downloads/libviso2.zip
