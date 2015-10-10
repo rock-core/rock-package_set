@@ -1,0 +1,4 @@
+net-ssh: 
+    gem: "net-ssh<=2.10"
+net-scp: 
+    gem: "net-scp<=1.0.4"
