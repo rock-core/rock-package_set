@@ -120,7 +120,8 @@ end
 
 in_flavor 'master' do
     cmake_package 'multiagent/fipa_services'
-    cmake_package 'slam/ceres_solver'
+    #Does not compile and maintainer does not respond
+    #cmake_package 'slam/ceres_solver'
 
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|
