@@ -63,7 +63,6 @@ cmake_package "drivers/freenect2" do |pkg|
     pkg.depends_on "drivers/libusb"
     pkg.importdir = pkg.name
     pkg.define "DEPENDS_DIR", "false"
-    pkg.srcdir = File.join(pkg.srcdir,"examples","protonect")
 end
 
 #Needed for kinect, the os packages does not (yet) work 06.15 (see patch in this package set)
