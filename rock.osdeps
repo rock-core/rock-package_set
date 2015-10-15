@@ -266,7 +266,7 @@ libusb1_0_13:
         osdep: libusb1
 
 libudev:
-    ubuntu,debian:  libudev-dev
+    ubuntu,debian:  libudev-dev, libudev
     opensuse: libudev-devel
 
 libxmu:
