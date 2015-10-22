@@ -129,8 +129,7 @@ version_control:
         update_cached_file: false
 
     - slam/gmapping:
-        type: svn
-        url: http://svn.openslam.org/data/svn/gmapping/trunk
+        github: ros-perception/openslam_gmapping.git
         patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
 
     - slam/hogman:
