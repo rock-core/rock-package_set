@@ -112,10 +112,8 @@ version_control:
         update_cached_file: false
 
     - planning/randward:
-        type: svn
-        url: 'svn://svn@pleiades.plg.inf.uc3m.es/ipc2011/data/planners/seq-sat/seq-sat-randward'
-        patches: $AUTOPROJ_SOURCE_DIR/patches/randward.patch
-        update_cached_file: false
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: master
 
     - slam/flann:
         type: archive
