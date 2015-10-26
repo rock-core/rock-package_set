@@ -1,0 +1,63 @@
+diff -Naur ../gexf.orig/filereader.cpp ./filereader.cpp
+--- ../gexf.orig/filereader.cpp	2015-10-26 16:07:11.101269972 +0100
++++ ./filereader.cpp	2015-10-26 16:16:14.754201373 +0100
+@@ -77,11 +77,9 @@
+     if( _v == _1_1 ) {
+         AbstractParser* parser = new GexfParser();
+         _parser = parser;
+-        cout << "INFO Parser GEXF 1.1" << endl;
+     } else {
+         AbstractParser* parser = new LegacyParser();
+         _parser = parser;
+-        cout << "INFO Parser GEXF 1.0 (legacy)" << endl;
+     }
+     _parser->bind(_gexf);
+ }
+@@ -102,7 +100,6 @@
+ 
+     streamFile();
+     xmlCleanupParser();
+-    cout << "INFO File parsed." << endl;
+ }
+ 
+ //-----------------------------------------
+diff -Naur ../gexf.orig/filewriter.cpp ./filewriter.cpp
+--- ../gexf.orig/filewriter.cpp	2015-10-26 16:07:11.105269801 +0100
++++ ./filewriter.cpp	2015-10-26 16:16:14.754201373 +0100
+@@ -78,8 +78,6 @@
+     throw FileWriterException( "LIBXML NOT FOUND" );
+     #endif
+ 
+-    cout << "INFO Start writing the file (gexf v1.1).." << endl;
+-
+     /*
+      * this initialize the library and check potential ABI mismatches
+      * between the version it was compiled for and the actual shared
+@@ -116,7 +114,6 @@
+     xmlFreeTextWriter(writer);
+     xmlCleanupParser();
+ 
+-    cout << "INFO File written." << endl;
+ }
+ 
+ //-----------------------------------------
+diff -Naur ../gexf.orig/legacywriter.cpp ./legacywriter.cpp
+--- ../gexf.orig/legacywriter.cpp	2015-10-26 16:07:11.101269972 +0100
++++ ./legacywriter.cpp	2015-10-26 16:16:14.754201373 +0100
+@@ -78,8 +78,6 @@
+     throw FileWriterException( "LIBXML NOT FOUND" );
+     #endif
+ 
+-    cout << "INFO Start writing the file (gexf v1.0).." << endl;
+-
+     /*
+      * this initialize the library and check potential ABI mismatches
+      * between the version it was compiled for and the actual shared
+@@ -116,7 +114,6 @@
+     xmlFreeTextWriter(writer);
+     xmlCleanupParser();
+ 
+-    cout << "INFO File written." << endl;
+ }
+ 
+ //-----------------------------------------
