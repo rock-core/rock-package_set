@@ -108,6 +108,20 @@ import_package 'drivers/libusb' do |pkg|
     end
 end
 
+cmake_package 'gui/collada_dom' do |pkg|
+    pkg.define 'OPT_COLLADA15', 'off'
+end
+
+require 'utilrb/pkgconfig'
+cmake_package 'gui/collada_osg' do |pkg|
+    pkg.depends_on "gui/collada_dom"
+    pkg.post_install do
+        osg = Utilrb::PkgConfig.new 'openscenegraph-osg'
+        plugin_dir = "osgPlugins-#{osg.version.map(&:to_s).join(".")}"
+        pkg.env_add_path "OSG_LIBRARY_PATH", File.join(pkg.prefix, 'lib', plugin_dir)
+    end
+end
+
 #################################################################################"
 #################################################################################"
 ## 

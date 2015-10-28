@@ -304,6 +304,15 @@ version_control:
     - drivers/glew:
         github: nigels-com/glew.git
 
+    - gui/collada_dom:
+        type: archive
+        url: http://downloads.sourceforge.net/project/collada-dom/Collada%20DOM/Collada%20DOM%202.4/collada-dom-2.4.0.tgz
+        archive_dir: collada-dom-2.4.0
+        update_cached_file: false
+
+    - gui/collada_osg:
+        github: rock-gui/gui-collada_osg
+
     # Packages that have been migrated to github
     - drivers/sonar_tritech:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
