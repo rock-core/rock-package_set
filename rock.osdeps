@@ -6,12 +6,12 @@ flann:
     arch,manjarolinux: ignore
 
 ffmpeg:
-    ubuntu: 
+    ubuntu:
         '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '10.10,11.04,11.10,12.04,12.10,13.04,13.10': [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         default: [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-    debian: 
+    debian:
         default: [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
     arch,manjarolinux: ffmpeg
@@ -52,7 +52,7 @@ gdal:
     # opensuse: [libgdal-devel, gdal, libgdal1] # available in repository Application:/Geo
     macos-port: gdal
 
-swig: 
+swig:
     debian,ubuntu: swig
     arch,manjarolinux: swig
     opensuse: swig
@@ -180,6 +180,7 @@ qwt5:
     fedora,opensuse: qwt-devel
     darwin: qwt
     arch: qwt5
+    gentoo: x11-libs/qwt
 
 qsqlite:
     debian,ubuntu: libqt4-sql-sqlite
@@ -193,7 +194,7 @@ libnl2:
                 - libnl-dev
         '14.04':
                 - libnl-3-dev
-        default: 
+        default:
                 - libnl2-dev
     fedora: nonexistent
     opensuse: libnl3-devel
@@ -220,13 +221,14 @@ vtk:
 gsl:
     debian,ubuntu: libgsl0-dev
     fedora,opensuse: gsl-devel
+    gentoo: sci-libs/gsl
 
 boost-python:
     debian,ubuntu: libboost-python-dev
     fedora,opensuse: boost-devel
 
 gstreamer:
-    debian,ubuntu: 
+    debian,ubuntu:
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
@@ -254,7 +256,7 @@ libusb-old:
 
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
-    opensuse: libusb-1_0-devel 
+    opensuse: libusb-1_0-devel
 
 # libfreenect requires a specific version of libusb1
 libusb1_0_13:
@@ -278,14 +280,14 @@ external/tinyxml:
         '10.04,10.10,11.04,11.10': nonexistent
         default: libtinyxml-dev
     debian: libtinyxml-dev
-    opensuse: tinyxml-devel 
+    opensuse: tinyxml-devel
 
 csparse:
     debian,ubuntu: libsuitesparse-dev
     macos-brew: suite-sparse
     opensuse: suitesparse-devel
 
-cholmod: 
+cholmod:
     debian,ubuntu: libsuitesparse-dev
     macos-brew: suite-sparse
     opensuse: suitesparse-devel
@@ -311,7 +313,7 @@ mpfi:
 tools/rbind:
     gem: rbind
     debian,ubuntu: libffi-dev
-    opensuse: libffi-devel 
+    opensuse: libffi-devel
 
 python:
     debian, ubuntu: python-dev
@@ -333,7 +335,7 @@ libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
         default: libqglviewer-dev
-    debian: 
+    debian:
         '7.3':   libqglviewer-qt4-dev
         default: libqglviewer-dev
     macos-brew: libqglviewer
@@ -357,7 +359,7 @@ png++:
 
 udt:
     debian,ubuntu: [ libudt-dev, libudt0 ]
-    # opensuse: [udt-devel, libudt0] 
+    # opensuse: [udt-devel, libudt0]
 
 uuid:
     debian,ubuntu: [uuid-dev]
@@ -423,7 +425,7 @@ slam/pcl:
     ubuntu:
         default: libpcl-dev
         '12.04,12.10,13.04,13.10,14.04,14.10': nonexistent
-    debian: 
+    debian:
         default: libpcl-dev
         wheezy,squeeze: nonexistent
 
@@ -432,6 +434,7 @@ zlib:
 
 libxml2:
     ubuntu,debian: libxml2-dev
+    gentoo: dev-libs/libxml2
 
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
