@@ -439,3 +439,6 @@ libxml2:
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
 
+ceres:
+    ubuntu,debian: libceres-dev
+
