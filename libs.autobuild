@@ -118,7 +118,7 @@ cmake_package 'gui/collada_osg' do |pkg|
     pkg.post_install do
         osg = Utilrb::PkgConfig.new 'openscenegraph-osg'
         plugin_dir = "osgPlugins-#{osg.version.map(&:to_s).join(".")}"
-        pkg.env_add_path "OSG_LIBRARY_PATH", File.join(pkg.prefix, 'lib', plugin_dir)
+        Autoproj.env_add_path "OSG_LIBRARY_PATH", File.join(pkg.prefix, 'lib', plugin_dir)
     end
 end
 
