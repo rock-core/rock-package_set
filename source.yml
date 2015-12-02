@@ -204,9 +204,7 @@ version_control:
 
     - drivers/libusb:
         github: libusb/libusb
-        commit: v1.0.19
-        patches:
-            -  $AUTOPROJ_SOURCE_DIR/patches/linux_usbfs_increase_max_iso_buffer_length.patch
+        tag: v1.0.20
 
     - data_processing/openann:
         type: git
