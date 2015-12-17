@@ -113,13 +113,6 @@ doxygen:
     fedora,opensuse: doxygen
     arch,manjarolinux: doxygen
 
-graphviz:
-    debian,ubuntu: [ graphviz, graphviz-dev ]
-    gentoo: graphviz
-    fedora: [ graphviz, graphviz-devel ]
-    arch,manjarolinux: graphviz
-    opensuse: graphviz-devel
-
 net-ssh: gem
 net-scp: gem
 
