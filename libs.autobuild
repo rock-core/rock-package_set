@@ -2,6 +2,7 @@
 cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
+cmake_package 'control/visp'
 
 ruby_package 'control/ruby_sdformat'
 cmake_package "drivers/glfw" do |pkg|

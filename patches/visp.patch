@@ -1,0 +1,40 @@
+--- ../ViSP/CMakeLists.txt	2015-05-12 14:57:16.479759652 +0200
++++ ./CMakeLists.txt	2015-05-12 15:05:03.731758715 +0200
+@@ -2377,3 +2377,4 @@
+ if(BUILD_TUTORIALS)
+   add_subdirectory(tutorial)
+ endif()
++find_package(rock)
+diff -urN ../visp/manifest.xml ./manifest.xml
+--- ../visp/manifest.xml 1970-01-01 01:00:00.000000000 +0100
++++ ./manifest.xml  2015-04-30 17:20:35.639306306 +0200
+@@ -0,0 +1,12 @@
++<package>
++  <description brief="VISP is an Open Source Visual Servoing Plataform, developed by Inria Lagadic team. source file can be found in https://visp.inria.fr/download/">
++  
++  </description>
++  <author>Inria Lagadic team</author>
++  <maintainer>Diego Cesar/diego.b.cesar@gmail.com</maintainer>
++  <license></license>
++  <url>http://</url>
++  <logo>http://</logo>
++  <depend package="base/cmake" />
++  <depend package="base/types" />
++</package>
+diff -urN ../visp/visp.pc.in ./visp.pc.in
+--- ../visp/visp.pc.in  1970-01-01 01:00:00.000000000 +0100
++++ ./visp.pc.in   2015-04-30 17:16:00.383301282 +0200
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Requires: @PKGCONFIG_REQUIRES@
++Libs: -L${libdir} -l@TARGET_NAME@ @PKGCONFIG_LIBS@
++Cflags: -I${includedir} @PKGCONFIG_CFLAGS@
++
+
