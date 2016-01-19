@@ -390,6 +390,11 @@ in_flavor 'master', 'stable' do
         pkg.define("BUILD_SHARED_LIBS","ON")
         pkg.disable_doc # the package has documentation generation target
     end
+    ##### External libraries not available as binary packages
+    cmake_package 'external/yaml-cpp03' do |pkg|
+        pkg.define("BUILD_SHARED_LIBS","ON")
+        pkg.disable_doc # the package has documentation generation target
+    end
     cmake_package 'external/tinyxml' do |pkg|
         # tinyxml is patched to use Rock macros
         pkg.depends_on 'base/types'

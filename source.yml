@@ -99,6 +99,12 @@ version_control:
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
         update_cached_file: false
 
+    - external/yaml-cpp03:
+        type: archive
+        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
+        patches: $AUTOPROJ_SOURCE_DIR/patches/yaml-cpp03.patch
+        update_cached_file: false
+
     - slam/pcl:
         type: archive
         url: 'https://github.com/PointCloudLibrary/pcl/archive/pcl-1.7.1.tar.gz'

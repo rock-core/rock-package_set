@@ -1,0 +1,86 @@
+Nur in ../yaml-cpp03/: archive-autobuild-stamp.
+Nur in ../yaml-cpp03/: build.
+diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
+--- ./CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/CMakeLists.txt	2016-01-19 13:18:14.154888373 +0100
+@@ -213,7 +213,7 @@
+ 
+ set(INCLUDE_INSTALL_ROOT_DIR include)
+ 
+-set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_ROOT_DIR}/yaml-cpp)
++set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_ROOT_DIR}/yaml-cpp03)
+ set(LIB_INSTALL_DIR "${_library_dir}${LIB_SUFFIX}")
+ 
+ set(_INSTALL_DESTINATIONS
+@@ -226,7 +226,7 @@
+ ###
+ ### Library
+ ###
+-add_library(yaml-cpp
++add_library(yaml-cpp03
+ 	${sources}
+ 	${public_headers}
+ 	${private_headers}
+@@ -235,10 +235,10 @@
+ 	${contrib_private_headers}
+ )
+ 
+-set_target_properties(yaml-cpp PROPERTIES
++set_target_properties(yaml-cpp03 PROPERTIES
+ 	VERSION "${YAML_CPP_VERSION}"
+ 	SOVERSION "${YAML_CPP_VERSION_MAJOR}.${YAML_CPP_VERSION_MINOR}"
+-	PROJECT_LABEL "yaml-cpp ${LABEL_SUFFIX}"
++	PROJECT_LABEL "yaml-cpp03 ${LABEL_SUFFIX}"
+ )
+ 
+ if(IPHONE)
+@@ -259,7 +259,7 @@
+ 	endif()
+ endif()
+ 
+-install(TARGETS yaml-cpp ${_INSTALL_DESTINATIONS})
++install(TARGETS yaml-cpp03 ${_INSTALL_DESTINATIONS})
+ install(
+ 	DIRECTORY ${header_directory}
+ 	DESTINATION ${INCLUDE_INSTALL_DIR}
+@@ -267,7 +267,7 @@
+ )
+ 
+ if(UNIX)
+-	set(PC_FILE ${CMAKE_BINARY_DIR}/yaml-cpp.pc)
++	set(PC_FILE ${CMAKE_BINARY_DIR}/yaml-cpp03.pc)
+ 	configure_file("yaml-cpp.pc.cmake" ${PC_FILE} @ONLY)
+ 	install(FILES ${PC_FILE} DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
+ endif()
+Nur in ../yaml-cpp03/: CMakeLists.txt~.
+diff -ur ./test/CMakeLists.txt ../yaml-cpp03/test/CMakeLists.txt
+--- ./test/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/CMakeLists.txt	2016-01-19 13:19:09.579163207 +0100
+@@ -10,6 +10,6 @@
+ 	${test_sources}
+ 	${test_headers}
+ )
+-target_link_libraries(run-tests yaml-cpp)
++target_link_libraries(run-tests yaml-cpp03)
+ 
+ add_test(yaml-reader-test run-tests)
+Nur in ../yaml-cpp03/test: CMakeLists.txt~.
+diff -ur ./util/CMakeLists.txt ../yaml-cpp03/util/CMakeLists.txt
+--- ./util/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/util/CMakeLists.txt	2016-01-19 13:19:22.491227235 +0100
+@@ -1,2 +1,2 @@
+ add_executable(parse parse.cpp)
+-target_link_libraries(parse yaml-cpp)
++target_link_libraries(parse yaml-cpp03)
+Nur in ../yaml-cpp03/util: CMakeLists.txt~.
+diff -ur ./yaml-cpp.pc.cmake ../yaml-cpp03/yaml-cpp.pc.cmake
+--- ./yaml-cpp.pc.cmake	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/yaml-cpp.pc.cmake	2016-01-19 13:20:41.747620246 +0100
+@@ -7,5 +7,5 @@
+ Description: A YAML parser and emitter for C++
+ Version: @YAML_CPP_VERSION@
+ Requires:
+-Libs: -L${libdir} -lyaml-cpp
++Libs: -L${libdir} -lyaml-cpp03
+ Cflags: -I${includedir}
+Nur in ../yaml-cpp03/: yaml-cpp.pc.cmake~.
