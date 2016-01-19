@@ -1,8 +1,121 @@
-Nur in ../yaml-cpp03/: archive-autobuild-stamp.
-Nur in ../yaml-cpp03/: build.
-diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
+diff -uNr ./.autobuild-patches/0 ../yaml-cpp03/.autobuild-patches/0
+--- ./.autobuild-patches/0	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/.autobuild-patches/0	2016-01-19 13:27:48.385735830 +0100
+@@ -0,0 +1,86 @@
++Nur in ../yaml-cpp03/: archive-autobuild-stamp.
++Nur in ../yaml-cpp03/: build.
++diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
++--- ./CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
+++++ ../yaml-cpp03/CMakeLists.txt	2016-01-19 13:18:14.154888373 +0100
++@@ -213,7 +213,7 @@
++ 
++ set(INCLUDE_INSTALL_ROOT_DIR include)
++ 
++-set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_ROOT_DIR}/yaml-cpp)
+++set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_ROOT_DIR}/yaml-cpp03)
++ set(LIB_INSTALL_DIR "${_library_dir}${LIB_SUFFIX}")
++ 
++ set(_INSTALL_DESTINATIONS
++@@ -226,7 +226,7 @@
++ ###
++ ### Library
++ ###
++-add_library(yaml-cpp
+++add_library(yaml-cpp03
++ 	${sources}
++ 	${public_headers}
++ 	${private_headers}
++@@ -235,10 +235,10 @@
++ 	${contrib_private_headers}
++ )
++ 
++-set_target_properties(yaml-cpp PROPERTIES
+++set_target_properties(yaml-cpp03 PROPERTIES
++ 	VERSION "${YAML_CPP_VERSION}"
++ 	SOVERSION "${YAML_CPP_VERSION_MAJOR}.${YAML_CPP_VERSION_MINOR}"
++-	PROJECT_LABEL "yaml-cpp ${LABEL_SUFFIX}"
+++	PROJECT_LABEL "yaml-cpp03 ${LABEL_SUFFIX}"
++ )
++ 
++ if(IPHONE)
++@@ -259,7 +259,7 @@
++ 	endif()
++ endif()
++ 
++-install(TARGETS yaml-cpp ${_INSTALL_DESTINATIONS})
+++install(TARGETS yaml-cpp03 ${_INSTALL_DESTINATIONS})
++ install(
++ 	DIRECTORY ${header_directory}
++ 	DESTINATION ${INCLUDE_INSTALL_DIR}
++@@ -267,7 +267,7 @@
++ )
++ 
++ if(UNIX)
++-	set(PC_FILE ${CMAKE_BINARY_DIR}/yaml-cpp.pc)
+++	set(PC_FILE ${CMAKE_BINARY_DIR}/yaml-cpp03.pc)
++ 	configure_file("yaml-cpp.pc.cmake" ${PC_FILE} @ONLY)
++ 	install(FILES ${PC_FILE} DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
++ endif()
++Nur in ../yaml-cpp03/: CMakeLists.txt~.
++diff -ur ./test/CMakeLists.txt ../yaml-cpp03/test/CMakeLists.txt
++--- ./test/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
+++++ ../yaml-cpp03/test/CMakeLists.txt	2016-01-19 13:19:09.579163207 +0100
++@@ -10,6 +10,6 @@
++ 	${test_sources}
++ 	${test_headers}
++ )
++-target_link_libraries(run-tests yaml-cpp)
+++target_link_libraries(run-tests yaml-cpp03)
++ 
++ add_test(yaml-reader-test run-tests)
++Nur in ../yaml-cpp03/test: CMakeLists.txt~.
++diff -ur ./util/CMakeLists.txt ../yaml-cpp03/util/CMakeLists.txt
++--- ./util/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
+++++ ../yaml-cpp03/util/CMakeLists.txt	2016-01-19 13:19:22.491227235 +0100
++@@ -1,2 +1,2 @@
++ add_executable(parse parse.cpp)
++-target_link_libraries(parse yaml-cpp)
+++target_link_libraries(parse yaml-cpp03)
++Nur in ../yaml-cpp03/util: CMakeLists.txt~.
++diff -ur ./yaml-cpp.pc.cmake ../yaml-cpp03/yaml-cpp.pc.cmake
++--- ./yaml-cpp.pc.cmake	2012-01-21 09:52:48.000000000 +0100
+++++ ../yaml-cpp03/yaml-cpp.pc.cmake	2016-01-19 13:20:41.747620246 +0100
++@@ -7,5 +7,5 @@
++ Description: A YAML parser and emitter for C++
++ Version: @YAML_CPP_VERSION@
++ Requires:
++-Libs: -L${libdir} -lyaml-cpp
+++Libs: -L${libdir} -lyaml-cpp03
++ Cflags: -I${includedir}
++Nur in ../yaml-cpp03/: yaml-cpp.pc.cmake~.
+diff -uNr ./.autobuild-patches/list ../yaml-cpp03/.autobuild-patches/list
+--- ./.autobuild-patches/list	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/.autobuild-patches/list	2016-01-19 13:27:48.385735830 +0100
+@@ -0,0 +1 @@
++.autobuild-patches/0 0
+\ Kein Zeilenumbruch am Dateiende.
+diff -uNr ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
 --- ./CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
-+++ ../yaml-cpp03/CMakeLists.txt	2016-01-19 13:18:14.154888373 +0100
++++ ../yaml-cpp03/CMakeLists.txt	2016-01-19 13:57:21.690529174 +0100
+@@ -54,15 +54,15 @@
+ ###
+ ### Sources, headers, directories and libs
+ ###
+-set(header_directory "include/yaml-cpp/")
++set(header_directory "include/yaml-cpp03/")
+ 
+ file(GLOB sources "src/[a-zA-Z]*.cpp")
+-file(GLOB public_headers "include/yaml-cpp/[a-zA-Z]*.h")
++file(GLOB public_headers "include/yaml-cpp03/[a-zA-Z]*.h")
+ file(GLOB private_headers "src/[a-zA-Z]*.h")
+ 
+ if(YAML_CPP_BUILD_CONTRIB)
+ 	file(GLOB contrib_sources "src/contrib/[a-zA-Z]*.cpp")
+-	file(GLOB contrib_public_headers "include/yaml-cpp/contrib/[a-zA-Z]*.h")
++	file(GLOB contrib_public_headers "include/yaml-cpp03/contrib/[a-zA-Z]*.h")
+ 	file(GLOB contrib_private_headers "src/contrib/[a-zA-Z]*.h")
+ else()
+ 	add_definitions(-DYAML_CPP_NO_CONTRIB)
 @@ -213,7 +213,7 @@
  
  set(INCLUDE_INSTALL_ROOT_DIR include)
@@ -21,7 +134,7 @@ diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
  	${sources}
  	${public_headers}
  	${private_headers}
-@@ -235,10 +235,10 @@
+@@ -235,14 +235,14 @@
  	${contrib_private_headers}
  )
  
@@ -34,6 +147,20 @@ diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
  )
  
  if(IPHONE)
+-	set_target_properties(yaml-cpp PROPERTIES
++	set_target_properties(yaml-cpp03 PROPERTIES
+ 		XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "3.0"
+ 	)
+ endif()
+@@ -250,7 +250,7 @@
+ if(MSVC)
+ 	if(NOT BUILD_SHARED_LIBS)
+ 		# correct library names
+-		set_target_properties(yaml-cpp PROPERTIES
++		set_target_properties(yaml-cpp03 PROPERTIES
+ 			DEBUG_POSTFIX "${LIB_TARGET_SUFFIX}d"
+ 			RELEASE_POSTFIX "${LIB_TARGET_SUFFIX}"
+ 			MINSIZEREL_POSTFIX "${LIB_TARGET_SUFFIX}"
 @@ -259,7 +259,7 @@
  	endif()
  endif()
@@ -52,10 +179,4120 @@ diff -ur ./CMakeLists.txt ../yaml-cpp03/CMakeLists.txt
  	configure_file("yaml-cpp.pc.cmake" ${PC_FILE} @ONLY)
  	install(FILES ${PC_FILE} DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
  endif()
-Nur in ../yaml-cpp03/: CMakeLists.txt~.
-diff -ur ./test/CMakeLists.txt ../yaml-cpp03/test/CMakeLists.txt
+diff -uNr ./include/yaml-cpp/aliasmanager.h ../yaml-cpp03/include/yaml-cpp/aliasmanager.h
+--- ./include/yaml-cpp/aliasmanager.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/aliasmanager.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,34 +0,0 @@
+-#ifndef ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/anchor.h"
+-#include <map>
+-
+-namespace YAML
+-{
+-	class Node;
+-	
+-	class AliasManager
+-	{
+-	public:
+-		AliasManager();
+-		
+-		void RegisterReference(const Node& node);
+-		anchor_t LookupAnchor(const Node& node) const;
+-		
+-	private:
+-		anchor_t _CreateNewAnchor();
+-		
+-	private:
+-		typedef std::map<const Node*, anchor_t> AnchorByIdentity;
+-		AnchorByIdentity m_anchorByIdentity;
+-		
+-		anchor_t m_curAnchor;
+-	};
+-}
+-
+-#endif // ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/anchor.h ../yaml-cpp03/include/yaml-cpp/anchor.h
+--- ./include/yaml-cpp/anchor.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/anchor.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,16 +0,0 @@
+-#ifndef ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include <cstddef>
+-
+-namespace YAML
+-{
+-	typedef std::size_t anchor_t;
+-	const anchor_t NullAnchor = 0;
+-}
+-
+-#endif // ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/binary.h ../yaml-cpp03/include/yaml-cpp/binary.h
+--- ./include/yaml-cpp/binary.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/binary.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,66 +0,0 @@
+-#ifndef BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include <string>
+-#include <vector>
+-
+-namespace YAML
+-{
+-    class Node;
+-    
+-    std::string EncodeBase64(const unsigned char *data, std::size_t size);
+-    std::vector<unsigned char> DecodeBase64(const std::string& input);
+-    
+-    class Binary {
+-    public:
+-        Binary(): m_unownedData(0), m_unownedSize(0) {}
+-        Binary(const unsigned char *data, std::size_t size): m_unownedData(data), m_unownedSize(size) {}
+-        
+-        bool owned() const { return !m_unownedData; }
+-        std::size_t size() const { return owned() ? m_data.size() : m_unownedSize; }
+-        const unsigned char *data() const { return owned() ? &m_data[0] : m_unownedData; }
+-        
+-        void swap(std::vector<unsigned char>& rhs) {
+-            if(m_unownedData) {
+-                m_data.swap(rhs);
+-                rhs.clear();
+-                rhs.resize(m_unownedSize);
+-                std::copy(m_unownedData, m_unownedData + m_unownedSize, &rhs[0]);
+-                m_unownedData = 0;
+-                m_unownedSize = 0;
+-            } else {
+-                m_data.swap(rhs);
+-            }
+-        }
+-        
+-        bool operator == (const Binary& rhs) const {
+-            const std::size_t s = size();
+-            if(s != rhs.size())
+-                return false;
+-            const unsigned char *d1 = data();
+-            const unsigned char *d2 = rhs.data();
+-            for(std::size_t i=0;i<s;i++) {
+-                if(*d1++ != *d2++)
+-                    return false;
+-            }
+-            return true;
+-        }
+-        
+-        bool operator != (const Binary& rhs) const {
+-            return !(*this == rhs);
+-        }
+-        
+-    private:
+-        std::vector<unsigned char> m_data;
+-        const unsigned char *m_unownedData;
+-        std::size_t m_unownedSize;
+-    };
+-    
+-    void operator >> (const Node& node, Binary& binary);
+-}
+-
+-#endif // BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/contrib/anchordict.h ../yaml-cpp03/include/yaml-cpp/contrib/anchordict.h
+--- ./include/yaml-cpp/contrib/anchordict.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/contrib/anchordict.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,42 +0,0 @@
+-#ifndef ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include <vector>
+-
+-#include "../anchor.h"
+-
+-namespace YAML
+-{
+-  /// AnchorDict
+-  /// . An object that stores and retrieves values correlating to anchor_t
+-  ///   values.
+-  /// . Efficient implementation that can make assumptions about how anchor_t
+-  ///   values are assigned by the Parser class.
+-  template <class T>
+-  class AnchorDict
+-  {
+-  public:
+-    void Register(anchor_t anchor, T value)
+-    {
+-      if (anchor > m_data.size())
+-      {
+-        m_data.resize(anchor);
+-      }
+-      m_data[anchor - 1] = value;
+-    }
+-    
+-    T Get(anchor_t anchor) const
+-    {
+-      return m_data[anchor - 1];
+-    }
+-  
+-  private:
+-    std::vector<T> m_data;
+-  };
+-}
+-
+-#endif // ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/contrib/graphbuilder.h ../yaml-cpp03/include/yaml-cpp/contrib/graphbuilder.h
+--- ./include/yaml-cpp/contrib/graphbuilder.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/contrib/graphbuilder.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,133 +0,0 @@
+-#ifndef GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/mark.h"
+-#include <string>
+-
+-namespace YAML
+-{
+-  class Parser;
+-  
+-  // GraphBuilderInterface
+-  // . Abstraction of node creation
+-  // . pParentNode is always NULL or the return value of one of the NewXXX()
+-  //   functions.
+-  class GraphBuilderInterface
+-  {
+-  public:
+-    // Create and return a new node with a null value.
+-    virtual void *NewNull(const Mark& mark, void *pParentNode) = 0;
+-    
+-    // Create and return a new node with the given tag and value.
+-    virtual void *NewScalar(const Mark& mark, const std::string& tag, void *pParentNode, const std::string& value) = 0;
+-    
+-    // Create and return a new sequence node
+-    virtual void *NewSequence(const Mark& mark, const std::string& tag, void *pParentNode) = 0;
+-    // Add pNode to pSequence.  pNode was created with one of the NewXxx()
+-    // functions and pSequence with NewSequence().
+-    virtual void AppendToSequence(void *pSequence, void *pNode) = 0;
+-    // Note that no moew entries will be added to pSequence
+-    virtual void SequenceComplete(void *pSequence) {(void)pSequence;}
+-    
+-    // Create and return a new map node
+-    virtual void *NewMap(const Mark& mark, const std::string& tag, void *pParentNode) = 0;
+-    // Add the pKeyNode => pValueNode mapping to pMap.  pKeyNode and pValueNode
+-    // were created with one of the NewXxx() methods and pMap with NewMap().
+-    virtual void AssignInMap(void *pMap, void *pKeyNode, void *pValueNode) = 0;
+-    // Note that no more assignments will be made in pMap
+-    virtual void MapComplete(void *pMap) {(void)pMap;}
+-    
+-    // Return the node that should be used in place of an alias referencing
+-    // pNode (pNode by default)
+-    virtual void *AnchorReference(const Mark& mark, void *pNode) {(void)mark; return pNode;}
+-  };
+-  
+-  // Typesafe wrapper for GraphBuilderInterface.  Assumes that Impl defines
+-  // Node, Sequence, and Map types.  Sequence and Map must derive from Node
+-  // (unless Node is defined as void).  Impl must also implement function with
+-  // all of the same names as the virtual functions in GraphBuilderInterface
+-  // -- including the ones with default implementations -- but with the
+-  // prototypes changed to accept an explicit Node*, Sequence*, or Map* where
+-  // appropriate.
+-  template <class Impl>
+-  class GraphBuilder : public GraphBuilderInterface
+-  {
+-  public:
+-    typedef typename Impl::Node Node;
+-    typedef typename Impl::Sequence Sequence;
+-    typedef typename Impl::Map Map;
+-    
+-    GraphBuilder(Impl& impl) : m_impl(impl)
+-    {
+-      Map* pMap = NULL;
+-      Sequence* pSeq = NULL;
+-      Node* pNode = NULL;
+-      
+-      // Type consistency checks
+-      pNode = pMap;
+-      pNode = pSeq;
+-    }
+-    
+-    GraphBuilderInterface& AsBuilderInterface() {return *this;}
+-    
+-    virtual void *NewNull(const Mark& mark, void* pParentNode) {
+-      return CheckType<Node>(m_impl.NewNull(mark, AsNode(pParentNode)));
+-    }
+-    
+-    virtual void *NewScalar(const Mark& mark, const std::string& tag, void *pParentNode, const std::string& value) {
+-      return CheckType<Node>(m_impl.NewScalar(mark, tag, AsNode(pParentNode), value));
+-    }
+-    
+-    virtual void *NewSequence(const Mark& mark, const std::string& tag, void *pParentNode) {
+-      return CheckType<Sequence>(m_impl.NewSequence(mark, tag, AsNode(pParentNode)));
+-    }
+-    virtual void AppendToSequence(void *pSequence, void *pNode) {
+-      m_impl.AppendToSequence(AsSequence(pSequence), AsNode(pNode));
+-    }
+-    virtual void SequenceComplete(void *pSequence) {
+-      m_impl.SequenceComplete(AsSequence(pSequence));
+-    }
+-    
+-    virtual void *NewMap(const Mark& mark, const std::string& tag, void *pParentNode) {
+-      return CheckType<Map>(m_impl.NewMap(mark, tag, AsNode(pParentNode)));
+-    }
+-    virtual void AssignInMap(void *pMap, void *pKeyNode, void *pValueNode) {
+-      m_impl.AssignInMap(AsMap(pMap), AsNode(pKeyNode), AsNode(pValueNode));
+-    }
+-    virtual void MapComplete(void *pMap) {
+-      m_impl.MapComplete(AsMap(pMap));
+-    }
+-    
+-    virtual void *AnchorReference(const Mark& mark, void *pNode) {
+-      return CheckType<Node>(m_impl.AnchorReference(mark, AsNode(pNode)));
+-    }
+-  
+-  private:
+-    Impl& m_impl;
+-    
+-    // Static check for pointer to T
+-    template <class T, class U>
+-    static T* CheckType(U* p) {return p;}
+-    
+-    static Node *AsNode(void *pNode) {return static_cast<Node*>(pNode);}
+-    static Sequence *AsSequence(void *pSeq) {return static_cast<Sequence*>(pSeq);}
+-    static Map *AsMap(void *pMap) {return static_cast<Map*>(pMap);}
+-  };
+-  
+-  void *BuildGraphOfNextDocument(Parser& parser, GraphBuilderInterface& graphBuilder);
+-  
+-  template <class Impl>
+-  typename Impl::Node *BuildGraphOfNextDocument(Parser& parser, Impl& impl)
+-  {
+-    GraphBuilder<Impl> graphBuilder(impl);
+-    return static_cast<typename Impl::Node *>(BuildGraphOfNextDocument(
+-      parser, graphBuilder
+-    ));
+-  }
+-}
+-
+-#endif // GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/conversion.h ../yaml-cpp03/include/yaml-cpp/conversion.h
+--- ./include/yaml-cpp/conversion.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/conversion.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,75 +0,0 @@
+-#ifndef CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/null.h"
+-#include "yaml-cpp/traits.h"
+-#include <limits>
+-#include <string>
+-#include <sstream>
+-
+-namespace YAML
+-{
+-	// traits for conversion
+-	
+-	template<typename T>
+-	struct is_scalar_convertible { enum { value = is_numeric<T>::value }; };
+-	
+-	template<> struct is_scalar_convertible<std::string> { enum { value = true }; };
+-	template<> struct is_scalar_convertible<bool> { enum { value = true }; };
+-	template<> struct is_scalar_convertible<_Null> { enum { value = true }; };
+-
+-	// actual conversion
+-	
+-	inline bool Convert(const std::string& input, std::string& output) {
+-		output = input;
+-		return true;
+-	}
+-	
+-	YAML_CPP_API bool Convert(const std::string& input, bool& output);
+-	YAML_CPP_API bool Convert(const std::string& input, _Null& output);
+-	
+-	inline bool IsInfinity(const std::string& input) {
+-		return input == ".inf" || input == ".Inf" || input == ".INF" || input == "+.inf" || input == "+.Inf" || input == "+.INF";
+-	}
+-	
+-	inline bool IsNegativeInfinity(const std::string& input) {
+-		return input == "-.inf" || input == "-.Inf" || input == "-.INF";
+-	}
+-	
+-	inline bool IsNaN(const std::string& input) {
+-		return input == ".nan" || input == ".NaN" || input == ".NAN";
+-	}
+-
+-
+-	template <typename T> 
+-	inline bool Convert(const std::string& input, T& output, typename enable_if<is_numeric<T> >::type * = 0) {
+-		std::stringstream stream(input);
+-		stream.unsetf(std::ios::dec);
+-        if((stream >> output) && (stream >> std::ws).eof())
+-            return true;
+-		
+-		if(std::numeric_limits<T>::has_infinity) {
+-			if(IsInfinity(input)) {
+-				output = std::numeric_limits<T>::infinity();
+-				return true;
+-			} else if(IsNegativeInfinity(input)) {
+-				output = -std::numeric_limits<T>::infinity();
+-				return true;
+-			}
+-		}
+-		
+-		if(std::numeric_limits<T>::has_quiet_NaN && IsNaN(input)) {
+-			output = std::numeric_limits<T>::quiet_NaN();
+-			return true;
+-		}
+-		
+-		return false;
+-	}
+-}
+-
+-#endif // CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/dll.h ../yaml-cpp03/include/yaml-cpp/dll.h
+--- ./include/yaml-cpp/dll.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/dll.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,28 +0,0 @@
+-#ifndef DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-// The following ifdef block is the standard way of creating macros which make exporting
+-// from a DLL simpler. All files within this DLL are compiled with the yaml_cpp_EXPORTS
+-// symbol defined on the command line. this symbol should not be defined on any project
+-// that uses this DLL. This way any other project whose source files include this file see
+-// YAML_CPP_API functions as being imported from a DLL, whereas this DLL sees symbols
+-// defined with this macro as being exported.
+-#undef YAML_CPP_API
+-
+-#ifdef YAML_CPP_DLL // Using or Building YAML-CPP DLL (definition defined manually)
+-	#ifdef yaml_cpp_EXPORTS // Building YAML-CPP DLL (definition created by CMake or defined manually)
+-	//	#pragma message( "Defining YAML_CPP_API for DLL export" )
+-		#define YAML_CPP_API __declspec(dllexport)
+-	#else // yaml_cpp_EXPORTS
+-	//	#pragma message( "Defining YAML_CPP_API for DLL import" )
+-		#define YAML_CPP_API __declspec(dllimport)
+-	#endif // yaml_cpp_EXPORTS
+-#else //YAML_CPP_DLL
+-#define YAML_CPP_API
+-#endif // YAML_CPP_DLL
+-
+-#endif // DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/emitfromevents.h ../yaml-cpp03/include/yaml-cpp/emitfromevents.h
+--- ./include/yaml-cpp/emitfromevents.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/emitfromevents.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,45 +0,0 @@
+-#ifndef EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/eventhandler.h"
+-#include <stack>
+-
+-namespace YAML
+-{
+-	class Emitter;
+-	
+-	class EmitFromEvents: public EventHandler
+-	{
+-	public:
+-		EmitFromEvents(Emitter& emitter);
+-		
+-		virtual void OnDocumentStart(const Mark& mark);
+-		virtual void OnDocumentEnd();
+-		
+-		virtual void OnNull(const Mark& mark, anchor_t anchor);
+-		virtual void OnAlias(const Mark& mark, anchor_t anchor);
+-		virtual void OnScalar(const Mark& mark, const std::string& tag, anchor_t anchor, const std::string& value);
+-		
+-		virtual void OnSequenceStart(const Mark& mark, const std::string& tag, anchor_t anchor);
+-		virtual void OnSequenceEnd();
+-		
+-		virtual void OnMapStart(const Mark& mark, const std::string& tag, anchor_t anchor);
+-		virtual void OnMapEnd();
+-		
+-	private:
+-		void BeginNode();
+-		void EmitProps(const std::string& tag, anchor_t anchor);
+-		
+-	private:
+-		Emitter& m_emitter;
+-		
+-		struct State { enum value { WaitingForSequenceEntry, WaitingForKey, WaitingForValue }; };
+-		std::stack<State::value> m_stateStack;
+-	};
+-}
+-
+-#endif // EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/emitter.h ../yaml-cpp03/include/yaml-cpp/emitter.h
+--- ./include/yaml-cpp/emitter.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/emitter.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,186 +0,0 @@
+-#ifndef EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/dll.h"
+-#include "yaml-cpp/binary.h"
+-#include "yaml-cpp/emittermanip.h"
+-#include "yaml-cpp/ostream.h"
+-#include "yaml-cpp/noncopyable.h"
+-#include "yaml-cpp/null.h"
+-#include <memory>
+-#include <string>
+-#include <sstream>
+-
+-namespace YAML
+-{
+-	class EmitterState;
+-	
+-	class YAML_CPP_API Emitter: private noncopyable
+-	{
+-	public:
+-		Emitter();
+-		~Emitter();
+-		
+-		// output
+-		const char *c_str() const;
+-		unsigned size() const;
+-		
+-		// state checking
+-		bool good() const;
+-		const std::string GetLastError() const;
+-		
+-		// global setters
+-		bool SetOutputCharset(EMITTER_MANIP value);
+-		bool SetStringFormat(EMITTER_MANIP value);
+-		bool SetBoolFormat(EMITTER_MANIP value);
+-		bool SetIntBase(EMITTER_MANIP value);
+-		bool SetSeqFormat(EMITTER_MANIP value);
+-		bool SetMapFormat(EMITTER_MANIP value);
+-		bool SetIndent(unsigned n);
+-		bool SetPreCommentIndent(unsigned n);
+-		bool SetPostCommentIndent(unsigned n);
+-        bool SetFloatPrecision(unsigned n);
+-        bool SetDoublePrecision(unsigned n);
+-		
+-		// local setters
+-		Emitter& SetLocalValue(EMITTER_MANIP value);
+-		Emitter& SetLocalIndent(const _Indent& indent);
+-        Emitter& SetLocalPrecision(const _Precision& precision);
+-		
+-		// overloads of write
+-		Emitter& Write(const std::string& str);
+-		Emitter& Write(bool b);
+-		Emitter& Write(char ch);
+-		Emitter& Write(const _Alias& alias);
+-		Emitter& Write(const _Anchor& anchor);
+-		Emitter& Write(const _Tag& tag);
+-		Emitter& Write(const _Comment& comment);
+-		Emitter& Write(const _Null& null);
+-		Emitter& Write(const Binary& binary);
+-		
+-		template <typename T>
+-		Emitter& WriteIntegralType(T value);
+-		
+-		template <typename T>
+-		Emitter& WriteStreamable(T value);
+-
+-	private:
+-		void PreWriteIntegralType(std::stringstream& str);
+-		void PreWriteStreamable(std::stringstream& str);
+-		void PostWriteIntegralType(const std::stringstream& str);
+-		void PostWriteStreamable(const std::stringstream& str);
+-        
+-        template<typename T> void SetStreamablePrecision(std::stringstream&) {}
+-        unsigned GetFloatPrecision() const;
+-        unsigned GetDoublePrecision() const;
+-	
+-	private:
+-		void PreAtomicWrite();
+-		bool GotoNextPreAtomicState();
+-		void PostAtomicWrite();
+-		void EmitSeparationIfNecessary();
+-		
+-		void EmitBeginDoc();
+-		void EmitEndDoc();
+-		void EmitBeginSeq();
+-		void EmitEndSeq();
+-		void EmitBeginMap();
+-		void EmitEndMap();
+-		void EmitKey();
+-		void EmitValue();
+-		void EmitNewline();
+-		void EmitKindTag();
+-		void EmitTag(bool verbatim, const _Tag& tag);
+-		
+-		const char *ComputeFullBoolName(bool b) const;
+-		bool CanEmitNewline() const;
+-		
+-	private:
+-		ostream m_stream;
+-		std::auto_ptr <EmitterState> m_pState;
+-	};
+-	
+-	template <typename T>
+-	inline Emitter& Emitter::WriteIntegralType(T value)
+-	{
+-		if(!good())
+-			return *this;
+-		
+-		std::stringstream str;
+-		PreWriteIntegralType(str);
+-		str << value;
+-		PostWriteIntegralType(str);
+-		return *this;
+-	}
+-
+-	template <typename T>
+-	inline Emitter& Emitter::WriteStreamable(T value)
+-	{
+-		if(!good())
+-			return *this;
+-		
+-		std::stringstream str;
+-		PreWriteStreamable(str);
+-        SetStreamablePrecision<T>(str);
+-		str << value;
+-		PostWriteStreamable(str);
+-		return *this;
+-	}
+-	
+-    template<>
+-    inline void Emitter::SetStreamablePrecision<float>(std::stringstream& str)
+-    {
+-		str.precision(GetFloatPrecision());
+-    }
+-
+-    template<>
+-    inline void Emitter::SetStreamablePrecision<double>(std::stringstream& str)
+-    {
+-		str.precision(GetDoublePrecision());
+-    }
+-
+-	// overloads of insertion
+-	inline Emitter& operator << (Emitter& emitter, const std::string& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, bool v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, char v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, unsigned char v) { return emitter.Write(static_cast<char>(v)); }
+-	inline Emitter& operator << (Emitter& emitter, const _Alias& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, const _Anchor& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, const _Tag& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, const _Comment& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, const _Null& v) { return emitter.Write(v); }
+-	inline Emitter& operator << (Emitter& emitter, const Binary& b) { return emitter.Write(b); }
+-
+-	inline Emitter& operator << (Emitter& emitter, const char *v) { return emitter.Write(std::string(v)); }
+-
+-	inline Emitter& operator << (Emitter& emitter, int v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, unsigned int v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, short v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, unsigned short v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, long v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, unsigned long v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, long long v) { return emitter.WriteIntegralType(v); }
+-	inline Emitter& operator << (Emitter& emitter, unsigned long long v) { return emitter.WriteIntegralType(v); }
+-
+-	inline Emitter& operator << (Emitter& emitter, float v) { return emitter.WriteStreamable(v); }
+-	inline Emitter& operator << (Emitter& emitter, double v) { return emitter.WriteStreamable(v); }
+-
+-	inline Emitter& operator << (Emitter& emitter, EMITTER_MANIP value) {
+-		return emitter.SetLocalValue(value);
+-	}
+-	
+-	inline Emitter& operator << (Emitter& emitter, _Indent indent) {
+-		return emitter.SetLocalIndent(indent);
+-	}
+-    
+-    inline Emitter& operator << (Emitter& emitter, _Precision precision) {
+-        return emitter.SetLocalPrecision(precision);
+-    }
+-}
+-
+-#endif // EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/emittermanip.h ../yaml-cpp03/include/yaml-cpp/emittermanip.h
+--- ./include/yaml-cpp/emittermanip.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/emittermanip.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,149 +0,0 @@
+-#ifndef EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include <string>
+-
+-namespace YAML
+-{
+-	enum EMITTER_MANIP {
+-		// general manipulators
+-		Auto,
+-		TagByKind,
+-		Newline,
+-
+-		// output character set
+-		EmitNonAscii,
+-		EscapeNonAscii,
+-		
+-		// string manipulators
+-		// Auto, // duplicate
+-		SingleQuoted,
+-		DoubleQuoted,
+-		Literal,
+-		
+-		// bool manipulators
+-		YesNoBool,  // yes, no
+-		TrueFalseBool,  // true, false
+-		OnOffBool,  // on, off
+-		UpperCase,  // TRUE, N
+-		LowerCase,  // f, yes
+-		CamelCase,  // No, Off
+-		LongBool,  // yes, On
+-		ShortBool,  // y, t
+-		
+-		// int manipulators
+-		Dec,
+-		Hex,
+-		Oct,
+-		
+-		// document manipulators
+-		BeginDoc,
+-		EndDoc,
+-		
+-		// sequence manipulators
+-		BeginSeq,
+-		EndSeq,
+-		Flow,
+-		Block,
+-		
+-		// map manipulators
+-		BeginMap,
+-		EndMap,
+-		Key,
+-		Value,
+-		// Flow, // duplicate
+-		// Block, // duplicate
+-		// Auto, // duplicate
+-		LongKey
+-	};
+-	
+-	struct _Indent {
+-		_Indent(int value_): value(value_) {}
+-		int value;
+-	};
+-	
+-	inline _Indent Indent(int value) {
+-		return _Indent(value);
+-	}
+-	
+-	struct _Alias {
+-		_Alias(const std::string& content_): content(content_) {}
+-		std::string content;
+-	};
+-	
+-	inline _Alias Alias(const std::string content) {
+-		return _Alias(content);
+-	}
+-	
+-	struct _Anchor {
+-		_Anchor(const std::string& content_): content(content_) {}
+-		std::string content;
+-	};
+-
+-	inline _Anchor Anchor(const std::string content) {
+-		return _Anchor(content);
+-	}
+-	
+-	struct _Tag {
+-		struct Type { enum value { Verbatim, PrimaryHandle, NamedHandle }; };
+-		
+-		explicit _Tag(const std::string& prefix_, const std::string& content_, Type::value type_)
+-		: prefix(prefix_), content(content_), type(type_)
+-		{
+-		}
+-		std::string prefix;
+-		std::string content;
+-		Type::value type;
+-	};
+-	
+-	inline _Tag VerbatimTag(const std::string content) {
+-		return _Tag("", content, _Tag::Type::Verbatim);
+-	}
+-
+-	inline _Tag LocalTag(const std::string content) {
+-		return _Tag("", content, _Tag::Type::PrimaryHandle);
+-	}
+-
+-	inline _Tag LocalTag(const std::string& prefix, const std::string content) {
+-		return _Tag(prefix, content, _Tag::Type::NamedHandle);
+-	}
+-
+-	inline _Tag SecondaryTag(const std::string content) {
+-		return _Tag("", content, _Tag::Type::NamedHandle);
+-	}
+-
+-	struct _Comment {
+-		_Comment(const std::string& content_): content(content_) {}
+-		std::string content;
+-	};
+-	
+-	inline _Comment Comment(const std::string content) {
+-		return _Comment(content);
+-	}
+-    
+-    struct _Precision {
+-        _Precision(int floatPrecision_, int doublePrecision_): floatPrecision(floatPrecision_), doublePrecision(doublePrecision_) {}
+-        
+-        int floatPrecision;
+-        int doublePrecision;
+-    };
+-    
+-    inline _Precision FloatPrecision(int n) {
+-        return _Precision(n, -1);
+-    }
+-
+-    inline _Precision DoublePrecision(int n) {
+-        return _Precision(-1, n);
+-    }
+-
+-    inline _Precision Precision(int n) {
+-        return _Precision(n, n);
+-    }
+-}
+-
+-#endif // EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/eventhandler.h ../yaml-cpp03/include/yaml-cpp/eventhandler.h
+--- ./include/yaml-cpp/eventhandler.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/eventhandler.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,36 +0,0 @@
+-#ifndef EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/anchor.h"
+-#include <string>
+-
+-namespace YAML
+-{
+-	struct Mark;
+-	
+-	class EventHandler
+-	{
+-	public:
+-		virtual ~EventHandler() {}
+-
+-		virtual void OnDocumentStart(const Mark& mark) = 0;
+-		virtual void OnDocumentEnd() = 0;
+-		
+-		virtual void OnNull(const Mark& mark, anchor_t anchor) = 0;
+-		virtual void OnAlias(const Mark& mark, anchor_t anchor) = 0;
+-		virtual void OnScalar(const Mark& mark, const std::string& tag, anchor_t anchor, const std::string& value) = 0;
+-
+-		virtual void OnSequenceStart(const Mark& mark, const std::string& tag, anchor_t anchor) = 0;
+-		virtual void OnSequenceEnd() = 0;
+-
+-		virtual void OnMapStart(const Mark& mark, const std::string& tag, anchor_t anchor) = 0;
+-		virtual void OnMapEnd() = 0;
+-	};
+-}
+-
+-#endif // EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+diff -uNr ./include/yaml-cpp/exceptions.h ../yaml-cpp03/include/yaml-cpp/exceptions.h
+--- ./include/yaml-cpp/exceptions.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/exceptions.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,164 +0,0 @@
+-#ifndef EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/mark.h"
+-#include "yaml-cpp/traits.h"
+-#include <stdexcept>
+-#include <string>
+-#include <sstream>
+-
+-namespace YAML
+-{
+-	// error messages
+-	namespace ErrorMsg
+-	{
+-		const char * const YAML_DIRECTIVE_ARGS    = "YAML directives must have exactly one argument";
+-		const char * const YAML_VERSION           = "bad YAML version: ";
+-		const char * const YAML_MAJOR_VERSION     = "YAML major version too large";
+-		const char * const REPEATED_YAML_DIRECTIVE= "repeated YAML directive";
+-		const char * const TAG_DIRECTIVE_ARGS     = "TAG directives must have exactly two arguments";
+-		const char * const REPEATED_TAG_DIRECTIVE = "repeated TAG directive";
+-		const char * const CHAR_IN_TAG_HANDLE     = "illegal character found while scanning tag handle";
+-		const char * const TAG_WITH_NO_SUFFIX     = "tag handle with no suffix";
+-		const char * const END_OF_VERBATIM_TAG    = "end of verbatim tag not found";
+-		const char * const END_OF_MAP             = "end of map not found";
+-		const char * const END_OF_MAP_FLOW        = "end of map flow not found";
+-		const char * const END_OF_SEQ             = "end of sequence not found";
+-		const char * const END_OF_SEQ_FLOW        = "end of sequence flow not found";
+-		const char * const MULTIPLE_TAGS          = "cannot assign multiple tags to the same node";
+-		const char * const MULTIPLE_ANCHORS       = "cannot assign multiple anchors to the same node";
+-		const char * const MULTIPLE_ALIASES       = "cannot assign multiple aliases to the same node";
+-		const char * const ALIAS_CONTENT          = "aliases can't have any content, *including* tags";
+-		const char * const INVALID_HEX            = "bad character found while scanning hex number";
+-		const char * const INVALID_UNICODE        = "invalid unicode: ";
+-		const char * const INVALID_ESCAPE         = "unknown escape character: ";
+-		const char * const UNKNOWN_TOKEN          = "unknown token";
+-		const char * const DOC_IN_SCALAR          = "illegal document indicator in scalar";
+-		const char * const EOF_IN_SCALAR          = "illegal EOF in scalar";
+-		const char * const CHAR_IN_SCALAR         = "illegal character in scalar";
+-		const char * const TAB_IN_INDENTATION     = "illegal tab when looking for indentation";
+-		const char * const FLOW_END               = "illegal flow end";
+-		const char * const BLOCK_ENTRY            = "illegal block entry";
+-		const char * const MAP_KEY                = "illegal map key";
+-		const char * const MAP_VALUE              = "illegal map value";
+-		const char * const ALIAS_NOT_FOUND        = "alias not found after *";
+-		const char * const ANCHOR_NOT_FOUND       = "anchor not found after &";
+-		const char * const CHAR_IN_ALIAS          = "illegal character found while scanning alias";
+-		const char * const CHAR_IN_ANCHOR         = "illegal character found while scanning anchor";
+-		const char * const ZERO_INDENT_IN_BLOCK   = "cannot set zero indentation for a block scalar";
+-		const char * const CHAR_IN_BLOCK          = "unexpected character in block scalar";
+-		const char * const AMBIGUOUS_ANCHOR       = "cannot assign the same alias to multiple nodes";
+-		const char * const UNKNOWN_ANCHOR         = "the referenced anchor is not defined";
+-
+-		const char * const INVALID_SCALAR         = "invalid scalar";
+-		const char * const KEY_NOT_FOUND          = "key not found";
+-		const char * const BAD_DEREFERENCE        = "bad dereference";
+-		
+-		const char * const UNMATCHED_GROUP_TAG    = "unmatched group tag";
+-		const char * const UNEXPECTED_END_SEQ     = "unexpected end sequence token";
+-		const char * const UNEXPECTED_END_MAP     = "unexpected end map token";
+-		const char * const SINGLE_QUOTED_CHAR     = "invalid character in single-quoted string";
+-		const char * const INVALID_ANCHOR         = "invalid anchor";
+-		const char * const INVALID_ALIAS          = "invalid alias";
+-		const char * const INVALID_TAG            = "invalid tag";
+-		const char * const EXPECTED_KEY_TOKEN     = "expected key token";
+-		const char * const EXPECTED_VALUE_TOKEN   = "expected value token";
+-		const char * const UNEXPECTED_KEY_TOKEN   = "unexpected key token";
+-		const char * const UNEXPECTED_VALUE_TOKEN = "unexpected value token";
+-
+-		template <typename T>
+-		inline const std::string KEY_NOT_FOUND_WITH_KEY(const T&, typename disable_if<is_numeric<T> >::type * = 0) {
+-			return KEY_NOT_FOUND;
+-		}
+-
+-		inline const std::string KEY_NOT_FOUND_WITH_KEY(const std::string& key) {
+-			std::stringstream stream;
+-			stream << KEY_NOT_FOUND << ": " << key;
+-			return stream.str();
+-		}
+-		
+-		template <typename T>
+-		inline const std::string KEY_NOT_FOUND_WITH_KEY(const T& key, typename enable_if<is_numeric<T> >::type * = 0) {
+-			std::stringstream stream;
+-			stream << KEY_NOT_FOUND << ": " << key;
+-			return stream.str();
+-		}
+-	}
+-
+-	class Exception: public std::runtime_error {
+-	public:
+-		Exception(const Mark& mark_, const std::string& msg_)
+-		: std::runtime_error(build_what(mark_, msg_)), mark(mark_), msg(msg_) {}
+-		virtual ~Exception() throw() {}
+-
+-		Mark mark;
+-		std::string msg;
+-
+-	private:
+-		static const std::string build_what(const Mark& mark, const std::string& msg) {
+-			std::stringstream output;
+-			output << "yaml-cpp: error at line " << mark.line+1 << ", column " << mark.column+1 << ": " << msg;
+-			return output.str();
+-		}
+-	};
+-
+-	class ParserException: public Exception {
+-	public:
+-		ParserException(const Mark& mark_, const std::string& msg_)
+-			: Exception(mark_, msg_) {}
+-	};
+-
+-	class RepresentationException: public Exception {
+-	public:
+-		RepresentationException(const Mark& mark_, const std::string& msg_)
+-			: Exception(mark_, msg_) {}
+-	};
+-
+-	// representation exceptions
+-	class InvalidScalar: public RepresentationException {
+-	public:
+-		InvalidScalar(const Mark& mark_)
+-			: RepresentationException(mark_, ErrorMsg::INVALID_SCALAR) {}
+-	};
+-
+-	class KeyNotFound: public RepresentationException {
+-	public:
+-		template <typename T>
+-		KeyNotFound(const Mark& mark_, const T& key_)
+-			: RepresentationException(mark_, ErrorMsg::KEY_NOT_FOUND_WITH_KEY(key_)) {}
+-	};
+-	
+-	template <typename T>
+-	class TypedKeyNotFound: public KeyNotFound {
+-	public:
+-		TypedKeyNotFound(const Mark& mark_, const T& key_)
+-			: KeyNotFound(mark_, key_), key(key_) {}
+-		virtual ~TypedKeyNotFound() throw() {}
+-
+-		T key;
+-	};
+-
+-	template <typename T>
+-	inline TypedKeyNotFound <T> MakeTypedKeyNotFound(const Mark& mark, const T& key) {
+-		return TypedKeyNotFound <T> (mark, key);
+-	}
+-
+-	class BadDereference: public RepresentationException {
+-	public:
+-		BadDereference()
+-		: RepresentationException(Mark::null(), ErrorMsg::BAD_DEREFERENCE) {}
+-	};
+-	
+-	class EmitterException: public Exception {
+-	public:
+-		EmitterException(const std::string& msg_)
+-		: Exception(Mark::null(), msg_) {}
+-	};
+-}
+-
+-#endif // EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/iterator.h ../yaml-cpp03/include/yaml-cpp/iterator.h
+--- ./include/yaml-cpp/iterator.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/iterator.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,40 +0,0 @@
+-#ifndef ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/dll.h"
+-#include <memory>
+-
+-namespace YAML
+-{
+-	class Node;
+-	struct IterPriv;
+-
+-	class YAML_CPP_API Iterator
+-	{
+-	public:
+-		Iterator();
+-		Iterator(std::auto_ptr<IterPriv> pData);
+-		Iterator(const Iterator& rhs);
+-		~Iterator();
+-
+-		Iterator& operator = (const Iterator& rhs);
+-		Iterator& operator ++ ();
+-		Iterator operator ++ (int);
+-		const Node& operator * () const;
+-		const Node *operator -> () const;
+-		const Node& first() const;
+-		const Node& second() const;
+-
+-		friend YAML_CPP_API bool operator == (const Iterator& it, const Iterator& jt);
+-		friend YAML_CPP_API bool operator != (const Iterator& it, const Iterator& jt);
+-
+-	private:
+-		std::auto_ptr<IterPriv> m_pData;
+-	};
+-}
+-
+-#endif // ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/ltnode.h ../yaml-cpp03/include/yaml-cpp/ltnode.h
+--- ./include/yaml-cpp/ltnode.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/ltnode.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,18 +0,0 @@
+-#ifndef LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-namespace YAML
+-{
+-	class Node;
+-
+-	struct ltnode {
+-		bool operator()(const Node *pNode1, const Node *pNode2) const;
+-	};
+-}
+-
+-#endif // LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/mark.h ../yaml-cpp03/include/yaml-cpp/mark.h
+--- ./include/yaml-cpp/mark.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/mark.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,26 +0,0 @@
+-#ifndef MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/dll.h"
+-
+-namespace YAML
+-{
+-	struct YAML_CPP_API Mark {
+-		Mark(): pos(0), line(0), column(0) {}
+-		
+-		static const Mark null() { return Mark(-1, -1, -1); }
+-		
+-		int pos;
+-		int line, column;
+-		
+-	private:
+-		Mark(int pos_, int line_, int column_): pos(pos_), line(line_), column(column_) {}
+-	};
+-}
+-
+-#endif // MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/node.h ../yaml-cpp03/include/yaml-cpp/node.h
+--- ./include/yaml-cpp/node.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/node.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,135 +0,0 @@
+-#ifndef NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/dll.h"
+-#include "yaml-cpp/exceptions.h"
+-#include "yaml-cpp/mark.h"
+-#include "yaml-cpp/noncopyable.h"
+-#include "yaml-cpp/conversion.h"
+-#include "yaml-cpp/iterator.h"
+-#include "yaml-cpp/ltnode.h"
+-#include <iostream>
+-#include <map>
+-#include <memory>
+-#include <string>
+-#include <vector>
+-
+-namespace YAML
+-{
+-	class AliasManager;
+-	class Content;
+-	class NodeOwnership;
+-	class Scanner;
+-	class Emitter;
+-	class EventHandler;
+-
+-	struct NodeType { enum value { Null, Scalar, Sequence, Map }; };
+-
+-	class YAML_CPP_API Node: private noncopyable
+-	{
+-	public:
+-		friend class NodeOwnership;
+-		friend class NodeBuilder;
+-		
+-		Node();
+-		~Node();
+-
+-		void Clear();
+-		std::auto_ptr<Node> Clone() const;
+-		void EmitEvents(EventHandler& eventHandler) const;
+-		void EmitEvents(AliasManager& am, EventHandler& eventHandler) const;
+-		
+-		NodeType::value Type() const { return m_type; }
+-		bool IsAliased() const;
+-
+-		// file location of start of this node
+-		const Mark GetMark() const { return m_mark; }
+-
+-		// accessors
+-		Iterator begin() const;
+-		Iterator end() const;
+-		std::size_t size() const;
+-
+-		// extraction of scalars
+-		bool GetScalar(std::string& s) const;
+-
+-		// we can specialize this for other values
+-		template <typename T>
+-		bool Read(T& value) const;
+-
+-		template <typename T>
+-		const T to() const;
+-
+-		template <typename T>
+-		friend YAML_CPP_API typename enable_if<is_scalar_convertible<T> >::type operator >> (const Node& node, T& value);
+-
+-		// retrieval for maps and sequences
+-		template <typename T>
+-		const Node *FindValue(const T& key) const;
+-
+-		template <typename T>
+-		const Node& operator [] (const T& key) const;
+-		
+-		// specific to maps
+-		const Node *FindValue(const char *key) const;
+-		const Node *FindValue(char *key) const;
+-		const Node& operator [] (const char *key) const;
+-		const Node& operator [] (char *key) const;
+-
+-		// for tags
+-		const std::string& Tag() const { return m_tag; }
+-
+-		// emitting
+-		friend YAML_CPP_API Emitter& operator << (Emitter& out, const Node& node);
+-
+-		// ordering
+-		int Compare(const Node& rhs) const;
+-		friend bool operator < (const Node& n1, const Node& n2);
+-
+-	private:
+-		explicit Node(NodeOwnership& owner);
+-		Node& CreateNode();
+-		
+-		void Init(NodeType::value type, const Mark& mark, const std::string& tag);
+-		
+-		void MarkAsAliased();
+-		void SetScalarData(const std::string& data);
+-		void Append(Node& node);
+-		void Insert(Node& key, Node& value);
+-
+-		// helper for sequences
+-		template <typename, bool> friend struct _FindFromNodeAtIndex;
+-		const Node *FindAtIndex(std::size_t i) const;
+-		
+-		// helper for maps
+-		template <typename T>
+-		const Node& GetValue(const T& key) const;
+-
+-		template <typename T>
+-		const Node *FindValueForKey(const T& key) const;
+-
+-	private:
+-		std::auto_ptr<NodeOwnership> m_pOwnership;
+-
+-		Mark m_mark;
+-		std::string m_tag;
+-
+-		typedef std::vector<Node *> node_seq;
+-		typedef std::map<Node *, Node *, ltnode> node_map;
+-
+-		NodeType::value m_type;
+-		std::string m_scalarData;
+-		node_seq m_seqData;
+-		node_map m_mapData;
+-	};
+-}
+-
+-#include "yaml-cpp/nodeimpl.h"
+-#include "yaml-cpp/nodereadimpl.h"
+-
+-#endif // NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/nodeimpl.h ../yaml-cpp03/include/yaml-cpp/nodeimpl.h
+--- ./include/yaml-cpp/nodeimpl.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/nodeimpl.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,85 +0,0 @@
+-#ifndef NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/nodeutil.h"
+-#include <cassert>
+-
+-namespace YAML
+-{
+-	// implementation of templated things
+-	template <typename T>
+-	inline const T Node::to() const {
+-		T value;
+-		*this >> value;
+-		return value;
+-	}
+-
+-	template <typename T>
+-	inline typename enable_if<is_scalar_convertible<T> >::type operator >> (const Node& node, T& value) {
+-		if(!ConvertScalar(node, value))
+-			throw InvalidScalar(node.m_mark);
+-	}
+-	
+-	template <typename T>
+-	inline const Node *Node::FindValue(const T& key) const {
+-		switch(m_type) {
+-			case NodeType::Null:
+-			case NodeType::Scalar:
+-				throw BadDereference();
+-			case NodeType::Sequence:
+-				return FindFromNodeAtIndex(*this, key);
+-			case NodeType::Map:
+-				return FindValueForKey(key);
+-		}
+-		assert(false);
+-		throw BadDereference();
+-	}
+-	
+-	template <typename T>
+-	inline const Node *Node::FindValueForKey(const T& key) const {
+-		for(Iterator it=begin();it!=end();++it) {
+-			T t;
+-			if(it.first().Read(t)) {
+-				if(key == t)
+-					return &it.second();
+-			}
+-		}
+-		
+-		return 0;
+-	}
+-	
+-	template <typename T>
+-	inline const Node& Node::GetValue(const T& key) const {
+-		if(const Node *pValue = FindValue(key))
+-			return *pValue;
+-		throw MakeTypedKeyNotFound(m_mark, key);
+-	}
+-	
+-	template <typename T>
+-	inline const Node& Node::operator [] (const T& key) const {
+-		return GetValue(key);
+-	}
+-	
+-	inline const Node *Node::FindValue(const char *key) const {
+-		return FindValue(std::string(key));
+-	}
+-
+-	inline const Node *Node::FindValue(char *key) const {
+-		return FindValue(std::string(key));
+-	}
+-	
+-	inline const Node& Node::operator [] (const char *key) const {
+-		return GetValue(std::string(key));
+-	}
+-
+-	inline const Node& Node::operator [] (char *key) const {
+-		return GetValue(std::string(key));
+-	}
+-}
+-
+-#endif // NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/nodereadimpl.h ../yaml-cpp03/include/yaml-cpp/nodereadimpl.h
+--- ./include/yaml-cpp/nodereadimpl.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/nodereadimpl.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,86 +0,0 @@
+-#ifndef NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-namespace YAML
+-{
+-	// implementation for Node::Read
+-	// (the goal is to call ConvertScalar if we can, and fall back to operator >> if not)
+-	// thanks to litb from stackoverflow.com
+-	// http://stackoverflow.com/questions/1386183/how-to-call-a-templated-function-if-it-exists-and-something-else-otherwise/1386390#1386390
+-
+-	// Note: this doesn't work on gcc 3.2, but does on gcc 3.4 and above. I'm not sure about 3.3.
+-	
+-#if __GNUC__ && (__GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ <= 3))
+-	// trick doesn't work? Just fall back to ConvertScalar.
+-	// This means that we can't use any user-defined types as keys in a map
+-	template <typename T>
+-	inline bool Node::Read(T& value) const {
+-		return ConvertScalar(*this, value);
+-	}
+-#else
+-	// usual case: the trick!
+-	template<bool>
+-	struct read_impl;
+-	
+-	// ConvertScalar available
+-	template<>
+-	struct read_impl<true> {
+-		template<typename T>
+-		static bool read(const Node& node, T& value) {
+-			return ConvertScalar(node, value);
+-		}
+-	};
+-
+-	// ConvertScalar not available
+-	template<>
+-	struct read_impl<false> {
+-		template<typename T>
+-		static bool read(const Node& node, T& value) {
+-			try {
+-				node >> value;
+-			} catch(const Exception&) {
+-				return false;
+-			}
+-			return true;
+-		}
+-	};
+-	
+-	namespace fallback {
+-		// sizeof > 1
+-		struct flag { char c[2]; };
+-		flag Convert(...);
+-		
+-		int operator,(flag, flag);
+-		
+-		template<typename T>
+-		char operator,(flag, T const&);
+-		
+-		char operator,(int, flag);
+-		int operator,(char, flag);
+-	}
+-
+-	template <typename T>
+-	inline bool Node::Read(T& value) const {
+-		using namespace fallback;
+-
+-		return read_impl<sizeof (fallback::flag(), Convert(std::string(), value), fallback::flag()) != 1>::read(*this, value);
+-	}
+-#endif // done with trick
+-	
+-	// the main conversion function
+-	template <typename T>
+-	inline bool ConvertScalar(const Node& node, T& value) {
+-		std::string scalar;
+-		if(!node.GetScalar(scalar))
+-			return false;
+-		
+-		return Convert(scalar, value);
+-	}
+-}
+-
+-#endif // NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/nodeutil.h ../yaml-cpp03/include/yaml-cpp/nodeutil.h
+--- ./include/yaml-cpp/nodeutil.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/nodeutil.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,62 +0,0 @@
+-#ifndef NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-namespace YAML
+-{
+-	template <typename T, typename U>
+-	struct is_same_type {
+-		enum { value = false };
+-	};
+-	
+-	template <typename T>
+-	struct is_same_type<T, T> {
+-		enum { value = true };
+-	};
+-	
+-	template <typename T, bool check>
+-	struct is_index_type_with_check {
+-		enum { value = false };
+-	};
+-	
+-	template <> struct is_index_type_with_check<std::size_t, false> { enum { value = true }; };
+-
+-#define MAKE_INDEX_TYPE(Type) \
+-	template <> struct is_index_type_with_check<Type, is_same_type<Type, std::size_t>::value> { enum { value = true }; }
+-	
+-	MAKE_INDEX_TYPE(int);
+-	MAKE_INDEX_TYPE(unsigned);
+-	MAKE_INDEX_TYPE(short);
+-	MAKE_INDEX_TYPE(unsigned short);
+-	MAKE_INDEX_TYPE(long);
+-	MAKE_INDEX_TYPE(unsigned long);
+-
+-#undef MAKE_INDEX_TYPE
+-	
+-	template <typename T>
+-	struct is_index_type: public is_index_type_with_check<T, false> {};
+-	
+-	// messing around with template stuff to get the right overload for operator [] for a sequence
+-	template <typename T, bool b>
+-	struct _FindFromNodeAtIndex {
+-		const Node *pRet;
+-		_FindFromNodeAtIndex(const Node&, const T&): pRet(0) {}
+-	};
+-
+-	template <typename T>
+-	struct _FindFromNodeAtIndex<T, true> {
+-		const Node *pRet;
+-		_FindFromNodeAtIndex(const Node& node, const T& key): pRet(node.FindAtIndex(static_cast<std::size_t>(key))) {}
+-	};
+-
+-	template <typename T>
+-	inline const Node *FindFromNodeAtIndex(const Node& node, const T& key) {
+-		return _FindFromNodeAtIndex<T, is_index_type<T>::value>(node, key).pRet;
+-	}
+-}
+-
+-#endif // NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/noncopyable.h ../yaml-cpp03/include/yaml-cpp/noncopyable.h
+--- ./include/yaml-cpp/noncopyable.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/noncopyable.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,25 +0,0 @@
+-#ifndef NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/dll.h"
+-
+-namespace YAML
+-{
+-	// this is basically boost::noncopyable
+-	class YAML_CPP_API noncopyable
+-	{
+-	protected:
+-		noncopyable() {}
+-		~noncopyable() {}
+-			
+-	private:
+-		noncopyable(const noncopyable&);
+-		const noncopyable& operator = (const noncopyable&);
+-	};
+-}
+-
+-#endif // NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/null.h ../yaml-cpp03/include/yaml-cpp/null.h
+--- ./include/yaml-cpp/null.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/null.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,25 +0,0 @@
+-#ifndef NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/dll.h"
+-
+-namespace YAML
+-{
+-	class Node;
+-	
+-	struct YAML_CPP_API _Null {};
+-	inline bool operator == (const _Null&, const _Null&) { return true; }
+-	inline bool operator != (const _Null&, const _Null&) { return false; }
+-	
+-	YAML_CPP_API bool IsNull(const Node& node); // old API only
+-	
+-	extern YAML_CPP_API _Null Null;
+-}
+-
+-#endif // NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+diff -uNr ./include/yaml-cpp/ostream.h ../yaml-cpp03/include/yaml-cpp/ostream.h
+--- ./include/yaml-cpp/ostream.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/ostream.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,40 +0,0 @@
+-#ifndef OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include <string>
+-
+-namespace YAML
+-{
+-	class ostream
+-	{
+-	public:
+-		ostream();
+-		~ostream();
+-		
+-		void reserve(unsigned size);
+-		void put(char ch);
+-		const char *str() const { return m_buffer; }
+-		
+-		unsigned row() const { return m_row; }
+-		unsigned col() const { return m_col; }
+-		unsigned pos() const { return m_pos; }
+-		
+-	private:
+-		char *m_buffer;
+-		unsigned m_pos;
+-		unsigned m_size;
+-		
+-		unsigned m_row, m_col;
+-	};
+-	
+-	ostream& operator << (ostream& out, const char *str);
+-	ostream& operator << (ostream& out, const std::string& str);
+-	ostream& operator << (ostream& out, char ch);
+-}
+-
+-#endif // OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/parser.h ../yaml-cpp03/include/yaml-cpp/parser.h
+--- ./include/yaml-cpp/parser.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/parser.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,51 +0,0 @@
+-#ifndef PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include "yaml-cpp/dll.h"
+-#include "yaml-cpp/noncopyable.h"
+-#include <ios>
+-#include <memory>
+-
+-namespace YAML
+-{
+-	struct Directives;
+-	struct Mark;
+-	struct Token;
+-	class EventHandler;
+-	class Node;
+-	class Scanner;
+-
+-	class YAML_CPP_API Parser: private noncopyable
+-	{
+-	public:
+-		Parser();
+-		Parser(std::istream& in);
+-		~Parser();
+-
+-		operator bool() const;
+-
+-		void Load(std::istream& in);
+-		bool HandleNextDocument(EventHandler& eventHandler);
+-		
+-		bool GetNextDocument(Node& document); // old API only
+-		
+-		void PrintTokens(std::ostream& out);
+-
+-	private:
+-		void ParseDirectives();
+-		void HandleDirective(const Token& token);
+-		void HandleYamlDirective(const Token& token);
+-		void HandleTagDirective(const Token& token);
+-		
+-	private:
+-		std::auto_ptr<Scanner> m_pScanner;
+-		std::auto_ptr<Directives> m_pDirectives;
+-	};
+-}
+-
+-#endif // PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/stlemitter.h ../yaml-cpp03/include/yaml-cpp/stlemitter.h
+--- ./include/yaml-cpp/stlemitter.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/stlemitter.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,51 +0,0 @@
+-#ifndef STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include <vector>
+-#include <list>
+-#include <set>
+-#include <map>
+-
+-namespace YAML
+-{
+-	template<typename Seq>
+-	inline Emitter& EmitSeq(Emitter& emitter, const Seq& seq) {
+-		emitter << BeginSeq;
+-		for(typename Seq::const_iterator it=seq.begin();it!=seq.end();++it)
+-			emitter << *it;
+-		emitter << EndSeq;
+-		return emitter;
+-	}
+-	
+-	template<typename T>
+-	inline Emitter& operator << (Emitter& emitter, const std::vector<T>& v) {
+-		return EmitSeq(emitter, v);
+-	}	
+-
+-	template<typename T>
+-	inline Emitter& operator << (Emitter& emitter, const std::list<T>& v) {
+-		return EmitSeq(emitter, v);
+-	}
+-
+-	template<typename T>
+-	inline Emitter& operator << (Emitter& emitter, const std::set<T>& v) {
+-		return EmitSeq(emitter, v);
+-	}
+-	
+-	template <typename K, typename V>
+-	inline Emitter& operator << (Emitter& emitter, const std::map<K, V>& m) {
+-		typedef typename std::map <K, V> map;
+-		emitter << BeginMap;
+-		for(typename map::const_iterator it=m.begin();it!=m.end();++it)
+-			emitter << Key << it->first << Value << it->second;
+-		emitter << EndMap;
+-		return emitter;
+-	}
+-}
+-
+-#endif // STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/stlnode.h ../yaml-cpp03/include/yaml-cpp/stlnode.h
+--- ./include/yaml-cpp/stlnode.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/stlnode.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,38 +0,0 @@
+-#ifndef STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-#include <vector>
+-#include <map>
+-
+-namespace YAML
+-{
+-	template <typename T>
+-	void operator >> (const Node& node, std::vector<T>& v)
+-	{
+-		v.clear();
+-		v.resize(node.size());
+-		for(unsigned i=0;i<node.size();++i)
+-			node[i] >> v[i];
+-	}
+-	
+-	
+-	template <typename K, typename V>
+-	void operator >> (const Node& node, std::map<K, V>& m)
+-	{
+-		m.clear();
+-		for(Iterator it=node.begin();it!=node.end();++it) {
+-			K k;
+-			V v;
+-			it.first() >> k;
+-			it.second() >> v;
+-			m[k] = v;
+-		}
+-	}
+-}
+-
+-#endif // STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp/traits.h ../yaml-cpp03/include/yaml-cpp/traits.h
+--- ./include/yaml-cpp/traits.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/traits.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,57 +0,0 @@
+-#ifndef TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-
+-namespace YAML
+-{
+-	template <typename>
+-	struct is_numeric { enum { value = false }; };
+-
+-	template <> struct is_numeric <char> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned char> { enum { value = true }; };
+-	template <> struct is_numeric <int> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned int> { enum { value = true }; };
+-	template <> struct is_numeric <long int> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned long int> { enum { value = true }; };
+-	template <> struct is_numeric <short int> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned short int> { enum { value = true }; };
+-#if defined(_MSC_VER) && (_MSC_VER < 1310)
+-	template <> struct is_numeric <__int64> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned __int64> { enum { value = true }; };
+-#else
+-	template <> struct is_numeric <long long> { enum { value = true }; };
+-	template <> struct is_numeric <unsigned long long> { enum { value = true }; };
+-#endif
+-	template <> struct is_numeric <float> { enum { value = true }; };
+-	template <> struct is_numeric <double> { enum { value = true }; };
+-	template <> struct is_numeric <long double> { enum { value = true }; };
+-
+-	template <bool, class T = void>
+-	struct enable_if_c {
+-	  typedef T type;
+-	};
+-
+-	template <class T>
+-	struct enable_if_c<false, T> {};
+-
+-	template <class Cond, class T = void>
+-	struct enable_if : public enable_if_c<Cond::value, T> {};
+-
+-	template <bool, class T = void>
+-	struct disable_if_c {
+-	  typedef T type;
+-	};
+-
+-	template <class T>
+-	struct disable_if_c<true, T> {};
+-
+-	template <class Cond, class T = void>
+-	struct disable_if : public disable_if_c<Cond::value, T> {};
+-}
+-
+-#endif // TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+diff -uNr ./include/yaml-cpp/yaml.h ../yaml-cpp03/include/yaml-cpp/yaml.h
+--- ./include/yaml-cpp/yaml.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp/yaml.h	1970-01-01 01:00:00.000000000 +0100
+@@ -1,17 +0,0 @@
+-#ifndef YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-#define YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+-
+-#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
+-#pragma once
+-#endif
+-
+-#include "yaml-cpp/parser.h"
+-#include "yaml-cpp/emitter.h"
+-#include "yaml-cpp/stlemitter.h"
+-#include "yaml-cpp/exceptions.h"
+-
+-#include "yaml-cpp/node.h"
+-#include "yaml-cpp/stlnode.h"
+-#include "yaml-cpp/iterator.h"
+-
+-#endif // YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/aliasmanager.h ../yaml-cpp03/include/yaml-cpp03/aliasmanager.h
+--- ./include/yaml-cpp03/aliasmanager.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/aliasmanager.h	2016-01-19 13:58:33.918887335 +0100
+@@ -0,0 +1,34 @@
++#ifndef ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/anchor.h"
++#include <map>
++
++namespace YAML
++{
++	class Node;
++	
++	class AliasManager
++	{
++	public:
++		AliasManager();
++		
++		void RegisterReference(const Node& node);
++		anchor_t LookupAnchor(const Node& node) const;
++		
++	private:
++		anchor_t _CreateNewAnchor();
++		
++	private:
++		typedef std::map<const Node*, anchor_t> AnchorByIdentity;
++		AnchorByIdentity m_anchorByIdentity;
++		
++		anchor_t m_curAnchor;
++	};
++}
++
++#endif // ALIASMANAGER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/anchor.h ../yaml-cpp03/include/yaml-cpp03/anchor.h
+--- ./include/yaml-cpp03/anchor.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/anchor.h	2016-01-19 13:58:33.922887355 +0100
+@@ -0,0 +1,16 @@
++#ifndef ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include <cstddef>
++
++namespace YAML
++{
++	typedef std::size_t anchor_t;
++	const anchor_t NullAnchor = 0;
++}
++
++#endif // ANCHOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/binary.h ../yaml-cpp03/include/yaml-cpp03/binary.h
+--- ./include/yaml-cpp03/binary.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/binary.h	2016-01-19 13:58:33.926887374 +0100
+@@ -0,0 +1,66 @@
++#ifndef BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include <string>
++#include <vector>
++
++namespace YAML
++{
++    class Node;
++    
++    std::string EncodeBase64(const unsigned char *data, std::size_t size);
++    std::vector<unsigned char> DecodeBase64(const std::string& input);
++    
++    class Binary {
++    public:
++        Binary(): m_unownedData(0), m_unownedSize(0) {}
++        Binary(const unsigned char *data, std::size_t size): m_unownedData(data), m_unownedSize(size) {}
++        
++        bool owned() const { return !m_unownedData; }
++        std::size_t size() const { return owned() ? m_data.size() : m_unownedSize; }
++        const unsigned char *data() const { return owned() ? &m_data[0] : m_unownedData; }
++        
++        void swap(std::vector<unsigned char>& rhs) {
++            if(m_unownedData) {
++                m_data.swap(rhs);
++                rhs.clear();
++                rhs.resize(m_unownedSize);
++                std::copy(m_unownedData, m_unownedData + m_unownedSize, &rhs[0]);
++                m_unownedData = 0;
++                m_unownedSize = 0;
++            } else {
++                m_data.swap(rhs);
++            }
++        }
++        
++        bool operator == (const Binary& rhs) const {
++            const std::size_t s = size();
++            if(s != rhs.size())
++                return false;
++            const unsigned char *d1 = data();
++            const unsigned char *d2 = rhs.data();
++            for(std::size_t i=0;i<s;i++) {
++                if(*d1++ != *d2++)
++                    return false;
++            }
++            return true;
++        }
++        
++        bool operator != (const Binary& rhs) const {
++            return !(*this == rhs);
++        }
++        
++    private:
++        std::vector<unsigned char> m_data;
++        const unsigned char *m_unownedData;
++        std::size_t m_unownedSize;
++    };
++    
++    void operator >> (const Node& node, Binary& binary);
++}
++
++#endif // BASE64_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/contrib/anchordict.h ../yaml-cpp03/include/yaml-cpp03/contrib/anchordict.h
+--- ./include/yaml-cpp03/contrib/anchordict.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/contrib/anchordict.h	2016-01-19 13:58:39.646915738 +0100
+@@ -0,0 +1,42 @@
++#ifndef ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include <vector>
++
++#include "../anchor.h"
++
++namespace YAML
++{
++  /// AnchorDict
++  /// . An object that stores and retrieves values correlating to anchor_t
++  ///   values.
++  /// . Efficient implementation that can make assumptions about how anchor_t
++  ///   values are assigned by the Parser class.
++  template <class T>
++  class AnchorDict
++  {
++  public:
++    void Register(anchor_t anchor, T value)
++    {
++      if (anchor > m_data.size())
++      {
++        m_data.resize(anchor);
++      }
++      m_data[anchor - 1] = value;
++    }
++    
++    T Get(anchor_t anchor) const
++    {
++      return m_data[anchor - 1];
++    }
++  
++  private:
++    std::vector<T> m_data;
++  };
++}
++
++#endif // ANCHORDICT_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/contrib/graphbuilder.h ../yaml-cpp03/include/yaml-cpp03/contrib/graphbuilder.h
+--- ./include/yaml-cpp03/contrib/graphbuilder.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/contrib/graphbuilder.h	2016-01-19 13:58:39.654915778 +0100
+@@ -0,0 +1,133 @@
++#ifndef GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/mark.h"
++#include <string>
++
++namespace YAML
++{
++  class Parser;
++  
++  // GraphBuilderInterface
++  // . Abstraction of node creation
++  // . pParentNode is always NULL or the return value of one of the NewXXX()
++  //   functions.
++  class GraphBuilderInterface
++  {
++  public:
++    // Create and return a new node with a null value.
++    virtual void *NewNull(const Mark& mark, void *pParentNode) = 0;
++    
++    // Create and return a new node with the given tag and value.
++    virtual void *NewScalar(const Mark& mark, const std::string& tag, void *pParentNode, const std::string& value) = 0;
++    
++    // Create and return a new sequence node
++    virtual void *NewSequence(const Mark& mark, const std::string& tag, void *pParentNode) = 0;
++    // Add pNode to pSequence.  pNode was created with one of the NewXxx()
++    // functions and pSequence with NewSequence().
++    virtual void AppendToSequence(void *pSequence, void *pNode) = 0;
++    // Note that no moew entries will be added to pSequence
++    virtual void SequenceComplete(void *pSequence) {(void)pSequence;}
++    
++    // Create and return a new map node
++    virtual void *NewMap(const Mark& mark, const std::string& tag, void *pParentNode) = 0;
++    // Add the pKeyNode => pValueNode mapping to pMap.  pKeyNode and pValueNode
++    // were created with one of the NewXxx() methods and pMap with NewMap().
++    virtual void AssignInMap(void *pMap, void *pKeyNode, void *pValueNode) = 0;
++    // Note that no more assignments will be made in pMap
++    virtual void MapComplete(void *pMap) {(void)pMap;}
++    
++    // Return the node that should be used in place of an alias referencing
++    // pNode (pNode by default)
++    virtual void *AnchorReference(const Mark& mark, void *pNode) {(void)mark; return pNode;}
++  };
++  
++  // Typesafe wrapper for GraphBuilderInterface.  Assumes that Impl defines
++  // Node, Sequence, and Map types.  Sequence and Map must derive from Node
++  // (unless Node is defined as void).  Impl must also implement function with
++  // all of the same names as the virtual functions in GraphBuilderInterface
++  // -- including the ones with default implementations -- but with the
++  // prototypes changed to accept an explicit Node*, Sequence*, or Map* where
++  // appropriate.
++  template <class Impl>
++  class GraphBuilder : public GraphBuilderInterface
++  {
++  public:
++    typedef typename Impl::Node Node;
++    typedef typename Impl::Sequence Sequence;
++    typedef typename Impl::Map Map;
++    
++    GraphBuilder(Impl& impl) : m_impl(impl)
++    {
++      Map* pMap = NULL;
++      Sequence* pSeq = NULL;
++      Node* pNode = NULL;
++      
++      // Type consistency checks
++      pNode = pMap;
++      pNode = pSeq;
++    }
++    
++    GraphBuilderInterface& AsBuilderInterface() {return *this;}
++    
++    virtual void *NewNull(const Mark& mark, void* pParentNode) {
++      return CheckType<Node>(m_impl.NewNull(mark, AsNode(pParentNode)));
++    }
++    
++    virtual void *NewScalar(const Mark& mark, const std::string& tag, void *pParentNode, const std::string& value) {
++      return CheckType<Node>(m_impl.NewScalar(mark, tag, AsNode(pParentNode), value));
++    }
++    
++    virtual void *NewSequence(const Mark& mark, const std::string& tag, void *pParentNode) {
++      return CheckType<Sequence>(m_impl.NewSequence(mark, tag, AsNode(pParentNode)));
++    }
++    virtual void AppendToSequence(void *pSequence, void *pNode) {
++      m_impl.AppendToSequence(AsSequence(pSequence), AsNode(pNode));
++    }
++    virtual void SequenceComplete(void *pSequence) {
++      m_impl.SequenceComplete(AsSequence(pSequence));
++    }
++    
++    virtual void *NewMap(const Mark& mark, const std::string& tag, void *pParentNode) {
++      return CheckType<Map>(m_impl.NewMap(mark, tag, AsNode(pParentNode)));
++    }
++    virtual void AssignInMap(void *pMap, void *pKeyNode, void *pValueNode) {
++      m_impl.AssignInMap(AsMap(pMap), AsNode(pKeyNode), AsNode(pValueNode));
++    }
++    virtual void MapComplete(void *pMap) {
++      m_impl.MapComplete(AsMap(pMap));
++    }
++    
++    virtual void *AnchorReference(const Mark& mark, void *pNode) {
++      return CheckType<Node>(m_impl.AnchorReference(mark, AsNode(pNode)));
++    }
++  
++  private:
++    Impl& m_impl;
++    
++    // Static check for pointer to T
++    template <class T, class U>
++    static T* CheckType(U* p) {return p;}
++    
++    static Node *AsNode(void *pNode) {return static_cast<Node*>(pNode);}
++    static Sequence *AsSequence(void *pSeq) {return static_cast<Sequence*>(pSeq);}
++    static Map *AsMap(void *pMap) {return static_cast<Map*>(pMap);}
++  };
++  
++  void *BuildGraphOfNextDocument(Parser& parser, GraphBuilderInterface& graphBuilder);
++  
++  template <class Impl>
++  typename Impl::Node *BuildGraphOfNextDocument(Parser& parser, Impl& impl)
++  {
++    GraphBuilder<Impl> graphBuilder(impl);
++    return static_cast<typename Impl::Node *>(BuildGraphOfNextDocument(
++      parser, graphBuilder
++    ));
++  }
++}
++
++#endif // GRAPHBUILDER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/conversion.h ../yaml-cpp03/include/yaml-cpp03/conversion.h
+--- ./include/yaml-cpp03/conversion.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/conversion.h	2016-01-19 13:58:33.934887414 +0100
+@@ -0,0 +1,75 @@
++#ifndef CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/null.h"
++#include "yaml-cpp03/traits.h"
++#include <limits>
++#include <string>
++#include <sstream>
++
++namespace YAML
++{
++	// traits for conversion
++	
++	template<typename T>
++	struct is_scalar_convertible { enum { value = is_numeric<T>::value }; };
++	
++	template<> struct is_scalar_convertible<std::string> { enum { value = true }; };
++	template<> struct is_scalar_convertible<bool> { enum { value = true }; };
++	template<> struct is_scalar_convertible<_Null> { enum { value = true }; };
++
++	// actual conversion
++	
++	inline bool Convert(const std::string& input, std::string& output) {
++		output = input;
++		return true;
++	}
++	
++	YAML_CPP_API bool Convert(const std::string& input, bool& output);
++	YAML_CPP_API bool Convert(const std::string& input, _Null& output);
++	
++	inline bool IsInfinity(const std::string& input) {
++		return input == ".inf" || input == ".Inf" || input == ".INF" || input == "+.inf" || input == "+.Inf" || input == "+.INF";
++	}
++	
++	inline bool IsNegativeInfinity(const std::string& input) {
++		return input == "-.inf" || input == "-.Inf" || input == "-.INF";
++	}
++	
++	inline bool IsNaN(const std::string& input) {
++		return input == ".nan" || input == ".NaN" || input == ".NAN";
++	}
++
++
++	template <typename T> 
++	inline bool Convert(const std::string& input, T& output, typename enable_if<is_numeric<T> >::type * = 0) {
++		std::stringstream stream(input);
++		stream.unsetf(std::ios::dec);
++        if((stream >> output) && (stream >> std::ws).eof())
++            return true;
++		
++		if(std::numeric_limits<T>::has_infinity) {
++			if(IsInfinity(input)) {
++				output = std::numeric_limits<T>::infinity();
++				return true;
++			} else if(IsNegativeInfinity(input)) {
++				output = -std::numeric_limits<T>::infinity();
++				return true;
++			}
++		}
++		
++		if(std::numeric_limits<T>::has_quiet_NaN && IsNaN(input)) {
++			output = std::numeric_limits<T>::quiet_NaN();
++			return true;
++		}
++		
++		return false;
++	}
++}
++
++#endif // CONVERSION_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/dll.h ../yaml-cpp03/include/yaml-cpp03/dll.h
+--- ./include/yaml-cpp03/dll.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/dll.h	2016-01-19 13:58:33.938887434 +0100
+@@ -0,0 +1,28 @@
++#ifndef DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++// The following ifdef block is the standard way of creating macros which make exporting
++// from a DLL simpler. All files within this DLL are compiled with the yaml_cpp_EXPORTS
++// symbol defined on the command line. this symbol should not be defined on any project
++// that uses this DLL. This way any other project whose source files include this file see
++// YAML_CPP_API functions as being imported from a DLL, whereas this DLL sees symbols
++// defined with this macro as being exported.
++#undef YAML_CPP_API
++
++#ifdef YAML_CPP_DLL // Using or Building YAML-CPP DLL (definition defined manually)
++	#ifdef yaml_cpp_EXPORTS // Building YAML-CPP DLL (definition created by CMake or defined manually)
++	//	#pragma message( "Defining YAML_CPP_API for DLL export" )
++		#define YAML_CPP_API __declspec(dllexport)
++	#else // yaml_cpp_EXPORTS
++	//	#pragma message( "Defining YAML_CPP_API for DLL import" )
++		#define YAML_CPP_API __declspec(dllimport)
++	#endif // yaml_cpp_EXPORTS
++#else //YAML_CPP_DLL
++#define YAML_CPP_API
++#endif // YAML_CPP_DLL
++
++#endif // DLL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/emitfromevents.h ../yaml-cpp03/include/yaml-cpp03/emitfromevents.h
+--- ./include/yaml-cpp03/emitfromevents.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/emitfromevents.h	2016-01-19 13:58:33.942887454 +0100
+@@ -0,0 +1,45 @@
++#ifndef EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/eventhandler.h"
++#include <stack>
++
++namespace YAML
++{
++	class Emitter;
++	
++	class EmitFromEvents: public EventHandler
++	{
++	public:
++		EmitFromEvents(Emitter& emitter);
++		
++		virtual void OnDocumentStart(const Mark& mark);
++		virtual void OnDocumentEnd();
++		
++		virtual void OnNull(const Mark& mark, anchor_t anchor);
++		virtual void OnAlias(const Mark& mark, anchor_t anchor);
++		virtual void OnScalar(const Mark& mark, const std::string& tag, anchor_t anchor, const std::string& value);
++		
++		virtual void OnSequenceStart(const Mark& mark, const std::string& tag, anchor_t anchor);
++		virtual void OnSequenceEnd();
++		
++		virtual void OnMapStart(const Mark& mark, const std::string& tag, anchor_t anchor);
++		virtual void OnMapEnd();
++		
++	private:
++		void BeginNode();
++		void EmitProps(const std::string& tag, anchor_t anchor);
++		
++	private:
++		Emitter& m_emitter;
++		
++		struct State { enum value { WaitingForSequenceEntry, WaitingForKey, WaitingForValue }; };
++		std::stack<State::value> m_stateStack;
++	};
++}
++
++#endif // EMITFROMEVENTS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/emitter.h ../yaml-cpp03/include/yaml-cpp03/emitter.h
+--- ./include/yaml-cpp03/emitter.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/emitter.h	2016-01-19 13:58:33.946887474 +0100
+@@ -0,0 +1,186 @@
++#ifndef EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/dll.h"
++#include "yaml-cpp03/binary.h"
++#include "yaml-cpp03/emittermanip.h"
++#include "yaml-cpp03/ostream.h"
++#include "yaml-cpp03/noncopyable.h"
++#include "yaml-cpp03/null.h"
++#include <memory>
++#include <string>
++#include <sstream>
++
++namespace YAML
++{
++	class EmitterState;
++	
++	class YAML_CPP_API Emitter: private noncopyable
++	{
++	public:
++		Emitter();
++		~Emitter();
++		
++		// output
++		const char *c_str() const;
++		unsigned size() const;
++		
++		// state checking
++		bool good() const;
++		const std::string GetLastError() const;
++		
++		// global setters
++		bool SetOutputCharset(EMITTER_MANIP value);
++		bool SetStringFormat(EMITTER_MANIP value);
++		bool SetBoolFormat(EMITTER_MANIP value);
++		bool SetIntBase(EMITTER_MANIP value);
++		bool SetSeqFormat(EMITTER_MANIP value);
++		bool SetMapFormat(EMITTER_MANIP value);
++		bool SetIndent(unsigned n);
++		bool SetPreCommentIndent(unsigned n);
++		bool SetPostCommentIndent(unsigned n);
++        bool SetFloatPrecision(unsigned n);
++        bool SetDoublePrecision(unsigned n);
++		
++		// local setters
++		Emitter& SetLocalValue(EMITTER_MANIP value);
++		Emitter& SetLocalIndent(const _Indent& indent);
++        Emitter& SetLocalPrecision(const _Precision& precision);
++		
++		// overloads of write
++		Emitter& Write(const std::string& str);
++		Emitter& Write(bool b);
++		Emitter& Write(char ch);
++		Emitter& Write(const _Alias& alias);
++		Emitter& Write(const _Anchor& anchor);
++		Emitter& Write(const _Tag& tag);
++		Emitter& Write(const _Comment& comment);
++		Emitter& Write(const _Null& null);
++		Emitter& Write(const Binary& binary);
++		
++		template <typename T>
++		Emitter& WriteIntegralType(T value);
++		
++		template <typename T>
++		Emitter& WriteStreamable(T value);
++
++	private:
++		void PreWriteIntegralType(std::stringstream& str);
++		void PreWriteStreamable(std::stringstream& str);
++		void PostWriteIntegralType(const std::stringstream& str);
++		void PostWriteStreamable(const std::stringstream& str);
++        
++        template<typename T> void SetStreamablePrecision(std::stringstream&) {}
++        unsigned GetFloatPrecision() const;
++        unsigned GetDoublePrecision() const;
++	
++	private:
++		void PreAtomicWrite();
++		bool GotoNextPreAtomicState();
++		void PostAtomicWrite();
++		void EmitSeparationIfNecessary();
++		
++		void EmitBeginDoc();
++		void EmitEndDoc();
++		void EmitBeginSeq();
++		void EmitEndSeq();
++		void EmitBeginMap();
++		void EmitEndMap();
++		void EmitKey();
++		void EmitValue();
++		void EmitNewline();
++		void EmitKindTag();
++		void EmitTag(bool verbatim, const _Tag& tag);
++		
++		const char *ComputeFullBoolName(bool b) const;
++		bool CanEmitNewline() const;
++		
++	private:
++		ostream m_stream;
++		std::auto_ptr <EmitterState> m_pState;
++	};
++	
++	template <typename T>
++	inline Emitter& Emitter::WriteIntegralType(T value)
++	{
++		if(!good())
++			return *this;
++		
++		std::stringstream str;
++		PreWriteIntegralType(str);
++		str << value;
++		PostWriteIntegralType(str);
++		return *this;
++	}
++
++	template <typename T>
++	inline Emitter& Emitter::WriteStreamable(T value)
++	{
++		if(!good())
++			return *this;
++		
++		std::stringstream str;
++		PreWriteStreamable(str);
++        SetStreamablePrecision<T>(str);
++		str << value;
++		PostWriteStreamable(str);
++		return *this;
++	}
++	
++    template<>
++    inline void Emitter::SetStreamablePrecision<float>(std::stringstream& str)
++    {
++		str.precision(GetFloatPrecision());
++    }
++
++    template<>
++    inline void Emitter::SetStreamablePrecision<double>(std::stringstream& str)
++    {
++		str.precision(GetDoublePrecision());
++    }
++
++	// overloads of insertion
++	inline Emitter& operator << (Emitter& emitter, const std::string& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, bool v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, char v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, unsigned char v) { return emitter.Write(static_cast<char>(v)); }
++	inline Emitter& operator << (Emitter& emitter, const _Alias& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, const _Anchor& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, const _Tag& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, const _Comment& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, const _Null& v) { return emitter.Write(v); }
++	inline Emitter& operator << (Emitter& emitter, const Binary& b) { return emitter.Write(b); }
++
++	inline Emitter& operator << (Emitter& emitter, const char *v) { return emitter.Write(std::string(v)); }
++
++	inline Emitter& operator << (Emitter& emitter, int v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, unsigned int v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, short v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, unsigned short v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, long v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, unsigned long v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, long long v) { return emitter.WriteIntegralType(v); }
++	inline Emitter& operator << (Emitter& emitter, unsigned long long v) { return emitter.WriteIntegralType(v); }
++
++	inline Emitter& operator << (Emitter& emitter, float v) { return emitter.WriteStreamable(v); }
++	inline Emitter& operator << (Emitter& emitter, double v) { return emitter.WriteStreamable(v); }
++
++	inline Emitter& operator << (Emitter& emitter, EMITTER_MANIP value) {
++		return emitter.SetLocalValue(value);
++	}
++	
++	inline Emitter& operator << (Emitter& emitter, _Indent indent) {
++		return emitter.SetLocalIndent(indent);
++	}
++    
++    inline Emitter& operator << (Emitter& emitter, _Precision precision) {
++        return emitter.SetLocalPrecision(precision);
++    }
++}
++
++#endif // EMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/emittermanip.h ../yaml-cpp03/include/yaml-cpp03/emittermanip.h
+--- ./include/yaml-cpp03/emittermanip.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/emittermanip.h	2016-01-19 13:58:33.950887493 +0100
+@@ -0,0 +1,149 @@
++#ifndef EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include <string>
++
++namespace YAML
++{
++	enum EMITTER_MANIP {
++		// general manipulators
++		Auto,
++		TagByKind,
++		Newline,
++
++		// output character set
++		EmitNonAscii,
++		EscapeNonAscii,
++		
++		// string manipulators
++		// Auto, // duplicate
++		SingleQuoted,
++		DoubleQuoted,
++		Literal,
++		
++		// bool manipulators
++		YesNoBool,  // yes, no
++		TrueFalseBool,  // true, false
++		OnOffBool,  // on, off
++		UpperCase,  // TRUE, N
++		LowerCase,  // f, yes
++		CamelCase,  // No, Off
++		LongBool,  // yes, On
++		ShortBool,  // y, t
++		
++		// int manipulators
++		Dec,
++		Hex,
++		Oct,
++		
++		// document manipulators
++		BeginDoc,
++		EndDoc,
++		
++		// sequence manipulators
++		BeginSeq,
++		EndSeq,
++		Flow,
++		Block,
++		
++		// map manipulators
++		BeginMap,
++		EndMap,
++		Key,
++		Value,
++		// Flow, // duplicate
++		// Block, // duplicate
++		// Auto, // duplicate
++		LongKey
++	};
++	
++	struct _Indent {
++		_Indent(int value_): value(value_) {}
++		int value;
++	};
++	
++	inline _Indent Indent(int value) {
++		return _Indent(value);
++	}
++	
++	struct _Alias {
++		_Alias(const std::string& content_): content(content_) {}
++		std::string content;
++	};
++	
++	inline _Alias Alias(const std::string content) {
++		return _Alias(content);
++	}
++	
++	struct _Anchor {
++		_Anchor(const std::string& content_): content(content_) {}
++		std::string content;
++	};
++
++	inline _Anchor Anchor(const std::string content) {
++		return _Anchor(content);
++	}
++	
++	struct _Tag {
++		struct Type { enum value { Verbatim, PrimaryHandle, NamedHandle }; };
++		
++		explicit _Tag(const std::string& prefix_, const std::string& content_, Type::value type_)
++		: prefix(prefix_), content(content_), type(type_)
++		{
++		}
++		std::string prefix;
++		std::string content;
++		Type::value type;
++	};
++	
++	inline _Tag VerbatimTag(const std::string content) {
++		return _Tag("", content, _Tag::Type::Verbatim);
++	}
++
++	inline _Tag LocalTag(const std::string content) {
++		return _Tag("", content, _Tag::Type::PrimaryHandle);
++	}
++
++	inline _Tag LocalTag(const std::string& prefix, const std::string content) {
++		return _Tag(prefix, content, _Tag::Type::NamedHandle);
++	}
++
++	inline _Tag SecondaryTag(const std::string content) {
++		return _Tag("", content, _Tag::Type::NamedHandle);
++	}
++
++	struct _Comment {
++		_Comment(const std::string& content_): content(content_) {}
++		std::string content;
++	};
++	
++	inline _Comment Comment(const std::string content) {
++		return _Comment(content);
++	}
++    
++    struct _Precision {
++        _Precision(int floatPrecision_, int doublePrecision_): floatPrecision(floatPrecision_), doublePrecision(doublePrecision_) {}
++        
++        int floatPrecision;
++        int doublePrecision;
++    };
++    
++    inline _Precision FloatPrecision(int n) {
++        return _Precision(n, -1);
++    }
++
++    inline _Precision DoublePrecision(int n) {
++        return _Precision(-1, n);
++    }
++
++    inline _Precision Precision(int n) {
++        return _Precision(n, n);
++    }
++}
++
++#endif // EMITTERMANIP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/eventhandler.h ../yaml-cpp03/include/yaml-cpp03/eventhandler.h
+--- ./include/yaml-cpp03/eventhandler.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/eventhandler.h	2016-01-19 13:58:33.954887513 +0100
+@@ -0,0 +1,36 @@
++#ifndef EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/anchor.h"
++#include <string>
++
++namespace YAML
++{
++	struct Mark;
++	
++	class EventHandler
++	{
++	public:
++		virtual ~EventHandler() {}
++
++		virtual void OnDocumentStart(const Mark& mark) = 0;
++		virtual void OnDocumentEnd() = 0;
++		
++		virtual void OnNull(const Mark& mark, anchor_t anchor) = 0;
++		virtual void OnAlias(const Mark& mark, anchor_t anchor) = 0;
++		virtual void OnScalar(const Mark& mark, const std::string& tag, anchor_t anchor, const std::string& value) = 0;
++
++		virtual void OnSequenceStart(const Mark& mark, const std::string& tag, anchor_t anchor) = 0;
++		virtual void OnSequenceEnd() = 0;
++
++		virtual void OnMapStart(const Mark& mark, const std::string& tag, anchor_t anchor) = 0;
++		virtual void OnMapEnd() = 0;
++	};
++}
++
++#endif // EVENTHANDLER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
+diff -uNr ./include/yaml-cpp03/exceptions.h ../yaml-cpp03/include/yaml-cpp03/exceptions.h
+--- ./include/yaml-cpp03/exceptions.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/exceptions.h	2016-01-19 13:58:33.958887533 +0100
+@@ -0,0 +1,164 @@
++#ifndef EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/mark.h"
++#include "yaml-cpp03/traits.h"
++#include <stdexcept>
++#include <string>
++#include <sstream>
++
++namespace YAML
++{
++	// error messages
++	namespace ErrorMsg
++	{
++		const char * const YAML_DIRECTIVE_ARGS    = "YAML directives must have exactly one argument";
++		const char * const YAML_VERSION           = "bad YAML version: ";
++		const char * const YAML_MAJOR_VERSION     = "YAML major version too large";
++		const char * const REPEATED_YAML_DIRECTIVE= "repeated YAML directive";
++		const char * const TAG_DIRECTIVE_ARGS     = "TAG directives must have exactly two arguments";
++		const char * const REPEATED_TAG_DIRECTIVE = "repeated TAG directive";
++		const char * const CHAR_IN_TAG_HANDLE     = "illegal character found while scanning tag handle";
++		const char * const TAG_WITH_NO_SUFFIX     = "tag handle with no suffix";
++		const char * const END_OF_VERBATIM_TAG    = "end of verbatim tag not found";
++		const char * const END_OF_MAP             = "end of map not found";
++		const char * const END_OF_MAP_FLOW        = "end of map flow not found";
++		const char * const END_OF_SEQ             = "end of sequence not found";
++		const char * const END_OF_SEQ_FLOW        = "end of sequence flow not found";
++		const char * const MULTIPLE_TAGS          = "cannot assign multiple tags to the same node";
++		const char * const MULTIPLE_ANCHORS       = "cannot assign multiple anchors to the same node";
++		const char * const MULTIPLE_ALIASES       = "cannot assign multiple aliases to the same node";
++		const char * const ALIAS_CONTENT          = "aliases can't have any content, *including* tags";
++		const char * const INVALID_HEX            = "bad character found while scanning hex number";
++		const char * const INVALID_UNICODE        = "invalid unicode: ";
++		const char * const INVALID_ESCAPE         = "unknown escape character: ";
++		const char * const UNKNOWN_TOKEN          = "unknown token";
++		const char * const DOC_IN_SCALAR          = "illegal document indicator in scalar";
++		const char * const EOF_IN_SCALAR          = "illegal EOF in scalar";
++		const char * const CHAR_IN_SCALAR         = "illegal character in scalar";
++		const char * const TAB_IN_INDENTATION     = "illegal tab when looking for indentation";
++		const char * const FLOW_END               = "illegal flow end";
++		const char * const BLOCK_ENTRY            = "illegal block entry";
++		const char * const MAP_KEY                = "illegal map key";
++		const char * const MAP_VALUE              = "illegal map value";
++		const char * const ALIAS_NOT_FOUND        = "alias not found after *";
++		const char * const ANCHOR_NOT_FOUND       = "anchor not found after &";
++		const char * const CHAR_IN_ALIAS          = "illegal character found while scanning alias";
++		const char * const CHAR_IN_ANCHOR         = "illegal character found while scanning anchor";
++		const char * const ZERO_INDENT_IN_BLOCK   = "cannot set zero indentation for a block scalar";
++		const char * const CHAR_IN_BLOCK          = "unexpected character in block scalar";
++		const char * const AMBIGUOUS_ANCHOR       = "cannot assign the same alias to multiple nodes";
++		const char * const UNKNOWN_ANCHOR         = "the referenced anchor is not defined";
++
++		const char * const INVALID_SCALAR         = "invalid scalar";
++		const char * const KEY_NOT_FOUND          = "key not found";
++		const char * const BAD_DEREFERENCE        = "bad dereference";
++		
++		const char * const UNMATCHED_GROUP_TAG    = "unmatched group tag";
++		const char * const UNEXPECTED_END_SEQ     = "unexpected end sequence token";
++		const char * const UNEXPECTED_END_MAP     = "unexpected end map token";
++		const char * const SINGLE_QUOTED_CHAR     = "invalid character in single-quoted string";
++		const char * const INVALID_ANCHOR         = "invalid anchor";
++		const char * const INVALID_ALIAS          = "invalid alias";
++		const char * const INVALID_TAG            = "invalid tag";
++		const char * const EXPECTED_KEY_TOKEN     = "expected key token";
++		const char * const EXPECTED_VALUE_TOKEN   = "expected value token";
++		const char * const UNEXPECTED_KEY_TOKEN   = "unexpected key token";
++		const char * const UNEXPECTED_VALUE_TOKEN = "unexpected value token";
++
++		template <typename T>
++		inline const std::string KEY_NOT_FOUND_WITH_KEY(const T&, typename disable_if<is_numeric<T> >::type * = 0) {
++			return KEY_NOT_FOUND;
++		}
++
++		inline const std::string KEY_NOT_FOUND_WITH_KEY(const std::string& key) {
++			std::stringstream stream;
++			stream << KEY_NOT_FOUND << ": " << key;
++			return stream.str();
++		}
++		
++		template <typename T>
++		inline const std::string KEY_NOT_FOUND_WITH_KEY(const T& key, typename enable_if<is_numeric<T> >::type * = 0) {
++			std::stringstream stream;
++			stream << KEY_NOT_FOUND << ": " << key;
++			return stream.str();
++		}
++	}
++
++	class Exception: public std::runtime_error {
++	public:
++		Exception(const Mark& mark_, const std::string& msg_)
++		: std::runtime_error(build_what(mark_, msg_)), mark(mark_), msg(msg_) {}
++		virtual ~Exception() throw() {}
++
++		Mark mark;
++		std::string msg;
++
++	private:
++		static const std::string build_what(const Mark& mark, const std::string& msg) {
++			std::stringstream output;
++			output << "yaml-cpp: error at line " << mark.line+1 << ", column " << mark.column+1 << ": " << msg;
++			return output.str();
++		}
++	};
++
++	class ParserException: public Exception {
++	public:
++		ParserException(const Mark& mark_, const std::string& msg_)
++			: Exception(mark_, msg_) {}
++	};
++
++	class RepresentationException: public Exception {
++	public:
++		RepresentationException(const Mark& mark_, const std::string& msg_)
++			: Exception(mark_, msg_) {}
++	};
++
++	// representation exceptions
++	class InvalidScalar: public RepresentationException {
++	public:
++		InvalidScalar(const Mark& mark_)
++			: RepresentationException(mark_, ErrorMsg::INVALID_SCALAR) {}
++	};
++
++	class KeyNotFound: public RepresentationException {
++	public:
++		template <typename T>
++		KeyNotFound(const Mark& mark_, const T& key_)
++			: RepresentationException(mark_, ErrorMsg::KEY_NOT_FOUND_WITH_KEY(key_)) {}
++	};
++	
++	template <typename T>
++	class TypedKeyNotFound: public KeyNotFound {
++	public:
++		TypedKeyNotFound(const Mark& mark_, const T& key_)
++			: KeyNotFound(mark_, key_), key(key_) {}
++		virtual ~TypedKeyNotFound() throw() {}
++
++		T key;
++	};
++
++	template <typename T>
++	inline TypedKeyNotFound <T> MakeTypedKeyNotFound(const Mark& mark, const T& key) {
++		return TypedKeyNotFound <T> (mark, key);
++	}
++
++	class BadDereference: public RepresentationException {
++	public:
++		BadDereference()
++		: RepresentationException(Mark::null(), ErrorMsg::BAD_DEREFERENCE) {}
++	};
++	
++	class EmitterException: public Exception {
++	public:
++		EmitterException(const std::string& msg_)
++		: Exception(Mark::null(), msg_) {}
++	};
++}
++
++#endif // EXCEPTIONS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/iterator.h ../yaml-cpp03/include/yaml-cpp03/iterator.h
+--- ./include/yaml-cpp03/iterator.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/iterator.h	2016-01-19 13:58:33.962887553 +0100
+@@ -0,0 +1,40 @@
++#ifndef ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/dll.h"
++#include <memory>
++
++namespace YAML
++{
++	class Node;
++	struct IterPriv;
++
++	class YAML_CPP_API Iterator
++	{
++	public:
++		Iterator();
++		Iterator(std::auto_ptr<IterPriv> pData);
++		Iterator(const Iterator& rhs);
++		~Iterator();
++
++		Iterator& operator = (const Iterator& rhs);
++		Iterator& operator ++ ();
++		Iterator operator ++ (int);
++		const Node& operator * () const;
++		const Node *operator -> () const;
++		const Node& first() const;
++		const Node& second() const;
++
++		friend YAML_CPP_API bool operator == (const Iterator& it, const Iterator& jt);
++		friend YAML_CPP_API bool operator != (const Iterator& it, const Iterator& jt);
++
++	private:
++		std::auto_ptr<IterPriv> m_pData;
++	};
++}
++
++#endif // ITERATOR_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/ltnode.h ../yaml-cpp03/include/yaml-cpp03/ltnode.h
+--- ./include/yaml-cpp03/ltnode.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/ltnode.h	2016-01-19 13:58:33.966887573 +0100
+@@ -0,0 +1,18 @@
++#ifndef LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++namespace YAML
++{
++	class Node;
++
++	struct ltnode {
++		bool operator()(const Node *pNode1, const Node *pNode2) const;
++	};
++}
++
++#endif // LTNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/mark.h ../yaml-cpp03/include/yaml-cpp03/mark.h
+--- ./include/yaml-cpp03/mark.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/mark.h	2016-01-19 13:58:33.970887593 +0100
+@@ -0,0 +1,26 @@
++#ifndef MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/dll.h"
++
++namespace YAML
++{
++	struct YAML_CPP_API Mark {
++		Mark(): pos(0), line(0), column(0) {}
++		
++		static const Mark null() { return Mark(-1, -1, -1); }
++		
++		int pos;
++		int line, column;
++		
++	private:
++		Mark(int pos_, int line_, int column_): pos(pos_), line(line_), column(column_) {}
++	};
++}
++
++#endif // MARK_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/node.h ../yaml-cpp03/include/yaml-cpp03/node.h
+--- ./include/yaml-cpp03/node.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/node.h	2016-01-19 13:58:33.974887612 +0100
+@@ -0,0 +1,135 @@
++#ifndef NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/dll.h"
++#include "yaml-cpp03/exceptions.h"
++#include "yaml-cpp03/mark.h"
++#include "yaml-cpp03/noncopyable.h"
++#include "yaml-cpp03/conversion.h"
++#include "yaml-cpp03/iterator.h"
++#include "yaml-cpp03/ltnode.h"
++#include <iostream>
++#include <map>
++#include <memory>
++#include <string>
++#include <vector>
++
++namespace YAML
++{
++	class AliasManager;
++	class Content;
++	class NodeOwnership;
++	class Scanner;
++	class Emitter;
++	class EventHandler;
++
++	struct NodeType { enum value { Null, Scalar, Sequence, Map }; };
++
++	class YAML_CPP_API Node: private noncopyable
++	{
++	public:
++		friend class NodeOwnership;
++		friend class NodeBuilder;
++		
++		Node();
++		~Node();
++
++		void Clear();
++		std::auto_ptr<Node> Clone() const;
++		void EmitEvents(EventHandler& eventHandler) const;
++		void EmitEvents(AliasManager& am, EventHandler& eventHandler) const;
++		
++		NodeType::value Type() const { return m_type; }
++		bool IsAliased() const;
++
++		// file location of start of this node
++		const Mark GetMark() const { return m_mark; }
++
++		// accessors
++		Iterator begin() const;
++		Iterator end() const;
++		std::size_t size() const;
++
++		// extraction of scalars
++		bool GetScalar(std::string& s) const;
++
++		// we can specialize this for other values
++		template <typename T>
++		bool Read(T& value) const;
++
++		template <typename T>
++		const T to() const;
++
++		template <typename T>
++		friend YAML_CPP_API typename enable_if<is_scalar_convertible<T> >::type operator >> (const Node& node, T& value);
++
++		// retrieval for maps and sequences
++		template <typename T>
++		const Node *FindValue(const T& key) const;
++
++		template <typename T>
++		const Node& operator [] (const T& key) const;
++		
++		// specific to maps
++		const Node *FindValue(const char *key) const;
++		const Node *FindValue(char *key) const;
++		const Node& operator [] (const char *key) const;
++		const Node& operator [] (char *key) const;
++
++		// for tags
++		const std::string& Tag() const { return m_tag; }
++
++		// emitting
++		friend YAML_CPP_API Emitter& operator << (Emitter& out, const Node& node);
++
++		// ordering
++		int Compare(const Node& rhs) const;
++		friend bool operator < (const Node& n1, const Node& n2);
++
++	private:
++		explicit Node(NodeOwnership& owner);
++		Node& CreateNode();
++		
++		void Init(NodeType::value type, const Mark& mark, const std::string& tag);
++		
++		void MarkAsAliased();
++		void SetScalarData(const std::string& data);
++		void Append(Node& node);
++		void Insert(Node& key, Node& value);
++
++		// helper for sequences
++		template <typename, bool> friend struct _FindFromNodeAtIndex;
++		const Node *FindAtIndex(std::size_t i) const;
++		
++		// helper for maps
++		template <typename T>
++		const Node& GetValue(const T& key) const;
++
++		template <typename T>
++		const Node *FindValueForKey(const T& key) const;
++
++	private:
++		std::auto_ptr<NodeOwnership> m_pOwnership;
++
++		Mark m_mark;
++		std::string m_tag;
++
++		typedef std::vector<Node *> node_seq;
++		typedef std::map<Node *, Node *, ltnode> node_map;
++
++		NodeType::value m_type;
++		std::string m_scalarData;
++		node_seq m_seqData;
++		node_map m_mapData;
++	};
++}
++
++#include "yaml-cpp03/nodeimpl.h"
++#include "yaml-cpp03/nodereadimpl.h"
++
++#endif // NODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/nodeimpl.h ../yaml-cpp03/include/yaml-cpp03/nodeimpl.h
+--- ./include/yaml-cpp03/nodeimpl.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/nodeimpl.h	2016-01-19 13:58:33.978887632 +0100
+@@ -0,0 +1,85 @@
++#ifndef NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/nodeutil.h"
++#include <cassert>
++
++namespace YAML
++{
++	// implementation of templated things
++	template <typename T>
++	inline const T Node::to() const {
++		T value;
++		*this >> value;
++		return value;
++	}
++
++	template <typename T>
++	inline typename enable_if<is_scalar_convertible<T> >::type operator >> (const Node& node, T& value) {
++		if(!ConvertScalar(node, value))
++			throw InvalidScalar(node.m_mark);
++	}
++	
++	template <typename T>
++	inline const Node *Node::FindValue(const T& key) const {
++		switch(m_type) {
++			case NodeType::Null:
++			case NodeType::Scalar:
++				throw BadDereference();
++			case NodeType::Sequence:
++				return FindFromNodeAtIndex(*this, key);
++			case NodeType::Map:
++				return FindValueForKey(key);
++		}
++		assert(false);
++		throw BadDereference();
++	}
++	
++	template <typename T>
++	inline const Node *Node::FindValueForKey(const T& key) const {
++		for(Iterator it=begin();it!=end();++it) {
++			T t;
++			if(it.first().Read(t)) {
++				if(key == t)
++					return &it.second();
++			}
++		}
++		
++		return 0;
++	}
++	
++	template <typename T>
++	inline const Node& Node::GetValue(const T& key) const {
++		if(const Node *pValue = FindValue(key))
++			return *pValue;
++		throw MakeTypedKeyNotFound(m_mark, key);
++	}
++	
++	template <typename T>
++	inline const Node& Node::operator [] (const T& key) const {
++		return GetValue(key);
++	}
++	
++	inline const Node *Node::FindValue(const char *key) const {
++		return FindValue(std::string(key));
++	}
++
++	inline const Node *Node::FindValue(char *key) const {
++		return FindValue(std::string(key));
++	}
++	
++	inline const Node& Node::operator [] (const char *key) const {
++		return GetValue(std::string(key));
++	}
++
++	inline const Node& Node::operator [] (char *key) const {
++		return GetValue(std::string(key));
++	}
++}
++
++#endif // NODEIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/nodereadimpl.h ../yaml-cpp03/include/yaml-cpp03/nodereadimpl.h
+--- ./include/yaml-cpp03/nodereadimpl.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/nodereadimpl.h	2016-01-19 13:58:33.982887652 +0100
+@@ -0,0 +1,86 @@
++#ifndef NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++namespace YAML
++{
++	// implementation for Node::Read
++	// (the goal is to call ConvertScalar if we can, and fall back to operator >> if not)
++	// thanks to litb from stackoverflow.com
++	// http://stackoverflow.com/questions/1386183/how-to-call-a-templated-function-if-it-exists-and-something-else-otherwise/1386390#1386390
++
++	// Note: this doesn't work on gcc 3.2, but does on gcc 3.4 and above. I'm not sure about 3.3.
++	
++#if __GNUC__ && (__GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ <= 3))
++	// trick doesn't work? Just fall back to ConvertScalar.
++	// This means that we can't use any user-defined types as keys in a map
++	template <typename T>
++	inline bool Node::Read(T& value) const {
++		return ConvertScalar(*this, value);
++	}
++#else
++	// usual case: the trick!
++	template<bool>
++	struct read_impl;
++	
++	// ConvertScalar available
++	template<>
++	struct read_impl<true> {
++		template<typename T>
++		static bool read(const Node& node, T& value) {
++			return ConvertScalar(node, value);
++		}
++	};
++
++	// ConvertScalar not available
++	template<>
++	struct read_impl<false> {
++		template<typename T>
++		static bool read(const Node& node, T& value) {
++			try {
++				node >> value;
++			} catch(const Exception&) {
++				return false;
++			}
++			return true;
++		}
++	};
++	
++	namespace fallback {
++		// sizeof > 1
++		struct flag { char c[2]; };
++		flag Convert(...);
++		
++		int operator,(flag, flag);
++		
++		template<typename T>
++		char operator,(flag, T const&);
++		
++		char operator,(int, flag);
++		int operator,(char, flag);
++	}
++
++	template <typename T>
++	inline bool Node::Read(T& value) const {
++		using namespace fallback;
++
++		return read_impl<sizeof (fallback::flag(), Convert(std::string(), value), fallback::flag()) != 1>::read(*this, value);
++	}
++#endif // done with trick
++	
++	// the main conversion function
++	template <typename T>
++	inline bool ConvertScalar(const Node& node, T& value) {
++		std::string scalar;
++		if(!node.GetScalar(scalar))
++			return false;
++		
++		return Convert(scalar, value);
++	}
++}
++
++#endif // NODEREADIMPL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/nodeutil.h ../yaml-cpp03/include/yaml-cpp03/nodeutil.h
+--- ./include/yaml-cpp03/nodeutil.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/nodeutil.h	2016-01-19 13:58:33.986887672 +0100
+@@ -0,0 +1,62 @@
++#ifndef NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++namespace YAML
++{
++	template <typename T, typename U>
++	struct is_same_type {
++		enum { value = false };
++	};
++	
++	template <typename T>
++	struct is_same_type<T, T> {
++		enum { value = true };
++	};
++	
++	template <typename T, bool check>
++	struct is_index_type_with_check {
++		enum { value = false };
++	};
++	
++	template <> struct is_index_type_with_check<std::size_t, false> { enum { value = true }; };
++
++#define MAKE_INDEX_TYPE(Type) \
++	template <> struct is_index_type_with_check<Type, is_same_type<Type, std::size_t>::value> { enum { value = true }; }
++	
++	MAKE_INDEX_TYPE(int);
++	MAKE_INDEX_TYPE(unsigned);
++	MAKE_INDEX_TYPE(short);
++	MAKE_INDEX_TYPE(unsigned short);
++	MAKE_INDEX_TYPE(long);
++	MAKE_INDEX_TYPE(unsigned long);
++
++#undef MAKE_INDEX_TYPE
++	
++	template <typename T>
++	struct is_index_type: public is_index_type_with_check<T, false> {};
++	
++	// messing around with template stuff to get the right overload for operator [] for a sequence
++	template <typename T, bool b>
++	struct _FindFromNodeAtIndex {
++		const Node *pRet;
++		_FindFromNodeAtIndex(const Node&, const T&): pRet(0) {}
++	};
++
++	template <typename T>
++	struct _FindFromNodeAtIndex<T, true> {
++		const Node *pRet;
++		_FindFromNodeAtIndex(const Node& node, const T& key): pRet(node.FindAtIndex(static_cast<std::size_t>(key))) {}
++	};
++
++	template <typename T>
++	inline const Node *FindFromNodeAtIndex(const Node& node, const T& key) {
++		return _FindFromNodeAtIndex<T, is_index_type<T>::value>(node, key).pRet;
++	}
++}
++
++#endif // NODEUTIL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/noncopyable.h ../yaml-cpp03/include/yaml-cpp03/noncopyable.h
+--- ./include/yaml-cpp03/noncopyable.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/noncopyable.h	2016-01-19 13:58:33.990887692 +0100
+@@ -0,0 +1,25 @@
++#ifndef NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/dll.h"
++
++namespace YAML
++{
++	// this is basically boost::noncopyable
++	class YAML_CPP_API noncopyable
++	{
++	protected:
++		noncopyable() {}
++		~noncopyable() {}
++			
++	private:
++		noncopyable(const noncopyable&);
++		const noncopyable& operator = (const noncopyable&);
++	};
++}
++
++#endif // NONCOPYABLE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/null.h ../yaml-cpp03/include/yaml-cpp03/null.h
+--- ./include/yaml-cpp03/null.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/null.h	2016-01-19 13:58:33.994887712 +0100
+@@ -0,0 +1,25 @@
++#ifndef NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/dll.h"
++
++namespace YAML
++{
++	class Node;
++	
++	struct YAML_CPP_API _Null {};
++	inline bool operator == (const _Null&, const _Null&) { return true; }
++	inline bool operator != (const _Null&, const _Null&) { return false; }
++	
++	YAML_CPP_API bool IsNull(const Node& node); // old API only
++	
++	extern YAML_CPP_API _Null Null;
++}
++
++#endif // NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
+diff -uNr ./include/yaml-cpp03/ostream.h ../yaml-cpp03/include/yaml-cpp03/ostream.h
+--- ./include/yaml-cpp03/ostream.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/ostream.h	2016-01-19 13:58:33.998887731 +0100
+@@ -0,0 +1,40 @@
++#ifndef OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include <string>
++
++namespace YAML
++{
++	class ostream
++	{
++	public:
++		ostream();
++		~ostream();
++		
++		void reserve(unsigned size);
++		void put(char ch);
++		const char *str() const { return m_buffer; }
++		
++		unsigned row() const { return m_row; }
++		unsigned col() const { return m_col; }
++		unsigned pos() const { return m_pos; }
++		
++	private:
++		char *m_buffer;
++		unsigned m_pos;
++		unsigned m_size;
++		
++		unsigned m_row, m_col;
++	};
++	
++	ostream& operator << (ostream& out, const char *str);
++	ostream& operator << (ostream& out, const std::string& str);
++	ostream& operator << (ostream& out, char ch);
++}
++
++#endif // OSTREAM_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/parser.h ../yaml-cpp03/include/yaml-cpp03/parser.h
+--- ./include/yaml-cpp03/parser.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/parser.h	2016-01-19 13:58:34.002887751 +0100
+@@ -0,0 +1,51 @@
++#ifndef PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include "yaml-cpp03/dll.h"
++#include "yaml-cpp03/noncopyable.h"
++#include <ios>
++#include <memory>
++
++namespace YAML
++{
++	struct Directives;
++	struct Mark;
++	struct Token;
++	class EventHandler;
++	class Node;
++	class Scanner;
++
++	class YAML_CPP_API Parser: private noncopyable
++	{
++	public:
++		Parser();
++		Parser(std::istream& in);
++		~Parser();
++
++		operator bool() const;
++
++		void Load(std::istream& in);
++		bool HandleNextDocument(EventHandler& eventHandler);
++		
++		bool GetNextDocument(Node& document); // old API only
++		
++		void PrintTokens(std::ostream& out);
++
++	private:
++		void ParseDirectives();
++		void HandleDirective(const Token& token);
++		void HandleYamlDirective(const Token& token);
++		void HandleTagDirective(const Token& token);
++		
++	private:
++		std::auto_ptr<Scanner> m_pScanner;
++		std::auto_ptr<Directives> m_pDirectives;
++	};
++}
++
++#endif // PARSER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/stlemitter.h ../yaml-cpp03/include/yaml-cpp03/stlemitter.h
+--- ./include/yaml-cpp03/stlemitter.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/stlemitter.h	2016-01-19 13:58:34.006887771 +0100
+@@ -0,0 +1,51 @@
++#ifndef STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include <vector>
++#include <list>
++#include <set>
++#include <map>
++
++namespace YAML
++{
++	template<typename Seq>
++	inline Emitter& EmitSeq(Emitter& emitter, const Seq& seq) {
++		emitter << BeginSeq;
++		for(typename Seq::const_iterator it=seq.begin();it!=seq.end();++it)
++			emitter << *it;
++		emitter << EndSeq;
++		return emitter;
++	}
++	
++	template<typename T>
++	inline Emitter& operator << (Emitter& emitter, const std::vector<T>& v) {
++		return EmitSeq(emitter, v);
++	}	
++
++	template<typename T>
++	inline Emitter& operator << (Emitter& emitter, const std::list<T>& v) {
++		return EmitSeq(emitter, v);
++	}
++
++	template<typename T>
++	inline Emitter& operator << (Emitter& emitter, const std::set<T>& v) {
++		return EmitSeq(emitter, v);
++	}
++	
++	template <typename K, typename V>
++	inline Emitter& operator << (Emitter& emitter, const std::map<K, V>& m) {
++		typedef typename std::map <K, V> map;
++		emitter << BeginMap;
++		for(typename map::const_iterator it=m.begin();it!=m.end();++it)
++			emitter << Key << it->first << Value << it->second;
++		emitter << EndMap;
++		return emitter;
++	}
++}
++
++#endif // STLEMITTER_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/stlnode.h ../yaml-cpp03/include/yaml-cpp03/stlnode.h
+--- ./include/yaml-cpp03/stlnode.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/stlnode.h	2016-01-19 13:58:34.010887791 +0100
+@@ -0,0 +1,38 @@
++#ifndef STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++#include <vector>
++#include <map>
++
++namespace YAML
++{
++	template <typename T>
++	void operator >> (const Node& node, std::vector<T>& v)
++	{
++		v.clear();
++		v.resize(node.size());
++		for(unsigned i=0;i<node.size();++i)
++			node[i] >> v[i];
++	}
++	
++	
++	template <typename K, typename V>
++	void operator >> (const Node& node, std::map<K, V>& m)
++	{
++		m.clear();
++		for(Iterator it=node.begin();it!=node.end();++it) {
++			K k;
++			V v;
++			it.first() >> k;
++			it.second() >> v;
++			m[k] = v;
++		}
++	}
++}
++
++#endif // STLNODE_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./include/yaml-cpp03/traits.h ../yaml-cpp03/include/yaml-cpp03/traits.h
+--- ./include/yaml-cpp03/traits.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/traits.h	2016-01-19 13:58:34.014887811 +0100
+@@ -0,0 +1,57 @@
++#ifndef TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++
++namespace YAML
++{
++	template <typename>
++	struct is_numeric { enum { value = false }; };
++
++	template <> struct is_numeric <char> { enum { value = true }; };
++	template <> struct is_numeric <unsigned char> { enum { value = true }; };
++	template <> struct is_numeric <int> { enum { value = true }; };
++	template <> struct is_numeric <unsigned int> { enum { value = true }; };
++	template <> struct is_numeric <long int> { enum { value = true }; };
++	template <> struct is_numeric <unsigned long int> { enum { value = true }; };
++	template <> struct is_numeric <short int> { enum { value = true }; };
++	template <> struct is_numeric <unsigned short int> { enum { value = true }; };
++#if defined(_MSC_VER) && (_MSC_VER < 1310)
++	template <> struct is_numeric <__int64> { enum { value = true }; };
++	template <> struct is_numeric <unsigned __int64> { enum { value = true }; };
++#else
++	template <> struct is_numeric <long long> { enum { value = true }; };
++	template <> struct is_numeric <unsigned long long> { enum { value = true }; };
++#endif
++	template <> struct is_numeric <float> { enum { value = true }; };
++	template <> struct is_numeric <double> { enum { value = true }; };
++	template <> struct is_numeric <long double> { enum { value = true }; };
++
++	template <bool, class T = void>
++	struct enable_if_c {
++	  typedef T type;
++	};
++
++	template <class T>
++	struct enable_if_c<false, T> {};
++
++	template <class Cond, class T = void>
++	struct enable_if : public enable_if_c<Cond::value, T> {};
++
++	template <bool, class T = void>
++	struct disable_if_c {
++	  typedef T type;
++	};
++
++	template <class T>
++	struct disable_if_c<true, T> {};
++
++	template <class Cond, class T = void>
++	struct disable_if : public disable_if_c<Cond::value, T> {};
++}
++
++#endif // TRAITS_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
+diff -uNr ./include/yaml-cpp03/yaml.h ../yaml-cpp03/include/yaml-cpp03/yaml.h
+--- ./include/yaml-cpp03/yaml.h	1970-01-01 01:00:00.000000000 +0100
++++ ../yaml-cpp03/include/yaml-cpp03/yaml.h	2016-01-19 13:58:34.018887831 +0100
+@@ -0,0 +1,17 @@
++#ifndef YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++#define YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
++
++#if defined(_MSC_VER) || (defined(__GNUC__) && (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || (__GNUC__ >= 4)) // GCC supports "pragma once" correctly since 3.4
++#pragma once
++#endif
++
++#include "yaml-cpp03/parser.h"
++#include "yaml-cpp03/emitter.h"
++#include "yaml-cpp03/stlemitter.h"
++#include "yaml-cpp03/exceptions.h"
++
++#include "yaml-cpp03/node.h"
++#include "yaml-cpp03/stlnode.h"
++#include "yaml-cpp03/iterator.h"
++
++#endif // YAML_H_62B23520_7C8E_11DE_8A39_0800200C9A66
+diff -uNr ./src/aliasmanager.cpp ../yaml-cpp03/src/aliasmanager.cpp
+--- ./src/aliasmanager.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/aliasmanager.cpp	2016-01-19 13:55:37.310011579 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/aliasmanager.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/aliasmanager.h"
++#include "yaml-cpp03/node.h"
+ #include <cassert>
+ #include <sstream>
+ 
+diff -uNr ./src/binary.cpp ../yaml-cpp03/src/binary.cpp
+--- ./src/binary.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/binary.cpp	2016-01-19 13:55:37.314011598 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/binary.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/binary.h"
++#include "yaml-cpp03/node.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/contrib/graphbuilderadapter.h ../yaml-cpp03/src/contrib/graphbuilderadapter.h
+--- ./src/contrib/graphbuilderadapter.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/contrib/graphbuilderadapter.h	2016-01-19 13:58:49.110962668 +0100
+@@ -8,9 +8,9 @@
+ #include <cstdlib>
+ #include <map>
+ #include <stack>
+-#include "yaml-cpp/eventhandler.h"
+-#include "yaml-cpp/contrib/anchordict.h"
+-#include "yaml-cpp/contrib/graphbuilder.h"
++#include "yaml-cpp03/eventhandler.h"
++#include "yaml-cpp03/contrib/anchordict.h"
++#include "yaml-cpp03/contrib/graphbuilder.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/contrib/graphbuilder.cpp ../yaml-cpp03/src/contrib/graphbuilder.cpp
+--- ./src/contrib/graphbuilder.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/contrib/graphbuilder.cpp	2016-01-19 13:58:49.114962688 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/parser.h"
+-#include "yaml-cpp/contrib/graphbuilder.h"
++#include "yaml-cpp03/parser.h"
++#include "yaml-cpp03/contrib/graphbuilder.h"
+ #include "graphbuilderadapter.h"
+ 
+ namespace YAML
+diff -uNr ./src/conversion.cpp ../yaml-cpp03/src/conversion.cpp
+--- ./src/conversion.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/conversion.cpp	2016-01-19 13:55:37.326011658 +0100
+@@ -1,4 +1,4 @@
+-#include "yaml-cpp/conversion.h"
++#include "yaml-cpp03/conversion.h"
+ #include <algorithm>
+ 
+ ////////////////////////////////////////////////////////////////
+diff -uNr ./src/emitfromevents.cpp ../yaml-cpp03/src/emitfromevents.cpp
+--- ./src/emitfromevents.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitfromevents.cpp	2016-01-19 13:55:37.338011717 +0100
+@@ -1,6 +1,6 @@
+-#include "yaml-cpp/emitfromevents.h"
+-#include "yaml-cpp/emitter.h"
+-#include "yaml-cpp/null.h"
++#include "yaml-cpp03/emitfromevents.h"
++#include "yaml-cpp03/emitter.h"
++#include "yaml-cpp03/null.h"
+ #include <cassert>
+ #include <sstream>
+ 
+diff -uNr ./src/emitter.cpp ../yaml-cpp03/src/emitter.cpp
+--- ./src/emitter.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitter.cpp	2016-01-19 13:55:37.342011737 +0100
+@@ -1,8 +1,8 @@
+-#include "yaml-cpp/emitter.h"
++#include "yaml-cpp03/emitter.h"
+ #include "emitterstate.h"
+ #include "emitterutils.h"
+ #include "indentation.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include <sstream>
+ 
+ namespace YAML
+diff -uNr ./src/emitterstate.cpp ../yaml-cpp03/src/emitterstate.cpp
+--- ./src/emitterstate.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitterstate.cpp	2016-01-19 13:55:37.346011757 +0100
+@@ -1,5 +1,5 @@
+ #include "emitterstate.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include <limits>
+ 
+ namespace YAML
+diff -uNr ./src/emitterstate.h ../yaml-cpp03/src/emitterstate.h
+--- ./src/emitterstate.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitterstate.h	2016-01-19 13:55:37.350011777 +0100
+@@ -8,7 +8,7 @@
+ 
+ #include "ptr_stack.h"
+ #include "setting.h"
+-#include "yaml-cpp/emittermanip.h"
++#include "yaml-cpp03/emittermanip.h"
+ #include <cassert>
+ #include <vector>
+ #include <stack>
+diff -uNr ./src/emitterutils.cpp ../yaml-cpp03/src/emitterutils.cpp
+--- ./src/emitterutils.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitterutils.cpp	2016-01-19 13:55:37.354011797 +0100
+@@ -1,8 +1,8 @@
+ #include "emitterutils.h"
+ #include "exp.h"
+ #include "indentation.h"
+-#include "yaml-cpp/binary.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/binary.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "stringsource.h"
+ #include <sstream>
+ #include <iomanip>
+diff -uNr ./src/emitterutils.h ../yaml-cpp03/src/emitterutils.h
+--- ./src/emitterutils.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/emitterutils.h	2016-01-19 13:55:37.358011817 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/ostream.h"
++#include "yaml-cpp03/ostream.h"
+ #include <string>
+ 
+ namespace YAML
+diff -uNr ./src/exp.cpp ../yaml-cpp03/src/exp.cpp
+--- ./src/exp.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/exp.cpp	2016-01-19 13:55:37.362011836 +0100
+@@ -1,5 +1,5 @@
+ #include "exp.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include <sstream>
+ 
+ namespace YAML
+diff -uNr ./src/indentation.h ../yaml-cpp03/src/indentation.h
+--- ./src/indentation.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/indentation.h	2016-01-19 13:55:37.370011876 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/ostream.h"
++#include "yaml-cpp03/ostream.h"
+ #include <iostream>
+ 
+ namespace YAML
+diff -uNr ./src/iterator.cpp ../yaml-cpp03/src/iterator.cpp
+--- ./src/iterator.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/iterator.cpp	2016-01-19 13:55:37.374011896 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/node.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/node.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "iterpriv.h"
+ 
+ namespace YAML
+diff -uNr ./src/iterpriv.h ../yaml-cpp03/src/iterpriv.h
+--- ./src/iterpriv.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/iterpriv.h	2016-01-19 13:55:37.378011916 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/ltnode.h"
++#include "yaml-cpp03/ltnode.h"
+ #include <vector>
+ #include <map>
+ 
+diff -uNr ./src/nodebuilder.cpp ../yaml-cpp03/src/nodebuilder.cpp
+--- ./src/nodebuilder.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/nodebuilder.cpp	2016-01-19 13:55:37.382011936 +0100
+@@ -1,6 +1,6 @@
+ #include "nodebuilder.h"
+-#include "yaml-cpp/mark.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/mark.h"
++#include "yaml-cpp03/node.h"
+ #include <cassert>
+ 
+ namespace YAML
+diff -uNr ./src/nodebuilder.h ../yaml-cpp03/src/nodebuilder.h
+--- ./src/nodebuilder.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/nodebuilder.h	2016-01-19 13:55:37.386011955 +0100
+@@ -5,7 +5,7 @@
+ #pragma once
+ #endif
+ 
+-#include "yaml-cpp/eventhandler.h"
++#include "yaml-cpp03/eventhandler.h"
+ #include <map>
+ #include <memory>
+ #include <stack>
+diff -uNr ./src/node.cpp ../yaml-cpp03/src/node.cpp
+--- ./src/node.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/node.cpp	2016-01-19 13:55:37.390011975 +0100
+@@ -1,8 +1,8 @@
+-#include "yaml-cpp/node.h"
+-#include "yaml-cpp/aliasmanager.h"
+-#include "yaml-cpp/emitfromevents.h"
+-#include "yaml-cpp/emitter.h"
+-#include "yaml-cpp/eventhandler.h"
++#include "yaml-cpp03/node.h"
++#include "yaml-cpp03/aliasmanager.h"
++#include "yaml-cpp03/emitfromevents.h"
++#include "yaml-cpp03/emitter.h"
++#include "yaml-cpp03/eventhandler.h"
+ #include "iterpriv.h"
+ #include "nodebuilder.h"
+ #include "nodeownership.h"
+diff -uNr ./src/nodeownership.cpp ../yaml-cpp03/src/nodeownership.cpp
+--- ./src/nodeownership.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/nodeownership.cpp	2016-01-19 13:55:37.394011995 +0100
+@@ -1,5 +1,5 @@
+ #include "nodeownership.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/node.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/nodeownership.h ../yaml-cpp03/src/nodeownership.h
+--- ./src/nodeownership.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/nodeownership.h	2016-01-19 13:55:37.398012015 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/noncopyable.h"
+ #include "ptr_vector.h"
+ #include <set>
+ 
+diff -uNr ./src/null.cpp ../yaml-cpp03/src/null.cpp
+--- ./src/null.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/null.cpp	2016-01-19 13:55:37.402012035 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/null.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/null.h"
++#include "yaml-cpp03/node.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/ostream.cpp ../yaml-cpp03/src/ostream.cpp
+--- ./src/ostream.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/ostream.cpp	2016-01-19 13:55:37.406012055 +0100
+@@ -1,4 +1,4 @@
+-#include "yaml-cpp/ostream.h"
++#include "yaml-cpp03/ostream.h"
+ #include <cstring>
+ 
+ namespace YAML
+diff -uNr ./src/parser.cpp ../yaml-cpp03/src/parser.cpp
+--- ./src/parser.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/parser.cpp	2016-01-19 13:55:37.410012074 +0100
+@@ -1,7 +1,7 @@
+-#include "yaml-cpp/parser.h"
+-#include "yaml-cpp/eventhandler.h"
+-#include "yaml-cpp/exceptions.h"
+-#include "yaml-cpp/node.h"
++#include "yaml-cpp03/parser.h"
++#include "yaml-cpp03/eventhandler.h"
++#include "yaml-cpp03/exceptions.h"
++#include "yaml-cpp03/node.h"
+ #include "directives.h"
+ #include "nodebuilder.h"
+ #include "scanner.h"
+diff -uNr ./src/ptr_stack.h ../yaml-cpp03/src/ptr_stack.h
+--- ./src/ptr_stack.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/ptr_stack.h	2016-01-19 13:55:37.414012094 +0100
+@@ -5,7 +5,7 @@
+ #pragma once
+ #endif
+ 
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/noncopyable.h"
+ #include <cstddef>
+ #include <cstdlib>
+ #include <memory>
+diff -uNr ./src/ptr_vector.h ../yaml-cpp03/src/ptr_vector.h
+--- ./src/ptr_vector.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/ptr_vector.h	2016-01-19 13:55:37.414012094 +0100
+@@ -5,7 +5,7 @@
+ #pragma once
+ #endif
+ 
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/noncopyable.h"
+ #include <cstddef>
+ #include <cstdlib>
+ #include <memory>
+diff -uNr ./src/scanner.cpp ../yaml-cpp03/src/scanner.cpp
+--- ./src/scanner.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/scanner.cpp	2016-01-19 13:55:37.430012174 +0100
+@@ -1,6 +1,6 @@
+ #include "scanner.h"
+ #include "token.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "exp.h"
+ #include <cassert>
+ #include <memory>
+diff -uNr ./src/scanscalar.cpp ../yaml-cpp03/src/scanscalar.cpp
+--- ./src/scanscalar.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/scanscalar.cpp	2016-01-19 13:55:37.438012213 +0100
+@@ -1,7 +1,7 @@
+ #include "scanscalar.h"
+ #include "scanner.h"
+ #include "exp.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "token.h"
+ 
+ namespace YAML
+diff -uNr ./src/scantag.cpp ../yaml-cpp03/src/scantag.cpp
+--- ./src/scantag.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/scantag.cpp	2016-01-19 13:55:37.446012253 +0100
+@@ -1,7 +1,7 @@
+ #include "scanner.h"
+ #include "regex.h"
+ #include "exp.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/scantoken.cpp ../yaml-cpp03/src/scantoken.cpp
+--- ./src/scantoken.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/scantoken.cpp	2016-01-19 13:55:37.454012293 +0100
+@@ -1,6 +1,6 @@
+ #include "scanner.h"
+ #include "token.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "exp.h"
+ #include "scanscalar.h"
+ #include "scantag.h"
+diff -uNr ./src/setting.h ../yaml-cpp03/src/setting.h
+--- ./src/setting.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/setting.h	2016-01-19 13:55:37.458012312 +0100
+@@ -8,7 +8,7 @@
+ 
+ #include <memory>
+ #include <vector>
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/noncopyable.h"
+ 
+ namespace YAML
+ {
+diff -uNr ./src/simplekey.cpp ../yaml-cpp03/src/simplekey.cpp
+--- ./src/simplekey.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/simplekey.cpp	2016-01-19 13:55:37.462012332 +0100
+@@ -1,6 +1,6 @@
+ #include "scanner.h"
+ #include "token.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "exp.h"
+ 
+ namespace YAML
+diff -uNr ./src/singledocparser.cpp ../yaml-cpp03/src/singledocparser.cpp
+--- ./src/singledocparser.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/singledocparser.cpp	2016-01-19 13:55:37.466012352 +0100
+@@ -1,8 +1,8 @@
+ #include "singledocparser.h"
+ #include "collectionstack.h"
+ #include "directives.h"
+-#include "yaml-cpp/eventhandler.h"
+-#include "yaml-cpp/exceptions.h"
++#include "yaml-cpp03/eventhandler.h"
++#include "yaml-cpp03/exceptions.h"
+ #include "scanner.h"
+ #include "tag.h"
+ #include "token.h"
+diff -uNr ./src/singledocparser.h ../yaml-cpp03/src/singledocparser.h
+--- ./src/singledocparser.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/singledocparser.h	2016-01-19 13:55:37.470012372 +0100
+@@ -6,8 +6,8 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/anchor.h"
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/anchor.h"
++#include "yaml-cpp03/noncopyable.h"
+ #include <string>
+ #include <map>
+ #include <memory>
+diff -uNr ./src/streamcharsource.h ../yaml-cpp03/src/streamcharsource.h
+--- ./src/streamcharsource.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/streamcharsource.h	2016-01-19 13:55:37.474012392 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/noncopyable.h"
++#include "yaml-cpp03/noncopyable.h"
+ #include <cstddef>
+ 
+ namespace YAML
+diff -uNr ./src/stream.h ../yaml-cpp03/src/stream.h
+--- ./src/stream.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/stream.h	2016-01-19 13:55:37.482012432 +0100
+@@ -6,8 +6,8 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/noncopyable.h"
+-#include "yaml-cpp/mark.h"
++#include "yaml-cpp03/noncopyable.h"
++#include "yaml-cpp03/mark.h"
+ #include <cstddef>
+ #include <deque>
+ #include <ios>
+diff -uNr ./src/token.h ../yaml-cpp03/src/token.h
+--- ./src/token.h	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/src/token.h	2016-01-19 13:55:37.498012511 +0100
+@@ -6,7 +6,7 @@
+ #endif
+ 
+ 
+-#include "yaml-cpp/mark.h"
++#include "yaml-cpp03/mark.h"
+ #include <iostream>
+ #include <string>
+ #include <vector>
+diff -uNr ./test/CMakeLists.txt ../yaml-cpp03/test/CMakeLists.txt
 --- ./test/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
-+++ ../yaml-cpp03/test/CMakeLists.txt	2016-01-19 13:19:09.579163207 +0100
++++ ../yaml-cpp03/test/CMakeLists.txt	2016-01-19 13:59:23.167131544 +0100
 @@ -10,6 +10,6 @@
  	${test_sources}
  	${test_headers}
@@ -64,18 +4301,91 @@ diff -ur ./test/CMakeLists.txt ../yaml-cpp03/test/CMakeLists.txt
 +target_link_libraries(run-tests yaml-cpp03)
  
  add_test(yaml-reader-test run-tests)
-Nur in ../yaml-cpp03/test: CMakeLists.txt~.
-diff -ur ./util/CMakeLists.txt ../yaml-cpp03/util/CMakeLists.txt
+diff -uNr ./test/emittertests.cpp ../yaml-cpp03/test/emittertests.cpp
+--- ./test/emittertests.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/emittertests.cpp	2016-01-19 13:59:23.171131563 +0100
+@@ -1,5 +1,5 @@
+ #include "tests.h"
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <iostream>
+ 
+ namespace Test
+diff -uNr ./test/old-api/parsertests.cpp ../yaml-cpp03/test/old-api/parsertests.cpp
+--- ./test/old-api/parsertests.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/old-api/parsertests.cpp	2016-01-19 13:59:52.635277668 +0100
+@@ -1,5 +1,5 @@
+ #include "tests.h"
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <sstream>
+ #include <algorithm>
+ #include <iostream>
+diff -uNr ./test/old-api/spectests.cpp ../yaml-cpp03/test/old-api/spectests.cpp
+--- ./test/old-api/spectests.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/old-api/spectests.cpp	2016-01-19 13:59:52.639277688 +0100
+@@ -1,6 +1,6 @@
+ #include "spectests.h"
+ #include "specexamples.h"
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <fstream>
+ #include <sstream>
+ #include <vector>
+diff -uNr ./test/spectests.cpp ../yaml-cpp03/test/spectests.cpp
+--- ./test/spectests.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/spectests.cpp	2016-01-19 13:59:23.199131702 +0100
+@@ -1,5 +1,5 @@
+ #include "spectests.h"
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <iostream>
+ 
+ namespace Test
+diff -uNr ./test/tests.cpp ../yaml-cpp03/test/tests.cpp
+--- ./test/tests.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/test/tests.cpp	2016-01-19 13:59:23.207131742 +0100
+@@ -3,7 +3,7 @@
+ #include "nodetests.h"
+ #include "parsertests.h"
+ #include "spectests.h"
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <fstream>
+ #include <sstream>
+ #include <vector>
+diff -uNr ./util/api.cpp ../yaml-cpp03/util/api.cpp
+--- ./util/api.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/util/api.cpp	2016-01-19 13:59:31.671173713 +0100
+@@ -1,6 +1,6 @@
+ // a sketch of what the new API might look like
+ 
+-#include "yaml-cpp/yaml.h"
++#include "yaml-cpp03/yaml.h"
+ #include <iostream>
+ 
+ int main()
+diff -uNr ./util/CMakeLists.txt ../yaml-cpp03/util/CMakeLists.txt
 --- ./util/CMakeLists.txt	2012-01-21 09:52:48.000000000 +0100
-+++ ../yaml-cpp03/util/CMakeLists.txt	2016-01-19 13:19:22.491227235 +0100
++++ ../yaml-cpp03/util/CMakeLists.txt	2016-01-19 13:59:31.675173733 +0100
 @@ -1,2 +1,2 @@
  add_executable(parse parse.cpp)
 -target_link_libraries(parse yaml-cpp)
 +target_link_libraries(parse yaml-cpp03)
-Nur in ../yaml-cpp03/util: CMakeLists.txt~.
-diff -ur ./yaml-cpp.pc.cmake ../yaml-cpp03/yaml-cpp.pc.cmake
+diff -uNr ./util/parse.cpp ../yaml-cpp03/util/parse.cpp
+--- ./util/parse.cpp	2012-01-21 09:52:48.000000000 +0100
++++ ../yaml-cpp03/util/parse.cpp	2016-01-19 13:59:31.679173753 +0100
+@@ -1,5 +1,5 @@
+-#include "yaml-cpp/yaml.h"
+-#include "yaml-cpp/eventhandler.h"
++#include "yaml-cpp03/yaml.h"
++#include "yaml-cpp03/eventhandler.h"
+ #include <fstream>
+ #include <iostream>
+ #include <vector>
+diff -uNr ./yaml-cpp.pc.cmake ../yaml-cpp03/yaml-cpp.pc.cmake
 --- ./yaml-cpp.pc.cmake	2012-01-21 09:52:48.000000000 +0100
-+++ ../yaml-cpp03/yaml-cpp.pc.cmake	2016-01-19 13:20:41.747620246 +0100
++++ ../yaml-cpp03/yaml-cpp.pc.cmake	2016-01-19 13:27:48.385735830 +0100
 @@ -7,5 +7,5 @@
  Description: A YAML parser and emitter for C++
  Version: @YAML_CPP_VERSION@
@@ -83,4 +4393,3 @@ diff -ur ./yaml-cpp.pc.cmake ../yaml-cpp03/yaml-cpp.pc.cmake
 -Libs: -L${libdir} -lyaml-cpp
 +Libs: -L${libdir} -lyaml-cpp03
  Cflags: -I${includedir}
-Nur in ../yaml-cpp03/: yaml-cpp.pc.cmake~.
