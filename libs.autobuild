@@ -474,6 +474,7 @@ in_flavor 'master', 'stable' do
             pkg.automake_flags = "--add-missing" 
         end
         pkg.depends_on 'boost'
+        pkg.configureflags << "CFLAGS=-fPIC" << "CXXFLAGS=-fPIC"
     end
     cmake_package 'slam/envire' do |pkg| 
         Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
