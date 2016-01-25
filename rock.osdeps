@@ -429,6 +429,11 @@ slam/pcl:
         default: libpcl-dev
         wheezy,squeeze: nonexistent
 
+yaml-cpp:
+    debian: libyaml-cpp-dev
+    ubuntu:
+        default: libyaml-cpp-dev
+
 zlib:
     ubuntu,debian: zlib1g-dev
 
