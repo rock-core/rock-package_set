@@ -440,6 +440,7 @@ zlib:
 libxml2:
     ubuntu,debian: libxml2-dev
     gentoo: dev-libs/libxml2
+    macos-brew: libxml2
 
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
