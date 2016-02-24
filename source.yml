@@ -140,7 +140,9 @@ version_control:
 
     - slam/gmapping:
         github: ros-perception/openslam_gmapping.git
-        patches: $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
+        patches: 
+            - $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/gmapping-02.patch
 
     - slam/hogman:
         type: svn

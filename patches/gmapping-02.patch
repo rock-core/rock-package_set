@@ -1,0 +1,35 @@
+From 8e4aef269e7e443e64df05c1e903223375e4b5f1 Mon Sep 17 00:00:00 2001
+From: Leif Christensen <leif.christensen@dfki.de>
+Date: Wed, 24 Feb 2016 17:13:29 +0100
+Subject: [PATCH 2/2] added manifest file
+
+---
+ manifest.xml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 manifest.xml
+
+diff --git manifest.xml manifest.xml
+new file mode 100644
+index 0000000..a87ea2f
+--- /dev/null
++++ manifest.xml
+@@ -0,0 +1,16 @@
++<package>
++    <description brief="openslam_gmapping">
++        Rock-ified version of gmapping (in the sense of just swapping catkin and
++        rock build tools). Directly based on the ROS-ified version of gmapping
++        SLAM (maintained by vincent.rabaud@gmail.com), which is forked from
++        openslam (see url below), originally authored by Giorgio Grisetti, Cyrill Stachniss and
++        Wolfram Burgard.
++    </description>
++    <maintainer>Leif Christensen / leif.christensen@dfki.de</maintainer>
++    <author>Giorgio Grisetti, Cyrill Stachniss and Wolfram Burgard</author>
++    <license>CreativeCommons-by-nc-sa-2.0</license>
++    <url>http://openslam.org/gmapping.html</url>
++    <url>https://github.com/ros-perception/openslam_gmapping</url>
++
++    <depend package="base/cmake" />
++</package>
+-- 
+1.9.1
+
