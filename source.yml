@@ -236,6 +236,16 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/ceres_solver.patch
 
+    - slam/gtsam:
+        type: git
+        url: https://bitbucket.org/gtborg/gtsam.git
+        push_to: git@bitbucket.org:gtborg/gtsam.git
+        push_url: https://bitbucket.org/gtborg/gtsam.git
+        repository_id: https://bitbucket.org/gtborg/gtsam.git
+        branch: develop
+        patches:
+            - $AUTOPROJ_SOURCE_DIR/patches/gtsam.patch
+
     - drivers/gsf:
         type: archive
         url: http://www.saic.com/maritime/gsf/download/gsf_0304.zip
