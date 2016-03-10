@@ -1,0 +1,10 @@
+<package>
+  <description brief="Smoothing and Mapping library">
+  Georgia Tech Smoothing and Mapping
+  </description>
+  <author>THANKS-FILE</author>
+  <license>BSD</license>
+  <url>https://collab.cc.gatech.edu/borg/gtsam/</url>
+  <depend package="base/cmake" />
+  <tags>stable</tags>
+</package>
