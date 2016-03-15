@@ -242,6 +242,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'external/lemon'
     cmake_package 'external/snap' do |pkg|
         pkg.depends_on 'base/cmake'
+        pkg.parallel_build_level = 1
     end
     cmake_package 'external/gexf' do |pkg|
         pkg.depends_on 'base/cmake'
