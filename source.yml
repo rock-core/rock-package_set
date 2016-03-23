@@ -241,7 +241,7 @@ version_control:
         push_to: git@bitbucket.org:gtborg/gtsam.git
         push_url: https://bitbucket.org/gtborg/gtsam.git
         repository_id: https://bitbucket.org/gtborg/gtsam.git
-        branch: develop
+        commit: 990d9bd5dada393904178b5d106dc2b1c5460ebf
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/gtsam.patch
 
