@@ -95,6 +95,9 @@ boost:
         - libboost-filesystem-dev
         - libboost-iostreams-dev
         - libboost-system-dev
+        - libboost-timer-dev
+        - libboost-date-time-dev
+        - libboost-serialization-dev
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
     darwin: boost
