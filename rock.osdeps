@@ -446,3 +446,7 @@ libxml2:
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
 
+metis:
+    ubuntu,debian: libmetis-dev
+    gentoo: sci-libs/metis
+
