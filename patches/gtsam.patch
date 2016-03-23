@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 8c4229e..e1b1509 100644
+index 8c4229e..9534be1 100644
 --- ./CMakeLists.txt
 +++ ./CMakeLists.txt
 @@ -53,7 +53,7 @@ endif()
@@ -11,7 +11,7 @@ index 8c4229e..e1b1509 100644
  endif()
  option(GTSAM_BUILD_STATIC_LIBRARY        "Build a static gtsam library, instead of shared" OFF)
  option(GTSAM_USE_QUATERNIONS             "Enable/Disable using an internal Quaternion representation for rotations instead of rotation matrices. If enable, Rot3::EXPMAP is enforced by default." OFF)
-@@ -219,7 +219,7 @@ endif()
+@@ -219,12 +219,13 @@ endif()
  ### use our patched version of Eigen
  ### See:  http://eigen.tuxfamily.org/bz/show_bug.cgi?id=704 (Householder QR MKL selection)
  ###       http://eigen.tuxfamily.org/bz/show_bug.cgi?id=705 (Fix MKL LLT return code)
@@ -20,7 +20,13 @@ index 8c4229e..e1b1509 100644
  
  # Switch for using system Eigen or GTSAM-bundled Eigen
  if(GTSAM_USE_SYSTEM_EIGEN)
-@@ -335,6 +335,10 @@ if(GTSAM_ENABLE_CONSISTENCY_CHECKS)
+ 	find_package(Eigen3 REQUIRED)
+ 	include_directories(AFTER "${EIGEN3_INCLUDE_DIR}")
++        find_package(LAPACK REQUIRED)
+ 
+ 	# Use generic Eigen include paths e.g. <Eigen/Core>
+     set(GTSAM_EIGEN_INCLUDE_PREFIX "${EIGEN3_INCLUDE_DIR}")
+@@ -335,6 +336,10 @@ if(GTSAM_ENABLE_CONSISTENCY_CHECKS)
    add_definitions(-DGTSAM_EXTRA_CONSISTENCY_CHECKS)
  endif()
  
@@ -32,10 +38,10 @@ index 8c4229e..e1b1509 100644
  # Add components
  
 diff --git a/gtsam/CMakeLists.txt b/gtsam/CMakeLists.txt
-index d322942..4726f42 100644
+index d322942..12280ec 100644
 --- ./gtsam/CMakeLists.txt
 +++ ./gtsam/CMakeLists.txt
-@@ -158,3 +158,45 @@ if (GTSAM_INSTALL_MATLAB_TOOLBOX)
+@@ -158,3 +158,46 @@ if (GTSAM_INSTALL_MATLAB_TOOLBOX)
      # Wrap
      wrap_and_install_library(../gtsam.h "${GTSAM_ADDITIONAL_LIBRARIES}" "" "${mexFlags}")
  endif ()
@@ -65,7 +71,8 @@ index d322942..4726f42 100644
 +
 +        # Dependency for GTSAM
 +        libraries_for_pkgconfig(${TARGET_NAME}_PKGCONFIG_LIBS
-+                ${GTSAM_BOOST_LIBRARIES})
++            ${GTSAM_BOOST_LIBRARIES} ${GTSAM_ADDITIONAL_LIBRARIES}
++            ${LAPACK_LIBRARIES})
 +
 +        set(${TARGET_NAME}_PKGCONFIG_CFLAGS "${${TARGET_NAME}_PKGCONFIG_CFLAGS} ${BOOST_CFLAGS_OTHER}")
 +
