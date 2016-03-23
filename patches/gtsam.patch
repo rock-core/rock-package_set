@@ -1,13 +1,101 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8c4229e..e1b1509 100644
 --- ./CMakeLists.txt
 +++ ./CMakeLists.txt
-@@ -207,7 +207,7 @@ endif()
+@@ -53,7 +53,7 @@ endif()
+ 
+ # Configurable Options
+ if(GTSAM_UNSTABLE_AVAILABLE)
+-    option(GTSAM_BUILD_UNSTABLE              "Enable/Disable libgtsam_unstable"          ON)
++    option(GTSAM_BUILD_UNSTABLE              "Enable/Disable libgtsam_unstable"           OFF)
+ endif()
+ option(GTSAM_BUILD_STATIC_LIBRARY        "Build a static gtsam library, instead of shared" OFF)
+ option(GTSAM_USE_QUATERNIONS             "Enable/Disable using an internal Quaternion representation for rotations instead of rotation matrices. If enable, Rot3::EXPMAP is enforced by default." OFF)
+@@ -219,7 +219,7 @@ endif()
  ### use our patched version of Eigen
  ### See:  http://eigen.tuxfamily.org/bz/show_bug.cgi?id=704 (Householder QR MKL selection)
  ###       http://eigen.tuxfamily.org/bz/show_bug.cgi?id=705 (Fix MKL LLT return code)
 -option(GTSAM_USE_SYSTEM_EIGEN "Find and use system-installed Eigen. If 'off', use the one bundled with GTSAM" OFF)
-+option(GTSAM_USE_SYSTEM_EIGEN "Find and use system-installed Eigen. If 'off', use the one bundled with GTSAM" ON)
-
++option(GTSAM_USE_SYSTEM_EIGEN "Find and use system-installed Eigen. If 'off',use the one bundled with GTSAM" ON)
+ 
  # Switch for using system Eigen or GTSAM-bundled Eigen
  if(GTSAM_USE_SYSTEM_EIGEN)
-
+@@ -335,6 +335,10 @@ if(GTSAM_ENABLE_CONSISTENCY_CHECKS)
+   add_definitions(-DGTSAM_EXTRA_CONSISTENCY_CHECKS)
+ endif()
+ 
++if(NOT WIN32)
++    option(GTSAM_BUILD_PKGCONFIG "Build pkg-config .pc file for GTSAM" ON)
++endif(NOT WIN32)
++
+ ###############################################################################
+ # Add components
+ 
+diff --git a/gtsam/CMakeLists.txt b/gtsam/CMakeLists.txt
+index d322942..4726f42 100644
+--- ./gtsam/CMakeLists.txt
++++ ./gtsam/CMakeLists.txt
+@@ -158,3 +158,45 @@ if (GTSAM_INSTALL_MATLAB_TOOLBOX)
+     # Wrap
+     wrap_and_install_library(../gtsam.h "${GTSAM_ADDITIONAL_LIBRARIES}" "" "${mexFlags}")
+ endif ()
++
++macro(libraries_for_pkgconfig VARNAME)
++    foreach(__lib ${ARGN})
++        string(STRIP __lib ${__lib})
++        string(SUBSTRING ${__lib} 0 1 __lib_is_absolute)
++        if (__lib_is_absolute STREQUAL "/")
++            get_filename_component(__lib_path ${__lib} PATH)
++            get_filename_component(__lib_name ${__lib} NAME_WE)
++            string(REGEX REPLACE "^lib" "" __lib_name "${__lib_name}")
++            set(${VARNAME} "${${VARNAME}} -L${__lib_path} -l${__lib_name}")
++        else()
++            set(${VARNAME} "${${VARNAME}} ${__lib}")
++        endif()
++    endforeach()
++endmacro()
++
++# Generate pkgconfig pc file
++if(GTSAM_BUILD_PKGCONFIG)
++    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/gtsam.pc.in)
++        message("-- Found: ${CMAKE_CURRENT_SOURCE_DIR}/gtsam.pc.in")
++
++        # Set the target name
++        set(TARGET_NAME gtsam)
++
++        # Dependency for GTSAM
++        libraries_for_pkgconfig(${TARGET_NAME}_PKGCONFIG_LIBS
++                ${GTSAM_BOOST_LIBRARIES})
++
++        set(${TARGET_NAME}_PKGCONFIG_CFLAGS "${${TARGET_NAME}_PKGCONFIG_CFLAGS} ${BOOST_CFLAGS_OTHER}")
++
++        set(PKGCONFIG_REQUIRES eigen3)
++        set(PKGCONFIG_CFLAGS ${${TARGET_NAME}_PKGCONFIG_CFLAGS})
++        set(PKGCONFIG_LIBS ${${TARGET_NAME}_PKGCONFIG_LIBS})
++
++        configure_file(gtsam.pc.in gtsam.pc @ONLY)
++        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/gtsam.pc
++            DESTINATION lib/pkgconfig)
++    else()
++        message("-- pkg-config: ${CMAKE_CURRENT_SOURCE_DIR}/gtsam.pc.in is not available for configuration")
++    endif()
++
++endif(GTSAM_BUILD_PKGCONFIG)
+diff --git a/gtsam/gtsam.pc.in b/gtsam/gtsam.pc.in
+new file mode 100644
+index 0000000..a3e7ded
+--- /dev/null
++++ ./gtsam/gtsam.pc.in
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++ 
++Name: @TARGET_NAME@
++Description: @TARGET_NAME@
++Version: @GTSAM_VERSION_STRING@
++Requires: @PKGCONFIG_REQUIRES@
++Libs: -L${libdir} -l@TARGET_NAME@ @PKGCONFIG_LIBS@
++Cflags: -I${includedir} @PKGCONFIG_CFLAGS@
++
