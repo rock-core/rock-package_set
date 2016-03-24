@@ -37,6 +37,19 @@ index 8c4229e..9534be1 100644
  ###############################################################################
  # Add components
  
+diff --git a/cmake/GtsamBuildTypes.cmake b/cmake/GtsamBuildTypes.cmake
+index 96a0f11..3a9f6b4 100644
+--- ./cmake/GtsamBuildTypes.cmake
++++ ./cmake/GtsamBuildTypes.cmake
+@@ -10,7 +10,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT MSVC AND NOT XCODE_VERSION)
+ endif()
+ 
+ # Add option for using build type postfixes to allow installing multiple build modes
+-option(GTSAM_BUILD_TYPE_POSTFIXES        "Enable/Disable appending the build type to the name of compiled libraries" ON)
++option(GTSAM_BUILD_TYPE_POSTFIXES        "Enable/Disable appending the build type to the name of compiled libraries" OFF)
+ 
+ # Set custom compilation flags.
+ # NOTE: We set all the CACHE variables with a GTSAM prefix, and then set a normal local variable below
 diff --git a/gtsam/CMakeLists.txt b/gtsam/CMakeLists.txt
 index d322942..12280ec 100644
 --- ./gtsam/CMakeLists.txt
