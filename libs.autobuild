@@ -1,10 +1,15 @@
 # IMPORTANT: new packages must be added at the top of this file
-cmake_package 'slam/gtsam' #Georgia Tech Smooth and Mapping
 cmake_package 'gui/vizkit3d_pcl'
 cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
 cmake_package 'control/visp'
+
+cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
+    pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'
+    pkg.define 'GTSAM_USE_SYSTEM_EIGEN','ON'
+    pkg.define 'GTSAM_BUILD_TYPE_POSTFIXES','OFF'
+end
 
 ruby_package 'control/ruby_sdformat'
 cmake_package "drivers/glfw" do |pkg|

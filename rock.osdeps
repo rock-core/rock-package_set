@@ -102,6 +102,24 @@ boost:
         - boost
         - boost-libs
 
+boost-timer:
+    debian,ubuntu:
+        - libboost-timer-dev
+    gentoo: dev-libs/boost
+    fedora,opensuse: boost-devel
+
+boost-date-time:
+    debian,ubuntu:
+        - libboost-date-time-dev
+    gentoo: dev-libs/boost
+    fedora,opensuse: boost-devel
+
+boost-serialization:
+    debian,ubuntu:
+        - libboost-serialization-dev
+    gentoo: dev-libs/boost
+    fedora,opensuse: boost-devel
+
 ncurses:
     debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
@@ -445,4 +463,8 @@ libxml2:
 
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
+
+metis:
+    ubuntu,debian: libmetis-dev
+    gentoo: sci-libs/metis
 
