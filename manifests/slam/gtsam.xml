@@ -6,5 +6,9 @@
   <license>BSD</license>
   <url>https://collab.cc.gatech.edu/borg/gtsam/</url>
   <depend package="base/cmake" />
+  <depend package="eigen3" />
+  <rosdep name="boost" />
+  <rosdep name="metis" />
+
   <tags>stable</tags>
 </package>
