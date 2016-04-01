@@ -10,9 +10,10 @@ ffmpeg:
         '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '10.10,11.04,11.10,12.04,12.10,13.04,13.10': [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
         '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        default: [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '14.10,15.04': [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     debian:
-        default: [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
     gentoo: media-video/ffmpeg
     arch,manjarolinux: ffmpeg
     # opensuse: ffmpeg # available in repository Packman
@@ -359,7 +360,7 @@ png++:
     opensuse: libpng16-devel
 
 udt:
-    debian,ubuntu: [ libudt-dev, libudt0 ]
+    debian,ubuntu: libudt-dev
     # opensuse: [udt-devel, libudt0]
 
 uuid:
