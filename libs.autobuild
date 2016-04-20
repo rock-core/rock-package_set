@@ -165,7 +165,7 @@ in_flavor 'master' do
                     "Should I do it ? This is required to continue building"],
                 :default => 'yes'
 
-            if Autoproj.user_config("UPDATE_VISO2_FROM_GIT")
+            if Autoproj.config.get("UPDATE_VISO2_FROM_GIT")
                 Autoproj.warn "deleting Viso2 source directory to migrate from the Git checkout to the release tarball"
                 FileUtils.rm_rf pkg.srcdir
             else
@@ -514,7 +514,7 @@ in_flavor 'master', 'stable' do
                     "Should I do it ? This is required to continue building"],
                 :default => 'yes'
 
-            if Autoproj.user_config("UPDATE_PCL_FROM_SVN")
+            if Autoproj.config.get("UPDATE_PCL_FROM_SVN")
                 Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
                 FileUtils.rm_rf pkg.srcdir
             else
@@ -554,7 +554,7 @@ in_flavor 'master', 'stable' do
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl' do |pkg|
-        pkg.define "RUBY_EXECUTABLE", Autoproj::CmdLine.ruby_executable
+        pkg.define "RUBY_EXECUTABLE", Autoproj.config.ruby_executable
     end
 
     autotools_package 'external/kdtree'
