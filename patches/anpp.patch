@@ -1,0 +1,72 @@
+From 703c78a6908c474eb3ad118b1da5465681a6fca7 Mon Sep 17 00:00:00 2001
+From: Leif Christensen <leif.christensen@dfki.de>
+Date: Tue, 10 May 2016 19:45:24 +0200
+Subject: [PATCH 1/1] cmake patch
+
+---
+ C/Dynamic/CMakeLists.txt | 21 +++++++++++++++++++++
+ C/Dynamic/anpp.pc.in     | 12 ++++++++++++
+ CMakeLists.txt           |  4 ++++
+ 3 files changed, 37 insertions(+)
+ create mode 100644 C/Dynamic/CMakeLists.txt
+ create mode 100644 C/Dynamic/anpp.pc.in
+ create mode 100644 CMakeLists.txt
+
+diff --git C/Dynamic/CMakeLists.txt C/Dynamic/CMakeLists.txt
+new file mode 100644
+index 0000000..c47fc90
+--- /dev/null
++++ C/Dynamic/CMakeLists.txt
+@@ -0,0 +1,21 @@
++SET(SOURCES an_packet_protocol.c 
++            spatial_packets.c 
++            rs232/rs232.c)
++
++SET(HEADERS an_packet_protocol.h 
++            spatial_packets.h 
++            rs232/rs232.h)
++
++ADD_LIBRARY(anpp SHARED ${SOURCES}) 
++ADD_EXECUTABLE(anpp_example packet_example.c)
++TARGET_LINK_LIBRARIES(anpp_example anpp)
++
++CONFIGURE_FILE(anpp.pc.in anpp.pc)
++
++INSTALL(TARGETS anpp anpp_example 
++    RUNTIME DESTINATION bin
++    LIBRARY DESTINATION lib)
++
++INSTALL(FILES ${HEADERS} DESTINATION include/anpp/)
++INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/anpp.pc DESTINATION lib/pkgconfig/)
++
+diff --git C/Dynamic/anpp.pc.in C/Dynamic/anpp.pc.in
+new file mode 100644
+index 0000000..bd2f325
+--- /dev/null
++++ C/Dynamic/anpp.pc.in
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include/anpp
++
++Name: anpp 
++Description: Advanced Navigation Packet Protocol library 
++Version: 0.1 
++Requires: @PKGCONFIG_REQUIRES@
++Libs: -L${libdir} -l@TARGET_NAME@ @PKGCONFIG_LIBS@
++Cflags: -I${includedir} @PKGCONFIG_CFLAGS@
++
+diff --git CMakeLists.txt CMakeLists.txt
+new file mode 100644
+index 0000000..dfaefed
+--- /dev/null
++++ CMakeLists.txt
+@@ -0,0 +1,4 @@
++cmake_minimum_required(VERSION 2.6)
++PROJECT(anpp)
++
++add_subdirectory(C/Dynamic/)
+-- 
+1.9.1
+
