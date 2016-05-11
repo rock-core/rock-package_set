@@ -334,13 +334,13 @@ version_control:
     - gui/collada_osg:
         github: rock-gui/gui-collada_osg
 
-    - drivers/imu_advancednavigation_spatial:
+    - drivers/imu_an_spatial:
         type: archive
         url: http://www.advancednavigation.com.au/sites/advancednavigation.com.au/files/SpatialSDK.zip 
         no_subdirectory: true
         update_cached_file: true
         patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/anpp.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/imu_an_spatial.patch
 
     # Packages that have been migrated to github
     - drivers/sonar_tritech:
