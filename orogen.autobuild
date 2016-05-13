@@ -1,5 +1,7 @@
 # IMPORTANT: new packages must be added at the top of this file (after if
 # package_enabled ...)
+
+orogen_package 'planning/orogen/exploration'
 orogen_package 'slam/orogen/pcl'
 orogen_package 'perception/orogen/apriltags'
 orogen_package 'control/orogen/visp'
