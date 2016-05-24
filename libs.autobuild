@@ -200,6 +200,7 @@ in_flavor 'master' do
     cmake_package 'control/hysteresis_model'
 
     cmake_package 'slam/pose_estimation'
+    cmake_package 'slam/uwv_filters'
     cmake_package 'slam/terrain_estimator'
     cmake_package 'slam/eslam'
     cmake_package 'slam/gmapping' do |pkg|
