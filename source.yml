@@ -302,13 +302,14 @@ version_control:
 #      github: rdiankov/openrave
 #      branch: latest_stable
       
-    - external/sbpl:
+    - planning/sbpl:
       type: git
       url: https://github.com/sbpl/sbpl.git
       
-    - external/ompl:
-      type: archive
-      url: https://bitbucket.org/ompl/ompl/downloads/ompl-0.14.0-Source.tar.gz  
+    - planning/ompl:
+      type: git
+      url: https://github.com/ompl/ompl.git
+      tag: 0.14.0
 
     - drivers/aravis:
         type: git

@@ -1,0 +1,13 @@
+<package>
+    <description brief="OMPL">
+      This in an integration package for the Open Motion Planning Library, see
+      url below.  No additional functionality is provided, adaptations to the
+      original source are made only to include the planning library into the
+      build infrastructure.
+  </description>
+  <maintainer>Thomas Roehr/thomas.roehr@dfki.de</maintainer>
+  <license>Modified BSD</license>
+  <url>http://ompl.kavrakilab.org</url>
+  <depend package="boost" />
+  <depend package="flann" optional="1" />
+</package>

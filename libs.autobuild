@@ -238,12 +238,14 @@ in_flavor 'master', 'stable' do
         pkg.depends_on 'gtk-doc-tools'
     end
     cmake_package 'slam/mtk'
-    cmake_package 'external/sbpl'
-    cmake_package 'external/ompl' do |pkg|
+    cmake_package 'planning/sbpl'
+    metapackage 'external/sbpl', 'planning/sbpl'
+    cmake_package 'planning/ompl' do |pkg|
         # this will prevent the ompl-CMakeLists from spawning a browser to
         # register...
         pkg.define("OMPL_REGISTRATION","Off")
     end
+    metapackage 'external/ompl', 'planning/ompl'
     cmake_package 'external/aruco' do |pkg|
         pkg.depends_on 'opencv'
     end
