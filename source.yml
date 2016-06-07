@@ -254,7 +254,7 @@ version_control:
 
     - perception/apriltags:
         type: archive
-        url: http://april.eecs.umich.edu/software/apriltag-2015-03-18.tgz
+        url: https://april.eecs.umich.edu/media/apriltag/apriltag-2015-03-18.tgz
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/apriltags.patch
 
