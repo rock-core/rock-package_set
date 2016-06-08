@@ -304,6 +304,7 @@ version_control:
       
     - planning/sbpl:
       type: git
+      branch: master
       url: https://github.com/sbpl/sbpl.git
       
     - planning/ompl:
