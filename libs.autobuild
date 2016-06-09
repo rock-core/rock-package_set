@@ -489,7 +489,7 @@ in_flavor 'master', 'stable' do
         pkg.configureflags << "CFLAGS=-fPIC" << "CXXFLAGS=-fPIC"
     end
     cmake_package 'slam/envire' do |pkg| 
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
+        pkg.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
     end
     cmake_package 'slam/pose_ekf'
     cmake_package 'slam/quater_ikf'
@@ -510,7 +510,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'slam/pcl' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")
-        env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+        pkg.env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
 
         # Seamlessly migrate from the SVN to the archive. We must delete the svn
         # directory !
