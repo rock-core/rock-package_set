@@ -284,6 +284,7 @@ in_flavor 'master', 'stable' do
         pkg.depends_on 'control/urdfdom_headers'
         pkg.depends_on 'base/console_bridge'
     end
+    cmake_package 'tools/ignition-math2'
     cmake_package 'control/sdformat'
     cmake_package 'control/urdfdom_headers'
     cmake_package 'control/kdl_parser'

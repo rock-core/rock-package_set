@@ -10,4 +10,6 @@
     <rock_maintainer>Thomio Watanabe/thomio.watanabe@gmail.com</rock_maintainer>
     <license>Apache</license>
     <url>http://sdformat.org</url>
+
+    <depend package="tools/ignition-math2" />
 </package>
