@@ -1,0 +1,10 @@
+<package>
+    <description brief="A small, fast, and high performance math library extracted from the Gazebo project">
+        A small, fast, and high performance math library. This library is a
+        self-contained set of classes and functions suitable for robot
+        applications.
+    </description>
+    <license>Apache</license>
+    <url>http://sdformat.org</url>
+</package>
+

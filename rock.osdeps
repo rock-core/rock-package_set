@@ -483,3 +483,13 @@ metis:
     ubuntu,debian: libmetis-dev
     gentoo: sci-libs/metis
 
+tools/ignition-math2:
+    ubuntu:
+        '14.04,14.10,15.04,15.10': nonexistent
+        '16.04': libignition-math2-dev
+
+control/sdformat:
+    ubuntu:
+        '14.04,14.10,15.04,15.10': nonexistent
+        '16.04': libsdformat4-dev
+
