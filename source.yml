@@ -100,6 +100,10 @@ version_control:
         github: rock-multiagent/multiagent-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - bundles/rock_multiagent:
+        github: rock-multiagent/multiagent-bundle-rock_multiagent
+        branch: master
+
     - external/yaml-cpp:
         type: archive
         url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
