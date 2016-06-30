@@ -1,0 +1,11 @@
+--- ../ompl_ge_1.1.0/CMakeModules/ompl.pc.in     2016-06-30 12:39:01.109812445 +0200
++++ ./CMakeModules/ompl.pc.in        2016-06-30 12:38:40.157812238 +0200
+@@ -9,4 +9,4 @@
+ Version: @OMPL_VERSION@
+ Requires: @PKG_EXTERNAL_DEPS@
+ Libs: -L${libdir} @PKG_OMPL_LIBS@
+-Cflags: -I${includedir}
++Cflags: -I${includedir} -std=c++11
+
+
+
