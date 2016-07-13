@@ -235,7 +235,7 @@ dc1394:
 
 vtk:
     debian,ubuntu:
-        '14.04,14.10,15.04,15.10':
+        '14.04,14.10,15.04,15.10,16.04':
             - libvtk5-dev
             - tcl-vtk
             - python-vtk
@@ -274,6 +274,7 @@ libproc:
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
         '12.10,13.04,13.10': libprocps0-dev
+        '16.04': libprocps4-dev
         default: libprocps3-dev
     fedora,opensuse: procps-devel
 
@@ -454,7 +455,7 @@ bzip2:
 slam/pcl:
     ubuntu:
         default: libpcl-dev
-        '12.04,12.10,13.04,13.10,14.04,14.10': nonexistent
+        '12.04,12.10,13.04,13.10,14.04,14.10,16.04': nonexistent
     debian:
         default: libpcl-dev
         wheezy,squeeze: nonexistent
