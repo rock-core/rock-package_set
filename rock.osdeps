@@ -274,8 +274,8 @@ libproc:
     ubuntu:
         '10.04,10.10,11.04,11.10,12.04': libproc-dev
         '12.10,13.04,13.10': libprocps0-dev
-        '16.04': libprocps4-dev
-        default: libprocps3-dev
+        '14.04,14.10,15.04,15.10': libprocps3-dev
+        default: libprocps4-dev
     fedora,opensuse: procps-devel
 
 # NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
