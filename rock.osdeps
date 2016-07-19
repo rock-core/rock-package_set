@@ -150,7 +150,10 @@ yaml:
     arch,manjarolinux: libyaml
 
 cgal:
-    debian,ubuntu: libcgal-dev
+    debian: libcgal-dev
+    ubuntu:
+      '16.04': [libcgal-qt5-dev,libcgal-dev]
+      default: libcgal-dev
     gentoo: sci-mathematics/cgal
     fedora: CGAL-devel
     opensuse: libcgal-devel
