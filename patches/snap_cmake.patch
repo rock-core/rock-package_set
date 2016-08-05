@@ -242,7 +242,7 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +set(PKG_CONFIG_CFLAGS "-I\${includedir}/snap/glib-adv -I\${includedir}/snap/glib-core -I\${includedir}/snap/snap-core")
 +rock_prepare_pkgconfig(${TARGET_NAME} ON)
 +
-+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/snap-core/libsnap.a
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsnap.a
 +    DESTINATION lib/
 +)
 diff -urN ../snap_orig/snap.pc.in ./snap.pc.in
