@@ -1,6 +1,7 @@
 # IMPORTANT: new packages must be added at the top of this file (after if
 # package_enabled ...)
 
+orogen_package 'drivers/orogen/imu_myahrs_plus'
 orogen_package 'planning/orogen/exploration'
 orogen_package 'drivers/orogen/imu_an_spatial'
 orogen_package 'slam/orogen/pcl'

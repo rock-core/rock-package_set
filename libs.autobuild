@@ -20,6 +20,31 @@ cmake_package "drivers/glfw" do |pkg|
 end
 remove_from_default 'drivers/glfw'
 
+import_package 'drivers/imu_myahrs_plus' do |pkg|
+
+    def pkg.prepare
+        super
+        isolate_errors do
+            build
+            progress_done
+        end
+    end
+
+    def pkg.build
+        in_dir (File.join(srcdir, "common_cpp")) do
+            run("build", Autobuild.tool(:make))
+        end
+    end
+
+    def pkg.install
+        super
+        install_prefix = File.join(prefix, "include", name.split('/')[1])
+        FileUtils.mkdir_p install_prefix
+        FileUtils.install(File.join(srcdir, "common_cpp", "myahrs_plus.hpp"), File.join(install_prefix, "myahrs_plus.hpp"))
+    end
+
+end
+
 import_package "drivers/glew" do |pkg|
     pkg.depends_on "drivers/glfw"
     pkg.depends_on "libturbojpeg"

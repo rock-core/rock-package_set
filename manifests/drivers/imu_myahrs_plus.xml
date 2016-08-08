@@ -1,0 +1,14 @@
+<package>
+    <description brief="iLibrary driver for the IMU myAHRS+">
+    Library and application driver for the myAHRS Inertial Measurement Unit (IMU)
+    The myAHRS+ is a low cost high performance AHRS(Attitude Heading Reference
+    System). Its attitude output is more stable to acceleration and magnetic
+    disturbances then other low cost AHRS/IMU products. Communication and
+    configuration are enabled via UART/USB interface for user applications. 
+  </description>
+  <author>Withrobot, Inc./ withrobot@withrobot.com</author>
+  <license> Dual licensed under the MIT or GPL v2</license>
+  <url>http://withrobot.com</url>
+  <depend package="base/cmake" />
+  <tags>stable</tags>
+</package>
