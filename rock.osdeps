@@ -455,14 +455,6 @@ libturbojpeg:
 bzip2:
     debian,ubuntu: libbz2-dev
 
-slam/pcl:
-    ubuntu:
-        default: libpcl-dev
-        '12.04,12.10,13.04,13.10,14.04,14.10': nonexistent
-    debian:
-        default: libpcl-dev
-        wheezy,squeeze: nonexistent
-
 yaml-cpp:
     debian: libyaml-cpp-dev
     ubuntu:
