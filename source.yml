@@ -317,8 +317,7 @@ version_control:
       tag: 0.14.0
 
     - drivers/aravis:
-        type: git
-        url: git://git.gnome.org/aravis
+        github: AravisProject/aravis
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
         branch: master
 
