@@ -6,7 +6,9 @@ cmake_package 'gui/vizkit3d_pcl'
 cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
-cmake_package 'control/visp'
+cmake_package 'control/visp' do |pkg|
+    pkg.depends_on "svn"
+end
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
     pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'
