@@ -7,6 +7,7 @@ cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
 cmake_package 'gui/pose3d_editor'
 cmake_package 'control/visp'
+cmake_package 'control/uwv_dynamic_model'
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
     pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'

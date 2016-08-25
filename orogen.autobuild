@@ -7,6 +7,7 @@ orogen_package 'drivers/orogen/imu_an_spatial'
 orogen_package 'slam/orogen/pcl'
 orogen_package 'perception/orogen/apriltags'
 orogen_package 'control/orogen/visp'
+orogen_package 'control/orogen/uwv_dynamic_model'
 
     in_flavor 'master' do
         orogen_package 'drivers/orogen/kinect2'
