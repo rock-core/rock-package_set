@@ -324,7 +324,7 @@ version_control:
     - drivers/aravis:
         github: AravisProject/aravis
         patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
-        branch: master
+        tag: ARAVIS_0_5_1
 
     - drivers/freenect2:
         github: OpenKinect/libfreenect2.git
