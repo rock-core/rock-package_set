@@ -12,4 +12,5 @@
     <url>http://sdformat.org</url>
     <depend package="boost" />
     <depend package="external/tinyxml" />
+    <depend package="tools/ignition-math2" />
 </package>

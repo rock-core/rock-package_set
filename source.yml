@@ -23,8 +23,13 @@ version_control:
         
     - control/sdformat:
         type: archive
-        url: https://bitbucket.org/osrf/sdformat/get/sdformat2_2.2.0.tar.bz2
-        archive_dir: osrf-sdformat-95b7b298de85
+        url: http://osrf-distributions.s3.amazonaws.com/sdformat/releases/sdformat-4.0.0.tar.bz2
+        archive_dir: sdformat-4.0.0
+        update_cached_file: false
+
+    - tools/ignition-math2:
+        type: archive
+        url: http://gazebosim.org/distributions/ign-math/releases/ignition-math2-2.3.0.tar.bz2
         update_cached_file: false
 
     - control/visp:
