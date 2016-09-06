@@ -39,22 +39,3 @@ diff -Naur g2o.pc.in g2o.pc.in
 +Libs: -L${libdir} @PKG_CONFIG_EXPORT_LIBS@
 +Cflags: -I${includedir}
 +
-diff -Naur manifest.xml manifest.xml
---- manifest.xml  1970-01-01 01:00:00.000000000 +0100
-+++ manifest.xml  2012-10-28 12:21:09.129485817 +0100
-@@ -0,0 +1,15 @@
-+<package>
-+    <description brief="g2o: A General Framework for Graph Optimization">
-+    g2o is an open-source C++ framework for optimizing graph-based nonlinear
-+    error functions.  g2o has been designed to be easily
-+    extensible to a wide range of problems and a new problem typically
-+    can be specified in a few lines of code.  The current implementation
-+    provides solutions to several variants of SLAM and BA.
-+    </description>
-+    <author>Giorgio Grisetti; Rainer Kuemmerle; Hauke Strasdat; Kurt Konolige; Wolfram Burgard </author>
-+    <copyright>
-+       Copyright and V.i.S.d.P.: Giorgio Grisetti; Rainer Kuemmerle; Hauke Strasdat; Kurt Konolige; Wolfram Burgard
-+    </copyright>
-+    <license>LGPL v.3</license>
-+    <url>http://www.openslam.org/g2o.html</url>
-+</package>
