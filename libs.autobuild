@@ -575,7 +575,6 @@ in_flavor 'master', 'stable' do
     cmake_package 'slam/odometry'
     cmake_package 'slam/graph_slam'
     cmake_package 'slam/g2o' do |pkg|
-        pkg.depends_on 'libqglviewer'
         pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
         pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
         pkg.source_tree_excludes << /doc\/doxygen/
