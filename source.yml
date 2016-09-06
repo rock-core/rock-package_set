@@ -324,7 +324,9 @@ version_control:
     - planning/ompl:
       type: git
       url: https://github.com/ompl/ompl.git
-      tag: 0.14.0
+      tag: 1.2.1
+      patches:
+          - $AUTOPROJ_SOURCE_DIR/patches/ompl_pkgconfig.patch
 
     - drivers/aravis:
         github: AravisProject/aravis
