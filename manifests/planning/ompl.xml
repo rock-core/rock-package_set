@@ -9,5 +9,6 @@
   <license>Modified BSD</license>
   <url>http://ompl.kavrakilab.org</url>
   <depend package="boost" />
+  <depend package="ode" />
   <depend package="flann" optional="1" />
 </package>
