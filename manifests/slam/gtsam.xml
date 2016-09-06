@@ -7,6 +7,8 @@
   <url>https://collab.cc.gatech.edu/borg/gtsam/</url>
   <depend package="base/cmake" />
   <depend package="eigen3" />
+  <depend package="blas" />
+  <depend package="lapack" />
   <rosdep name="boost" />
   <rosdep name="boost-timer" />
   <rosdep name="boost-date-time" />
