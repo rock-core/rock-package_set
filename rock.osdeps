@@ -246,7 +246,7 @@ vtk:
         default:
             - libvtk6-dev
             - tcl-vtk
-            - python-vtk
+            - python-vtk6
             - libvtk-java
     fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
     opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
