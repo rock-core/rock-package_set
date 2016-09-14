@@ -356,7 +356,7 @@ in_flavor 'master', 'stable' do
 
     bundle_package 'bundles/rock_ugv_nav'
     cmake_package 'control/kdl' do |pkg|
-        pkg.depends_on 'base/types'
+        pkg.depends_on 'base/cmake'
         pkg.with_doc 'docs'
         pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
     end
@@ -439,7 +439,7 @@ in_flavor 'master', 'stable' do
     end
     cmake_package 'external/tinyxml' do |pkg|
         # tinyxml is patched to use Rock macros
-        pkg.depends_on 'base/types'
+        pkg.depends_on 'base/cmake'
     end
 
     ##### Control-related libraries
@@ -495,7 +495,7 @@ in_flavor 'master', 'stable' do
     metapackage 'image_processing/stereo', 'perception/stereo'
     cmake_package 'perception/libelas' do |pkg|
         # Build system from libelas has been patched into a Rock/CMake-based one
-        pkg.depends_on 'base/types'
+        pkg.depends_on 'base/cmake'
     end
     metapackage 'image_processing/libelas', 'perception/libelas'
 
