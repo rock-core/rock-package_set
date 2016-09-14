@@ -14,6 +14,6 @@
   <depend package='external/cminpack' />
   <depend package='qhull' />
 
-  <rosdep name='vtk'/>
-  <rosdep name='vtk-qt4'/>
+  <depend name='vtk' optional='1' />
+  <depend name='vtk-qt4' optional='1' />
 </package>
