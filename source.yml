@@ -160,12 +160,10 @@ version_control:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman_gcc_4.8.2.patch
     
     - slam/g2o:
-        type: svn
-        url: http://svn.openslam.org/data/svn/g2o/trunk
+        github: RainerKuemmerle/g2o.git
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
-            - $AUTOPROJ_SOURCE_DIR/patches/g2o_linker.patch
-    
+
     - external/tinyxml: 
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
