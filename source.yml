@@ -110,15 +110,13 @@ version_control:
         branch: master
 
     - external/yaml-cpp:
-        type: archive
-        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
-        update_cached_file: false
+        github: jbeder/yaml-cpp
+        tag: release-0.3.0
 
     - external/yaml-cpp03:
-        type: archive
-        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
+        github: jbeder/yaml-cpp
+        tag: release-0.3.0
         patches: $AUTOPROJ_SOURCE_DIR/patches/yaml-cpp03.patch
-        update_cached_file: false
 
     - slam/pcl:
         github: PointCloudLibrary/pcl
