@@ -9,6 +9,7 @@ cmake_package 'gui/pose3d_editor'
 cmake_package 'control/visp'
 cmake_package 'control/uwv_dynamic_model'
 cmake_package 'slam/uwv_kalman_filters'
+cmake_package 'perception/depth_map_preprocessing'
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
     pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'
