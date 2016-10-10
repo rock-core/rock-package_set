@@ -18,13 +18,14 @@ diff -urN ../snap/Makefile ./Makefile
  	$(MAKE) clean -C examples
 --- snap-core/Makefile	2016-08-05 15:56:25.164361591 +0200
 +++ ../snap2/snap-core/Makefile	2016-08-05 15:52:39.627243213 +0200
-@@ -13,11 +13,11 @@
+@@ -13,11 +13,12 @@
  	$(CC) -c $(CXXFLAGS) Snap.cpp -I$(CGLIB)
  
  lib: Snap.o
 -	rm -f libsnap.a
 -	ar -cvq libsnap.a Snap.o
 +	rm -f ../build/libsnap.a
++	mkdir -p ../build
 +	ar -cvq ../build/libsnap.a Snap.o
  
  libinstall: lib
