@@ -111,12 +111,12 @@ version_control:
 
     - external/yaml-cpp:
         type: archive
-        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
+        url: https://github.com/jbeder/yaml-cpp/archive/release-0.3.0.tar.gz
         update_cached_file: false
 
     - external/yaml-cpp03:
         type: archive
-        url: http://yaml-cpp.googlecode.com/files/yaml-cpp-0.3.0.tar.gz
+        url: https://github.com/jbeder/yaml-cpp/archive/release-0.3.0.tar.gz
         patches: $AUTOPROJ_SOURCE_DIR/patches/yaml-cpp03.patch
         update_cached_file: false
 
