@@ -367,8 +367,9 @@ unzip:
 
 libqglviewer:
     ubuntu:
-        '12.04,12.10,13.04': libqglviewer-qt4-dev
-        default: libqglviewer-dev
+        '12.04,12.10,13.04': libqglviewer-gt4-dev
+        '13.10,14.04,14.10,15.04,15.10': libqglviewer-dev
+        default: libqglviewer-dev-qt4 
     debian:
         '7.3':   libqglviewer-qt4-dev
         default: libqglviewer-dev
