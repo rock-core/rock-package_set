@@ -46,7 +46,10 @@ assimp:
     # opensuse: [libassimp3, assimp-devel] # available in repository games
 
 gdal:
-    debian,ubuntu: libgdal1-dev
+    debian: libgdal1-dev
+    ubuntu:
+     '12.04,14.04,14.10,15.04,15.10': libgdal1-dev
+     default: libgdal-dev
     gentoo: sci-libs/gdal
     fedora: gdal-devel
     arch,manjarolinux: gdal
@@ -249,11 +252,16 @@ vtk:
             - tcl-vtk
             - python-vtk
             - libvtk-java
-        default:
+        '16.04':
             - libvtk6-dev
             - tcl-vtk
             - python-vtk6
             - libvtk-java
+        default:
+            - libvtk6-dev
+            - tcl-vtk6
+            - python-vtk6
+            - libvtk6-java
     fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
     opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
 
@@ -267,10 +275,19 @@ boost-python:
     fedora,opensuse: boost-devel
 
 gstreamer:
-    debian,ubuntu:
+    debian:
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
+    ubuntu:
+      '12.04,14.04,14.10,15.04,15.10':
+        - libgstreamer0.10-dev
+        - libgstreamer-plugins-base0.10-dev
+        - gstreamer0.10-plugins-good
+      default: 
+        - libgstreamer1.0-dev
+        - libgstreamer-plugins-base1.0-dev
+        - libgstreamer-plugins-good1.0-0
     fedora,opensuse: gstreamer-devel
 
 libproc:
@@ -374,8 +391,8 @@ unzip:
 libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
-        '16.04': libqglviewer-dev-qt4
-        default: libqglviewer-dev
+        '14.04,14.10,15.04,15.10': libqglviewer-dev
+        default: libqglviewer-dev-qt4
     debian:
         '7.3':   libqglviewer-qt4-dev
         default: libqglviewer-dev
