@@ -1,16 +1,18 @@
---- autogen.sh.old	2013-05-23 19:18:07.723926088 +0200
-+++ autogen.sh	2013-05-23 19:18:31.548044200 +0200
-@@ -163,13 +163,3 @@
-     )
-   fi
- done
+diff --git a/autogen.sh b/autogen.sh
+index 19384c2..471b4ed 100755
+--- autogen.sh
++++ autogen.sh
+@@ -27,13 +27,3 @@ intltoolize --force --copy --automake || exit 1
+ gtkdocize --copy || exit 1
+ autoreconf --verbose --force --install || exit 1
+ 
+-cd "$olddir"
+-if [ "$NOCONFIGURE" = "" ]; then
+-        $srcdir/configure "$@" || exit 1
 -
--conf_flags="--enable-maintainer-mode"
--
--if test x$NOCONFIGURE = x; then
--  echo Running $srcdir/configure $conf_flags "$@" ...
--  $srcdir/configure $conf_flags "$@" \
--  && echo Now type \`make\' to compile. || exit 1
+-        if [ "$1" = "--help" ]; then exit 0 else
+-                echo "Now type 'make' to compile $PKG_NAME" || exit 1
+-        fi
 -else
--  echo Skipping configure process.
+-        echo "Skipping configure process."
 -fi
