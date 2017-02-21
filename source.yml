@@ -327,7 +327,6 @@ version_control:
 
     - drivers/aravis:
         github: AravisProject/aravis
-        patches: $AUTOPROJ_SOURCE_DIR/patches/aravis.patch
         branch: master
 
     - drivers/freenect2:
