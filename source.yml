@@ -306,7 +306,7 @@ version_control:
 
     - external/aruco:
       type: archive
-      url: http://downloads.sourceforge.net/project/aruco/1.2.5/aruco-1.2.5.tgz
+      url: http://sourceforge.net/projects/aruco/files/OldVersions/aruco-1.2.5.tgz
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_cmake.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_board_generation.patch
