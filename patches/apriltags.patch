@@ -55,4 +55,5 @@ diff -urN ../apriltag-2015-03-18/manifest.xml ./manifest.xml
 +  <logo>http://</logo>
 +  <depend package="base/cmake" />
 +  <depend package="base/types" />
++  <tags>needs_opt</tags>
 +</package>
