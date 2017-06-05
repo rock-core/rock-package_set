@@ -105,7 +105,6 @@ orogen_package 'slam/orogen/simple_pose_integrator'
         orogen_package 'drivers/orogen/fog_kvh'
         orogen_package 'drivers/orogen/dvl_teledyne'
         orogen_package 'drivers/orogen/camera_usb'
-        orogen_package 'drivers/orogen/iodrivers_base'
 	orogen_package 'drivers/orogen/camera_firewire'
 #	orogen_package 'drivers/orogen/gpsd_client' #same functionallity like gps, but planned to put gps funcionallity in this, and create generic gps command
     	orogen_package 'drivers/orogen/vicon'

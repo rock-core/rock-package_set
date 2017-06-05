@@ -365,16 +365,10 @@ version_control:
     - drivers/dps_desertstar_ssp1:
         github: rock-drivers/drivers-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
-    - drivers/iodrivers_base:
-        github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
     - drivers/orogen/sonar_tritech:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     - drivers/orogen/dps_desertstar_ssp1:
-        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-    - drivers/orogen/iodrivers_base:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
     - drivers/imu_imar:
