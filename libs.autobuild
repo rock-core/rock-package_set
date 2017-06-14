@@ -319,6 +319,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'control/sdformat'
     cmake_package 'control/urdfdom_headers'
     cmake_package 'control/kdl_parser'
+    cmake_package 'control/robot_frames'
     cmake_package 'gui/robot_model'
     cmake_package 'gui/control_ui'
     cmake_package 'control/joint_dispatcher'
