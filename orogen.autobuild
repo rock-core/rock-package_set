@@ -11,6 +11,7 @@ orogen_package 'control/orogen/uwv_dynamic_model'
 orogen_package 'slam/orogen/uwv_kalman_filters'
 orogen_package 'perception/orogen/depth_map_preprocessing'
 orogen_package 'slam/orogen/simple_pose_integrator'
+orogen_package 'control/orogen/robot_frames'
 
     in_flavor 'master' do
         orogen_package 'drivers/orogen/kinect2'
