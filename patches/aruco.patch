@@ -1,0 +1,35 @@
+diff -urN ../aruco-2.0.19/aruco.pc.in ./aruco.pc.in
+--- ../aruco-2.0.19/aruco.pc.in	2017-02-03 12:30:06.000000000 +0100
++++ ./aruco.pc.in	2017-07-03 11:24:34.305738015 +0200
+@@ -11,4 +11,4 @@
+ Requires: 
+ Conflicts: 
+ Libs: -l@PROJECT_NAME@
+-Cflags: -I${includedir}/@PROJECT_NAME@ -I${includedir}
++Cflags: -I${includedir}/@PROJECT_NAME@ -I${includedir} -std=c++11
+diff -urN ../aruco-2.0.19/aruco-uninstalled.pc.in ./aruco-uninstalled.pc.in
+--- ../aruco-2.0.19/aruco-uninstalled.pc.in	2017-02-03 12:30:06.000000000 +0100
++++ ./aruco-uninstalled.pc.in	2017-07-03 12:05:49.374067167 +0200
+@@ -1,10 +1,10 @@
+ 
+ libdir=@CMAKE_CURRENT_BINARY_DIR@
+-includedir=@CMAKE_CURRENT_SOURCE_DIR@/src
++includedir=@CMAKE_CURRENT_SOURCE_DIR@/
+ 
+ Name: @PROJECT_NAME@
+ Description: ArUco: a minimal library for Augmented Reality applications based on OpenCv, uninstalled Version.
+ Version: @PROJECT_VERSION@
+ Requires: opencv >= 2.1.0
+ Libs: -L${libdir} -laruco
+-Cflags: -I${includedir}
++Cflags: -I${includedir} -std=c++11
+diff -urN ../aruco-2.0.19/CMakeLists.txt ./CMakeLists.txt
+--- ../aruco-2.0.19/CMakeLists.txt	2017-02-03 12:30:06.000000000 +0100
++++ ./CMakeLists.txt	2017-07-03 12:16:16.195119514 +0200
+@@ -323,4 +323,6 @@
+ # pkg-config
+ configure_file(aruco.pc.in aruco.pc @ONLY)
+ configure_file(aruco-uninstalled.pc.in aruco-uninstalled.pc @ONLY)
++execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
++    ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/aruco)
+ install(FILES "${PROJECT_BINARY_DIR}/aruco-uninstalled.pc" "${PROJECT_BINARY_DIR}/aruco.pc" DESTINATION lib/pkgconfig)
