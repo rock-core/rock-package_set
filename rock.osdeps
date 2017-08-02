@@ -124,12 +124,6 @@ boost-serialization:
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
 
-libgtest-dev:
-    debian,ubuntu: libgtest-dev
-
-google-mock:
-    debian,ubuntu: google-mock
-
 ncurses:
     debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
