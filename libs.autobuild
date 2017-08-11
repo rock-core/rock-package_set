@@ -2,6 +2,7 @@
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
 cmake_package 'drivers/imu_an_spatial'
+cmake_package 'drivers/gps_base'
 cmake_package 'gui/vizkit3d_pcl'
 cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
