@@ -106,46 +106,11 @@ cmake_package "drivers/freenect2" do |pkg|
 end
 
 #Needed for kinect, the os packages does not (yet) work 06.15 (see patch in this package set)
-import_package 'drivers/libusb' do |pkg|
+autotools_package 'drivers/libusb' do |pkg|
+    pkg.using[:autogen] = 'bootstrap.sh'
+    pkg.configureflags << '--enable-maintainer-mode'
+    pkg.parallel_build_level = 1
     pkg.depends_on "libudev"
-    def pkg.buildstamp; "autobuild-stamp" end
-    def pkg.prepare
-        source_tree srcdir do |pkg2|
-            File.open(File.join(srcdir,".gitignore")).each_line do |excl|
-                pkg2.exclude << Regexp.new("^#{Regexp.quote(excl)}")
-            end
-        end
-
-        super
-
-        stamps = dependencies.map { |pkg2| Autobuild::Package[pkg2].installstamp }
-
-        file buildstamp => stamps do
-            isolate_errors do
-                build
-                progress_done
-            end
-        end
-        task "#{name}-build" => buildstamp
-        file installstamp => buildstamp
-
-        in_dir(srcdir) do
-            run("prepare_bootstrap","./bootstrap.sh")
-            run("prepare_configure","./configure", "--prefix=#{Autobuild.prefix}")
-        end
-    end
-
-    def pkg.build
-        in_dir(srcdir) do
-            run("build", Autobuild.tool(:make))
-        end
-    end
-
-    def pkg.install
-        in_dir(srcdir) do
-            run("install", Autobuild.tool(:make), "install")
-        end
-    end
 end
 
 cmake_package 'gui/collada_dom' do |pkg|
