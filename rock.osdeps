@@ -515,3 +515,13 @@ control/sdformat:
 ruby-geoutm:
     gem: geoutm
 
+geographic:
+    debian: 
+        jessie,stretch,sid: libgeographic-dev
+        wheezy:             libgeographiclib-dev
+        default:            libgeographic-dev
+    ubuntu:
+        '12.04,14.04': libgeographiclib-dev
+        '15.10,16.04': libgeographic-dev
+        default:       libgeographic-dev
+
