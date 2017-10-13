@@ -26,14 +26,6 @@ remove_from_default 'drivers/glfw'
 
 import_package 'drivers/imu_myahrs_plus' do |pkg|
 
-    def pkg.prepare
-        super
-        isolate_errors do
-            build
-            progress_done
-        end
-    end
-
     def pkg.build
         in_dir (File.join(srcdir, "common_cpp")) do
             run("build", Autobuild.tool(:make))
@@ -41,6 +33,10 @@ import_package 'drivers/imu_myahrs_plus' do |pkg|
     end
 
     def pkg.install
+        isolate_errors do
+            build
+            progress_done
+        end
         super
         install_prefix = File.join(prefix, "include", name.split('/')[1])
         FileUtils.mkdir_p install_prefix
@@ -74,17 +70,15 @@ import_package "drivers/glew" do |pkg|
         end
         task "#{name}-build" => buildstamp
         file installstamp => buildstamp
-        
-        Autoproj.env_set_path "GLEW_DEST", prefix
+    end
 
-        in_dir(srcdir) do 
-            run("prepare",Autobuild.tool(:make), 'extensions')
-        end 
+    def pkg.update_environment
+        env_set "GLEW_DEST", prefix
     end
     
     def pkg.build 
-        Autoproj.env_set_path "GLEW_DEST", prefix
         in_dir(srcdir) do 
+            run("build",Autobuild.tool(:make), 'extensions')
             run("build",Autobuild.tool(:make))
         end
     end
