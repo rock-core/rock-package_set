@@ -156,10 +156,12 @@ require 'utilrb/pkgconfig'
 cmake_package 'gui/collada_osg' do |pkg|
     pkg.depends_on "gui/collada_dom"
     pkg.depends_on "osg"
-    pkg.post_install do
+    def pkg.update_environment
+        super
         osg = Utilrb::PkgConfig.new 'openscenegraph-osg'
         plugin_dir = "osgPlugins-#{osg.version.map(&:to_s).join(".")}"
-        Autoproj.env_add_path "OSG_LIBRARY_PATH", File.join(pkg.prefix, 'lib', plugin_dir)
+        env_add_path "OSG_LIBRARY_PATH", File.join(prefix, 'lib', plugin_dir)
+    rescue Utilrb::PkgConfig::NotFound
     end
 end
 
