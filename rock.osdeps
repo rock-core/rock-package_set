@@ -390,7 +390,8 @@ libqglviewer:
         default: libqglviewer-dev-qt4
     debian:
         '7.3':   libqglviewer-qt4-dev
-        default: libqglviewer-dev
+        'jessie': libqglviewer-dev
+        default: libqglviewer-dev-qt4
     macos-brew: libqglviewer
     # opensuse: libQGLViewer-devel # available in repository KDE:Qt
 
