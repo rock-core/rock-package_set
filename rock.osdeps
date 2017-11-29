@@ -89,23 +89,6 @@ gpsd:
   arch,manjarolinux: gpsd
   opensuse: gpsd-devel
 
-boost:
-    debian,ubuntu:
-        - libboost-dev
-        - libboost-graph-dev
-        - libboost-program-options-dev
-        - libboost-regex-dev
-        - libboost-thread-dev
-        - libboost-filesystem-dev
-        - libboost-iostreams-dev
-        - libboost-system-dev
-    gentoo: dev-libs/boost
-    fedora,opensuse: boost-devel
-    darwin: boost
-    arch,manjarolinux:
-        - boost
-        - boost-libs
-
 boost-timer:
     debian,ubuntu:
         - libboost-timer-dev
@@ -135,13 +118,6 @@ doxygen:
     gentoo: app-doc/doxygen
     fedora,opensuse: doxygen
     arch,manjarolinux: doxygen
-
-graphviz:
-    debian,ubuntu: [ graphviz, graphviz-dev ]
-    gentoo: graphviz
-    fedora: [ graphviz, graphviz-devel ]
-    arch,manjarolinux: graphviz
-    opensuse: graphviz-devel
 
 net-ssh: gem
 net-scp: gem
