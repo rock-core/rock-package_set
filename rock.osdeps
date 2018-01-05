@@ -274,7 +274,7 @@ gstreamer:
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
     ubuntu:
-      '12.04,14.04,14.10,15.04,15.10':
+      '12.04,14.04,14.10,15.04,15.10,16.04':
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
