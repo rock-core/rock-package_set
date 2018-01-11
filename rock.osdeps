@@ -270,9 +270,14 @@ boost-python:
 
 gstreamer:
     debian:
-        - libgstreamer0.10-dev
-        - libgstreamer-plugins-base0.10-dev
-        - gstreamer0.10-plugins-good
+        'wheezy,jessie':
+            - libgstreamer0.10-dev
+            - libgstreamer-plugins-base0.10-dev
+            - gstreamer0.10-plugins-good
+        default:
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - gstreamer1.0-plugins-good
     ubuntu:
       '12.04,14.04,14.10,15.04,15.10':
         - libgstreamer0.10-dev
