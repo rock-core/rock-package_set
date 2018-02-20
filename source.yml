@@ -245,8 +245,7 @@ version_control:
         type: git
         url: https://ceres-solver.googlesource.com/ceres-solver
         branch: master
-        patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/ceres_solver.patch
+        tag: 1.13.0
 
     - slam/gtsam:
         type: git

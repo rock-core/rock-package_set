@@ -176,8 +176,11 @@ end
 
 in_flavor 'master' do
     cmake_package 'multiagent/fipa_services'
-    #Does not compile and maintainer does not respond
-    #cmake_package 'slam/ceres_solver'
+    cmake_package 'slam/ceres_solver' do |pkg|
+        pkg.define("BUILD_TESTING","OFF")
+        pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("BUILD_SHARED_LIBS","ON")
+    end
 
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|
