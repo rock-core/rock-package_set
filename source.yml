@@ -153,8 +153,8 @@ version_control:
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping-02.patch
 
     - slam/hogman:
-        type: svn
-        url: http://svn.openslam.org/data/svn/hog-man/trunk 
+        github: OpenSLAM-org/openslam_hog-man
+        branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
             - $AUTOPROJ_SOURCE_DIR/patches/hogman_gcc_4.8.2.patch
