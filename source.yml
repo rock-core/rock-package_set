@@ -345,6 +345,8 @@ version_control:
         url: http://downloads.sourceforge.net/project/collada-dom/Collada%20DOM/Collada%20DOM%202.4/collada-dom-2.4.0.tgz
         archive_dir: collada-dom-2.4.0
         update_cached_file: false
+        patches:
+            - [$AUTOPROJ_SOURCE_DIR/patches/collada.patch, 1]
 
     - gui/collada_osg:
         github: rock-gui/gui-collada_osg

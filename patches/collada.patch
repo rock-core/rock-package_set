@@ -1,0 +1,103 @@
+Only in collada_dom/: archive-autobuild-stamp
+Only in collada_dom/: build
+diff -r -u3 collada-dom-2.4.0/dom/include/dae/daeErrorHandler.h collada_dom/dom/include/dae/daeErrorHandler.h
+--- collada-dom-2.4.0/dom/include/dae/daeErrorHandler.h	2008-07-03 16:23:25.000000000 -0300
++++ collada_dom/dom/include/dae/daeErrorHandler.h	2018-09-03 16:00:28.568761750 -0300
+@@ -55,7 +55,11 @@
+ 
+ private:
+ 	static daeErrorHandler *_instance;
++#if __cplusplus >= 201103L || (defined(_CPPLIB_VER) && _CPPLIB_VER >= 520)
++	static std::unique_ptr<daeErrorHandler> _defaultInstance;
++#else
+ 	static std::auto_ptr<daeErrorHandler> _defaultInstance;
++#endif
+ };
+ 
+ #endif
+diff -r -u3 collada-dom-2.4.0/dom/include/dae.h collada_dom/dom/include/dae.h
+--- collada-dom-2.4.0/dom/include/dae.h	2012-06-19 14:41:48.000000000 -0300
++++ collada_dom/dom/include/dae.h	2018-09-03 16:04:17.085243493 -0300
+@@ -31,6 +31,14 @@
+ #pragma warning(pop)
+ #endif
+ 
++#ifndef UNIQUE_PTR
++#if __cplusplus >= 201103L || (defined(_CPPLIB_VER) && _CPPLIB_VER >= 520)
++    #define UNIQUE_PTR std::unique_ptr
++#else
++    #define UNIQUE_PTR std::uto_ptr
++#endif
++#endif
++
+ #include <dae/daeTypes.h>
+ #include <dae/daeError.h>
+ #include <dae/daeDatabase.h>
+@@ -287,7 +295,7 @@
+     daeSidRefCache sidRefCache;
+     daeString COLLADA_VERSION, COLLADA_NAMESPACE; // dynamic
+ 
+-    std::auto_ptr<charEncoding> localCharEncoding;
++    UNIQUE_PTR<charEncoding> localCharEncoding;
+     static charEncoding globalCharEncoding;
+ };
+ 
+diff -r -u3 collada-dom-2.4.0/dom/src/dae/daeDom.cpp collada_dom/dom/src/dae/daeDom.cpp
+--- collada-dom-2.4.0/dom/src/dae/daeDom.cpp	2012-06-01 03:24:22.000000000 -0300
++++ collada_dom/dom/src/dae/daeDom.cpp	2018-09-03 16:01:57.220318591 -0300
+@@ -111,7 +111,7 @@
+         return ColladaDOM141::domAny::ID();
+     }
+ #endif
+-    return NULL;
++    return 0;
+ }
+ 
+ daeInt getDomSourceID(DAE& dae)
+@@ -126,7 +126,7 @@
+         return ColladaDOM141::domSource::ID();
+     }
+ #endif
+-    return NULL;
++    return 0;
+ }
+ 
+ daeInt getDomCOLLADAID(const char* specversion)
+@@ -141,7 +141,7 @@
+         return ColladaDOM141::domCOLLADA::ID();
+     }
+ #endif
+-    return NULL;
++    return 0;
+ }
+ 
+ void copyElementAny(daeElementRef dstAny, daeElement* srcAny)
+diff -r -u3 collada-dom-2.4.0/dom/src/dae/daeErrorHandler.cpp collada_dom/dom/src/dae/daeErrorHandler.cpp
+--- collada-dom-2.4.0/dom/src/dae/daeErrorHandler.cpp	2008-07-03 16:23:25.000000000 -0300
++++ collada_dom/dom/src/dae/daeErrorHandler.cpp	2018-09-03 16:05:31.946371448 -0300
+@@ -6,11 +6,12 @@
+ *
+ */ 
+ 
++#include <dae.h>
+ #include <dae/daeErrorHandler.h>
+ #include <modules/stdErrPlugin.h>
+ 
+ daeErrorHandler *daeErrorHandler::_instance = NULL;
+-std::auto_ptr<daeErrorHandler> daeErrorHandler::_defaultInstance(new stdErrPlugin);
++UNIQUE_PTR<daeErrorHandler> daeErrorHandler::_defaultInstance(new stdErrPlugin);
+ 
+ daeErrorHandler::daeErrorHandler() {
+ }
+diff -r -u3 collada-dom-2.4.0/dom/src/dae/daeMetaGroup.cpp collada_dom/dom/src/dae/daeMetaGroup.cpp
+--- collada-dom-2.4.0/dom/src/dae/daeMetaGroup.cpp	2008-07-03 16:23:25.000000000 -0300
++++ collada_dom/dom/src/dae/daeMetaGroup.cpp	2018-09-03 16:05:51.896548035 -0300
+@@ -26,7 +26,7 @@
+ 	(void)offset;
+ 	daeString nm = child->getElementName();
+ 	if ( findChild( nm ) == NULL ) {
+-		return false;
++		return NULL;
+ 	}
+ 	daeElementRef el;
+ 
