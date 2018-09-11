@@ -499,6 +499,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'planning/vfh_star'
     cmake_package 'planning/corridor_navigation'
     cmake_package 'planning/motion_planning_libraries'
+    cmake_package 'planning/sbpl_spline_primitives'
 
     ##### Localisation and Mapping related packages
     autotools_package 'external/libply' do |pkg|
