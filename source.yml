@@ -20,7 +20,7 @@ version_control:
     - control/urdfdom:
         github: ros/urdfdom
         branch: master
-        
+
     - control/sdformat:
         type: archive
         url: http://osrf-distributions.s3.amazonaws.com/sdformat/releases/sdformat-4.0.0.tar.bz2
@@ -34,7 +34,7 @@ version_control:
 
     - control/visp:
         type: svn
-        url: svn://scm.gforge.inria.fr/svnroot/visp/trunk/ViSP 
+        url: svn://scm.gforge.inria.fr/svnroot/visp/trunk/ViSP
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/visp.patch
 
@@ -88,7 +88,7 @@ version_control:
 
     - gui/ffmpeg-ruby:
         branch: master
-      
+
     - perception/.*:
         github: rock-perception/perception-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -96,7 +96,7 @@ version_control:
     - perception/orogen/.*:
         github: rock-perception/perception-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
-    
+
     - multiagent/.*:
         github: rock-multiagent/multiagent-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -137,35 +137,35 @@ version_control:
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip 
+        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip
         archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
         type: archive
-        url: http://devernay.free.fr/hacks/cminpack/cminpack-1.1.3.tar.gz 
+        url: http://devernay.free.fr/hacks/cminpack/cminpack-1.1.3.tar.gz
         update_cached_file: false
 
     - slam/gmapping:
         github: ros-perception/openslam_gmapping.git
-        patches: 
+        patches:
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping-02.patch
 
     - slam/hogman:
         type: svn
-        url: http://svn.openslam.org/data/svn/hog-man/trunk 
+        url: http://svn.openslam.org/data/svn/hog-man/trunk
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
             - $AUTOPROJ_SOURCE_DIR/patches/hogman_gcc_4.8.2.patch
-    
+
     - slam/g2o:
         github: RainerKuemmerle/g2o.git
         branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
-    
-    - external/tinyxml: 
+
+    - external/tinyxml:
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
         update_cached_file: false
@@ -314,12 +314,12 @@ version_control:
 #    - planning/openrave:
 #      github: rdiankov/openrave
 #      branch: latest_stable
-      
+
     - planning/sbpl:
       type: git
       branch: master
       url: https://github.com/sbpl/sbpl.git
-      
+
     - planning/ompl:
       type: git
       url: https://github.com/ompl/ompl.git
@@ -416,7 +416,4 @@ version_control:
         branch: $ROCK_BRANCH
     - planning/orogen/motion_planning_libraries:
         github: rock-planning/planning-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-
-
+        branch: master
