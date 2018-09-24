@@ -353,7 +353,7 @@ version_control:
 
     - drivers/imu_an_spatial:
         type: archive
-        url: http://www.advancednavigation.com.au/sites/advancednavigation.com.au/files/spatialsdk.zip
+        url: https://www.advancednavigation.com/sites/default/files/product_software/spatialsdk.zip
         no_subdirectory: true
         update_cached_file: true
         patches:
