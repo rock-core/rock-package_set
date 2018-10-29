@@ -1,0 +1,5 @@
+#for ubuntu 18.04
+sundials:     
+    ubuntu:
+        '18.04': libsundials-dev
+
