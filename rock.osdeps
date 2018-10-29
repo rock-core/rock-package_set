@@ -32,7 +32,7 @@ scipy:
 ode:
     debian,ubuntu: libode-dev
     # opensuse: [libode1, libode-devel] # available in repository games
-
+rock-core/autoproj/commits/master
 soqt:
     debian,ubuntu: libsoqt4-dev
     # opensuse: SoQt-devel # available in repository Packman
@@ -511,7 +511,8 @@ tools/ignition-math2:
 control/sdformat:
     ubuntu:
         '14.04,14.10,15.04,15.10': nonexistent
-        default: libsdformat4-dev
+        '16.04,16.10,17.04,17.10': libsdformat4-dev
+        default: libsdformat6-dev
 
 ruby-geoutm:
     gem: geoutm
