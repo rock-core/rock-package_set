@@ -32,7 +32,7 @@ scipy:
 ode:
     debian,ubuntu: libode-dev
     # opensuse: [libode1, libode-devel] # available in repository games
-rock-core/autoproj/commits/master
+
 soqt:
     debian,ubuntu: libsoqt4-dev
     # opensuse: SoQt-devel # available in repository Packman
