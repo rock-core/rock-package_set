@@ -372,10 +372,6 @@ tools/rbind:
     debian,ubuntu: libffi-dev
     opensuse: libffi-devel
 
-python:
-    debian, ubuntu: python-dev
-    opensuse: python-devel
-
 numpy:
     debian, ubuntu: python-numpy
     opensuse: python-numpy
