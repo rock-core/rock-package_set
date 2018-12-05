@@ -528,3 +528,6 @@ geographic:
         '15.10,16.04': libgeographic-dev
         default:       libgeographic-dev
 
+pypy:
+    ubuntu,debian: pypy
+
