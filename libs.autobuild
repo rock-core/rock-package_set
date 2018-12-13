@@ -12,6 +12,7 @@ cmake_package 'control/uwv_dynamic_model'
 cmake_package 'slam/uwv_kalman_filters'
 cmake_package 'perception/depth_map_preprocessing'
 cmake_package 'drivers/imu_advanced_navigation_anpp'
+cmake_package 'control/joint_tools'
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
     pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'
