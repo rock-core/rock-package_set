@@ -458,7 +458,7 @@ bison:
     debian,ubuntu: bison
 
 coinor:
-    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-libclp-dev]
+    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
 
 flex:
     debian,ubuntu: flex
@@ -531,3 +531,8 @@ geographic:
 pypy:
     ubuntu,debian: pypy
 
+glpk:
+    debian,ubuntu: [glpk-utils, libglpk-dev]
+
+libxml2-utils:
+    debian,ubuntu: [libxml2-utils]

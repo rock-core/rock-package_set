@@ -1,4 +1,5 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'tools/graph_analysis'
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
 cmake_package 'drivers/imu_an_spatial'

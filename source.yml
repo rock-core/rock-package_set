@@ -415,5 +415,9 @@ version_control:
         github: rock-planning/planning-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - tools/graph_analysis:
+        github: rock-core/tools-graph_analysis
+        branch: $ROCK_BRANCH
+
 
 
