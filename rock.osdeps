@@ -536,3 +536,15 @@ glpk:
 
 libxml2-utils:
     debian,ubuntu: [libxml2-utils]
+
+redland:
+    debian,ubuntu: [ librdf0-dev ]
+
+raptor2:
+    debian,ubuntu: [ libraptor2-dev ]
+
+soprano:
+    debian,ubuntu: [ libsoprano-dev ]
+
+uriparser:
+    debian,ubuntu: [ liburiparser-dev ]

@@ -46,6 +46,14 @@ version_control:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - knowledge_reasoning/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - knowledge_reasoning/orogen/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
     - planning/.*:
         github: rock-planning/planning-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -419,5 +427,14 @@ version_control:
         github: rock-core/tools-graph_analysis
         branch: $ROCK_BRANCH
 
+    - knowledge_reasoning/factpp:
+      type: git
+      url: https://bitbucket.org/dtsarkov/factplusplus.git
+      commit: 4cb618b0f26e8f7cd6a9243b0fc982a306d003ce
+      patches:
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_makefile.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_pkgconfig.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_cmake.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_stderr.patch
 
 

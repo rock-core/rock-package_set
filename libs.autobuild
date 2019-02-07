@@ -1,4 +1,9 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'knowledge_reasoning/factpp' do |pkg|
+    pkg.parallel_build_level = 1
+    pkg.depends_on 'base/cmake'
+end
+cmake_package 'knowledge_reasoning/owlapi'
 cmake_package 'tools/graph_analysis'
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
