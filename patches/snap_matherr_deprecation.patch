@@ -1,0 +1,51 @@
+From 668cf9c4cdbda94926797937536ba53b1209a5ca Mon Sep 17 00:00:00 2001
+From: Thomas Roehr <thomas.roehr@dfki.de>
+Date: Thu, 7 Mar 2019 21:56:05 +0100
+Subject: [PATCH 3/3] Handle matherr deprecation
+
+---
+ Makefile.config  |  6 ++++++
+ glib-core/bd.cpp | 10 ++++++++++
+ 2 files changed, 16 insertions(+)
+
+diff --git a/Makefile.config b/Makefile.config
+index 35a17fa..4437298 100644
+--- a/Makefile.config
++++ b/Makefile.config
+@@ -19,6 +19,12 @@ EXSNAPEXP = ../../$(SNAPEXP)
+ 
+ UNAME := $(shell uname)
+ 
++GLIBVERSION := $(shell ldd --version 2>&1 | grep ldd | rev | cut -d " " -f 1 |rev)
++GLIBC_GE_2_27 := $(shell dpkg --compare-versions "2.27" "ge" "$(GLIBVERSION)"; echo $$?)
++ifeq ($(GLIBC_GE_2_27),0)
++CXXFLAGS += -DWITH_MATHERR_EXCEPTION
++endif
++
+ ifeq ($(UNAME), Linux)
+   # Linux flags
+   CC = g++
+diff --git a/glib-core/bd.cpp b/glib-core/bd.cpp
+index c363a93..6b59b64 100644
+--- a/glib-core/bd.cpp
++++ b/glib-core/bd.cpp
+@@ -2,6 +2,16 @@
+ #include <execinfo.h>
+ #endif
+ 
++#ifdef WITH_MATHERR_EXCEPTION
++struct __exception {
++    int    type;      /* Exception type */
++    char*  name;      /* Name of function causing exception */
++    double arg1;      /* 1st argument to function */
++    double arg2;      /* 2nd argument to function */
++    double retval;    /* Function return value */
++};
++#endif
++
+ /////////////////////////////////////////////////
+ // Mathmatical-Errors
+ #if defined(__BCPLUSPLUS__) && (__BCPLUSPLUS__==0x0530)
+-- 
+2.17.1
+

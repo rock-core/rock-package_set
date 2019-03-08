@@ -295,11 +295,11 @@ version_control:
     - external/snap:
       type: git
       url: https://github.com/snap-stanford/snap.git
-      commit: daa1eca9d924f3577b23882d781a48a0bc09cff7
+      commit: 86ac647a011a8de43e8b1af6a9a45a737a69d886
       patches:
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_makefile.patch
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_fpic.patch
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch,1]
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_fpic.patch,1]
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_matherr_deprecation.patch,1]
 
     - external/gexf:
       type: archive
