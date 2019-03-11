@@ -1,26 +1,35 @@
-diff --git Makefile.config Makefile.config
-index b93fe2c..891f16e 100644
---- Makefile.config
-+++ Makefile.config
+From 79a2b11a5b9c8efee2e20394af218804b20cb99a Mon Sep 17 00:00:00 2001
+From: Thomas Roehr <thomas.roehr@dfki.de>
+Date: Thu, 7 Mar 2019 21:55:40 +0100
+Subject: [PATCH 2/3] Enable fpic
+
+---
+ Makefile.config | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile.config b/Makefile.config
+index cfbb92b..35a17fa 100644
+--- a/Makefile.config
++++ b/Makefile.config
 @@ -23,7 +23,7 @@ ifeq ($(UNAME), Linux)
    # Linux flags
    CC = g++
    CXXFLAGS += -std=c++98 -Wall
--  CXXFLAGS += -O3 -DNDEBUG
-+  CXXFLAGS += -O3 -DNDEBUG -fPIC
+-  CXXFLAGS += -O3 -DNDEBUG -fopenmp
++  CXXFLAGS += -O3 -DNDEBUG -fopenmp -fPIC
    # turn on for crash debugging, get symbols with <prog> 2>&1 | c++filt
    #CXXFLAGS += -g -rdynamic
-   CXXOPENMP = -fopenmp
-@@ -34,7 +34,7 @@ else ifeq ($(UNAME), Darwin)
+   #CXXFLAGS += -ggdb
+@@ -36,7 +36,7 @@ else ifeq ($(UNAME), Darwin)
    # OS X flags
    CC = g++
-   CXXFLAGS += -std=c++98 -Wall
+   CXXFLAGS += -std=c++98 -Wall -Wno-unknown-pragmas
 -  CXXFLAGS += -O3 -DNDEBUG
 +  CXXFLAGS += -O3 -DNDEBUG -fPIC
-   CXXOPENMP = -fopenmp
    CLANG := $(shell g++ -v 2>&1 | grep clang | cut -d " " -f 2)
-   ifeq ($(CLANG), LLVM)
-@@ -49,7 +49,7 @@ else ifeq ($(shell uname -o), Cygwin)
+   ifneq ($(CLANG), LLVM)
+     CXXFLAGS += -fopenmp
+@@ -52,7 +52,7 @@ else ifeq ($(shell uname -o), Cygwin)
    # Cygwin flags
    CC = g++
    CXXFLAGS += -Wall -D__STDC_LIMIT_MACROS
@@ -29,3 +38,6 @@ index b93fe2c..891f16e 100644
    CXXOPENMP = -fopenmp
    LDFLAGS +=
    LIBS +=
+-- 
+2.17.1
+
