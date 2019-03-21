@@ -311,9 +311,8 @@ version_control:
          - $AUTOPROJ_SOURCE_DIR/patches/gexf_patch_stdout.patch
 
     - external/aruco:
-      type: archive
-      url: https://downloads.sourceforge.net/project/aruco/2.0.19/aruco-2.0.19.zip
-      archive_dir: aruco-2.0.19
+      type: git
+      url: https://github.com/ProtolabSBRE/aruco.git
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco.patch
 
