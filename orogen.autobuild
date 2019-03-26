@@ -4,6 +4,8 @@
 orogen_package 'drivers/orogen/imu_myahrs_plus'
 orogen_package 'planning/orogen/exploration'
 orogen_package 'drivers/orogen/imu_an_spatial'
+orogen_package 'drivers/orogen/gps_base'
+orogen_package 'drivers/orogen/imu_advanced_navigation_anpp'
 orogen_package 'slam/orogen/pcl'
 orogen_package 'perception/orogen/apriltags'
 orogen_package 'control/orogen/visp'
@@ -12,6 +14,7 @@ orogen_package 'slam/orogen/uwv_kalman_filters'
 orogen_package 'perception/orogen/depth_map_preprocessing'
 orogen_package 'slam/orogen/simple_pose_integrator'
 orogen_package 'control/orogen/robot_frames'
+orogen_package 'control/orogen/joint_tools'
 
     in_flavor 'master' do
         orogen_package 'drivers/orogen/kinect2'

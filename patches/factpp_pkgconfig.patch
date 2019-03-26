@@ -1,0 +1,15 @@
+diff -urN ../factpp_original/factpp.pc.in ./factpp.pc.in
+--- ../factpp_original/factpp.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ ./factpp.pc.in	2013-09-12 19:55:19.351941650 +0200
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: @TARGET_NAME@
++Description: @PROJECT_DESCRIPTION@
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -l@LIBRARY_NAME@ ${libdir}/libKernel.a
++Cflags: -I${includedir}
++

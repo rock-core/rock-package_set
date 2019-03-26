@@ -1,7 +1,14 @@
 # IMPORTANT: new packages must be added at the top of this file
+cmake_package 'knowledge_reasoning/factpp' do |pkg|
+    pkg.parallel_build_level = 1
+    pkg.depends_on 'base/cmake'
+end
+cmake_package 'knowledge_reasoning/owlapi'
+cmake_package 'tools/graph_analysis'
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
 cmake_package 'drivers/imu_an_spatial'
+cmake_package 'drivers/gps_base'
 cmake_package 'gui/vizkit3d_pcl'
 cmake_package 'perception/apriltags'
 cmake_package 'slam/threed_odometry'
@@ -10,6 +17,8 @@ cmake_package 'control/visp'
 cmake_package 'control/uwv_dynamic_model'
 cmake_package 'slam/uwv_kalman_filters'
 cmake_package 'perception/depth_map_preprocessing'
+cmake_package 'drivers/imu_advanced_navigation_anpp'
+cmake_package 'control/joint_tools'
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
     pkg.define 'GTSAM_BUILD_UNSTABLE','OFF'
@@ -25,14 +34,6 @@ remove_from_default 'drivers/glfw'
 
 import_package 'drivers/imu_myahrs_plus' do |pkg|
 
-    def pkg.prepare
-        super
-        isolate_errors do
-            build
-            progress_done
-        end
-    end
-
     def pkg.build
         in_dir (File.join(srcdir, "common_cpp")) do
             run("build", Autobuild.tool(:make))
@@ -40,6 +41,10 @@ import_package 'drivers/imu_myahrs_plus' do |pkg|
     end
 
     def pkg.install
+        isolate_errors do
+            build
+            progress_done
+        end
         super
         install_prefix = File.join(prefix, "include", name.split('/')[1])
         FileUtils.mkdir_p install_prefix
@@ -73,17 +78,15 @@ import_package "drivers/glew" do |pkg|
         end
         task "#{name}-build" => buildstamp
         file installstamp => buildstamp
-        
-        Autoproj.env_set_path "GLEW_DEST", prefix
+    end
 
-        in_dir(srcdir) do 
-            run("prepare",Autobuild.tool(:make), 'extensions')
-        end 
+    def pkg.update_environment
+        env_set "GLEW_DEST", prefix
     end
     
     def pkg.build 
-        Autoproj.env_set_path "GLEW_DEST", prefix
         in_dir(srcdir) do 
+            run("build",Autobuild.tool(:make), 'extensions')
             run("build",Autobuild.tool(:make))
         end
     end
@@ -105,46 +108,11 @@ cmake_package "drivers/freenect2" do |pkg|
 end
 
 #Needed for kinect, the os packages does not (yet) work 06.15 (see patch in this package set)
-import_package 'drivers/libusb' do |pkg|
+autotools_package 'drivers/libusb' do |pkg|
+    pkg.using[:autogen] = 'bootstrap.sh'
+    pkg.configureflags << '--enable-maintainer-mode'
+    pkg.parallel_build_level = 1
     pkg.depends_on "libudev"
-    def pkg.buildstamp; "autobuild-stamp" end
-    def pkg.prepare
-        source_tree srcdir do |pkg2|
-            File.open(File.join(srcdir,".gitignore")).each_line do |excl|
-                pkg2.exclude << Regexp.new("^#{Regexp.quote(excl)}")
-            end
-        end
-
-        super
-
-        stamps = dependencies.map { |pkg2| Autobuild::Package[pkg2].installstamp }
-
-        file buildstamp => stamps do
-            isolate_errors do
-                build
-                progress_done
-            end
-        end
-        task "#{name}-build" => buildstamp
-        file installstamp => buildstamp
-
-        in_dir(srcdir) do
-            run("prepare_bootstrap","./bootstrap.sh")
-            run("prepare_configure","./configure", "--prefix=#{Autobuild.prefix}")
-        end
-    end
-
-    def pkg.build
-        in_dir(srcdir) do
-            run("build", Autobuild.tool(:make))
-        end
-    end
-
-    def pkg.install
-        in_dir(srcdir) do
-            run("install", Autobuild.tool(:make), "install")
-        end
-    end
 end
 
 cmake_package 'gui/collada_dom' do |pkg|
@@ -155,10 +123,12 @@ require 'utilrb/pkgconfig'
 cmake_package 'gui/collada_osg' do |pkg|
     pkg.depends_on "gui/collada_dom"
     pkg.depends_on "osg"
-    pkg.post_install do
+    def pkg.update_environment
+        super
         osg = Utilrb::PkgConfig.new 'openscenegraph-osg'
         plugin_dir = "osgPlugins-#{osg.version.map(&:to_s).join(".")}"
-        Autoproj.env_add_path "OSG_LIBRARY_PATH", File.join(pkg.prefix, 'lib', plugin_dir)
+        env_add_path "OSG_LIBRARY_PATH", File.join(prefix, 'lib', plugin_dir)
+    rescue Utilrb::PkgConfig::NotFound
     end
 end
 
@@ -173,8 +143,11 @@ end
 
 in_flavor 'master' do
     cmake_package 'multiagent/fipa_services'
-    #Does not compile and maintainer does not respond
-    #cmake_package 'slam/ceres_solver'
+    cmake_package 'slam/ceres_solver' do |pkg|
+        pkg.define("BUILD_TESTING","OFF")
+        pkg.define("BUILD_EXAMPLES","OFF")
+        pkg.define("BUILD_SHARED_LIBS","ON")
+    end
 
     bundle_package 'bundles/rock_auv'
     ruby_package 'tools/rbind' do |pkg|

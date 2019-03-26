@@ -1,0 +1,16 @@
+    sudo: required
+    services:
+      - docker
+
+    matrix:
+        allow_failures:
+
+    cache: bundler
+
+    install:
+        - docker build -t rock/package_set . 
+                --build-arg PKG_BRANCH="${TRAVIS_BRANCH}" 
+                --build-arg PKG_PULL_REQUEST="${TRAVIS_PULL_REQUEST}" 
+                --build-arg PKG_PULL_REQUEST_BRANCH="${TRAVIS_PULL_REQUEST_BRANCH}" 
+    script:
+        - docker run rock/package_set /bin/bash -c "source /home/docker/rock_test/env.sh"

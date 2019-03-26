@@ -46,6 +46,14 @@ version_control:
         github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - knowledge_reasoning/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - knowledge_reasoning/orogen/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
     - planning/.*:
         github: rock-planning/planning-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -137,14 +145,13 @@ version_control:
 
     - slam/flann:
         type: archive
-        url: http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.8.4-src.zip 
+        url: http://www.cs.ubc.ca/research/flann/uploads/FLANN/flann-1.8.4-src.zip
         archive_dir: flann-1.8.4-src
         update_cached_file: false
 
     - external/cminpack:
-        type: archive
-        url: http://devernay.free.fr/hacks/cminpack/cminpack-1.1.3.tar.gz 
-        update_cached_file: false
+        github: devernay/cminpack
+        tag: v1.1.3
 
     - slam/gmapping:
         github: ros-perception/openslam_gmapping.git
@@ -153,8 +160,8 @@ version_control:
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping-02.patch
 
     - slam/hogman:
-        type: svn
-        url: http://svn.openslam.org/data/svn/hog-man/trunk 
+        github: OpenSLAM-org/openslam_hog-man
+        branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
             - $AUTOPROJ_SOURCE_DIR/patches/hogman_gcc_4.8.2.patch
@@ -245,8 +252,7 @@ version_control:
         type: git
         url: https://ceres-solver.googlesource.com/ceres-solver
         branch: master
-        patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/ceres_solver.patch
+        tag: 1.13.0
 
     - slam/gtsam:
         type: git
@@ -289,11 +295,11 @@ version_control:
     - external/snap:
       type: git
       url: https://github.com/snap-stanford/snap.git
-      commit: daa1eca9d924f3577b23882d781a48a0bc09cff7
+      commit: 86ac647a011a8de43e8b1af6a9a45a737a69d886
       patches:
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_makefile.patch
-         - $AUTOPROJ_SOURCE_DIR/patches/snap_fpic.patch
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_cmake.patch,1]
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_fpic.patch,1]
+         - [$AUTOPROJ_SOURCE_DIR/patches/snap_matherr_deprecation.patch,1]
 
     - external/gexf:
       type: archive
@@ -345,13 +351,15 @@ version_control:
         url: http://downloads.sourceforge.net/project/collada-dom/Collada%20DOM/Collada%20DOM%202.4/collada-dom-2.4.0.tgz
         archive_dir: collada-dom-2.4.0
         update_cached_file: false
+        patches:
+            - [$AUTOPROJ_SOURCE_DIR/patches/collada.patch, 1]
 
     - gui/collada_osg:
         github: rock-gui/gui-collada_osg
 
     - drivers/imu_an_spatial:
         type: archive
-        url: http://www.advancednavigation.com.au/sites/advancednavigation.com.au/files/SpatialSDK.zip 
+        url: https://www.advancednavigation.com/sites/default/files/product_software/spatialsdk.zip
         no_subdirectory: true
         update_cached_file: true
         patches:
@@ -414,5 +422,18 @@ version_control:
         github: rock-planning/planning-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - tools/graph_analysis:
+        github: rock-core/tools-graph_analysis
+        branch: $ROCK_BRANCH
+
+    - knowledge_reasoning/factpp:
+      type: git
+      url: https://bitbucket.org/dtsarkov/factplusplus.git
+      commit: 4cb618b0f26e8f7cd6a9243b0fc982a306d003ce
+      patches:
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_makefile.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_pkgconfig.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_cmake.patch
+          - $AUTOPROJ_SOURCE_DIR/patches/factpp_stderr.patch
 
 

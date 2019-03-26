@@ -124,12 +124,6 @@ boost-serialization:
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
 
-libgtest-dev:
-    debian,ubuntu: libgtest-dev
-
-google-mock:
-    debian,ubuntu: google-mock
-
 ncurses:
     debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
@@ -276,9 +270,14 @@ boost-python:
 
 gstreamer:
     debian:
-        - libgstreamer0.10-dev
-        - libgstreamer-plugins-base0.10-dev
-        - gstreamer0.10-plugins-good
+        'wheezy,jessie':
+            - libgstreamer0.10-dev
+            - libgstreamer-plugins-base0.10-dev
+            - gstreamer0.10-plugins-good
+        default:
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - gstreamer1.0-plugins-good
     ubuntu:
       '12.04,14.04,14.10,15.04,15.10':
         - libgstreamer0.10-dev
@@ -373,10 +372,6 @@ tools/rbind:
     debian,ubuntu: libffi-dev
     opensuse: libffi-devel
 
-python:
-    debian, ubuntu: python-dev
-    opensuse: python-devel
-
 numpy:
     debian, ubuntu: python-numpy
     opensuse: python-numpy
@@ -396,7 +391,8 @@ libqglviewer:
         default: libqglviewer-dev-qt4
     debian:
         '7.3':   libqglviewer-qt4-dev
-        default: libqglviewer-dev
+        'jessie': libqglviewer-dev
+        default: libqglviewer-dev-qt4
     macos-brew: libqglviewer
     # opensuse: libQGLViewer-devel # available in repository KDE:Qt
 
@@ -462,7 +458,7 @@ bison:
     debian,ubuntu: bison
 
 coinor:
-    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-libclp-dev]
+    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
 
 flex:
     debian,ubuntu: flex
@@ -516,8 +512,39 @@ tools/ignition-math2:
 control/sdformat:
     ubuntu:
         '14.04,14.10,15.04,15.10': nonexistent
-        default: libsdformat4-dev
+        '16.04,16.10,17.04,17.10': libsdformat4-dev
+        default: libsdformat6-dev
 
 ruby-geoutm:
     gem: geoutm
 
+geographic:
+    debian: 
+        jessie,stretch,sid: libgeographic-dev
+        wheezy:             libgeographiclib-dev
+        default:            libgeographic-dev
+    ubuntu:
+        '12.04,14.04': libgeographiclib-dev
+        '15.10,16.04': libgeographic-dev
+        default:       libgeographic-dev
+
+pypy:
+    ubuntu,debian: pypy
+
+glpk:
+    debian,ubuntu: [glpk-utils, libglpk-dev]
+
+libxml2-utils:
+    debian,ubuntu: [libxml2-utils]
+
+redland:
+    debian,ubuntu: [ librdf0-dev ]
+
+raptor2:
+    debian,ubuntu: [ libraptor2-dev ]
+
+soprano:
+    debian,ubuntu: [ libsoprano-dev ]
+
+uriparser:
+    debian,ubuntu: [ liburiparser-dev ]

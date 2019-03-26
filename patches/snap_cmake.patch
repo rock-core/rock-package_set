@@ -1,7 +1,23 @@
-diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
---- ../snap_orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
-+++ ./CMakeLists.txt	2013-12-05 16:54:56.339166062 +0100
-@@ -0,0 +1,243 @@
+From c690c1e035b388b7d69767c61929ebb984cd0153 Mon Sep 17 00:00:00 2001
+From: Thomas Roehr <thomas.roehr@dfki.de>
+Date: Thu, 7 Mar 2019 21:55:23 +0100
+Subject: [PATCH 1/3] Enable CMake build
+
+---
+ CMakeLists.txt     | 252 +++++++++++++++++++++++++++++++++++++++++++++
+ Makefile           |   3 +
+ snap-core/Makefile |   7 +-
+ snap.pc.in         |  11 ++
+ 4 files changed, 270 insertions(+), 3 deletions(-)
+ create mode 100644 CMakeLists.txt
+ create mode 100644 snap.pc.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..2632c8c
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,252 @@
 +# CMakeLists.txt has to be located in the project folder and cmake has to be
 +# executed from 'project/build' with 'cmake ../'.
 +cmake_minimum_required(VERSION 2.6)
@@ -13,14 +29,17 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +add_custom_target(clean COMMAND ${CMAKE_MAKE_PROGRAM} -C ${CMAKE_CURRENT_SOURCE_DIR} clean)
 +
 +set(SNAP_CORE_HEADERS
-+    snap-core/Snap.h
 +    snap-core/alg.h
 +    snap-core/anf.h
++    snap-core/attr.h
 +    snap-core/bfsdfs.h
 +    snap-core/bignet.h
++    snap-core/casc.h
 +    snap-core/centr.h
 +    snap-core/cmty.h
 +    snap-core/cncom.h
++    snap-core/conv.h
++    snap-core/coreper.h
 +    snap-core/ff.h
 +    snap-core/flow.h
 +    snap-core/gbase.h
@@ -28,45 +47,50 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    snap-core/ghash.h
 +    snap-core/gio.h
 +    snap-core/graph.h
++    snap-core/graphmp.h
 +    snap-core/gstat.h
 +    snap-core/gsvd.h
 +    snap-core/gviz.h
 +    snap-core/kcore.h
++    snap-core/mmnet.h
 +    snap-core/network.h
++    snap-core/networkmp.h
++    snap-core/numpy.h
++    snap-core/randwalk.h
++    snap-core/sim.h
++    snap-core/Snap.h
 +    snap-core/statplot.h
 +    snap-core/stdafx.h
 +    snap-core/subgraph.h
++    snap-core/table.h
 +    snap-core/timenet.h
 +    snap-core/triad.h
 +    snap-core/util.h
 +)
 +
 +set(GLIB_CORE_HEADERS
-+    glib-core/app.h
 +    glib-core/base.h
 +    glib-core/bd.h
 +    glib-core/bits.h
 +    glib-core/blobbs.h
-+    glib-core/console.h
 +    glib-core/ds.h
 +    glib-core/dt.h
 +    glib-core/env.h
-+    glib-core/exp.h
-+    glib-core/fds.h
 +    glib-core/fl.h
 +    glib-core/gnuplot.h
 +    glib-core/hash.h
++    glib-core/hashmp.h
 +    glib-core/html.h
 +    glib-core/http.h
 +    glib-core/json.h
 +    glib-core/linalg.h
 +    glib-core/lx.h
-+    glib-core/macro.h
 +    glib-core/md5.h
 +    glib-core/os.h
-+    glib-core/pp.h
++    glib-core/priorityqueue.h
 +    glib-core/shash.h
 +    glib-core/ss.h
++    glib-core/ssmp.h
 +    glib-core/stdafx.h
 +    glib-core/tm.h
 +    glib-core/unicode.h
@@ -74,7 +98,6 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-core/url.h
 +    glib-core/ut.h
 +    glib-core/wch.h
-+    glib-core/xdt.h
 +    glib-core/xfl.h
 +    glib-core/xmath.h
 +    glib-core/xml.h
@@ -101,8 +124,8 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-adv/bowlinalg.h
 +    glib-adv/bowmatrix.h
 +    glib-adv/bowmd.h
-+    glib-adv/btaServer.h
 +    glib-adv/btalarms.h
++    glib-adv/btaServer.h
 +    glib-adv/cache.h
 +    glib-adv/casino.h
 +    glib-adv/ccar.h
@@ -140,6 +163,7 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-adv/gridvcl.h
 +    glib-adv/gsearch.h
 +    glib-adv/guid.h
++    glib-adv/hashgenericmp.h
 +    glib-adv/hc.h
 +    glib-adv/hldoc.h
 +    glib-adv/infonet.h
@@ -181,22 +205,23 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-adv/skygrid.h
 +    glib-adv/smtp.h
 +    glib-adv/soap.h
-+    glib-adv/sock-new.h
 +    glib-adv/sock.h
++    glib-adv/sock-new.h
++    glib-adv/sqlite3.c
 +    glib-adv/sqlite3.h
 +    glib-adv/sqlitedb.h
 +    glib-adv/ssch.h
 +    glib-adv/sskj.h
-+    glib-adv/ssql.h
 +    glib-adv/ssqldm.h
++    glib-adv/ssql.h
 +    glib-adv/stemming.h
 +    glib-adv/stopword.h
 +    glib-adv/strkernel.h
 +    glib-adv/strut.h
 +    glib-adv/subprocess.h
-+    glib-adv/svmPrLoqo.h
 +    glib-adv/svmbasic.h
 +    glib-adv/svmmodels.h
++    glib-adv/svmPrLoqo.h
 +    glib-adv/tagcloud.h
 +    glib-adv/tb.h
 +    glib-adv/tbhc.h
@@ -210,8 +235,8 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-adv/ultra.h
 +    glib-adv/valds.h
 +    glib-adv/valret.h
-+    glib-adv/vizmap.h
 +    glib-adv/vizmapgks.h
++    glib-adv/vizmap.h
 +    glib-adv/wbmp.h
 +    glib-adv/webbsfetch.h
 +    glib-adv/webmb.h
@@ -222,8 +247,8 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +    glib-adv/webtrv.h
 +    glib-adv/webtxtbs.h
 +    glib-adv/wikipedia.h
-+    glib-adv/wix.h
 +    glib-adv/wixexp.h
++    glib-adv/wix.h
 +    glib-adv/wmine.h
 +    glib-adv/wordco.h
 +    glib-adv/wordnet.h
@@ -245,9 +270,45 @@ diff -urN ../snap_orig/CMakeLists.txt ./CMakeLists.txt
 +install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/build/libsnap.a
 +    DESTINATION lib/
 +)
-diff -urN ../snap_orig/snap.pc.in ./snap.pc.in
---- ../snap_orig/snap.pc.in	1970-01-01 01:00:00.000000000 +0100
-+++ ./snap.pc.in	2013-12-05 16:55:09.423165937 +0100
+diff --git a/Makefile b/Makefile
+index 35b8ece..eb8aaab 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,6 +6,9 @@ all: MakeAll
+ 
+ test: TestAll
+ 
++lib: MakeAll
++	$(MAKE) -C snap-core lib
++
+ MakeAll:
+ 	$(MAKE) -C snap-core
+ 	$(MAKE) -C examples
+diff --git a/snap-core/Makefile b/snap-core/Makefile
+index d90e25c..248490d 100644
+--- a/snap-core/Makefile
++++ b/snap-core/Makefile
+@@ -13,11 +13,12 @@ Snap.o: *.h *.cpp ../glib-core/*.h ../glib-core/*.cpp
+ 	$(CC) -c $(CXXFLAGS) Snap.cpp -I$(CGLIB)
+ 
+ lib: Snap.o
+-	rm -f libsnap.a
+-	ar -cvq libsnap.a Snap.o
++	rm -f ../build/libsnap.a
++	mkdir -p ../build
++	ar -cvq ../build/libsnap.a Snap.o
+ 
+ libinstall: lib
+-	cp libsnap.a /usr/local/lib/libsnap.a
++	cp ../build/libsnap.a /usr/local/lib/libsnap.a
+ 
+ clean:
+ 	rm -f *.o *.a testSnap testSnap.exe *.plt *.tab *.png
+diff --git a/snap.pc.in b/snap.pc.in
+new file mode 100644
+index 0000000..ef8872c
+--- /dev/null
++++ b/snap.pc.in
 @@ -0,0 +1,11 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=@CMAKE_INSTALL_PREFIX@
@@ -257,6 +318,9 @@ diff -urN ../snap_orig/snap.pc.in ./snap.pc.in
 +Name: @TARGET_NAME@
 +Description: @PROJECT_DESCRIPTION@
 +Version: @PROJECT_VERSION@
-+Libs: -L${libdir} -lrt -l@TARGET_NAME@
++Libs: -L${libdir} -lrt -lgomp -l@TARGET_NAME@
 +Cflags: -I${includedir} @PKG_CONFIG_CFLAGS@
 +
+-- 
+2.17.1
+

@@ -1,0 +1,11 @@
+--- Kernel/Kernel.cpp.old	2015-10-27 14:43:26.467289458 +0100
++++ Kernel/Kernel.cpp	2015-10-27 14:43:37.175289651 +0100
+@@ -31,7 +31,7 @@
+ const char* ReasoningKernel :: ReleaseDate = "23 August 2015";
+ 
+ // print the FaCT++ information only once
+-static bool KernelFirstRun = true;
++static bool KernelFirstRun = false;
+ 
+ // debug related individual/values switch
+ //#define FPP_DEBUG_PRINT_RELATED_PROGRESS
