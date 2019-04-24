@@ -1,0 +1,52 @@
+--- ./CMakeLists.txt
++++ ./CMakeLists.txt
+@@ -121,6 +121,7 @@ find_package(flann 1.8.3 QUIET)
+ if (FLANN_FOUND)
+     set(OMPL_HAVE_FLANN 1)
+     include_directories(SYSTEM "${FLANN_INCLUDE_DIRS}")
++    link_directories(${FLANN_LIBRARY_DIRS})
+ endif()
+ 
+ # R is needed for running Planner Arena locally
+--- ./CMakeModules/Findflann.cmake
++++ ./CMakeModules/Findflann.cmake
+@@ -2,13 +2,11 @@
+ 
+ include(FindPackageHandleStandardArgs)
+ 
+-find_path(FLANN_INCLUDE_DIR flann.hpp PATH_SUFFIXES flann)
+-if (FLANN_INCLUDE_DIR)
+-    file(READ "${FLANN_INCLUDE_DIR}/config.h" FLANN_CONFIG)
+-    string(REGEX REPLACE ".*FLANN_VERSION_ \"([0-9.]+)\".*" "\\1" FLANN_VERSION ${FLANN_CONFIG})
+-    if(NOT FLANN_VERSION VERSION_LESS flann_FIND_VERSION)
+-        string(REGEX REPLACE "/flann$" "" FLANN_INCLUDE_DIRS ${FLANN_INCLUDE_DIR})
++find_package(PkgConfig)
++if(PKGCONFIG_FOUND)
++    pkg_check_modules(FLANN flann)
++    if(FLANN_LIBRARIES AND NOT FLANN_INCLUDE_DIRS)
++        set(FLANN_INCLUDE_DIRS "/usr/include")
+     endif()
+ endif()
+-
+-find_package_handle_standard_args(flann DEFAULT_MSG FLANN_INCLUDE_DIRS)
++find_package_handle_standard_args(FLANN DEFAULT_MSG FLANN_LIBRARIES FLANN_INCLUDE_DIRS)
+--- ./CMakeModules/ompl.pc.in
++++ ./CMakeModules/ompl.pc.in
+@@ -9,4 +9,4 @@ Description: @PKG_DESC@
+ Version: @OMPL_VERSION@
+ Requires: @PKG_EXTERNAL_DEPS@
+ Libs: -L${libdir} @PKG_OMPL_LIBS@
+-Cflags: -I${includedir}
++Cflags: -I${includedir} -std=c++11
+--- ./tests/CMakeLists.txt
++++ ./tests/CMakeLists.txt
+@@ -19,6 +19,9 @@ if (OMPL_BUILD_TESTS)
+     add_ompl_test(test_grid datastructures/grid.cpp)
+     add_ompl_test(test_gridb datastructures/gridb.cpp)
+     add_ompl_test(test_nearestneighbors datastructures/nearestneighbors.cpp)
++    if(FLANN_FOUND)
++        target_link_libraries(test_nearestneighbors ${FLANN_LIBRARIES})
++    endif()
+     add_ompl_test(test_pdf datastructures/pdf.cpp)
+ 
+     # Test utilities
