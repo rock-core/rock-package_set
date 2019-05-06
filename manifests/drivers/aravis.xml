@@ -8,4 +8,5 @@
   <author>GNOME Project</author>
   <license>GPL</license>
   <url>https://github.com/AravisProject/aravis</url>
+  <depend package="intltool"/>
 </package>

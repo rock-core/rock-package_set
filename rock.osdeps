@@ -548,3 +548,8 @@ soprano:
 
 uriparser:
     debian,ubuntu: [ liburiparser-dev ]
+
+intltool:
+    debian,ubuntu: intltool
+    gentoo: intltool
+
