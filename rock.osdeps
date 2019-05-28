@@ -553,3 +553,13 @@ intltool:
     debian,ubuntu: intltool
     gentoo: intltool
 
+gstreamer-webrtc:
+    ubuntu:
+    - libgstreamer-plugins-bad1.0-dev
+    - gstreamer1.0-nice
+
+json-glib:
+    ubuntu: libjson-glib-dev
+
+soup:
+    ubuntu: libsoup2.4-dev
