@@ -29,7 +29,7 @@ version_control:
 
     - tools/ignition-math2:
         type: archive
-        url: http://gazebosim.org/distributions/ign-math/releases/ignition-math2-2.3.0.tar.bz2
+        url: https://osrf-distributions.s3.us-east-1.amazonaws.com/ign-math/releases/ignition-math2-2.3.0.tar.bz2
         update_cached_file: false
 
     - control/visp:
