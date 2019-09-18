@@ -3,6 +3,7 @@
 
 orogen_package 'drivers/orogen/imu_myahrs_plus'
 orogen_package 'planning/orogen/exploration'
+orogen_package 'drivers/orogen/canopen_master'
 orogen_package 'drivers/orogen/imu_an_spatial'
 orogen_package 'drivers/orogen/gps_base'
 orogen_package 'drivers/orogen/imu_advanced_navigation_anpp'
