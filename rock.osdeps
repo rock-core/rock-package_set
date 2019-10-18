@@ -508,11 +508,18 @@ tools/ignition-math2:
     ubuntu:
         '14.04,14.10,15.04,15.10': nonexistent
         default: libignition-math2-dev
+    debian:
+        jessie,wheezy,squeeze: nonexistent
+        default: libignition-math2-dev
 
 control/sdformat:
     ubuntu:
         '14.04,14.10,15.04,15.10': nonexistent
         '16.04,16.10,17.04,17.10': libsdformat4-dev
+        default: libsdformat6-dev
+    debian:
+        jessie,wheezy,squeeze: nonexistent
+        stretch: libsdformat4-dev
         default: libsdformat6-dev
 
 ruby-geoutm:
@@ -555,11 +562,16 @@ intltool:
 
 gstreamer-webrtc:
     ubuntu:
-    - libgstreamer-plugins-bad1.0-dev
-    - gstreamer1.0-nice
+        - libgstreamer-plugins-bad1.0-dev
+        - gstreamer1.0-nice
+    debian:
+        stretch,jessie,wheezy,squeeze: nonexistent
+        default:
+            - libgstreamer-plugins-bad1.0-dev
+            - gstreamer1.0-nice
 
 json-glib:
-    ubuntu: libjson-glib-dev
+    ubuntu,debian: libjson-glib-dev
 
 soup:
-    ubuntu: libsoup2.4-dev
+    ubuntu,debian: libsoup2.4-dev
