@@ -1,4 +1,6 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+cmake_package 'gui/vizkit3d_debug_drawings'
+orogen_package 'gui/orogen/vizkit3d_debug_drawings'
 orogen_package 'drivers/orogen/video_streamer_webrtc'
 cmake_package 'knowledge_reasoning/factpp' do |pkg|
     pkg.parallel_build_level = 1
