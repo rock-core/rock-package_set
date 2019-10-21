@@ -98,7 +98,6 @@ version_control:
         github: rock-gui/gui-$PACKAGE_BASENAME
         branch: master
 
-
     - gui/orogen/vizkit3d_debug_drawings:
         github: rock-gui/gui-orogen-$PACKAGE_BASENAME
         branch: master
