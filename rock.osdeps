@@ -289,6 +289,14 @@ gstreamer:
         - libgstreamer-plugins-good1.0-0
     fedora,opensuse: gstreamer-devel
 
+gstreamer-vaapi:
+    ubuntu:
+        - gstreamer1.0-vaapi
+
+gstreamer-plugins-bad:
+    ubuntu:
+        - gstreamer1.0-plugins-bad
+
 libproc:
     debian:
         default: libprocps3-dev
