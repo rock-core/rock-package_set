@@ -191,9 +191,9 @@ version_control:
 
     - external/kdtree:
         type: archive
-        url: http://ftp.de.debian.org/debian/pool/main/libk/libkdtree++/libkdtree++_0.7.0.orig.tar.gz
+        url: http://ftp.de.debian.org/debian/pool/main/libk/libkdtree++/libkdtree++_0.7.1+git20101123.orig.tar.xz
         update_cached_file: false
-        patches: $AUTOPROJ_SOURCE_DIR/patches/libkdtree++_0.7.0-2.diff
+        patches: $AUTOPROJ_SOURCE_DIR/patches/libkdtree++_0.7.1.diff
 
     - external/box2d:
         type: svn
