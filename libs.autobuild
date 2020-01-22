@@ -1,4 +1,5 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+cmake_package 'tools/qxcfg'
 autotools_package 'tools/gecode'
 cmake_package 'gui/vizkit3d_debug_drawings'
 orogen_package 'gui/orogen/vizkit3d_debug_drawings'
