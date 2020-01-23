@@ -13,6 +13,62 @@ version_control:
         github: rock-control/control-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - drivers/.*:
+        github: rock-drivers/drivers-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - drivers/orogen/.*:
+        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - knowledge_reasoning/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - knowledge_reasoning/orogen/.*:
+        github: rock-knowledge-reasoning/knowledge-reasoning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/.*:
+        github: rock-planning/planning-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - planning/orogen/.*:
+        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - slam/.*:
+        github: rock-slam/slam-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - slam/orogen/.*:
+        github: rock-slam/slam-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - gui/.*:
+        github: rock-gui/gui-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - gui/orogen/.*:
+        github: rock-gui/gui-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - multiagent/.*:
+        github: rock-multiagent/multiagent-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - multiagent/orogen/.*:
+        github: rock-multiagent/multiagent-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - perception/.*:
+        github: rock-perception/perception-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - perception/orogen/.*:
+        github: rock-perception/perception-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
     - tools/.*:
         github: rock-tools/tools-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -46,30 +102,6 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/visp.patch
 
-    - drivers/.*:
-        github: rock-drivers/drivers-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - drivers/orogen/.*:
-        github: rock-drivers/drivers-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - knowledge_reasoning/.*:
-        github: rock-knowledge-reasoning/knowledge-reasoning-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - knowledge_reasoning/orogen/.*:
-        github: rock-knowledge-reasoning/knowledge-reasoning-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - planning/.*:
-        github: rock-planning/planning-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - planning/orogen/.*:
-        github: rock-planning/planning-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
     - simulation/imumodel:
         github: rock-simulation/$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
@@ -82,24 +114,12 @@ version_control:
         github: rock-slam/external-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
-    - slam/.*:
-        github: rock-slam/slam-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
     - bundles/rock_ugv_nav:
         github: rock-bundles/bundles-rock_ugv_nav.git
         branch: $ROCK_BRANCH
 
     - bundles/rock_auv:
         github: rock-bundles/bundles-rock_auv.git
-        branch: $ROCK_BRANCH
-
-    - slam/orogen/.*:
-        github: rock-slam/slam-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - gui/.*:
-        github: rock-gui/gui-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
     - gui/vizkit3d_debug_drawings:
@@ -113,22 +133,6 @@ version_control:
     - gui/ffmpeg-ruby:
         branch: master
       
-    - perception/.*:
-        github: rock-perception/perception-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - perception/orogen/.*:
-        github: rock-perception/perception-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-    
-    - multiagent/.*:
-        github: rock-multiagent/multiagent-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
-    - multiagent/orogen/.*:
-        github: rock-multiagent/multiagent-orogen-$PACKAGE_BASENAME
-        branch: $ROCK_BRANCH
-
     - bundles/rock_multiagent:
         github: rock-multiagent/multiagent-bundle-rock_multiagent
         branch: master
