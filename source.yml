@@ -13,6 +13,14 @@ version_control:
         github: rock-control/control-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - tools/.*:
+        github: rock-tools/tools-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
+    - tools/orogen/.*:
+        github: rock-tools/tools-orogen-$PACKAGE_BASENAME
+        branch: $ROCK_BRANCH
+
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
         branch: master
