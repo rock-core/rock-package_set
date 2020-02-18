@@ -1,0 +1,11 @@
+--- cmake/installOptions.cmake.orig	2020-01-07 13:36:40.632438836 +0100
++++ cmake/installOptions.cmake	2020-01-07 13:42:14.532651882 +0100
+@@ -1,7 +1,7 @@
+ # pkg-config
+ configure_file(${PROJECT_SOURCE_DIR}/cmake/aruco.pc.in aruco.pc @ONLY)
+ configure_file(${PROJECT_SOURCE_DIR}/cmake/aruco-uninstalled.pc.in aruco-uninstalled.pc @ONLY)
+-install(FILES "${PROJECT_BINARY_DIR}/aruco-uninstalled.pc" "${PROJECT_BINARY_DIR}/aruco.pc" DESTINATION lib/pkgconfig)
++install(FILES "${PROJECT_BINARY_DIR}/aruco.pc" DESTINATION lib/pkgconfig)
+ 
+ CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/cmake/config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+ INSTALL(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION share/${PROJECT_NAME} )

@@ -1,0 +1,10 @@
+--- src/aruco.h.orig	2020-01-06 13:52:05.820382704 +0100
++++ src/aruco.h	2020-01-06 13:52:12.051346172 +0100
+@@ -34,6 +34,6 @@
+ #include "dictionary.h"
+ 
+ #define ARUCO_VERSION_MAJOR 3
+-#define ARUCO_VERSION_MINOR 0
++#define ARUCO_VERSION_MINOR 1
+ 
+ 
