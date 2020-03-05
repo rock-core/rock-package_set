@@ -2,6 +2,15 @@
 export AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR=1
 export AUTOPROJ_NONINTERACTIVE=1
 
+if [ "$PKG_PULL_REQUEST_SLUG"  != "" ]; then
+    PACKAGE_SET_SLUG="${PKG_PULL_REQUEST_SLUG}"
+    export PACKAGE_SET_SLUG
+else
+    PACKAGE_SET_SLUG="rock-core/rock-package_set"
+    export PACKAGE_SET_SLUG
+fi
+echo "Using package set slug: ${PACKAGE_SET_SLUG}"
+
 ruby /home/docker/autoproj_bootstrap git https://github.com/rock-core/buildconf.git branch=master --seed-config=seed-config.yml
 
 if [ "$PKG_PULL_REQUEST" = "false" ]; then
@@ -28,8 +37,8 @@ else
 fi
 
 if [ "$PKG_NAME" != "" ]; then
-    echo "Build updated package: $PKG_BRANCH"
-    sed -i "s#github: rock-core/rock-package_set#rock:\n     type: git\n     url: https://github.com/rock-core/rock-package_set\n     branch: $PKG_BRANCH#g" autoproj/manifest
+    echo "Build updated package $PKG_NAME from branch: $PKG_BRANCH"
+    sed -i "s#github: rock-core/rock-package_set#rock:\n     type: git\n     url: https://github.com/$PACKAGE_SET_SLUG \n     branch: $PKG_BRANCH#g" autoproj/manifest
     cat autoproj/manifest
     sed -i "s#rock\.core#${PKG_NAME}#g" autoproj/manifest
     cat autoproj/manifest
