@@ -310,7 +310,7 @@ version_control:
       url: http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
       update_cached_file: false
       patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/lemon_cmake_policy.patch
+            - $AUTOPROJ_SOURCE_DIR/patches/lemon_cmake.patch
 
     - external/snap:
       type: git
