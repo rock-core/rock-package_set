@@ -9,7 +9,10 @@ cmake_package 'knowledge_reasoning/factpp' do |pkg|
     pkg.depends_on 'base/cmake'
 end
 cmake_package 'knowledge_reasoning/owlapi'
-cmake_package 'tools/graph_analysis'
+cmake_package 'tools/graph_analysis' do |pkg|
+    bin,_,_ = Rock.activate_python_path(pkg)
+    pkg.define 'PYTHON_EXECUTABLE', bin if bin
+end
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
 cmake_package 'drivers/imu_an_spatial'
