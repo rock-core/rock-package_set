@@ -9,7 +9,6 @@ ROCK_BRANCH: master
 rtt_target: gnulinux
 rtt_corba_implementation: omniorb
 typelib_cxx_loader: castxml
-cxx11: true
 ldgold: true
 osdeps_mode: all
 USE_OCL: false

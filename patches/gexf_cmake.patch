@@ -1,11 +1,14 @@
 diff -urN ../gexf_orig/CMakeLists.txt ./CMakeLists.txt
 --- ../gexf_orig/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ ./CMakeLists.txt	2013-12-11 16:20:35.917213611 +0100
-@@ -0,0 +1,71 @@
+@@ -0,0 +1,74 @@
 +cmake_minimum_required(VERSION 2.6)
 +find_package(Rock)
 +rock_init(libgexf 1.2)
 +set(PROJECT_DESCRIPTION "Library for handling gexf file format")
++
++set(CMAKE_CXX_STANDARD 11)
++set(CMAKE_CXX_STANDARD_REQUIRED ON)
 +
 +set(SOURCES
 +    abstractparser.cpp
