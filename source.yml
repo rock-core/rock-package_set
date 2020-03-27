@@ -84,7 +84,7 @@ version_control:
     - control/urdfdom:
         github: ros/urdfdom
         branch: master
-        
+
     - control/sdformat:
         type: archive
         url: http://osrf-distributions.s3.amazonaws.com/sdformat/releases/sdformat-4.0.0.tar.bz2
@@ -98,7 +98,7 @@ version_control:
 
     - control/visp:
         type: svn
-        url: svn://scm.gforge.inria.fr/svnroot/visp/trunk/ViSP 
+        url: svn://scm.gforge.inria.fr/svnroot/visp/trunk/ViSP
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/visp.patch
 
@@ -132,7 +132,7 @@ version_control:
 
     - gui/ffmpeg-ruby:
         branch: master
-      
+
     - bundles/rock_multiagent:
         github: rock-multiagent/multiagent-bundle-rock_multiagent
         branch: master
@@ -175,7 +175,7 @@ version_control:
 
     - slam/gmapping:
         github: ros-perception/openslam_gmapping.git
-        patches: 
+        patches:
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping.patch
             - $AUTOPROJ_SOURCE_DIR/patches/gmapping-02.patch
 
@@ -185,14 +185,14 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/hogman-v2.patch
             - $AUTOPROJ_SOURCE_DIR/patches/hogman_gcc_4.8.2.patch
-    
+
     - slam/g2o:
         github: RainerKuemmerle/g2o.git
         branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
-    
-    - external/tinyxml: 
+
+    - external/tinyxml:
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
         update_cached_file: false
@@ -341,12 +341,12 @@ version_control:
 #    - planning/openrave:
 #      github: rdiankov/openrave
 #      branch: latest_stable
-      
+
     - planning/sbpl:
       type: git
       branch: master
       url: https://github.com/sbpl/sbpl.git
-      
+
     - planning/ompl:
       type: git
       url: https://github.com/ompl/ompl.git
@@ -461,5 +461,10 @@ version_control:
           - $AUTOPROJ_SOURCE_DIR/patches/factpp_pkgconfig.patch
           - $AUTOPROJ_SOURCE_DIR/patches/factpp_cmake.patch
           - $AUTOPROJ_SOURCE_DIR/patches/factpp_stderr.patch
+
+    - tools/seasocks:
+        github: mattgodbolt/seasocks
+        tag: v1.4.3
+
 
 
