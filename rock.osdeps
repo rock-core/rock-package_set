@@ -283,7 +283,7 @@ gstreamer:
         - libgstreamer0.10-dev
         - libgstreamer-plugins-base0.10-dev
         - gstreamer0.10-plugins-good
-      default: 
+      default:
         - libgstreamer1.0-dev
         - libgstreamer-plugins-base1.0-dev
         - libgstreamer-plugins-good1.0-0
@@ -534,7 +534,7 @@ ruby-geoutm:
     gem: geoutm
 
 geographic:
-    debian: 
+    debian:
         jessie,stretch,sid: libgeographic-dev
         wheezy:             libgeographiclib-dev
         default:            libgeographic-dev
@@ -583,3 +583,9 @@ json-glib:
 
 soup:
     ubuntu,debian: libsoup2.4-dev
+
+jsoncpp:
+    ubuntu,debian: libjsoncpp-dev
+
+kontena-websocket-client:
+    gem

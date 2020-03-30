@@ -71,7 +71,7 @@ orogen_package 'gui/orogen/qt_base'
 
     #################################################################################"
     #################################################################################"
-    ## 
+    ##
     ## Do not add anything below this line unless you know what you are doing
     ## New packages MUST be added at the top of the file, just after the "if
     ## package_enabled" line
@@ -91,7 +91,7 @@ orogen_package 'gui/orogen/qt_base'
         orogen_package 'data_processing/orogen/type_to_vector'
     	orogen_package 'control/orogen/auv_rel_pos_controller'
     	orogen_package 'control/orogen/auv_control'
-        orogen_package 'control/orogen/kdl'	
+        orogen_package 'control/orogen/kdl'
         orogen_package 'drivers/orogen/ptu_directedperception'
         orogen_package 'drivers/orogen/aria'
         orogen_package 'control/orogen/trajectory_follower'
@@ -104,6 +104,7 @@ orogen_package 'gui/orogen/qt_base'
         orogen_package 'drivers/orogen/xsens_imu'
         orogen_package 'drivers/orogen/dynamixel'
         orogen_package 'drivers/orogen/controldev'
+        orogen_package 'drivers/orogen/controldev_websocket'
         orogen_package 'drivers/orogen/parport'
         orogen_package 'drivers/orogen/wifimon'
         orogen_package 'drivers/orogen/camera_base'
@@ -141,7 +142,7 @@ orogen_package 'gui/orogen/qt_base'
         orogen_package 'planning/orogen/corridor_planner' do |pkg|
             pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
         end
-        
+
         orogen_package 'planning/orogen/motion_planning_libraries'
     end
 
