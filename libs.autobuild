@@ -1,5 +1,5 @@
 #800 IMPORTANT: new packages must be added at the top of this file
-cmake_package 'control/trajectory_generation'
+cmake_package 'control/joint_control_base'
 cmake_package 'tools/qxcfg'
 autotools_package 'tools/gecode'
 cmake_package 'gui/vizkit3d_debug_drawings'
