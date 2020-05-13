@@ -589,3 +589,9 @@ jsoncpp:
 
 kontena-websocket-client:
     gem
+
+gui/collada_osg:
+    ubuntu:
+        "16.04,18.04,18.10,19.04,19.10": nonexistent
+        default:
+            osdep: osg # included in default packages
