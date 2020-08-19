@@ -312,6 +312,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'control/kdl_parser'
     cmake_package 'control/robot_frames'
     cmake_package 'gui/robot_model' do |pkg|
+        pkg.env_add_path "VIZKIT_PLUGIN_RUBY_PATH", File.join(pkg.prefix,"lib")
         # the tests in gui/robot_model is an app for a human to run. Do not let
         # autoproj believe there is something to run automatically
         pkg.test_utility.available = false
