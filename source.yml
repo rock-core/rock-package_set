@@ -153,11 +153,10 @@ version_control:
         tag: pcl-1.7.1
 
     - planning/fast_downward:
-        type: archive
-        url: http://hg.fast-downward.org/archive/4d52652adfee.tar.gz/src
-        filename: fastdownward-4d52652adfee.tar.gz
+        type: git
+        github: aibasel/downward
         patches: $AUTOPROJ_SOURCE_DIR/patches/fast_downward.patch
-        update_cached_file: false
+        branch: main
 
     - planning/randward:
         github: rock-planning/planning-$PACKAGE_BASENAME
