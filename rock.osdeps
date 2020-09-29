@@ -595,3 +595,14 @@ gui/collada_osg:
         "16.04,18.04,18.10,19.04,19.10": nonexistent
         default:
             osdep: osg # included in default packages
+xcursor:
+    ubuntu,debian: libxcursor-dev
+
+xi:
+    ubuntu,debian: libxi-dev
+
+xinerama:
+    ubuntu,debian: libxinerama-dev
+
+xrandr:
+    ubuntu,debian: libxrandr-dev
