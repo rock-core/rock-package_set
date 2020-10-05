@@ -16,7 +16,9 @@ cmake_package 'knowledge_reasoning/factpp' do |pkg|
     pkg.parallel_build_level = 1
     pkg.depends_on 'base/cmake'
 end
-cmake_package 'knowledge_reasoning/owlapi'
+cmake_package 'knowledge_reasoning/owlapi' do |pkg|
+    pkg.env_add_path 'OWLAPI_ONTOLOGIES_PATH', File.join(pkg.prefix, 'share','ontologies')
+end
 cmake_package 'tools/graph_analysis' do |pkg|
     bin,_,_ = Rock.activate_python_path(pkg)
     pkg.define 'PYTHON_EXECUTABLE', bin if bin
