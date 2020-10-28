@@ -202,7 +202,9 @@ osgEarth:
     opensuse: nonexistent
 
 qwt5:
-    debian,ubuntu: libqwt5-qt4-dev
+    debian,ubuntu: 
+        default: libqwt5-qt4-dev
+        '20.04': nonexistent
     fedora,opensuse: qwt-devel
     darwin: qwt
     arch: qwt5
