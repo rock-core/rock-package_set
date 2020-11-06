@@ -201,15 +201,6 @@ osgEarth:
     fedora: nonexistent
     opensuse: nonexistent
 
-qwt5:
-    debian,ubuntu: 
-        default: libqwt5-qt4-dev
-        '20.04': nonexistent
-    fedora,opensuse: qwt-devel
-    darwin: qwt
-    arch: qwt5
-    gentoo: x11-libs/qwt
-
 qsqlite:
     debian,ubuntu: libqt4-sql-sqlite
     fedora: qt-devel
