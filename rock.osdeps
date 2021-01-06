@@ -599,3 +599,9 @@ xinerama:
 
 xrandr:
     ubuntu,debian: libxrandr-dev
+    
+harfbuzz:
+    ubuntu, debian: libharfbuzz-dev
+    
+freetype:
+    ubuntu, debian: libfreetype6-dev
