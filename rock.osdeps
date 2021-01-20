@@ -25,10 +25,6 @@ sysfs:
     arch,manjarolinux: sysfsutils
     opensuse: [sysfsutils-devel, sysfsutils]
 
-scipy:
-    debian,ubuntu: python-scipy
-    opensuse: python-scipy
-
 ode:
     debian,ubuntu: libode-dev
     # opensuse: [libode1, libode-devel] # available in repository games
@@ -36,10 +32,6 @@ ode:
 soqt:
     debian,ubuntu: libsoqt4-dev
     # opensuse: SoQt-devel # available in repository Packman
-
-sympy:
-    debian,ubuntu: python-sympy
-    opensuse: python-sympy
 
 assimp:
     debian,ubuntu: libassimp-dev
@@ -372,14 +364,6 @@ tools/rbind:
     gem: rbind
     debian,ubuntu: libffi-dev
     opensuse: libffi-devel
-
-numpy:
-    debian, ubuntu: python-numpy
-    opensuse: python-numpy
-
-cython:
-    debian, ubuntu: cython
-    opensuse: python-Cython
 
 unzip:
     debian, ubuntu: unzip
