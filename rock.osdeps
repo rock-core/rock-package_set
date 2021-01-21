@@ -406,8 +406,8 @@ uuid:
     opensuse: uuid-devel
 
 libvlc:
-    debian: libvlc-dev
-    ubuntu: libvlc-dev
+    debian: libvlc-dev 
+    ubuntu: [libvlc-dev, vlc-plugin-base]
     # opensuse: libvlc-devel # available in repository Packman
 
 gtk+-2.0:
