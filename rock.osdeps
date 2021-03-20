@@ -411,6 +411,10 @@ mpfi:
     debian,ubuntu: libmpfi-dev
     opensuse: mpfi-devel
 
+muparser:
+    debian,ubuntu: libmuparser-dev
+    opensuse: muparser
+
 ncurses:
     debian,ubuntu: libncurses5-dev
     gentoo: sys-libs/ncurses
