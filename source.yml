@@ -343,6 +343,7 @@ version_control:
       url: https://github.com/sbpl/sbpl.git
 
     - planning/ompl:
+      branch: ~
       type: git
       url: https://github.com/ompl/ompl.git
       tag: 1.2.1
