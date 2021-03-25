@@ -224,6 +224,11 @@ version_control:
         url: git://github.com/withrobot/myAHRS_plus.git
         branch: master
 
+    - drivers/libcaer:
+        type: git
+        url: https://gitlab.com/inivation/libcaer.git
+        branch: master
+
     - drivers/freenect:
         type: git
         url: git://github.com/OpenKinect/libfreenect.git

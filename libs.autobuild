@@ -1,4 +1,9 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+cmake_package 'drivers/libcaer' do |pkg|
+    pkg.define 'UDEV_INSTALL', 'OFF'
+    pkg.define 'EXAMPLES_INSTALL', 'ON'
+end
+
 cmake_package 'knowledge_reasoning/moreorg' do |pkg|
     pkg.env_add_path 'OWLAPI_ONTOLOGIES_PATH', File.join(pkg.prefix, 'share','ontologies')
 end
