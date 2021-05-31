@@ -1,85 +1,26 @@
-flann:
-    ubuntu:
-        '9.04,9.10,10.04,10.10,11.04,11.10': nonexistent
-        default: libflann-dev
-    debian: libflann-dev
-    arch,manjarolinux: ignore
-
-ffmpeg:
-    ubuntu:
-        '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        '10.10,11.04,11.10,12.04,12.10,13.04,13.10': [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        '14.10,15.04': [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-    debian:
-        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
-    gentoo: media-video/ffmpeg
-    arch,manjarolinux: ffmpeg
-    # opensuse: ffmpeg # available in repository Packman
-
-sysfs:
-    debian,ubuntu: libsysfs-dev
-    gentoo: sys-fs/sysfsutils
-    fedora: libsysfs-devel
-    arch,manjarolinux: sysfsutils
-    opensuse: [sysfsutils-devel, sysfsutils]
-
-ode:
-    debian,ubuntu: libode-dev
-    # opensuse: [libode1, libode-devel] # available in repository games
-
-soqt:
-    debian,ubuntu: libsoqt4-dev
-    # opensuse: SoQt-devel # available in repository Packman
-
 assimp:
     debian,ubuntu: libassimp-dev
     # opensuse: [libassimp3, assimp-devel] # available in repository games
 
-gdal:
-    debian: libgdal1-dev
-    ubuntu:
-     '12.04,14.04,14.10,15.04,15.10': libgdal1-dev
-     default: libgdal-dev
-    gentoo: sci-libs/gdal
-    fedora: gdal-devel
-    arch,manjarolinux: gdal
-    # opensuse: [libgdal-devel, gdal, libgdal1] # available in repository Application:/Geo
-    macos-port: gdal
+atlas-base:
+    debian,ubuntu: libatlas-base-dev
+    fedora: atlas-devel
+    opensuse: libatlas3-devel
 
-swig:
-    debian,ubuntu: swig
-    arch,manjarolinux: swig
-    opensuse: swig
-    macos-port: swig
+autoconf-archive:
+    debian,ubuntu: autoconf-archive
+    gentoo: sys-devel/autoconf-archive
+    fedora,opensuse: autoconf-archive
+    arch,manjarolinux: autoconf-archive
 
-proj:
-    debian,ubuntu: libproj-dev
-    gentoo: sci-libs/proj
-    fedora: proj-devel
-    arch,manjarolinux: proj
-    opensuse: [proj, libproj-devel]
+bison:
+    debian,ubuntu: bison
 
-libiw:
-    debian,ubuntu: libiw-dev
-    gentoo: net-wireless/wireless-tools
-    fedora: wireless-tools-devel
-    opensuse: libiw-devel
-
-libgps:
-  debian,ubuntu: libgps-dev
-  gentoo: sci-geosciences/gpsd
-  fedora: gpsd-devel
-  arch,manjarolinux: gpsd
-  opensuse: libgps21
-
-gpsd:
-  debian,ubuntu: libgps-dev
-  gentoo: sci-geosciences/gpsd
-  fedora: gpsd-devel
-  arch,manjarolinux: gpsd
-  opensuse: gpsd-devel
+blas:
+    debian,ubuntu: libblas-dev
+    gentoo: blas
+    fedora,opensuse: blas-devel
+    arch,manjarolinux: blas
 
 boost:
     debian,ubuntu:
@@ -98,16 +39,14 @@ boost:
         - boost
         - boost-libs
 
-boost-timer:
-    debian,ubuntu:
-        - libboost-timer-dev
-    gentoo: dev-libs/boost
-    fedora,opensuse: boost-devel
-
 boost-date-time:
     debian,ubuntu:
         - libboost-date-time-dev
     gentoo: dev-libs/boost
+    fedora,opensuse: boost-devel
+
+boost-python:
+    debian,ubuntu: libboost-python-dev
     fedora,opensuse: boost-devel
 
 boost-serialization:
@@ -116,33 +55,21 @@ boost-serialization:
     gentoo: dev-libs/boost
     fedora,opensuse: boost-devel
 
-ncurses:
-    debian,ubuntu: libncurses5-dev
-    gentoo: sys-libs/ncurses
-    fedora,opensuse: ncurses-devel
-    arch,manjarolinux: ncurses
+boost-timer:
+    debian,ubuntu:
+        - libboost-timer-dev
+    gentoo: dev-libs/boost
+    fedora,opensuse: boost-devel
 
-doxygen:
-    debian,ubuntu: doxygen
-    gentoo: app-doc/doxygen
-    fedora,opensuse: doxygen
-    arch,manjarolinux: doxygen
+box2d:
+    debian,ubuntu:
+        # Rock needs a version of box2d more recent than the one in 12.04
+        '12.04': nonexistent
+        default: libbox2d-dev
+    # opensuse: libBox2D-devel # available in repository games
 
-graphviz:
-    debian,ubuntu: [ graphviz, graphviz-dev ]
-    gentoo: graphviz
-    fedora: [ graphviz, graphviz-devel ]
-    arch,manjarolinux: graphviz
-    opensuse: graphviz-devel
-
-net-ssh: gem
-net-scp: gem
-
-yaml:
-    debian,ubuntu: libyaml-dev
-    gentoo: dev-libs/libyaml
-    fedora,opensuse: libyaml-devel
-    arch,manjarolinux: libyaml
+bzip2:
+    debian,ubuntu: libbz2-dev
 
 cgal:
     debian: libcgal-dev
@@ -153,105 +80,145 @@ cgal:
     fedora: CGAL-devel
     opensuse: libcgal-devel
 
-libkdtree:
-    debian,ubuntu:
-        default: libkdtree++-dev
-        "12.10": nonexistent # libkdtree++ is broken on 12.10
-    gentoo: libkdtree++ # actually, there are no ebuilds
-    fedora: nonexistent
-    opensuse: nonexistent
+cholmod:
+    debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
+    opensuse: suitesparse-devel
 
-blas:
-    debian,ubuntu: libblas-dev
-    gentoo: blas
-    fedora,opensuse: blas-devel
-    arch,manjarolinux: blas
+clang-dev:
+    debian,ubuntu: libclang-dev
+    macos-brew: ignore
+    opensuse: llvm-clang-devel
 
-atlas-base:
-    debian,ubuntu: libatlas-base-dev
-    fedora: atlas-devel
-    opensuse: libatlas3-devel
+coinor:
+    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
 
-lapack:
-    debian,ubuntu: liblapack-dev
-    gentoo: lapack
-    fedora: lapack-devel
-    arch,manjarolinux: lapack
-    opensuse: lapack-devel
-
-autoconf-archive:
-    debian,ubuntu: autoconf-archive
-    gentoo: sys-devel/autoconf-archive
-    fedora,opensuse: autoconf-archive
-    arch,manjarolinux: autoconf-archive
-
-osgEarth:
-    debian: [libosgearth-dev]
+control/sdformat:
     ubuntu:
-        default: [libosgearth-dev]
-        10.04,10.10,11.04,11.10: nonexistent
-    fedora: nonexistent
-    opensuse: nonexistent
+        '14.04,14.10,15.04,15.10': nonexistent
+        '16.04,16.10,17.04,17.10': libsdformat4-dev
+        default: libsdformat6-dev
+    debian:
+        jessie,wheezy,squeeze: nonexistent
+        stretch: libsdformat4-dev
+        default: libsdformat6-dev
 
-qsqlite:
-    debian,ubuntu: libqt4-sql-sqlite
-    fedora: qt-devel
-    opensuse: qt3-devel
-
-libnl2:
-    debian: libnl2-dev
-    ubuntu:
-        '9.04,9.10,10.04':
-                - libnl-dev
-        '14.04':
-                - libnl-3-dev
-        default:
-                - libnl2-dev
-    fedora: nonexistent
-    opensuse: libnl3-devel
-
-v4l:
-    debian,ubuntu: libv4l-dev
-    fedora,opensuse: libv4l-devel
-    arch,manjarolinux: v4l-utils
-
-qhull:
-    debian,ubuntu: libqhull-dev
-    fedora,opensuse: qhull-devel
+csparse:
+    debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
+    opensuse: suitesparse-devel
 
 dc1394:
     debian, ubuntu: libdc1394-22-dev
     gentoo: media-libs/libdc1394
     fedora,opensuse: libdc1394-devel
 
-vtk:
-    debian,ubuntu:
-        '14.04,14.10,15.04,15.10':
-            - libvtk5-dev
-            - tcl-vtk
-            - python-vtk
-            - libvtk-java
-        '16.04':
-            - libvtk6-dev
-            - tcl-vtk
-            - python-vtk6
-            - libvtk-java
-        default:
-            - libvtk6-dev
-            - tcl-vtk6
-            - python-vtk6
-            - libvtk6-java
-    fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
-    opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
+doxygen:
+    debian,ubuntu: doxygen
+    gentoo: app-doc/doxygen
+    fedora,opensuse: doxygen
+    arch,manjarolinux: doxygen
+
+external/tinyxml:
+    ubuntu:
+        '10.04,10.10,11.04,11.10': nonexistent
+        default: libtinyxml-dev
+    debian: libtinyxml-dev
+    opensuse: tinyxml-devel
+
+ffi:
+    gem: ffi
+    debian,ubuntu: libffi-dev
+    opensuse: libffi-devel
+
+ffmpeg:
+    ubuntu:
+        '9.04,9.10,10.04': [libavcodec52, libavdevice52, libavformat52, libswscale0, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '10.10,11.04,11.10,12.04,12.10,13.04,13.10': [libavcodec53, libavdevice53, libavformat53, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '14.04': [libavcodec54, libavdevice53, libavformat54, libswscale2, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        '14.10,15.04': [libavcodec56, libavdevice55, libavformat56, libswscale3, libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+    debian:
+        default: [libavdevice-dev, libavcodec-dev, libavformat-dev, libswscale-dev, libavutil-dev]
+    gentoo: media-video/ffmpeg
+    arch,manjarolinux: ffmpeg
+    # opensuse: ffmpeg # available in repository Packman
+
+flann:
+    ubuntu:
+        '9.04,9.10,10.04,10.10,11.04,11.10': nonexistent
+        default: libflann-dev
+    debian: libflann-dev
+    arch,manjarolinux: ignore
+
+flex:
+    debian,ubuntu: flex
+
+freenect:
+    debian: libfreenect-dev
+    ubuntu:
+        '14.04': libfreenect-dev
+
+freetype:
+    ubuntu, debian: libfreetype6-dev
+
+gawk:
+    debian,ubuntu: gawk
+
+gdal:
+    debian: libgdal1-dev
+    ubuntu:
+     '12.04,14.04,14.10,15.04,15.10': libgdal1-dev
+     default: libgdal-dev
+    gentoo: sci-libs/gdal
+    fedora: gdal-devel
+    arch,manjarolinux: gdal
+    # opensuse: [libgdal-devel, gdal, libgdal1] # available in repository Application:/Geo
+    macos-port: gdal
+
+gem-hooks:
+    gem: hooks
+
+geographic:
+    debian:
+        jessie,stretch,sid: libgeographic-dev
+        wheezy:             libgeographiclib-dev
+        default:            libgeographic-dev
+    ubuntu:
+        '12.04,14.04': libgeographiclib-dev
+        '15.10,16.04': libgeographic-dev
+        default:       libgeographic-dev
+
+glog:
+    debian,ubuntu: libgoogle-glog-dev
+    macos-brew: glog
+    opensuse: glog-devel
+
+glpk:
+    debian,ubuntu: [glpk-utils, libglpk-dev]
+
+gobject-introspection:
+    debian,ubuntu: gobject-introspection
+    opensuse: gobject-introspection-devel
+
+gpsd:
+  debian,ubuntu: libgps-dev
+  gentoo: sci-geosciences/gpsd
+  fedora: gpsd-devel
+  arch,manjarolinux: gpsd
+  opensuse: gpsd-devel
+
+graphviz:
+    debian,ubuntu: [ graphviz, graphviz-dev ]
+    gentoo: graphviz
+    fedora: [ graphviz, graphviz-devel ]
+    arch,manjarolinux: graphviz
+    opensuse: graphviz-devel
 
 gsl:
     debian,ubuntu: libgsl0-dev
     fedora,opensuse: gsl-devel
     gentoo: sci-libs/gsl
-
-boost-python:
-    debian,ubuntu: libboost-python-dev
-    fedora,opensuse: boost-devel
 
 gstreamer:
     debian:
@@ -274,13 +241,96 @@ gstreamer:
         - libgstreamer-plugins-good1.0-0
     fedora,opensuse: gstreamer-devel
 
+gstreamer-plugins-bad:
+    ubuntu:
+        - gstreamer1.0-plugins-bad
+
 gstreamer-vaapi:
     ubuntu:
         - gstreamer1.0-vaapi
 
-gstreamer-plugins-bad:
+gstreamer-webrtc:
     ubuntu:
-        - gstreamer1.0-plugins-bad
+        - libgstreamer-plugins-bad1.0-dev
+        - gstreamer1.0-nice
+    debian:
+        stretch,jessie,wheezy,squeeze: nonexistent
+        default:
+            - libgstreamer-plugins-bad1.0-dev
+            - gstreamer1.0-nice
+
+gtk+-2.0:
+    debian,ubuntu: libgtk2.0-dev
+    opensuse: [gtk2-devel, libgtk-2_0-0]
+
+gtk-doc-tools:
+    debian,ubuntu: gtk-doc-tools
+    opensuse: gtk-doc
+
+gui/collada_osg:
+    ubuntu:
+        "16.04,18.04,18.10,19.04,19.10": nonexistent
+        default:
+            osdep: osg # included in default packages
+
+harfbuzz:
+    ubuntu, debian: libharfbuzz-dev
+
+intltool:
+    debian,ubuntu: intltool
+    gentoo: intltool
+
+json-glib:
+    ubuntu,debian: libjson-glib-dev
+
+jsoncpp:
+    ubuntu,debian: libjsoncpp-dev
+
+kontena-websocket-client:
+    gem
+
+lapack:
+    debian,ubuntu: liblapack-dev
+    gentoo: lapack
+    fedora: lapack-devel
+    arch,manjarolinux: lapack
+    opensuse: lapack-devel
+
+libgps:
+  debian,ubuntu: libgps-dev
+  gentoo: sci-geosciences/gpsd
+  fedora: gpsd-devel
+  arch,manjarolinux: gpsd
+  opensuse: libgps21
+
+libiw:
+    debian,ubuntu: libiw-dev
+    gentoo: net-wireless/wireless-tools
+    fedora: wireless-tools-devel
+    opensuse: libiw-devel
+
+libkdtree:
+    debian,ubuntu:
+        default: libkdtree++-dev
+        "12.10": nonexistent # libkdtree++ is broken on 12.10
+    gentoo: libkdtree++ # actually, there are no ebuilds
+    fedora: nonexistent
+    opensuse: nonexistent
+
+libnl2:
+    debian: libnl2-dev
+    ubuntu:
+        '9.04,9.10,10.04':
+                - libnl-dev
+        '14.04':
+                - libnl-3-dev
+        default:
+                - libnl2-dev
+    fedora: nonexistent
+    opensuse: libnl3-devel
+
+libpcrecpp:
+    ubuntu,debian: libpcre3-dev
 
 libproc:
     debian:
@@ -297,9 +347,28 @@ libproc:
         default: libprocps-dev
     fedora,opensuse: procps-devel
 
-# NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
-# and rock.osdeps-ruby19) as we need to install different packages depending on
-# the Ruby version
+libqglviewer:
+    ubuntu:
+        '12.04,12.10,13.04': libqglviewer-qt4-dev
+        '14.04,14.10,15.04,15.10': libqglviewer-dev
+        default: libqglviewer-dev-qt4
+    debian:
+        '7.3':   libqglviewer-qt4-dev
+        'jessie': libqglviewer-dev
+        default: libqglviewer-dev-qt4
+    macos-brew: libqglviewer
+    # opensuse: libQGLViewer-devel # available in repository KDE:Qt
+
+libturbojpeg:
+    debian:
+        strech,sid: libturbojpeg0-dev
+        default: libturbojpeg1-dev
+    ubuntu:
+        default: libjpeg-turbo8-dev
+
+libudev:
+    ubuntu,debian:  libudev-dev
+    opensuse: libudev-devel
 
 libusb-old:
     debian,ubuntu: libusb-dev
@@ -317,149 +386,96 @@ libusb1_0_13:
     default:
         osdep: libusb1
 
-libudev:
-    ubuntu,debian:  libudev-dev
-    opensuse: libudev-devel
+libvlc:
+    debian: libvlc-dev
+    ubuntu: libvlc-dev
+    # opensuse: libvlc-devel # available in repository Packman
+
+libxml2:
+    ubuntu,debian: libxml2-dev
+    gentoo: dev-libs/libxml2
+    macos-brew: libxml2
+
+libxml2-utils:
+    debian,ubuntu: [libxml2-utils]
 
 libxmu:
     ubuntu,debian:  libxmu-dev
     opensuse: libXmu-devel
 
-external/tinyxml:
-    ubuntu:
-        '10.04,10.10,11.04,11.10': nonexistent
-        default: libtinyxml-dev
-    debian: libtinyxml-dev
-    opensuse: tinyxml-devel
-
-csparse:
-    debian,ubuntu: libsuitesparse-dev
-    macos-brew: suite-sparse
-    opensuse: suitesparse-devel
-
-cholmod:
-    debian,ubuntu: libsuitesparse-dev
-    macos-brew: suite-sparse
-    opensuse: suitesparse-devel
-
-suitesparse:
-    debian,ubuntu: libsuitesparse-dev
-    macos-brew: suite-sparse
-    opensuse: suitesparse-devel
-
-wget:
-    debian,ubuntu: wget
-    opensuse: wget
-
-ffi:
-    gem: ffi
-    debian,ubuntu: libffi-dev
-    opensuse: libffi-devel
+metis:
+    ubuntu,debian: libmetis-dev
+    gentoo: sci-libs/metis
 
 mpfi:
     debian,ubuntu: libmpfi-dev
     opensuse: mpfi-devel
 
-tools/rbind:
-    gem: rbind
-    debian,ubuntu: libffi-dev
-    opensuse: libffi-devel
+muparser:
+    debian,ubuntu: libmuparser-dev
+    opensuse: muparser
 
-unzip:
-    debian, ubuntu: unzip
-    opensuse: unzip
+ncurses:
+    debian,ubuntu: libncurses5-dev
+    gentoo: sys-libs/ncurses
+    fedora,opensuse: ncurses-devel
+    arch,manjarolinux: ncurses
 
-libqglviewer:
+net-scp: gem
+
+net-ssh: gem
+
+ode:
+    debian,ubuntu: libode-dev
+    # opensuse: [libode1, libode-devel] # available in repository games
+
+osgEarth:
+    debian: [libosgearth-dev]
     ubuntu:
-        '12.04,12.10,13.04': libqglviewer-qt4-dev
-        '14.04,14.10,15.04,15.10': libqglviewer-dev
-        default: libqglviewer-dev-qt4
-    debian:
-        '7.3':   libqglviewer-qt4-dev
-        'jessie': libqglviewer-dev
-        default: libqglviewer-dev-qt4
-    macos-brew: libqglviewer
-    # opensuse: libQGLViewer-devel # available in repository KDE:Qt
-
-gem-hooks:
-    gem: hooks
-
-clang-dev:
-    debian,ubuntu: libclang-dev
-    macos-brew: ignore
-    opensuse: llvm-clang-devel
-
-ruby-statsample:
-    gem: statsample
+        default: [libosgearth-dev]
+        10.04,10.10,11.04,11.10: nonexistent
+    fedora: nonexistent
+    opensuse: nonexistent
 
 png++:
     debian,ubuntu: libpng++-dev
     gentoo: media-libs/libpng
     opensuse: libpng16-devel
 
-udt:
-    debian,ubuntu: libudt-dev
-    # opensuse: [udt-devel, libudt0]
+proj:
+    debian,ubuntu: libproj-dev
+    gentoo: sci-libs/proj
+    fedora: proj-devel
+    arch,manjarolinux: proj
+    opensuse: [proj, libproj-devel]
 
-uuid:
-    debian,ubuntu: [uuid-dev]
-    opensuse: uuid-devel
+pypy:
+    ubuntu,debian: pypy
 
-libvlc:
-    debian: libvlc-dev
-    ubuntu: libvlc-dev
-    # opensuse: libvlc-devel # available in repository Packman
+qhull:
+    debian,ubuntu: libqhull-dev
+    fedora,opensuse: qhull-devel
 
-gtk+-2.0:
-    debian,ubuntu: libgtk2.0-dev
-    opensuse: [gtk2-devel, libgtk-2_0-0]
+qsqlite:
+    debian,ubuntu: libqt4-sql-sqlite
+    fedora: qt-devel
+    opensuse: qt3-devel
 
-gtk-doc-tools:
-    debian,ubuntu: gtk-doc-tools
-    opensuse: gtk-doc
+# NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
+# and rock.osdeps-ruby19) as we need to install different packages depending on
+# the Ruby version
 
-gobject-introspection:
-    debian,ubuntu: gobject-introspection
-    opensuse: gobject-introspection-devel
+raptor2:
+    debian,ubuntu: [ libraptor2-dev ]
 
-box2d:
-    debian,ubuntu:
-        # Rock needs a version of box2d more recent than the one in 12.04
-        '12.04': nonexistent
-        default: libbox2d-dev
-    # opensuse: libBox2D-devel # available in repository games
+redland:
+    debian,ubuntu: [ librdf0-dev ]
 
-glog:
-    debian,ubuntu: libgoogle-glog-dev
-    macos-brew: glog
-    opensuse: glog-devel
+ruby-geoutm:
+    gem: geoutm
 
-freenect:
-    debian: libfreenect-dev
-    ubuntu:
-        '14.04': libfreenect-dev
-
-bison:
-    debian,ubuntu: bison
-
-coinor:
-    debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
-
-flex:
-    debian,ubuntu: flex
-
-gawk:
-    debian,ubuntu: gawk
-
-libturbojpeg:
-    debian:
-        strech,sid: libturbojpeg0-dev
-        default: libturbojpeg1-dev
-    ubuntu:
-        default: libjpeg-turbo8-dev
-
-bzip2:
-    debian,ubuntu: libbz2-dev
+ruby-statsample:
+    gem: statsample
 
 slam/pcl:
     ubuntu:
@@ -469,25 +485,33 @@ slam/pcl:
         default: libpcl-dev
         wheezy,squeeze: nonexistent
 
-yaml-cpp:
-    debian: libyaml-cpp-dev
-    ubuntu:
-        default: libyaml-cpp-dev
+soprano:
+    debian,ubuntu: [ libsoprano-dev ]
 
-zlib:
-    ubuntu,debian: zlib1g-dev
+soqt:
+    debian,ubuntu: libsoqt4-dev
+    # opensuse: SoQt-devel # available in repository Packman
 
-libxml2:
-    ubuntu,debian: libxml2-dev
-    gentoo: dev-libs/libxml2
-    macos-brew: libxml2
+soup:
+    ubuntu,debian: libsoup2.4-dev
 
-libpcrecpp:
-    ubuntu,debian: libpcre3-dev
+suitesparse:
+    debian,ubuntu: libsuitesparse-dev
+    macos-brew: suite-sparse
+    opensuse: suitesparse-devel
 
-metis:
-    ubuntu,debian: libmetis-dev
-    gentoo: sci-libs/metis
+swig:
+    debian,ubuntu: swig
+    arch,manjarolinux: swig
+    opensuse: swig
+    macos-port: swig
+
+sysfs:
+    debian,ubuntu: libsysfs-dev
+    gentoo: sys-fs/sysfsutils
+    fedora: libsysfs-devel
+    arch,manjarolinux: sysfsutils
+    opensuse: [sysfsutils-devel, sysfsutils]
 
 tools/ignition-math2:
     ubuntu:
@@ -497,81 +521,55 @@ tools/ignition-math2:
         jessie,wheezy,squeeze: nonexistent
         default: libignition-math2-dev
 
-control/sdformat:
-    ubuntu:
-        '14.04,14.10,15.04,15.10': nonexistent
-        '16.04,16.10,17.04,17.10': libsdformat4-dev
-        default: libsdformat6-dev
-    debian:
-        jessie,wheezy,squeeze: nonexistent
-        stretch: libsdformat4-dev
-        default: libsdformat6-dev
+tools/rbind:
+    gem: rbind
+    debian,ubuntu: libffi-dev
+    opensuse: libffi-devel
 
-ruby-geoutm:
-    gem: geoutm
+udt:
+    debian,ubuntu: libudt-dev
+    # opensuse: [udt-devel, libudt0]
 
-geographic:
-    debian:
-        jessie,stretch,sid: libgeographic-dev
-        wheezy:             libgeographiclib-dev
-        default:            libgeographic-dev
-    ubuntu:
-        '12.04,14.04': libgeographiclib-dev
-        '15.10,16.04': libgeographic-dev
-        default:       libgeographic-dev
-
-pypy:
-    ubuntu,debian: pypy
-
-glpk:
-    debian,ubuntu: [glpk-utils, libglpk-dev]
-
-libxml2-utils:
-    debian,ubuntu: [libxml2-utils]
-
-redland:
-    debian,ubuntu: [ librdf0-dev ]
-
-raptor2:
-    debian,ubuntu: [ libraptor2-dev ]
-
-soprano:
-    debian,ubuntu: [ libsoprano-dev ]
+unzip:
+    debian, ubuntu: unzip
+    opensuse: unzip
 
 uriparser:
     debian,ubuntu: [ liburiparser-dev ]
 
-intltool:
-    debian,ubuntu: intltool
-    gentoo: intltool
+uuid:
+    debian,ubuntu: [uuid-dev]
+    opensuse: uuid-devel
 
-gstreamer-webrtc:
-    ubuntu:
-        - libgstreamer-plugins-bad1.0-dev
-        - gstreamer1.0-nice
-    debian:
-        stretch,jessie,wheezy,squeeze: nonexistent
+v4l:
+    debian,ubuntu: libv4l-dev
+    fedora,opensuse: libv4l-devel
+    arch,manjarolinux: v4l-utils
+
+vtk:
+    debian,ubuntu:
+        '14.04,14.10,15.04,15.10':
+            - libvtk5-dev
+            - tcl-vtk
+            - python-vtk
+            - libvtk-java
+        '16.04':
+            - libvtk6-dev
+            - tcl-vtk
+            - python-vtk6
+            - libvtk-java
         default:
-            - libgstreamer-plugins-bad1.0-dev
-            - gstreamer1.0-nice
+            - libvtk6-dev
+            - tcl-vtk6
+            - python-vtk6
+            - libvtk6-java
+    fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
+    opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
 
-json-glib:
-    ubuntu,debian: libjson-glib-dev
+wget:
+    debian,ubuntu: wget
+    opensuse: wget
 
-soup:
-    ubuntu,debian: libsoup2.4-dev
-
-jsoncpp:
-    ubuntu,debian: libjsoncpp-dev
-
-kontena-websocket-client:
-    gem
-
-gui/collada_osg:
-    ubuntu:
-        "16.04,18.04,18.10,19.04,19.10": nonexistent
-        default:
-            osdep: osg # included in default packages
 xcursor:
     ubuntu,debian: libxcursor-dev
 
@@ -583,9 +581,17 @@ xinerama:
 
 xrandr:
     ubuntu,debian: libxrandr-dev
-    
-harfbuzz:
-    ubuntu, debian: libharfbuzz-dev
-    
-freetype:
-    ubuntu, debian: libfreetype6-dev
+
+yaml:
+    debian,ubuntu: libyaml-dev
+    gentoo: dev-libs/libyaml
+    fedora,opensuse: libyaml-devel
+    arch,manjarolinux: libyaml
+
+yaml-cpp:
+    debian: libyaml-cpp-dev
+    ubuntu:
+        default: libyaml-cpp-dev
+
+zlib:
+    ubuntu,debian: zlib1g-dev
