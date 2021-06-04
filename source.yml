@@ -327,11 +327,12 @@ version_control:
 
     - external/aruco:
       type: archive
-      url: https://sourceforge.net/projects/aruco/files/3.1.11/aruco-3.1.11.zip
-      archive_dir: aruco-3.1.11
+      url: https://sourceforge.net/projects/aruco/files/3.1.12/aruco-3.1.12.zip
+      archive_dir: aruco-3.1.12
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_version_define.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_no_install_uninstalled.pc.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_opencv4.patch
 
 #    - planning/openrave:
 #      github: rdiankov/openrave
