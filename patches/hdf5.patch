@@ -1,4 +1,4 @@
-index f3de767..fadd94d 100644
+index f3de767..84b8a73 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
 @@ -9,12 +9,12 @@ option(BUILD_TESTS
@@ -16,7 +16,7 @@ index f3de767..fadd94d 100644
  set(BLOSC_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${BLOSC_INSTALL_DIR})
  
  message("BLOSC_PREFIX='${BLOSC_PREFIX}'")
-@@ -71,8 +71,9 @@ if(BUILD_PLUGIN)
+@@ -71,8 +71,10 @@ if(BUILD_PLUGIN)
  endif(BUILD_PLUGIN)
  
  # install
@@ -25,6 +25,7 @@ index f3de767..fadd94d 100644
 +set(BLOSC_INSTALL_INCLUDE "${BLOSC_INSTALL_DIR}/include")
 +install(FILES src/blosc_filter.h DESTINATION ${BLOSC_INSTALL_INCLUDE} COMPONENT HDF5_FILTER_DEV OPTIONAL)
 +install(TARGETS blosc_filter_shared DESTINATION lib COMPONENT HDF5_FILTER_DEV OPTIONAL)
++install(FILES blosc.pc DESTINATION pkgconfig COMPONENT HDF5_FILTER_DEV OPTIONAL)
  
  
  # test
