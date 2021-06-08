@@ -1,0 +1,30 @@
+index f3de767..fadd94d 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -9,12 +9,12 @@ option(BUILD_TESTS
+ option(BUILD_PLUGIN
+     "Build dynamically loadable plugin for HDF5 version > 1.8.11" ON)
+ if(BUILD_PLUGIN)
+-    set(PLUGIN_INSTALL_PATH "/usr/local/hdf5/lib/plugin" CACHE PATH 
++    set(PLUGIN_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/lib/plugin" CACHE PATH 
+       "Where to install the dynamic HDF5-plugin")
+ endif(BUILD_PLUGIN)
+ 
+ set(BLOSC_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/blosc")
+-set(BLOSC_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/blosc")
++set(BLOSC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}")
+ set(BLOSC_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${BLOSC_INSTALL_DIR})
+ 
+ message("BLOSC_PREFIX='${BLOSC_PREFIX}'")
+@@ -71,8 +71,9 @@ if(BUILD_PLUGIN)
+ endif(BUILD_PLUGIN)
+ 
+ # install
+-install(FILES src/blosc_filter.h DESTINATION include COMPONENT HDF5_FILTER_DEV)
+-install(TARGETS blosc_filter_shared DESTINATION lib COMPONENT HDF5_FILTER_DEV)
++set(BLOSC_INSTALL_INCLUDE "${BLOSC_INSTALL_DIR}/include")
++install(FILES src/blosc_filter.h DESTINATION ${BLOSC_INSTALL_INCLUDE} COMPONENT HDF5_FILTER_DEV OPTIONAL)
++install(TARGETS blosc_filter_shared DESTINATION lib COMPONENT HDF5_FILTER_DEV OPTIONAL)
+ 
+ 
+ # test

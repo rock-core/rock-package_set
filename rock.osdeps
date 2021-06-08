@@ -1,3 +1,6 @@
+hdf5:
+    debian,ubuntu: libhdf5-dev
+
 assimp:
     debian,ubuntu: libassimp-dev
     # opensuse: [libassimp3, assimp-devel] # available in repository games

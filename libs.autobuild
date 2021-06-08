@@ -1,4 +1,6 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+cmake_package 'external/hdf5_blosc'
+
 cmake_package 'drivers/libcaer' do |pkg|
     pkg.define 'UDEV_INSTALL', 'OFF'
     pkg.define 'EXAMPLES_INSTALL', 'ON'
