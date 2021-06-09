@@ -114,6 +114,10 @@ version_control:
         github: rock-slam/external-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - external/glob:
+        github: sryze/glob
+        branch: $ROCK_BRANCH
+
     - external/hdf5_blosc:
         github: Blosc/hdf5-blosc
         branch: $ROCK_BRANCH
