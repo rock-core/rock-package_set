@@ -77,6 +77,10 @@ version_control:
         github: rock-tools/tools-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - tools/openexr:
+        github: AcademySoftwareFoundation/openexr
+        branch: RB-2.5
+
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
         branch: master

@@ -1,4 +1,5 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+cmake_package 'tools/openexr'
 cmake_package 'external/glob'
 cmake_package 'external/hdf5_blosc'
 
