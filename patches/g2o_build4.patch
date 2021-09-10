@@ -1,20 +1,12 @@
-diff -Naur CMakeLists.txt CMakeLists.txt
---- CMakeLists.txt	(Revision 54)
-+++ CMakeLists.txt	(Arbeitskopie)
-@@ -226,6 +226,22 @@
+--- CMakeLists.txt.orig	2021-09-10 11:30:52.689973400 +0000
++++ CMakeLists.txt	2021-09-10 11:31:50.583087612 +0000
+@@ -488,6 +488,15 @@
  # Set up the top-level include directories
- INCLUDE_DIRECTORIES(${g2o_SOURCE_DIR} ${G2O_EIGEN3_INCLUDE})
+ include_directories(${g2o_SOURCE_DIR} ${PROJECT_BINARY_DIR})
  
 +
-+# fixing pkgconfig file for eigen3 < 3.1 (solver is not build)
-+# set without Eigen 3 solver 
-+SET(PKG_CONFIG_EXPORT_LIBS "-lg2o_cli -lg2o_core -lg2o_csparse_extension -lg2o_interface -lg2o_simulator -lg2o_solver_csparse -lg2o_solver_dense -lg2o_solver_pcg -lg2o_solver_slam2d_linear -lg2o_solver_structure_only -lg2o_stuff -lg2o_types_data -lg2o_types_icp -lg2o_types_sba -lg2o_types_sclam2d -lg2o_types_sim3 -lg2o_types_slam2d -lg2o_types_slam3d")
-+IF (DEFINED EIGEN3_VERSION)
-+  IF(${EIGEN3_VERSION} VERSION_GREATER "3.1.0" OR ${EIGEN3_VERSION} VERSION_EQUAL "3.1.0")
-+    # override libs and add eigen3 solver 
-+    SET(PKG_CONFIG_EXPORT_LIBS "-lg2o_cli -lg2o_core -lg2o_csparse_extension -lg2o_interface -lg2o_simulator -lg2o_solver_csparse -lg2o_solver_dense -lg2o_solver_eigen -lg2o_solver_pcg -lg2o_solver_slam2d_linear -lg2o_solver_structure_only -lg2o_stuff -lg2o_types_data -lg2o_types_icp -lg2o_types_sba -lg2o_types_sclam2d -lg2o_types_sim3 -lg2o_types_slam2d -lg2o_types_slam3d")
-+  ENDIF()
-+ENDIF()
++# Export libraries via pkgconfig
++SET(PKG_CONFIG_EXPORT_LIBS "-lg2o_cli -lg2o_csparse_extension -lg2o_hierarchical -lg2o_solver_dense -lg2o_solver_pcg -lg2o_stuff -lg2o_types_slam3d -lg2o_core -lg2o_ext_freeglut_minimal -lg2o_opengl_helper -lg2o_solver_eigen -lg2o_solver_structure_only -lg2o_types_slam2d")
 +
 +configure_file(g2o.pc.in g2o.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/g2o.pc DESTINATION lib/pkgconfig)
@@ -22,8 +14,8 @@ diff -Naur CMakeLists.txt CMakeLists.txt
 +
 +
  # Generate config.h
- SET(G2O_OPENGL_FOUND ${OPENGL_FOUND})
- SET(G2O_HAVE_CHOLMOD ${CHOLMOD_FOUND})
+ set(G2O_OPENGL_FOUND ${OPENGL_FOUND})
+ set(G2O_HAVE_CHOLMOD ${CHOLMOD_FOUND})
 diff -Naur g2o.pc.in g2o.pc.in
 --- g2o.pc.in	1970-01-01 01:00:00.000000000 +0100
 +++ g2o.pc.in	2012-10-28 12:21:09.129485817 +0100
