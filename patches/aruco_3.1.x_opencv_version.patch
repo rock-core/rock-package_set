@@ -1,0 +1,13 @@
+--- CMakeLists.txt.orig	2020-02-01 13:52:05.820382704 +0100
++++ CMakeLists.txt	2020-02-01 13:54:05.820382704 +0100
+@@ -14,2 +14,4 @@
+ include(cmake/findDependencies.cmake)
++string(REGEX REPLACE "([0-9]+)\\.[0-9]+\\.[0-9]+" "\\1" OPENCV_VERSION_MAJOR ${OpenCV_VERSION})
++message(STATUS "Found OpenCV major version ${OPENCV_VERSION_MAJOR}")
+ include(cmake/compilerOptions.cmake)
+--- cmake/aruco.pc.in.orig	2020-02-01 13:52:05.820382704 +0100
++++ cmake/aruco.pc.in	2020-02-01 13:54:05.820382704 +0100
+@@ -10,2 +10,2 @@
+ Version:  @PROJECT_VERSION@
+-Requires: opencv >= 2.1.0
++Requires: opencv@OPENCV_VERSION_MAJOR@ >= 2.1.0
