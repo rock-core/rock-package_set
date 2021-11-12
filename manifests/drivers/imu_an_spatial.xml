@@ -4,5 +4,5 @@
   </description>
   <author>Advanced Navigation</author>
   <url>https://www.advancednavigation.com/solutions/spatial/#Software</url>
-  <depend package="base/cmake " />
+  <depend package="base/cmake" />
 </package>
