@@ -1,0 +1,8 @@
+<package>
+  <description brief="Driver for imu_an_spatial">
+    Driver for imu_an_spatial
+  </description>
+  <author>Advanced Navigation</author>
+  <url>https://www.advancednavigation.com/solutions/spatial/#Software</url>
+  <depend package="base/cmake " />
+</package>
