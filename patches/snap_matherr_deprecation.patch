@@ -17,7 +17,7 @@ index 35a17fa..4437298 100644
  UNAME := $(shell uname)
  
 +GLIBVERSION := $(shell ldd --version 2>&1 | grep ldd | rev | cut -d " " -f 1 |rev)
-+GLIBC_GE_2_27 := $(shell dpkg --compare-versions "2.27" "ge" "$(GLIBVERSION)"; echo $$?)
++GLIBC_GE_2_27 := $(shell dpkg --compare-versions "2.27" "le" "$(GLIBVERSION)"; echo $$?)
 +ifeq ($(GLIBC_GE_2_27),0)
 +CXXFLAGS += -DWITH_MATHERR_EXCEPTION
 +endif

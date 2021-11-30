@@ -13,7 +13,8 @@
     <license>LGPL v.3</license>
     <url>http://www.openslam.org/g2o.html</url>
     <depend package="eigen3" />
-    <depend package="libqglviewer5" />
+    <depend package="libqglviewer5" optional="1" />
+    <depend package="libqglviewer" optional="1" />
     <depend package="cholmod" optional="1" />
     <depend package="lapack" optional="1" />
     <depend package="csparse" optional="1" />
