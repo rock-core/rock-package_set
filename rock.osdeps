@@ -1,11 +1,13 @@
 assimp:
     debian,ubuntu: libassimp-dev
     # opensuse: [libassimp3, assimp-devel] # available in repository games
+    gentoo: media-libs/assimp
 
 atlas-base:
     debian,ubuntu: libatlas-base-dev
     fedora: atlas-devel
     opensuse: libatlas3-devel
+    gentoo: virtual/blas # they actually want any blas, and atlas self-tuning takes days. the other os have no gains from that either.
 
 autoconf-archive:
     debian,ubuntu: autoconf-archive
@@ -15,10 +17,11 @@ autoconf-archive:
 
 bison:
     debian,ubuntu: bison
+    gentoo: sys-devel/bison
 
 blas:
     debian,ubuntu: libblas-dev
-    gentoo: blas
+    gentoo: virtual/blas
     fedora,opensuse: blas-devel
     arch,manjarolinux: blas
 
@@ -48,6 +51,7 @@ boost-date-time:
 boost-python:
     debian,ubuntu: libboost-python-dev
     fedora,opensuse: boost-devel
+    gentoo: "dev-libs/boost[python]"
 
 boost-serialization:
     debian,ubuntu:
@@ -67,9 +71,11 @@ box2d:
         '12.04': nonexistent
         default: libbox2d-dev
     # opensuse: libBox2D-devel # available in repository games
+    gentoo: games-engines/box2d
 
 bzip2:
     debian,ubuntu: libbz2-dev
+    gentoo: app-arch/bzip2
 
 cgal:
     debian: libcgal-dev
@@ -84,11 +90,13 @@ cholmod:
     debian,ubuntu: libsuitesparse-dev
     macos-brew: suite-sparse
     opensuse: suitesparse-devel
+    gentoo: sci-libs/suitesparse
 
 clang-dev:
     debian,ubuntu: libclang-dev
     macos-brew: ignore
     opensuse: llvm-clang-devel
+    gentoo: sys-devel/clang
 
 coinor:
     debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
@@ -102,11 +110,13 @@ control/sdformat:
         jessie,wheezy,squeeze: nonexistent
         stretch: libsdformat4-dev
         default: libsdformat6-dev
+    gentoo: dev-libs/sdformat
 
 csparse:
     debian,ubuntu: libsuitesparse-dev
     macos-brew: suite-sparse
     opensuse: suitesparse-devel
+    gentoo: sci-libs/suitesparse
 
 dc1394:
     debian, ubuntu: libdc1394-22-dev
@@ -125,11 +135,13 @@ external/tinyxml:
         default: libtinyxml-dev
     debian: libtinyxml-dev
     opensuse: tinyxml-devel
+    gentoo: dev-libs/tinyxml
 
 ffi:
     gem: ffi
     debian,ubuntu: libffi-dev
     opensuse: libffi-devel
+    gentoo: dev-libs/libffi
 
 ffmpeg:
     ubuntu:
@@ -150,9 +162,11 @@ flann:
         default: libflann-dev
     debian: libflann-dev
     arch,manjarolinux: ignore
+    gentoo: sci-libs/flann
 
 flex:
     debian,ubuntu: flex
+    gentoo: sys-devel/flex
 
 freenect:
     debian: libfreenect-dev
@@ -161,9 +175,11 @@ freenect:
 
 freetype:
     ubuntu, debian: libfreetype6-dev
+    gentoo: media-libs/freetype
 
 gawk:
     debian,ubuntu: gawk
+    gentoo: sys-apps/gawk
 
 gdal:
     debian: libgdal1-dev
@@ -193,13 +209,16 @@ glog:
     debian,ubuntu: libgoogle-glog-dev
     macos-brew: glog
     opensuse: glog-devel
+    gentoo: dev-cpp/glog
 
 glpk:
     debian,ubuntu: [glpk-utils, libglpk-dev]
+    gentoo: sci-mathematics/glpk
 
 gobject-introspection:
     debian,ubuntu: gobject-introspection
     opensuse: gobject-introspection-devel
+    gentoo: dev-libs/gobject-introspection
 
 gpsd:
   debian,ubuntu: libgps-dev
@@ -210,7 +229,7 @@ gpsd:
 
 graphviz:
     debian,ubuntu: [ graphviz, graphviz-dev ]
-    gentoo: graphviz
+    gentoo: media-gfx/graphviz
     fedora: [ graphviz, graphviz-devel ]
     arch,manjarolinux: graphviz
     opensuse: graphviz-devel
@@ -240,14 +259,17 @@ gstreamer:
         - libgstreamer-plugins-base1.0-dev
         - libgstreamer-plugins-good1.0-0
     fedora,opensuse: gstreamer-devel
+    gentoo: media-libs/gstreamer
 
 gstreamer-plugins-bad:
     ubuntu:
         - gstreamer1.0-plugins-bad
+    gentoo: media-libs/gst-plugins-bad
 
 gstreamer-vaapi:
     ubuntu:
         - gstreamer1.0-vaapi
+    gentoo: media-plugins/gst-plugins-vaapi
 
 gstreamer-webrtc:
     ubuntu:
@@ -258,14 +280,17 @@ gstreamer-webrtc:
         default:
             - libgstreamer-plugins-bad1.0-dev
             - gstreamer1.0-nice
+    gentoo: media-plugins/gst-plugins-webrtc
 
 gtk+-2.0:
     debian,ubuntu: libgtk2.0-dev
     opensuse: [gtk2-devel, libgtk-2_0-0]
+    gentoo: x11-libs/gtk+:2
 
 gtk-doc-tools:
     debian,ubuntu: gtk-doc-tools
     opensuse: gtk-doc
+    gentoo: dev-util/gtk-doc
 
 gui/collada_osg:
     ubuntu:
@@ -275,23 +300,26 @@ gui/collada_osg:
 
 harfbuzz:
     ubuntu, debian: libharfbuzz-dev
+    gentoo: media-libs/harfbuzz
 
 intltool:
     debian,ubuntu: intltool
-    gentoo: intltool
+    gentoo: dev-util/intltool
 
 json-glib:
     ubuntu,debian: libjson-glib-dev
+    gentoo: dev-libs/json-glib
 
 jsoncpp:
     ubuntu,debian: libjsoncpp-dev
+    gentoo: dev-libs/jsoncpp
 
 kontena-websocket-client:
     gem
 
 lapack:
     debian,ubuntu: liblapack-dev
-    gentoo: lapack
+    gentoo: sci-libs/lapack
     fedora: lapack-devel
     arch,manjarolinux: lapack
     opensuse: lapack-devel
@@ -328,9 +356,11 @@ libnl2:
                 - libnl2-dev
     fedora: nonexistent
     opensuse: libnl3-devel
+    gentoo: dev-libs/libnl:3
 
 libpcrecpp:
     ubuntu,debian: libpcre3-dev
+    gentoo: "dev-libs/libpcre[cxx]"
 
 libproc:
     debian:
@@ -346,6 +376,7 @@ libproc:
         '16.04': libprocps4-dev
         default: libprocps-dev
     fedora,opensuse: procps-devel
+    gentoo: sys-process/procps
 
 libqglviewer:
     ubuntu:
@@ -359,6 +390,7 @@ libqglviewer:
         default: libqglviewer-dev-qt4
     macos-brew: libqglviewer
     # opensuse: libQGLViewer-devel # available in repository KDE:Qt
+    gentoo: x11-libs/libQGLViewer
 
 libturbojpeg:
     debian:
@@ -366,17 +398,21 @@ libturbojpeg:
         default: libturbojpeg1-dev
     ubuntu:
         default: libjpeg-turbo8-dev
+    gentoo: media-libs/libjpeg-turbo
 
 libudev:
     ubuntu,debian:  libudev-dev
     opensuse: libudev-devel
+    gentoo: sys-fs/udev
 
 libusb-old:
     debian,ubuntu: libusb-dev
+    gentoo: dev-ruby/libusb:0
 
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
     opensuse: libusb-1_0-devel
+    gentoo: dev-ruby/libusb:1
 
 # libfreenect requires a specific version of libusb1
 libusb1_0_13:
@@ -386,11 +422,13 @@ libusb1_0_13:
             osdep: libusb1
     default:
         osdep: libusb1
+    gentoo: =dev-ruby/libusb-1.0.13
 
 libvlc:
     debian: libvlc-dev
     ubuntu: libvlc-dev
     # opensuse: libvlc-devel # available in repository Packman
+    gentoo: media-video/vlc
 
 libxml2:
     ubuntu,debian: libxml2-dev
@@ -399,10 +437,12 @@ libxml2:
 
 libxml2-utils:
     debian,ubuntu: [libxml2-utils]
+    gentoo: dev-libs/libxml2
 
 libxmu:
     ubuntu,debian:  libxmu-dev
     opensuse: libXmu-devel
+    gentoo: x11-libs/libXmu
 
 metis:
     ubuntu,debian: libmetis-dev
@@ -411,10 +451,12 @@ metis:
 mpfi:
     debian,ubuntu: libmpfi-dev
     opensuse: mpfi-devel
+    gentoo: sci-libs/mpfi
 
 muparser:
     debian,ubuntu: libmuparser-dev
     opensuse: muparser
+    gentoo: dev-cpp/muParser
 
 ncurses:
     debian,ubuntu: libncurses5-dev
@@ -429,6 +471,7 @@ net-ssh: gem
 ode:
     debian,ubuntu: libode-dev
     # opensuse: [libode1, libode-devel] # available in repository games
+    gentoo: dev-games/ode
 
 osgEarth:
     debian: [libosgearth-dev]
@@ -452,15 +495,18 @@ proj:
 
 pypy:
     ubuntu,debian: pypy
+    gentoo: dev-python/pypy
 
 qhull:
     debian,ubuntu: libqhull-dev
     fedora,opensuse: qhull-devel
+    gentoo: media-libs/qhull
 
 qsqlite:
     debian,ubuntu: libqt4-sql-sqlite
     fedora: qt-devel
     opensuse: qt3-devel
+    gentoo: "dev-qt/qtsql[sqlite]"
 
 # NOTE: qtruby is defined in a ruby-version-specific file (rock.osdeps-ruby18
 # and rock.osdeps-ruby19) as we need to install different packages depending on
@@ -468,9 +514,11 @@ qsqlite:
 
 raptor2:
     debian,ubuntu: [ libraptor2-dev ]
+    gentoo: media-libs/raptor:2
 
 redland:
     debian,ubuntu: [ librdf0-dev ]
+    gentoo: dev-libs/redland
 
 ruby-geoutm:
     gem: geoutm
@@ -485,6 +533,7 @@ slam/pcl:
     debian:
         default: libpcl-dev
         wheezy,squeeze: nonexistent
+    gentoo: sci-libs/pcl
 
 soprano:
     debian,ubuntu: [ libsoprano-dev ]
@@ -492,20 +541,24 @@ soprano:
 soqt:
     debian,ubuntu: libsoqt4-dev
     # opensuse: SoQt-devel # available in repository Packman
+    gentoo: media-libs/SoQt
 
 soup:
     ubuntu,debian: libsoup2.4-dev
+    gentoo: net-libs/libsoup:2.4
 
 suitesparse:
     debian,ubuntu: libsuitesparse-dev
     macos-brew: suite-sparse
     opensuse: suitesparse-devel
+    gentoo: sci-libs/suitesparse
 
 swig:
     debian,ubuntu: swig
     arch,manjarolinux: swig
     opensuse: swig
     macos-port: swig
+    gentoo: dev-lang/swig
 
 sysfs:
     debian,ubuntu: libsysfs-dev
@@ -521,11 +574,13 @@ tools/ignition-math2:
     debian:
         jessie,wheezy,squeeze: nonexistent
         default: libignition-math2-dev
+    gentoo: sci-libs/ignition-math
 
 tools/rbind:
     gem: rbind
     debian,ubuntu: libffi-dev
     opensuse: libffi-devel
+    gentoo: dev-libs/libffi
 
 udt:
     debian,ubuntu: libudt-dev
@@ -534,18 +589,22 @@ udt:
 unzip:
     debian, ubuntu: unzip
     opensuse: unzip
+    gentoo: app-arch/unzip
 
 uriparser:
     debian,ubuntu: [ liburiparser-dev ]
+    gentoo: dev-libs/uriparser
 
 uuid:
     debian,ubuntu: [uuid-dev]
     opensuse: uuid-devel
+    gentoo: sys-apps/util-linux
 
 v4l:
     debian,ubuntu: libv4l-dev
     fedora,opensuse: libv4l-devel
     arch,manjarolinux: v4l-utils
+    gentoo: media-libs/libv4l
 
 vtk:
     debian,ubuntu:
@@ -566,22 +625,28 @@ vtk:
             - libvtk6-java
     fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
     opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
+    gentoo: sci-libs/vtk
 
 wget:
     debian,ubuntu: wget
     opensuse: wget
+    gentoo: net-misc/wget
 
 xcursor:
     ubuntu,debian: libxcursor-dev
+    gentoo: x11-libs/libXcursor
 
 xi:
     ubuntu,debian: libxi-dev
+    gentoo: x11-libs/libXi
 
 xinerama:
     ubuntu,debian: libxinerama-dev
+    gentoo: x11-libs/libXinerama
 
 xrandr:
     ubuntu,debian: libxrandr-dev
+    gentoo: x11-libs/libXrandr
 
 yaml:
     debian,ubuntu: libyaml-dev
@@ -593,6 +658,8 @@ yaml-cpp:
     debian: libyaml-cpp-dev
     ubuntu:
         default: libyaml-cpp-dev
+    gentoo: dev-cpp/yaml-cpp
 
 zlib:
     ubuntu,debian: zlib1g-dev
+    gentoo: sys-libs/zlib
