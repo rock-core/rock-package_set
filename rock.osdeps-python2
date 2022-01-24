@@ -1,11 +1,14 @@
 numpy:
     debian, ubuntu: python-numpy
     opensuse: python-numpy
+    gentoo: dev-python/numpy
 
 scipy:
     debian,ubuntu: python-scipy
     opensuse: python-scipy
+    gentoo: dev-python/scipy
 
 sympy:
     debian,ubuntu: python-sympy
     opensuse: python-sympy
+    gentoo: dev-python/sympy
