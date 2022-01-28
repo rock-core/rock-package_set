@@ -100,6 +100,7 @@ clang-dev:
 
 coinor:
     debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
+    gentoo: [ sci-libs/coinor-utils, sci-libs/coinor-osi, sci-libs/coinor-clp, sci-libs/coinor-cbc ]
 
 control/sdformat:
     ubuntu:
