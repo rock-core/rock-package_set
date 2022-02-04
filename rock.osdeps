@@ -342,7 +342,7 @@ libkdtree:
     debian,ubuntu:
         default: libkdtree++-dev
         "12.10": nonexistent # libkdtree++ is broken on 12.10
-    gentoo: libkdtree++ # actually, there are no ebuilds
+    gentoo: nonexistent
     fedora: nonexistent
     opensuse: nonexistent
 
@@ -485,6 +485,7 @@ osgEarth:
         10.04,10.10,11.04,11.10: nonexistent
     fedora: nonexistent
     opensuse: nonexistent
+    gentoo: nonexistent
 
 png++:
     debian,ubuntu: libpng++-dev
