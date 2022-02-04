@@ -1,0 +1,61 @@
+--- /dev/null	2022-01-25 13:31:59.655999731 +0100
++++ CMakeLists.txt	2022-01-28 15:06:24.586352665 +0100
+@@ -0,0 +1,58 @@
++
++cmake_minimum_required(VERSION 2.88)
++
++project("udt")
++
++include(GNUInstallDirs)
++
++add_library(udtobj OBJECT
++    udt4/src/api.cpp
++    udt4/src/buffer.cpp
++    udt4/src/cache.cpp
++    udt4/src/ccc.cpp
++    udt4/src/channel.cpp
++    udt4/src/common.cpp
++    udt4/src/core.cpp
++    udt4/src/epoll.cpp
++    udt4/src/list.cpp
++    udt4/src/md5.cpp
++    udt4/src/packet.cpp
++    udt4/src/queue.cpp
++    udt4/src/window.cpp
++    )
++
++set_property(TARGET udtobj PROPERTY POSITION_INDEPENDENT_CODE 1)
++
++add_library(udt_shared SHARED $<TARGET_OBJECTS:udtobj>)
++set_target_properties(udt_shared PROPERTIES OUTPUT_NAME "udt")
++
++add_library(udt_static STATIC $<TARGET_OBJECTS:udtobj>)
++set_target_properties(udt_static PROPERTIES OUTPUT_NAME "udt")
++
++add_executable(appserver udt4/app/appserver.cpp)
++target_include_directories(appserver PRIVATE "${CMAKE_SOURCE_DIR}/udt4/src")
++target_link_libraries(appserver $<TARGET_OBJECTS:udtobj>)
++
++add_executable(appclient udt4/app/appclient.cpp)
++target_include_directories(appclient PRIVATE "${CMAKE_SOURCE_DIR}/udt4/src")
++target_link_libraries(appclient $<TARGET_OBJECTS:udtobj>)
++
++add_executable(sendfile udt4/app/sendfile.cpp)
++target_include_directories(sendfile PRIVATE "${CMAKE_SOURCE_DIR}/udt4/src")
++target_link_libraries(sendfile $<TARGET_OBJECTS:udtobj>)
++
++add_executable(recvfile udt4/app/recvfile.cpp)
++target_include_directories(recvfile PRIVATE "${CMAKE_SOURCE_DIR}/udt4/src")
++target_link_libraries(recvfile $<TARGET_OBJECTS:udtobj>)
++
++add_executable(test udt4/app/test.cpp)
++target_include_directories(test PRIVATE "${CMAKE_SOURCE_DIR}/udt4/src")
++target_link_libraries(test $<TARGET_OBJECTS:udtobj>)
++
++install(TARGETS udt_shared udt_static
++        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++        )
++
++install(FILES udt4/src/udt.h
++        DESTINATION include/udt)

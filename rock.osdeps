@@ -598,6 +598,7 @@ tools/rbind:
 udt:
     debian,ubuntu: libudt-dev
     # opensuse: [udt-devel, libudt0]
+    gentoo: nonexistent
 
 unzip:
     debian, ubuntu: unzip
