@@ -412,12 +412,12 @@ libudev:
 
 libusb-old:
     debian,ubuntu: libusb-dev
-    gentoo: dev-ruby/libusb:0
+    gentoo: nonexistent
 
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
     opensuse: libusb-1_0-devel
-    gentoo: dev-ruby/libusb:1
+    gentoo: dev-libs/libusb:1
 
 # libfreenect requires a specific version of libusb1
 libusb1_0_13:
@@ -427,7 +427,7 @@ libusb1_0_13:
             osdep: libusb1
     default:
         osdep: libusb1
-    gentoo: =dev-ruby/libusb-1.0.13
+    gentoo: nonexistent
 
 libvlc:
     debian: libvlc-dev
