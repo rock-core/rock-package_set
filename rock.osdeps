@@ -392,6 +392,10 @@ libqglviewer:
     # opensuse: libQGLViewer-devel # available in repository KDE:Qt
     gentoo: x11-libs/libQGLViewer
 
+libqglviewer5:
+    ubuntu:
+        '20.04': libqglviewer-dev-qt5
+
 libturbojpeg:
     debian:
         strech,sid: libturbojpeg0-dev
@@ -539,9 +543,16 @@ soprano:
     debian,ubuntu: [ libsoprano-dev ]
 
 soqt:
-    debian,ubuntu: libsoqt4-dev
+    debian: libsoqt4-dev
+    ubuntu:
+        '20.04': nonexistent
+        default: libsoqt4-dev
     # opensuse: SoQt-devel # available in repository Packman
     gentoo: media-libs/SoQt
+
+soqt5:
+    ubuntu:
+        '20.04': libsoqt520-dev
 
 soup:
     ubuntu,debian: libsoup2.4-dev

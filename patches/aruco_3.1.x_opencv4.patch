@@ -1,0 +1,11 @@
+--- cmake/aruco.pc.in-orig	2021-06-04 09:30:54.183403027 +0200
++++ cmake/aruco.pc.in	2021-06-03 17:18:28.774721441 +0200
+@@ -8,7 +8,7 @@
+ Name: @PROJECT_NAME@
+ Description: ARUCO Library for marker detection
+ Version:  @PROJECT_VERSION@
+-Requires: opencv >= 2.1.0
++Requires: opencv4 >= 2.1.0
+ Conflicts: 
+ Libs: -L${libdir} -l@PROJECT_NAME@
+ Cflags: -I${includedir}/@PROJECT_NAME@ -I${includedir}

@@ -32,6 +32,8 @@
   </description>
   <license>New BSD</license>
   <url>http://octomap.github.io/</url>
+  <depend package="qt5-opengl"  optional="1"/>
+  <depend package="libqglviewer5"  optional="1"/>
   <depend package="qt4-opengl" optional="1"/>
   <depend package="libqglviewer" optional="1"/>
 </package>
