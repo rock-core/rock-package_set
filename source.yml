@@ -379,7 +379,7 @@ version_control:
 
     - drivers/imu_an_spatial:
         type: archive
-        url: https://www.advancednavigation.com/sites/default/files/product_software/spatialsdk.zip
+        url: https://www.advancednavigation.com/wp-content/uploads/2021/08/spatialsdk.zip
         no_subdirectory: true
         update_cached_file: true
         patches:
