@@ -444,7 +444,7 @@ version_control:
 
     - tools/gecode:
         github: Gecode/gecode
-        tag: release-6.2.0
+        branch: release/6.3.0
 
     - tools/graph_analysis:
         github: rock-core/tools-graph_analysis
