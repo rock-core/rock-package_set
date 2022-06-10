@@ -222,12 +222,12 @@ version_control:
 
     - drivers/imu_myahrs_plus:
         type: git
-        url: git://github.com/withrobot/myAHRS_plus.git
+        url: https://github.com/withrobot/myAHRS_plus.git
         branch: master
 
     - drivers/freenect:
         type: git
-        url: git://github.com/OpenKinect/libfreenect.git
+        url: https://github.com/OpenKinect/libfreenect.git
         branch: master
 
     - data_processing/*:
@@ -252,7 +252,7 @@ version_control:
 
     - tools/rbind:
         type: git
-        url: git://github.com/D-Alex/rbind.git
+        url: https://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
     - drivers/libusb:
@@ -261,7 +261,7 @@ version_control:
 
     - data_processing/openann:
         type: git
-        url: git://github.com/AlexanderFabisch/OpenANN.git
+        url: https://github.com/AlexanderFabisch/OpenANN.git
         branch: master
 
     - slam/octomap:
@@ -463,6 +463,3 @@ version_control:
     - tools/seasocks:
         github: mattgodbolt/seasocks
         tag: v1.4.3
-
-
-
