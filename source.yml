@@ -450,6 +450,12 @@ version_control:
         github: rock-core/tools-graph_analysis
         branch: $ROCK_BRANCH
 
+    - tools/udt:
+      type: git
+      url: https://git.code.sf.net/p/udt/git
+      patches:
+         - $AUTOPROJ_SOURCE_DIR/patches/udt_cmakelists.patch
+
     - knowledge_reasoning/factpp:
       type: git
       url: https://bitbucket.org/dtsarkov/factplusplus.git

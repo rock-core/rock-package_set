@@ -100,6 +100,7 @@ clang-dev:
 
 coinor:
     debian,ubuntu: [coinor-libcoinutils-dev, coinor-libosi-dev, coinor-clp, coinor-libclp-dev, coinor-cbc, coinor-libcbc-dev ]
+    gentoo: [ sci-libs/coinor-utils, sci-libs/coinor-osi, sci-libs/coinor-clp, sci-libs/coinor-cbc ]
 
 control/sdformat:
     ubuntu:
@@ -341,7 +342,7 @@ libkdtree:
     debian,ubuntu:
         default: libkdtree++-dev
         "12.10": nonexistent # libkdtree++ is broken on 12.10
-    gentoo: libkdtree++ # actually, there are no ebuilds
+    gentoo: nonexistent
     fedora: nonexistent
     opensuse: nonexistent
 
@@ -411,12 +412,12 @@ libudev:
 
 libusb-old:
     debian,ubuntu: libusb-dev
-    gentoo: dev-ruby/libusb:0
+    gentoo: nonexistent
 
 libusb1:
     ubuntu,debian:  libusb-1.0-0-dev
     opensuse: libusb-1_0-devel
-    gentoo: dev-ruby/libusb:1
+    gentoo: dev-libs/libusb:1
 
 # libfreenect requires a specific version of libusb1
 libusb1_0_13:
@@ -426,7 +427,7 @@ libusb1_0_13:
             osdep: libusb1
     default:
         osdep: libusb1
-    gentoo: =dev-ruby/libusb-1.0.13
+    gentoo: nonexistent
 
 libvlc:
     debian: libvlc-dev
@@ -484,6 +485,7 @@ osgEarth:
         10.04,10.10,11.04,11.10: nonexistent
     fedora: nonexistent
     opensuse: nonexistent
+    gentoo: nonexistent
 
 png++:
     debian,ubuntu: libpng++-dev
@@ -596,6 +598,7 @@ tools/rbind:
 udt:
     debian,ubuntu: libudt-dev
     # opensuse: [udt-devel, libudt0]
+    gentoo: nonexistent
 
 unzip:
     debian, ubuntu: unzip
