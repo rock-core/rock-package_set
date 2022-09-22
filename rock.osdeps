@@ -399,6 +399,8 @@ libqglviewer:
 libqglviewer5:
     ubuntu:
         '20.04': libqglviewer-dev-qt5
+    debian:
+        'bullseye': libqglviewer-dev-qt5
 
 libturbojpeg:
     debian:
