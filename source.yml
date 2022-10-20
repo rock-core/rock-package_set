@@ -191,6 +191,18 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
 
+    - slam/pclomp:
+        github: dfki-ric/pclomp
+
+    - slam/slam3d:
+        github: dfki-ric/slam3d
+
+    - slam/orogen/slam3d:
+        github: dfki-ric/orogen-slam3d
+
+    - slam/orogen/maps:
+        github: dfki-ric/slam-orogen-maps
+
     - external/tinyxml:
         type: archive
         url: http://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.zip
@@ -469,3 +481,4 @@ version_control:
     - tools/seasocks:
         github: mattgodbolt/seasocks
         tag: v1.4.3
+
