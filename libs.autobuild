@@ -1,4 +1,14 @@
 #800 IMPORTANT: new packages must be added at the top of this file
+
+cmake_package 'slam/pclomp'
+cmake_package 'slam/slam3d' do |pkg|
+    pkg.define 'BUILD_SHARED_LIBS', 'TRUE'
+end
+
+cmake_package 'tools/udt'
+remove_from_default 'tools/udt'
+Autoproj.add_osdeps_overrides 'udt', :package => 'tools/udt'
+
 cmake_package 'knowledge_reasoning/moreorg' do |pkg|
     pkg.env_add_path 'OWLAPI_ONTOLOGIES_PATH', File.join(pkg.prefix, 'share','ontologies')
 end

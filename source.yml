@@ -187,9 +187,18 @@ version_control:
 
     - slam/g2o:
         github: RainerKuemmerle/g2o.git
-        branch: master
-        patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/g2o_build4.patch
+
+    - slam/pclomp:
+        github: dfki-ric/pclomp
+
+    - slam/slam3d:
+        github: dfki-ric/slam3d
+
+    - slam/orogen/slam3d:
+        github: dfki-ric/orogen-slam3d
+
+    - slam/orogen/maps:
+        github: dfki-ric/slam-orogen-maps
 
     - external/tinyxml:
         type: archive
@@ -214,6 +223,7 @@ version_control:
     - control/kdl:
         type: git
         github: orocos/orocos_kinematics_dynamics.git
+        with_submodules: true
         branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
@@ -221,12 +231,12 @@ version_control:
 
     - drivers/imu_myahrs_plus:
         type: git
-        url: git://github.com/withrobot/myAHRS_plus.git
+        url: https://github.com/withrobot/myAHRS_plus.git
         branch: master
 
     - drivers/freenect:
         type: git
-        url: git://github.com/OpenKinect/libfreenect.git
+        url: https://github.com/OpenKinect/libfreenect.git
         branch: master
 
     - data_processing/*:
@@ -251,7 +261,7 @@ version_control:
 
     - tools/rbind:
         type: git
-        url: git://github.com/D-Alex/rbind.git
+        url: https://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
     - drivers/libusb:
@@ -260,7 +270,7 @@ version_control:
 
     - data_processing/openann:
         type: git
-        url: git://github.com/AlexanderFabisch/OpenANN.git
+        url: https://github.com/AlexanderFabisch/OpenANN.git
         branch: master
 
     - slam/octomap:
@@ -327,11 +337,12 @@ version_control:
 
     - external/aruco:
       type: archive
-      url: https://sourceforge.net/projects/aruco/files/3.1.11/aruco-3.1.11.zip
-      archive_dir: aruco-3.1.11
+      url: https://sourceforge.net/projects/aruco/files/3.1.12/aruco-3.1.12.zip
+      archive_dir: aruco-3.1.12
       patches:
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_version_define.patch
          - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_no_install_uninstalled.pc.patch
+         - $AUTOPROJ_SOURCE_DIR/patches/aruco_3.1.x_opencv4.patch
 
 #    - planning/openrave:
 #      github: rdiankov/openrave
@@ -343,6 +354,7 @@ version_control:
       url: https://github.com/sbpl/sbpl.git
 
     - planning/ompl:
+      branch: ~
       type: git
       url: https://github.com/ompl/ompl.git
       tag: 1.2.1
@@ -376,7 +388,7 @@ version_control:
 
     - drivers/imu_an_spatial:
         type: archive
-        url: https://www.advancednavigation.com/sites/default/files/product_software/spatialsdk.zip
+        url: https://www.advancednavigation.com/wp-content/uploads/2021/08/spatialsdk.zip
         no_subdirectory: true
         update_cached_file: true
         patches:
@@ -441,11 +453,17 @@ version_control:
 
     - tools/gecode:
         github: Gecode/gecode
-        tag: release-6.2.0
+        branch: release/6.3.0
 
     - tools/graph_analysis:
         github: rock-core/tools-graph_analysis
         branch: $ROCK_BRANCH
+
+    - tools/udt:
+      type: git
+      url: https://git.code.sf.net/p/udt/git
+      patches:
+         - $AUTOPROJ_SOURCE_DIR/patches/udt_cmakelists.patch
 
     - knowledge_reasoning/factpp:
       type: git
@@ -460,6 +478,4 @@ version_control:
     - tools/seasocks:
         github: mattgodbolt/seasocks
         tag: v1.4.3
-
-
 
