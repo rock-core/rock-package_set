@@ -298,7 +298,7 @@ version_control:
 
     - perception/apriltags:
         type: archive
-        url: https://april.eecs.umich.edu/media/apriltag/apriltag-2015-03-18.tgz
+        url: https://github.com/AprilRobotics/apriltag/archive/refs/tags/v3.2.0.tar.gz
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/apriltags.patch
 
