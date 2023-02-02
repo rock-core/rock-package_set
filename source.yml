@@ -156,7 +156,11 @@ version_control:
         type: git
         github: aibasel/downward
         patches: $AUTOPROJ_SOURCE_DIR/patches/fast_downward.patch
-        branch: main
+        #branch: main
+        # pinned to the last commit before they require c++20
+        # (available starting with gcc-10 and clang-12, which are not
+        # available in ubuntu 18.04, not default in 20.04)
+        commit: fe473a2011c84f9082068a30fae8653e3823ea7f
 
     - planning/randward:
         github: rock-planning/planning-$PACKAGE_BASENAME
