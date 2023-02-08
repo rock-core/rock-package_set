@@ -301,10 +301,7 @@ version_control:
             - [$AUTOPROJ_SOURCE_DIR/patches/gsf-cmake.patch, 1]
 
     - perception/apriltags:
-        type: archive
-        url: https://april.eecs.umich.edu/media/apriltag/apriltag-2015-03-18.tgz
-        patches:
-            - $AUTOPROJ_SOURCE_DIR/patches/apriltags.patch
+        github: AprilRobotics/apriltag
 
     - perception/viso2:
         type: archive

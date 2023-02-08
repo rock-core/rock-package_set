@@ -1,0 +1,13 @@
+<package>
+  <description brief="Apriltags Marker Detection, source file can be find in http://april.eecs.umich.edu/wiki/index.php/AprilTags">
+  
+  </description>
+  <author>April Robotics Laboratory</author>
+  <maintainer>Diego Cesar/diego.cesar@dfki.de</maintainer>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  <depend package="base/cmake" />
+  <depend package="base/types" />
+  <tags>needs_opt</tags>
+</package>
