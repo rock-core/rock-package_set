@@ -626,4 +626,6 @@ end
 # Don't build unless really really needed
 remove_from_default 'multiagent/fipa_acl'
 
+cmake_package "drivers/gstreamer_helpers"
+
 create_metapackages
