@@ -251,6 +251,9 @@ version_control:
         github: rock-data-processing/data_processing-orogen-$PACKAGE_BASENAME
         branch: $ROCK_BRANCH
 
+    - database/redis/hiredis:
+      github: redis/hiredis
+
     - drivers/aria:
         type: archive
         url: http://robots.mobilerobots.com/ARIA/download/archives/ARIA-2.7.5+gcc4.3.tgz

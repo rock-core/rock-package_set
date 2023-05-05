@@ -1,5 +1,7 @@
 #800 IMPORTANT: new packages must be added at the top of this file
 
+cmake_package "database/redis/hiredis"
+
 cmake_package 'slam/pclomp'
 cmake_package 'slam/slam3d' do |pkg|
     pkg.define 'BUILD_SHARED_LIBS', 'TRUE'
