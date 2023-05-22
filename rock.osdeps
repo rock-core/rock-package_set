@@ -555,6 +555,7 @@ soqt:
 soqt5:
     ubuntu:
         '20.04': libsoqt520-dev
+        '18.04': nonexistent
 
 soup:
     ubuntu,debian: libsoup2.4-dev
