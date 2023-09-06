@@ -231,7 +231,6 @@ version_control:
         branch: master
         patches:
             - $AUTOPROJ_SOURCE_DIR/patches/orocos_kdl.patch
-            - [$AUTOPROJ_SOURCE_DIR/patches/orocos_kdl_eigen_v3.patch, 1]
 
     - drivers/imu_myahrs_plus:
         type: git
