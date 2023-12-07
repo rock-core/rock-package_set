@@ -7,7 +7,5 @@
   <license>BSD</license>
   <url>http://ros.org/wiki/urdf</url>
 
-  <depend package="external/tinyxml"/>
-  <depend package="boost"/>
 </package>
 
