@@ -138,6 +138,9 @@ external/tinyxml:
     opensuse: tinyxml-devel
     gentoo: dev-libs/tinyxml
 
+tinyxml2:
+    ubuntu: libtinyxml2-dev
+
 ffi:
     gem: ffi
     debian,ubuntu: libffi-dev
