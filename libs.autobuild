@@ -551,8 +551,7 @@ in_flavor 'master', 'stable' do
     cmake_package 'slam/pcl' do |pkg|
         pkg.define("CMAKE_BUILD_TYPE","Release")
         pkg.define("BUILD_OPENNI","OFF")
-        env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
-
+        pkg.env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
     end
     remove_from_default 'slam/pcl'
     cmake_package 'slam/hogman' do |pkg|
