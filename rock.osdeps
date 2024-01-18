@@ -636,11 +636,16 @@ vtk:
             - tcl-vtk
             - python-vtk6
             - libvtk-java
-        default:
+        '18.04':
             - libvtk6-dev
             - tcl-vtk6
             - python-vtk6
             - libvtk6-java
+        default:
+            - libvtk7-dev
+            - tcl-vtk7
+            - python3-vtk7
+            - libvtk7-java
     fedora: [ vtk-devel, vtk-tcl, vtk-python, vtk-java ]
     opensuse: [ vtk-devel, vtk-tcl, python-vtk, python-vtk-qt, vtk-java ]
     gentoo: sci-libs/vtk
