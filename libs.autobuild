@@ -17,6 +17,7 @@ end
 cmake_package 'control/joint_control_base'
 cmake_package 'tools/qxcfg'
 autotools_package 'tools/gecode' do |pkg|
+    pkg.using[:autoconf]=false
     if !Autoproj.config.get('DISABLE_GUI',false)
         pkg.depends_on "qt4"
         pkg.configureflags << "--enable-qt"
