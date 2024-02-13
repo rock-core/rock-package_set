@@ -16,14 +16,10 @@ cmake_package 'knowledge_reasoning/moreorg' do |pkg|
 end
 cmake_package 'control/joint_control_base'
 cmake_package 'tools/qxcfg'
-autotools_package 'tools/gecode' do |pkg|
-    pkg.using[:autoconf]=false
-    if !Autoproj.config.get('DISABLE_GUI',false)
-        pkg.depends_on "qt4"
-        pkg.configureflags << "--enable-qt"
-        pkg.configureflags << "--enable-gist"
-    end
-end
+
+cmake_package 'tools/gecode' do |pkg|
+    pkg.define 'BUILD_SHARED_LIBS', 'TRUE'
+end 
 
 cmake_package 'gui/vizkit3d_debug_drawings'
 orogen_package 'gui/orogen/vizkit3d_debug_drawings'
