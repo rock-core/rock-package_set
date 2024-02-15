@@ -457,6 +457,8 @@ version_control:
     - tools/gecode:
         github: Gecode/gecode
         branch: release/6.3.0
+        patches:
+           - $AUTOPROJ_SOURCE_DIR/patches/gecode.patch
 
     - tools/graph_analysis:
         github: rock-core/tools-graph_analysis
