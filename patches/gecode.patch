@@ -1,8 +1,18 @@
 diff --git CMakeLists.txt CMakeLists.txt
-index 3f7803ec..84c78ce3 100644
+index 3f7803ec..364198b6 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
-@@ -341,11 +341,24 @@ foreach (lib support kernel search int set float
+@@ -37,9 +37,6 @@ cmake_minimum_required(VERSION 3.8.0)
+ 
+ project(GECODE)
+ 
+-set(CMAKE_CXX_STANDARD 17)
+-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+-
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/misc/cmake_modules)
+ 
+@@ -341,11 +338,25 @@ foreach (lib support kernel search int set float
          set(sources ${sources} ${src})
        endif ()
      endforeach ()
@@ -28,10 +38,11 @@ index 3f7803ec..84c78ce3 100644
 +    RUNTIME DESTINATION bin
 +  )
 +  target_compile_features(${lib} PUBLIC cxx_std_17)
++  set_target_properties(${lib} PROPERTIES OUTPUT_NAME gecode_${lib})
  endforeach ()
  
  option(ENABLE_CPPROFILER "Enable cpprofiler tracer mode" ON)
-@@ -354,45 +367,55 @@ if(ENABLE_CPPROFILER)
+@@ -354,45 +365,46 @@ if(ENABLE_CPPROFILER)
  endif()
  
  find_package(Threads)
@@ -53,15 +64,6 @@ index 3f7803ec..84c78ce3 100644
 +target_link_libraries(minimodel int set search)
 +target_link_libraries(driver int)
 +target_link_libraries(flatzinc minimodel driver)
-+message(STATUS "Qt5 Core found: ${Qt5Core_FOUND}")
-+message(STATUS "Qt5 Widgets found: ${Qt5Widgets_FOUND}")
-+message(STATUS "Qt5 Gui found: ${Qt5Gui_FOUND}")
-+message(STATUS "Qt5 PrintSupport found: ${Qt5PrintSupport_FOUND}")
-+
-+get_target_property(QT_CORE_LIB Qt5::Core LOCATION)
-+message(STATUS "Qt5::Core library: ${QT_CORE_LIB}")
-+get_target_property(FLATZINC_LINK_LIBRARIES flatzinc INTERFACE_LINK_LIBRARIES)
-+message(STATUS "gecode::flatzinc link libraries: ${FLATZINC_LINK_LIBRARIES}")
  
  if (GECODE_HAS_QT)
    if (Qt6_FOUND)
@@ -110,7 +112,7 @@ index 3f7803ec..84c78ce3 100644
  list(APPEND GECODE_INSTALL_TARGETS fzn-gecode)
  
  set(prefix ${CMAKE_INSTALL_PREFIX})
-@@ -487,3 +510,32 @@ if (GECODE_HAS_GIST)
+@@ -487,3 +499,32 @@ if (GECODE_HAS_GIST)
  		DESTINATION share/minizinc/solvers
  	)
  endif()
