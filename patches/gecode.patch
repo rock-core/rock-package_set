@@ -1,5 +1,5 @@
 diff --git CMakeLists.txt CMakeLists.txt
-index 3f7803ec..364198b6 100644
+index 3f7803ec..e545b54f 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
 @@ -37,9 +37,6 @@ cmake_minimum_required(VERSION 3.8.0)
@@ -12,6 +12,23 @@ index 3f7803ec..364198b6 100644
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
  list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/misc/cmake_modules)
  
+@@ -185,14 +182,14 @@ endif()
+ 
+ # Don't use Qt if GECODE_USE_QT is set to FALSE.
+ if (NOT DEFINED GECODE_USE_QT OR GECODE_USE_QT)
+-  find_package(Qt6 QUIET COMPONENTS Core Gui Widgets PrintSupport)
++#  find_package(Qt6 QUIET COMPONENTS Core Gui Widgets PrintSupport)
+   if (Qt6_FOUND)
+ 	  set(GECODE_HAS_QT "/**/")
+ 	  set(GECODE_HAS_GIST "/**/")
+ 	  set(EXTRA_LIBS gist)
+ 	  set(CMAKE_AUTOMOC TRUE)
+ 	else()
+-		find_package(Qt5 QUIET COMPONENTS Core Gui Widgets PrintSupport)
++#		find_package(Qt5 QUIET COMPONENTS Core Gui Widgets PrintSupport)
+ 		if (Qt5_FOUND)
+ 			 set(GECODE_HAS_QT "/**/")
+ 			 set(GECODE_HAS_GIST "/**/")
 @@ -341,11 +338,25 @@ foreach (lib support kernel search int set float
          set(sources ${sources} ${src})
        endif ()
