@@ -106,7 +106,8 @@ control/sdformat:
     ubuntu:
         '14.04,14.10,15.04,15.10': nonexistent
         '16.04,16.10,17.04,17.10': libsdformat4-dev
-        default: libsdformat6-dev
+        '18.04,20.04': libsdformat6-dev
+        default: libsdformat-dev
     debian:
         jessie,wheezy,squeeze: nonexistent
         stretch: libsdformat4-dev
@@ -386,8 +387,8 @@ libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
         '14.04,14.10,15.04,15.10': libqglviewer-dev
-        '20.04': nonexistent
-        default: libqglviewer-dev-qt4
+        '18.04': libqglviewer-dev-qt4
+        default: nonexistent
     debian:
         '7.3':   libqglviewer-qt4-dev
         'jessie': libqglviewer-dev
@@ -398,7 +399,7 @@ libqglviewer:
 
 libqglviewer5:
     ubuntu:
-        '20.04': libqglviewer-dev-qt5
+        default: libqglviewer-dev-qt5
     debian:
         'bullseye': libqglviewer-dev-qt5
 
