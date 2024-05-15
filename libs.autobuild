@@ -330,7 +330,9 @@ in_flavor 'master', 'stable' do
     metapackage 'external/freenect', 'drivers/freenect'
 
 
-    cmake_package 'control/urdfdom'
+    cmake_package 'control/urdfdom' do |pkg| 
+        pkg.define "BUILD_TESTING", "OFF"
+    end
     cmake_package 'tools/ignition-math2'
     cmake_package 'control/sdformat'
     cmake_package 'control/urdfdom_headers'
