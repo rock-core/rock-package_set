@@ -37,7 +37,7 @@
  Requires: @PKG_EXTERNAL_DEPS@
  Libs: -L${libdir} @PKG_OMPL_LIBS@
 -Cflags: -I${includedir}
-+Cflags: -I${includedir} -std=c++11
++Cflags: -I${includedir}
 --- ./tests/CMakeLists.txt
 +++ ./tests/CMakeLists.txt
 @@ -19,6 +19,9 @@ if (OMPL_BUILD_TESTS)
