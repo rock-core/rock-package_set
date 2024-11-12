@@ -181,186 +181,182 @@ end
 ##
 #################################################################################"
 #################################################################################"
-
-in_flavor 'master' do
-    cmake_package 'multiagent/fipa_services'
-    cmake_package 'slam/ceres_solver' do |pkg|
-        pkg.define("BUILD_TESTING","OFF")
-        pkg.define("BUILD_EXAMPLES","OFF")
-        pkg.define("BUILD_SHARED_LIBS","ON")
-    end
-
-    bundle_package 'bundles/rock_auv'
-    ruby_package 'tools/rbind' do |pkg|
-        pkg.depends_on 'gem-hooks'
-        pkg.depends_on 'clang-dev'
-    end
-    cmake_package 'perception/projection'
-    metapackage 'image_processing/projection', 'perception/projection'
-
-    cmake_package 'gui/point_cloud'
-    cmake_package 'gui/qcam_calib'
-
-    cmake_package 'perception/viso2' do |pkg|
-        pkg.disable_doc
-        pkg.depends_on 'base/cmake'
-
-        # Seamlessly migrate from the SVN to the archive. We must delete the svn
-        # directory !
-        if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".git"))
-            Autoproj.config.declare "UPDATE_VISO2_FROM_GIT", "boolean",
-                :doc => ["delete perception/viso2 to update to a release tarball ?",
-                    "Rock was previously checking out from a Git repository but just switched to",
-                    "using the release tarball. Updating requires the deletion of the",
-                    "currently checked out perception/viso2 directory.",
-                    "Should I do it ? This is required to continue building"],
-                :default => 'yes'
-
-            if Autoproj.config.get("UPDATE_VISO2_FROM_GIT")
-                Autoproj.warn "deleting Viso2 source directory to migrate from the Git checkout to the release tarball"
-                FileUtils.rm_rf pkg.srcdir
-            else
-                raise ConfigError, "user refused to delete perception/viso2, aborting the build"
-            end
-        end
-    end
-    metapackage 'image_processing/viso2', 'perception/viso2'
-
-    cmake_package 'planning/randward' do |pkg|
-        #build is already a file in the repro, re have to rename the buildfolder
-        pkg.builddir = "build-rock"
-    end
-
-    cmake_package 'planning/arvand_herd'
-    cmake_package 'planning/fd_cedalion'
-    cmake_package 'planning/fd_uniform'
-    cmake_package 'planning/bfsf'
-    cmake_package 'planning/fast_downward' do |pkg|
-        bin,_,_ = Rock.activate_python_path(pkg)
-        pkg.define 'PYTHON_EXECUTABLE', bin if bin
-    end
-    cmake_package 'planning/lama'
-    cmake_package 'planning/pddl_planner'
-    cmake_package 'planning/simple_path_planner'
-
-    cmake_package 'control/hysteresis_model'
-
-    cmake_package 'slam/pose_estimation'
-    cmake_package 'slam/terrain_estimator'
-    cmake_package 'slam/eslam'
-    cmake_package 'slam/gmapping' do |pkg|
-        pkg.define "BUILD_SHARED_LIBS", "ON"
-    end
-
-    cmake_package 'slam/polygonnet'
-    remove_from_default 'slam/polygonnet'
-
-    cmake_package 'gui/map2d'
-
-    cmake_package 'drivers/tofcamera_mesasr'
-
-    cmake_package 'drivers/imu_stim300'
-    metapackage 'drivers/stim300', 'drivers/imu_stim300'
-    cmake_package 'drivers/imu_imar'
-    metapackage 'drivers/imar', 'drivers/imu_imar'
-    cmake_package 'drivers/alt_imagenex'
-    cmake_package 'drivers/ctd_seabird'
-    cmake_package 'drivers/mbeam_imagenex'
-    cmake_package 'drivers/pressure_paroscientific'
-    cmake_package 'drivers/ucm_schilling'
-    cmake_package 'drivers/act_schilling'
-    cmake_package 'drivers/phins_ixsea'
-    cmake_package 'drivers/camera_aravis'
+cmake_package 'multiagent/fipa_services'
+cmake_package 'slam/ceres_solver' do |pkg|
+    pkg.define("BUILD_TESTING","OFF")
+    pkg.define("BUILD_EXAMPLES","OFF")
+    pkg.define("BUILD_SHARED_LIBS","ON")
 end
 
-in_flavor 'master', 'stable' do
-    cmake_package 'gui/vizkit_3d_plugins'
-    cmake_package 'drivers/dps_desertstar_ssp1'
+bundle_package 'bundles/rock_auv'
+ruby_package 'tools/rbind' do |pkg|
+    pkg.depends_on 'gem-hooks'
+    pkg.depends_on 'clang-dev'
+end
+cmake_package 'perception/projection'
+metapackage 'image_processing/projection', 'perception/projection'
 
-    autotools_package 'drivers/aravis' do |pkg|
-        pkg.depends_on 'gobject-introspection'
-        pkg.depends_on 'gstreamer'
-        pkg.depends_on 'gtk+-2.0'
-        pkg.depends_on 'gtk-doc-tools'
-    end
-    cmake_package 'slam/mtk'
-    cmake_package 'planning/sbpl'
-    metapackage 'external/sbpl', 'planning/sbpl'
-    cmake_package 'planning/ompl' do |pkg|
-        # this will prevent the ompl-CMakeLists from spawning a browser to
-        # register...
-        pkg.define("OMPL_REGISTRATION","Off")
-    end
-    metapackage 'external/ompl', 'planning/ompl'
-    cmake_package 'external/aruco' do |pkg|
-        pkg.depends_on 'opencv'
-    end
-    cmake_package 'external/lemon'
-    cmake_package 'external/snap' do |pkg|
-        pkg.depends_on 'base/cmake'
-        pkg.parallel_build_level = 1
-    end
-    cmake_package 'external/gexf' do |pkg|
-        pkg.depends_on 'base/cmake'
-        pkg.depends_on 'libxml2'
-    end
-    cmake_package 'simulation/imumodel'
+cmake_package 'gui/point_cloud'
+cmake_package 'gui/qcam_calib'
 
-    cmake_package 'slam/octomap'
+cmake_package 'perception/viso2' do |pkg|
+    pkg.disable_doc
+    pkg.depends_on 'base/cmake'
 
-    cmake_package "drivers/freenect" do |pkg|
-        pkg.define "BUILD_AUDIO", "ON"
-        pkg.define "BUILD_FAKENECT", "OFF"
-        pkg.define "BUILD_EXAMPLES", "OFF"
-        pkg.define "BUILD_C_SYNC", "OFF"
-        pkg.depends_on 'libusb1_0_13'
-        pkg.source_tree_excludes << /doc/
-        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
-        pkg.doc_task do
-            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
-                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
-                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "Doxyfile")
-                end
+    # Seamlessly migrate from the SVN to the archive. We must delete the svn
+    # directory !
+    if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".git"))
+        Autoproj.config.declare "UPDATE_VISO2_FROM_GIT", "boolean",
+            :doc => ["delete perception/viso2 to update to a release tarball ?",
+                "Rock was previously checking out from a Git repository but just switched to",
+                "using the release tarball. Updating requires the deletion of the",
+                "currently checked out perception/viso2 directory.",
+                "Should I do it ? This is required to continue building"],
+            :default => 'yes'
+
+        if Autoproj.config.get("UPDATE_VISO2_FROM_GIT")
+            Autoproj.warn "deleting Viso2 source directory to migrate from the Git checkout to the release tarball"
+            FileUtils.rm_rf pkg.srcdir
+        else
+            raise ConfigError, "user refused to delete perception/viso2, aborting the build"
+        end
+    end
+end
+metapackage 'image_processing/viso2', 'perception/viso2'
+
+cmake_package 'planning/randward' do |pkg|
+    #build is already a file in the repro, re have to rename the buildfolder
+    pkg.builddir = "build-rock"
+end
+
+cmake_package 'planning/arvand_herd'
+cmake_package 'planning/fd_cedalion'
+cmake_package 'planning/fd_uniform'
+cmake_package 'planning/bfsf'
+cmake_package 'planning/fast_downward' do |pkg|
+    bin,_,_ = Rock.activate_python_path(pkg)
+    pkg.define 'PYTHON_EXECUTABLE', bin if bin
+end
+cmake_package 'planning/lama'
+cmake_package 'planning/pddl_planner'
+cmake_package 'planning/simple_path_planner'
+
+cmake_package 'control/hysteresis_model'
+
+cmake_package 'slam/pose_estimation'
+cmake_package 'slam/terrain_estimator'
+cmake_package 'slam/eslam'
+cmake_package 'slam/gmapping' do |pkg|
+    pkg.define "BUILD_SHARED_LIBS", "ON"
+end
+
+cmake_package 'slam/polygonnet'
+remove_from_default 'slam/polygonnet'
+
+cmake_package 'gui/map2d'
+
+cmake_package 'drivers/tofcamera_mesasr'
+
+cmake_package 'drivers/imu_stim300'
+metapackage 'drivers/stim300', 'drivers/imu_stim300'
+cmake_package 'drivers/imu_imar'
+metapackage 'drivers/imar', 'drivers/imu_imar'
+cmake_package 'drivers/alt_imagenex'
+cmake_package 'drivers/ctd_seabird'
+cmake_package 'drivers/mbeam_imagenex'
+cmake_package 'drivers/pressure_paroscientific'
+cmake_package 'drivers/ucm_schilling'
+cmake_package 'drivers/act_schilling'
+cmake_package 'drivers/phins_ixsea'
+cmake_package 'drivers/camera_aravis'
+
+cmake_package 'gui/vizkit_3d_plugins'
+cmake_package 'drivers/dps_desertstar_ssp1'
+
+autotools_package 'drivers/aravis' do |pkg|
+    pkg.depends_on 'gobject-introspection'
+    pkg.depends_on 'gstreamer'
+    pkg.depends_on 'gtk+-2.0'
+    pkg.depends_on 'gtk-doc-tools'
+end
+cmake_package 'slam/mtk'
+cmake_package 'planning/sbpl'
+metapackage 'external/sbpl', 'planning/sbpl'
+cmake_package 'planning/ompl' do |pkg|
+    # this will prevent the ompl-CMakeLists from spawning a browser to
+    # register...
+    pkg.define("OMPL_REGISTRATION","Off")
+end
+metapackage 'external/ompl', 'planning/ompl'
+cmake_package 'external/aruco' do |pkg|
+    pkg.depends_on 'opencv'
+end
+cmake_package 'external/lemon'
+cmake_package 'external/snap' do |pkg|
+    pkg.depends_on 'base/cmake'
+    pkg.parallel_build_level = 1
+end
+cmake_package 'external/gexf' do |pkg|
+    pkg.depends_on 'base/cmake'
+    pkg.depends_on 'libxml2'
+end
+cmake_package 'simulation/imumodel'
+
+cmake_package 'slam/octomap'
+
+cmake_package "drivers/freenect" do |pkg|
+    pkg.define "BUILD_AUDIO", "ON"
+    pkg.define "BUILD_FAKENECT", "OFF"
+    pkg.define "BUILD_EXAMPLES", "OFF"
+    pkg.define "BUILD_C_SYNC", "OFF"
+    pkg.depends_on 'libusb1_0_13'
+    pkg.source_tree_excludes << /doc/
+    pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
+    pkg.doc_task do
+        pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
+            pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "Doxyfile")
             end
         end
     end
-    Autoproj.add_osdeps_overrides 'freenect', :package => 'drivers/freenect'
-    metapackage 'external/freenect', 'drivers/freenect'
+end
+Autoproj.add_osdeps_overrides 'freenect', :package => 'drivers/freenect'
+metapackage 'external/freenect', 'drivers/freenect'
 
 
-    cmake_package 'control/urdfdom'
-    cmake_package 'tools/ignition-math2'
-    cmake_package 'control/sdformat'
-    cmake_package 'control/urdfdom_headers'
-    cmake_package 'control/kdl_parser'
-    cmake_package 'control/robot_frames'
-    cmake_package 'gui/robot_model' do |pkg|
-        pkg.env_add_path "VIZKIT_PLUGIN_RUBY_PATH", File.join(pkg.prefix,"lib")
-        # the tests in gui/robot_model is an app for a human to run. Do not let
-        # autoproj believe there is something to run automatically
-        pkg.test_utility.available = false
+cmake_package 'control/urdfdom'
+cmake_package 'tools/ignition-math2'
+cmake_package 'control/sdformat'
+cmake_package 'control/urdfdom_headers'
+cmake_package 'control/kdl_parser'
+cmake_package 'control/robot_frames'
+cmake_package 'gui/robot_model' do |pkg|
+    pkg.env_add_path "VIZKIT_PLUGIN_RUBY_PATH", File.join(pkg.prefix,"lib")
+    # the tests in gui/robot_model is an app for a human to run. Do not let
+    # autoproj believe there is something to run automatically
+    pkg.test_utility.available = false
+end
+cmake_package 'gui/control_ui'
+cmake_package 'control/joint_dispatcher'
+cmake_package 'control/kdl_conversions'
+cmake_package 'data_processing/openann' do |pkg|
+    pkg.depends_on 'base/cmake'
+end
+cmake_package 'data_processing/type_to_vector'
+cmake_package 'drivers/video_capture_vlc'
+cmake_package 'drivers/video_streamer_vlc'
+autotools_package 'drivers/phidgets' do |pkg|
+    pkg.disable_doc
+    pkg.using[:autoheader] = false
+    if pkg.respond_to?(:automake_flags)
+        pkg.automake_flags = "--add-missing"
     end
-    cmake_package 'gui/control_ui'
-    cmake_package 'control/joint_dispatcher'
-    cmake_package 'control/kdl_conversions'
-    cmake_package 'data_processing/openann' do |pkg|
-        pkg.depends_on 'base/cmake'
-    end
-    cmake_package 'data_processing/type_to_vector'
-    cmake_package 'drivers/video_capture_vlc'
-    cmake_package 'drivers/video_streamer_vlc'
-    autotools_package 'drivers/phidgets' do |pkg|
-        pkg.disable_doc
-        pkg.using[:autoheader] = false
-        if pkg.respond_to?(:automake_flags)
-            pkg.automake_flags = "--add-missing"
-        end
-    end
+end
 
 #    cmake_package 'drivers/gsf' #Link iscurrently death, no new one could be found.
-    cmake_package 'control/reflexxes'
+cmake_package 'control/reflexxes'
 
-     #No compiling version can be found currently 05.2015
+    #No compiling version can be found currently 05.2015
 #    cmake_package 'planning/openrave' do |pkg|
 #        pkg.depends_on 'assimp'
 #        pkg.depends_on 'sympy'
@@ -373,250 +369,249 @@ in_flavor 'master', 'stable' do
 #        Autoproj.env_add_path 'PYTHONPATH', File.join(pkg.prefix, 'lib', 'python2.7', 'site-packages')
 #    end
 #    remove_from_default 'planning/openrave'
-    cmake_package 'drivers/actuator_dispatcher'
+cmake_package 'drivers/actuator_dispatcher'
 
-    bundle_package 'bundles/rock_ugv_nav'
-    cmake_package 'control/kdl' do |pkg|
-        pkg.depends_on 'base/cmake'
-        pkg.with_doc 'docs'
-        pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
+bundle_package 'bundles/rock_ugv_nav'
+cmake_package 'control/kdl' do |pkg|
+    pkg.depends_on 'base/cmake'
+    pkg.with_doc 'docs'
+    pkg.doc_dir = File.join('orocos_kdl', 'doc', 'api', 'html')
+end
+cmake_package 'drivers/ptu_directedperception'
+import_package 'drivers/aria' do |pkg|
+    def pkg.do_build
+        run('build', Autobuild.tool(:make), "-j#{parallel_build_level}", "-C", srcdir)
     end
-    cmake_package 'drivers/ptu_directedperception'
-    import_package 'drivers/aria' do |pkg|
-        def pkg.do_build
-            run('build', Autobuild.tool(:make), "-j#{parallel_build_level}", "-C", srcdir)
-        end
 
-        def pkg.do_install
-            include_dir = File.join(prefix, 'include', 'aria')
-            lib_dir     = File.join(prefix, 'lib')
-            FileUtils.rm_rf include_dir
-            FileUtils.mkdir_p File.dirname(include_dir)
-            FileUtils.mkdir_p lib_dir
+    def pkg.do_install
+        include_dir = File.join(prefix, 'include', 'aria')
+        lib_dir     = File.join(prefix, 'lib')
+        FileUtils.rm_rf include_dir
+        FileUtils.mkdir_p File.dirname(include_dir)
+        FileUtils.mkdir_p lib_dir
 
-            FileUtils.cp File.join(srcdir, 'lib','libAria.so'), File.join(lib_dir, 'libAria.so')
-            FileUtils.cp_r File.join(srcdir, 'include'), include_dir
-        end
+        FileUtils.cp File.join(srcdir, 'lib','libAria.so'), File.join(lib_dir, 'libAria.so')
+        FileUtils.cp_r File.join(srcdir, 'include'), include_dir
+    end
 
-        def pkg.do_pkgconfig
-            pkgconfig_dir     = File.join(prefix, 'lib', "pkgconfig")
-            FileUtils.mkdir_p pkgconfig_dir
+    def pkg.do_pkgconfig
+        pkgconfig_dir     = File.join(prefix, 'lib', "pkgconfig")
+        FileUtils.mkdir_p pkgconfig_dir
 
-            infile = File.readlines(File.join(srcdir, 'aria.pc.in'))
+        infile = File.readlines(File.join(srcdir, 'aria.pc.in'))
 
-            pkgconfig = infile.map do |line|
-                if !line.index("@CMAKE_INSTALL_PREFIX@").nil?
-                    line["@CMAKE_INSTALL_PREFIX@"] = prefix
-                end
-
-                if !line.index("@TARGET_NAME@").nil?
-                    line["@TARGET_NAME@"] = "aria"
-                end
-
-                if !line.index("@PROJECT_VERSION@").nil?
-                    line["@PROJECT_VERSION@"] = "2.7.5.2"
-                end
-                line
+        pkgconfig = infile.map do |line|
+            if !line.index("@CMAKE_INSTALL_PREFIX@").nil?
+                line["@CMAKE_INSTALL_PREFIX@"] = prefix
             end
 
-            File.open(File.join(pkgconfig_dir, 'aria.pc'), 'w') do |outfile|
-                outfile.write pkgconfig.join
+            if !line.index("@TARGET_NAME@").nil?
+                line["@TARGET_NAME@"] = "aria"
             end
+
+            if !line.index("@PROJECT_VERSION@").nil?
+                line["@PROJECT_VERSION@"] = "2.7.5.2"
+            end
+            line
         end
 
-        if pkg.respond_to?(:progress_start) # newer versions of autoproj
-            pkg.post_install do
-                pkg.progress_start "building %s" do
-                    pkg.do_build
-                end
-                pkg.progress_start "installing %s" do
-                    pkg.do_install
-                end
-                pkg.progress_start "generating pkgconfig file for %s" do
-                    pkg.do_pkgconfig
-                end
-            end
-        else
-            pkg.post_install do
-                pkg.progress "building %s"
+        File.open(File.join(pkgconfig_dir, 'aria.pc'), 'w') do |outfile|
+            outfile.write pkgconfig.join
+        end
+    end
+
+    if pkg.respond_to?(:progress_start) # newer versions of autoproj
+        pkg.post_install do
+            pkg.progress_start "building %s" do
                 pkg.do_build
-                pkg.progress "installing %s"
+            end
+            pkg.progress_start "installing %s" do
                 pkg.do_install
-                pkg.progress "generating pkgconfig file for %s"
+            end
+            pkg.progress_start "generating pkgconfig file for %s" do
                 pkg.do_pkgconfig
             end
         end
-    end
-
-    ##### External libraries not available as binary packages
-    cmake_package 'external/yaml-cpp' do |pkg|
-        pkg.define("BUILD_SHARED_LIBS","ON")
-        pkg.disable_doc # the package has documentation generation target
-    end
-    ##### External libraries not available as binary packages
-    cmake_package 'external/yaml-cpp03' do |pkg|
-        pkg.define("BUILD_SHARED_LIBS","ON")
-        pkg.disable_doc # the package has documentation generation target
-    end
-    cmake_package 'external/tinyxml' do |pkg|
-        # tinyxml is patched to use Rock macros
-        pkg.depends_on 'base/cmake'
-    end
-
-    ##### Control-related libraries
-    cmake_package 'control/motor_controller'
-    cmake_package 'control/trajectory_follower'
-    cmake_package 'control/waypoint_navigation'
-
-    ##### Device drivers
-    cmake_package 'drivers/velodyne_lidar'
-    cmake_package 'drivers/base_schilling'
-    cmake_package 'drivers/canbus'
-    cmake_package 'drivers/mb500'
-    cmake_package 'drivers/hokuyo'
-    cmake_package 'drivers/xsens_imu'
-    cmake_package 'drivers/dynamixel'
-    cmake_package 'drivers/controldev'
-    cmake_package 'drivers/parport'
-    cmake_package 'drivers/camera_interface'
-    cmake_package 'drivers/camera_prosilica' do |pkg|
-        if pkg.respond_to?(:source_tree_excludes)
-            pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
+    else
+        pkg.post_install do
+            pkg.progress "building %s"
+            pkg.do_build
+            pkg.progress "installing %s"
+            pkg.do_install
+            pkg.progress "generating pkgconfig file for %s"
+            pkg.do_pkgconfig
         end
     end
-
-    cmake_package 'drivers/camera_usb'
-    cmake_package 'drivers/dvl_teledyne'
-    cmake_package 'drivers/camera_firewire'
-    cmake_package 'drivers/fog_kvh'
-    cmake_package 'drivers/iCharger'
-    cmake_package 'drivers/vicon'
-    cmake_package 'drivers/qualisys'
-    cmake_package 'drivers/sonar_tritech'
-    cmake_package 'drivers/laserscanner_sick'
-    cmake_package 'drivers/laser_filter'
-    cmake_package 'drivers/camera_ids'
-    if !has_ueye_api? # defined in init.rb
-        Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    end
-
-    ##### Image Processing
-    cmake_package 'perception/stereo'
-    metapackage 'image_processing/stereo', 'perception/stereo'
-    cmake_package 'perception/libelas' do |pkg|
-        # Build system from libelas has been patched into a Rock/CMake-based one
-        pkg.depends_on 'base/cmake'
-    end
-    metapackage 'image_processing/libelas', 'perception/libelas'
-
-    ##### Planning
-    cmake_package 'planning/nav_graph_search'
-    cmake_package 'planning/corridor_planner'
-    cmake_package 'planning/vfh_star'
-    cmake_package 'planning/corridor_navigation'
-    cmake_package 'planning/motion_planning_libraries'
-
-    ##### Localisation and Mapping related packages
-    autotools_package 'external/libply' do |pkg|
-        pkg.using[:autoconf] = true
-        pkg.using[:automake] = true
-        pkg.using[:libtool] = true
-        pkg.using[:autoheader] = true
-        if pkg.respond_to?(:automake_flags)
-            pkg.automake_flags = "--add-missing"
-        end
-        pkg.depends_on 'boost'
-        pkg.configureflags << "CFLAGS=-fPIC" << "CXXFLAGS=-fPIC"
-    end
-    cmake_package 'slam/envire' do |pkg|
-        Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
-    end
-    cmake_package 'slam/pose_ekf'
-    cmake_package 'slam/quater_ikf'
-    cmake_package 'external/cminpack' do |pkg|
-        pkg.doc_dir = File.join(pkg.srcdir, 'doc')
-        pkg.doc_task {}
-        pkg.define("CMAKE_BUILD_TYPE","Release")
-    end
-    cmake_package 'slam/flann' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE","Release")
-        pkg.define("BUILD_C_BINDINGS", "OFF")
-        pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
-        pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
-    end
-    Autoproj.add_osdeps_overrides 'flann', :package => 'slam/flann'
-    #remove_from_default 'slam/flann' # The debian package is currently broken, so we install flann everwhere on our own currently
-
-    cmake_package 'slam/pcl' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE","Release")
-        pkg.define("BUILD_OPENNI","OFF")
-        env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
-
-        # Seamlessly migrate from the SVN to the archive. We must delete the svn
-        # directory !
-        if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".svn"))
-            Autoproj.config.declare "UPDATE_PCL_FROM_SVN", "boolean",
-                :doc => ["delete slam/pcl to update to a release tarball ?",
-                    "Rock was previously checking out the PCL SVN but just switched to",
-                    "using the release tarball. Updating requires the deletion of the",
-                    "currently checked out slam/pcl directory.",
-                    "Should I do it ? This is required to continue building"],
-                :default => 'yes'
-
-            if Autoproj.config.get("UPDATE_PCL_FROM_SVN")
-                Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
-                FileUtils.rm_rf pkg.srcdir
-            else
-                raise ConfigError, "user refused to delete slam/pcl, aborting the build"
-            end
-        end
-    end
-    remove_from_default 'slam/pcl'
-    cmake_package 'slam/hogman' do |pkg|
-        pkg.source_tree_excludes << /doc/
-        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
-        pkg.doc_task do
-            pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
-                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
-                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "hogman.dox")
-                end
-            end
-        end
-    end
-    cmake_package 'slam/quater_ukf'
-    cmake_package 'slam/odometry'
-    cmake_package 'slam/graph_slam'
-    cmake_package 'slam/g2o' do |pkg|
-        pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
-        pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
-        pkg.source_tree_excludes << /doc\/doxygen/
-        pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'doxygen', 'html')
-        pkg.doc_task do
-            pkg.in_dir(File.join(pkg.srcdir, 'doc', 'doxygen')) do
-                pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
-                    Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "doxy.config")
-                end
-            end
-        end
-    end
-
-    #### Multiagent related packages
-    cmake_package 'multiagent/fipa_acl' do |pkg|
-        pkg.define "RUBY_EXECUTABLE", Autoproj.config.ruby_executable
-    end
-
-    autotools_package 'external/kdtree'
-    remove_from_default 'external/kdtree'
-    Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
-
-    cmake_package 'external/box2d' do |pkg|
-        pkg.define("BOX2D_BUILD_SHARED", "ON")
-        pkg.define("BOX2D_BUILD_STATIC", "OFF")
-        pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
-    end
-    remove_from_default 'external/box2d'
-    Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 end
+
+##### External libraries not available as binary packages
+cmake_package 'external/yaml-cpp' do |pkg|
+    pkg.define("BUILD_SHARED_LIBS","ON")
+    pkg.disable_doc # the package has documentation generation target
+end
+##### External libraries not available as binary packages
+cmake_package 'external/yaml-cpp03' do |pkg|
+    pkg.define("BUILD_SHARED_LIBS","ON")
+    pkg.disable_doc # the package has documentation generation target
+end
+cmake_package 'external/tinyxml' do |pkg|
+    # tinyxml is patched to use Rock macros
+    pkg.depends_on 'base/cmake'
+end
+
+##### Control-related libraries
+cmake_package 'control/motor_controller'
+cmake_package 'control/trajectory_follower'
+cmake_package 'control/waypoint_navigation'
+
+##### Device drivers
+cmake_package 'drivers/velodyne_lidar'
+cmake_package 'drivers/base_schilling'
+cmake_package 'drivers/canbus'
+cmake_package 'drivers/mb500'
+cmake_package 'drivers/hokuyo'
+cmake_package 'drivers/xsens_imu'
+cmake_package 'drivers/dynamixel'
+cmake_package 'drivers/controldev'
+cmake_package 'drivers/parport'
+cmake_package 'drivers/camera_interface'
+cmake_package 'drivers/camera_prosilica' do |pkg|
+    if pkg.respond_to?(:source_tree_excludes)
+        pkg.source_tree_excludes << /Ping$/ << /ListCameras$/
+    end
+end
+
+cmake_package 'drivers/camera_usb'
+cmake_package 'drivers/dvl_teledyne'
+cmake_package 'drivers/camera_firewire'
+cmake_package 'drivers/fog_kvh'
+cmake_package 'drivers/iCharger'
+cmake_package 'drivers/vicon'
+cmake_package 'drivers/qualisys'
+cmake_package 'drivers/sonar_tritech'
+cmake_package 'drivers/laserscanner_sick'
+cmake_package 'drivers/laser_filter'
+cmake_package 'drivers/camera_ids'
+if !has_ueye_api? # defined in init.rb
+    Autoproj.manifest.add_exclusion "drivers/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+end
+
+##### Image Processing
+cmake_package 'perception/stereo'
+metapackage 'image_processing/stereo', 'perception/stereo'
+cmake_package 'perception/libelas' do |pkg|
+    # Build system from libelas has been patched into a Rock/CMake-based one
+    pkg.depends_on 'base/cmake'
+end
+metapackage 'image_processing/libelas', 'perception/libelas'
+
+##### Planning
+cmake_package 'planning/nav_graph_search'
+cmake_package 'planning/corridor_planner'
+cmake_package 'planning/vfh_star'
+cmake_package 'planning/corridor_navigation'
+cmake_package 'planning/motion_planning_libraries'
+
+##### Localisation and Mapping related packages
+autotools_package 'external/libply' do |pkg|
+    pkg.using[:autoconf] = true
+    pkg.using[:automake] = true
+    pkg.using[:libtool] = true
+    pkg.using[:autoheader] = true
+    if pkg.respond_to?(:automake_flags)
+        pkg.automake_flags = "--add-missing"
+    end
+    pkg.depends_on 'boost'
+    pkg.configureflags << "CFLAGS=-fPIC" << "CXXFLAGS=-fPIC"
+end
+cmake_package 'slam/envire' do |pkg|
+    Autoproj.env_add_path 'RUBYLIB', File.join(pkg.srcdir, 'ruby')
+end
+cmake_package 'slam/pose_ekf'
+cmake_package 'slam/quater_ikf'
+cmake_package 'external/cminpack' do |pkg|
+    pkg.doc_dir = File.join(pkg.srcdir, 'doc')
+    pkg.doc_task {}
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+end
+cmake_package 'slam/flann' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("BUILD_C_BINDINGS", "OFF")
+    pkg.define("BUILD_MATLAB_BINDINGS", "OFF")
+    pkg.define("BUILD_PYTHON_BINDINGS", "OFF")
+end
+Autoproj.add_osdeps_overrides 'flann', :package => 'slam/flann'
+#remove_from_default 'slam/flann' # The debian package is currently broken, so we install flann everwhere on our own currently
+
+cmake_package 'slam/pcl' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE","Release")
+    pkg.define("BUILD_OPENNI","OFF")
+    env_add 'PKG_CONFIG_PATH', File.join(pkg.prefix, 'lib64', 'pkgconfig')
+
+    # Seamlessly migrate from the SVN to the archive. We must delete the svn
+    # directory !
+    if pkg.importer.kind_of?(Autobuild::ArchiveImporter) && File.directory?(File.join(pkg.srcdir, ".svn"))
+        Autoproj.config.declare "UPDATE_PCL_FROM_SVN", "boolean",
+            :doc => ["delete slam/pcl to update to a release tarball ?",
+                "Rock was previously checking out the PCL SVN but just switched to",
+                "using the release tarball. Updating requires the deletion of the",
+                "currently checked out slam/pcl directory.",
+                "Should I do it ? This is required to continue building"],
+            :default => 'yes'
+
+        if Autoproj.config.get("UPDATE_PCL_FROM_SVN")
+            Autoproj.warn "deleting PCL source directory to migrate from the SVN checkout to the release tarball"
+            FileUtils.rm_rf pkg.srcdir
+        else
+            raise ConfigError, "user refused to delete slam/pcl, aborting the build"
+        end
+    end
+end
+remove_from_default 'slam/pcl'
+cmake_package 'slam/hogman' do |pkg|
+    pkg.source_tree_excludes << /doc/
+    pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'html')
+    pkg.doc_task do
+        pkg.in_dir(File.join(pkg.srcdir, 'doc')) do
+            pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "hogman.dox")
+            end
+        end
+    end
+end
+cmake_package 'slam/quater_ukf'
+cmake_package 'slam/odometry'
+cmake_package 'slam/graph_slam'
+cmake_package 'slam/g2o' do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE", "RelWithDebInfo")
+    pkg.define("CMAKE_RELWITHDEBINFO_POSTFIX", "")
+    pkg.source_tree_excludes << /doc\/doxygen/
+    pkg.doc_dir = File.join(pkg.srcdir, 'doc', 'doxygen', 'html')
+    pkg.doc_task do
+        pkg.in_dir(File.join(pkg.srcdir, 'doc', 'doxygen')) do
+            pkg.progress_start "generating documentation for %s", :done_message => 'generated documentation for %s' do
+                Autobuild::Subprocess.run(pkg, 'doc', Autobuild.tool(:doxygen), "doxy.config")
+            end
+        end
+    end
+end
+
+#### Multiagent related packages
+cmake_package 'multiagent/fipa_acl' do |pkg|
+    pkg.define "RUBY_EXECUTABLE", Autoproj.config.ruby_executable
+end
+
+autotools_package 'external/kdtree'
+remove_from_default 'external/kdtree'
+Autoproj.add_osdeps_overrides 'libkdtree', :package => 'external/kdtree'
+
+cmake_package 'external/box2d' do |pkg|
+    pkg.define("BOX2D_BUILD_SHARED", "ON")
+    pkg.define("BOX2D_BUILD_STATIC", "OFF")
+    pkg.define("BOX2D_BUILD_EXAMPLES", "OFF")
+end
+remove_from_default 'external/box2d'
+Autoproj.add_osdeps_overrides 'box2d', :package => 'external/box2d'
 
 # There is a problem with GCC and fipa_acl. Three of its files are taking
 # something north of 3G to compile ... each
