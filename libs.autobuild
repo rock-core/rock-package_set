@@ -39,6 +39,7 @@ cmake_package 'tools/graph_analysis' do |pkg|
 end
 bundle_package 'bundles/rock_multiagent'
 cmake_package 'planning/exploration'
+cmake_package 'planning/sbpl_spline_primitives'
 cmake_package 'drivers/imu_an_spatial'
 cmake_package 'drivers/gps_base'
 cmake_package 'gui/vizkit3d_pcl'
