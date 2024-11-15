@@ -231,6 +231,18 @@ version_control:
     - drivers/aria:
         type: archive
         url: http://robots.mobilerobots.com/ARIA/download/archives/ARIA-2.7.5+gcc4.3.tgz
+        update_cached_file: false
+        patches: $AUTOPROJ_SOURCE_DIR/patches/aria_pc.patch
+
+    - drivers/phidgets:
+        type: archive
+        url: http://www.phidgets.com/downloads/libraries/libphidget_2.1.8.20130320.tar.gz
+        update_cached_file: false
+        patches: $AUTOPROJ_SOURCE_DIR/patches/phidgets.patch
+
+    - tools/rbind:
+        type: git
+        url: https://github.com/D-Alex/rbind.git
         push_to: git@github.com:D-Alex/rbind.git
 
     - drivers/libusb:
