@@ -1,6 +1,8 @@
 #800 IMPORTANT: new packages must be added at the top of this file
 
-cmake_package "database/redis/hiredis"
+cmake_package "database/redis/hiredis" do |pkg|
+    pkg.define("CMAKE_BUILD_TYPE", "Release")
+end
 
 cmake_package 'slam/pclomp'
 cmake_package 'slam/slam3d' do |pkg|
