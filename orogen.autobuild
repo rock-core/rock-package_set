@@ -21,132 +21,121 @@ orogen_package 'control/orogen/robot_frames'
 orogen_package 'control/orogen/joint_tools'
 orogen_package 'gui/orogen/qt_base'
 
-    in_flavor 'master' do
-        orogen_package 'drivers/orogen/kinect2'
-        orogen_package 'slam/orogen/threed_odometry'
-        orogen_package 'multiagent/orogen/fipa_services'
-        orogen_package 'slam/orogen/gmapping'
-        orogen_package 'perception/orogen/projection'
-        metapackage 'image_processing/orogen/projection', 'perception/orogen/projection'
-        orogen_package 'perception/orogen/virtual_view'
-        metapackage 'image_processing/orogen/virtual_view', 'perception/orogen/virtual_view'
-        orogen_package 'control/orogen/trajectory_generation'
-        orogen_package 'control/orogen/cart_ctrl_wdls'
-        orogen_package 'control/orogen/auv_raw_command_converter'
+orogen_package 'drivers/orogen/kinect2'
+orogen_package 'slam/orogen/threed_odometry'
+orogen_package 'multiagent/orogen/fipa_services'
+orogen_package 'slam/orogen/gmapping'
+orogen_package 'perception/orogen/projection'
+metapackage 'image_processing/orogen/projection', 'perception/orogen/projection'
+orogen_package 'perception/orogen/virtual_view'
+metapackage 'image_processing/orogen/virtual_view', 'perception/orogen/virtual_view'
+orogen_package 'control/orogen/trajectory_generation'
+orogen_package 'control/orogen/cart_ctrl_wdls'
+orogen_package 'control/orogen/auv_raw_command_converter'
 
-        not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
-            orogen_package 'perception/orogen/video_streamer'
-            metapackage 'image_processing/orogen/video_streamer', 'perception/orogen/video_streamer'
-        end
-        orogen_package 'perception/orogen/viso2'
-        metapackage 'image_processing/orogen/viso2', 'perception/orogen/viso2'
+not_on %w{ubuntu 10.04}, %w{ubuntu 10.10}, %w{ubuntu 11.04}, %w{ubuntu 11.10} do
+    orogen_package 'perception/orogen/video_streamer'
+    metapackage 'image_processing/orogen/video_streamer', 'perception/orogen/video_streamer'
+end
+orogen_package 'perception/orogen/viso2'
+metapackage 'image_processing/orogen/viso2', 'perception/orogen/viso2'
 
-	orogen_package 'control/orogen/torque_estimator'
+orogen_package 'control/orogen/torque_estimator'
 
-        orogen_package 'slam/orogen/north_seeker'
-	orogen_package 'slam/orogen/terrain_estimator'
-        orogen_package 'slam/orogen/eslam'
-        orogen_package 'slam/orogen/local_mapper'
-        orogen_package 'slam/orogen/localization'
-        orogen_package 'slam/orogen/pose_estimation'
+orogen_package 'slam/orogen/north_seeker'
+orogen_package 'slam/orogen/terrain_estimator'
+orogen_package 'slam/orogen/eslam'
+orogen_package 'slam/orogen/local_mapper'
+orogen_package 'slam/orogen/localization'
+orogen_package 'slam/orogen/pose_estimation'
 
-        orogen_package 'planning/orogen/pddl_planner'
-	orogen_package 'planning/orogen/simple_path_planner'
-        orogen_package 'planning/orogen/heading_calculator'
-	orogen_package 'planning/orogen/traversability'
+orogen_package 'planning/orogen/pddl_planner'
+orogen_package 'planning/orogen/simple_path_planner'
+orogen_package 'planning/orogen/heading_calculator'
+orogen_package 'planning/orogen/traversability'
 
-        orogen_package 'drivers/orogen/phidgets'
-	orogen_package 'drivers/orogen/imu_stim300'
-        metapackage 'drivers/orogen/stim300', 'drivers/orogen/imu_stim300'
-	orogen_package 'drivers/orogen/imu_imar'
-        metapackage 'drivers/orogen/imar', 'drivers/orogen/imu_imar'
-        orogen_package 'drivers/orogen/alt_imagenex'
-        orogen_package 'drivers/orogen/ctd_seabird'
-        orogen_package 'drivers/orogen/mbeam_imagenex'
-        orogen_package 'drivers/orogen/pressure_paroscientific'
-        orogen_package 'drivers/orogen/ucm_schilling'
-        orogen_package 'drivers/orogen/act_schilling'
-        orogen_package 'drivers/orogen/phins_ixsea'
-        orogen_package 'drivers/orogen/velodyne_lidar'
-        orogen_package 'drivers/orogen/tofcamera_mesasr'
-        orogen_package 'drivers/orogen/camera_aravis'
-    end
+orogen_package 'drivers/orogen/phidgets'
+orogen_package 'drivers/orogen/imu_stim300'
+metapackage 'drivers/orogen/stim300', 'drivers/orogen/imu_stim300'
+orogen_package 'drivers/orogen/imu_imar'
+metapackage 'drivers/orogen/imar', 'drivers/orogen/imu_imar'
+orogen_package 'drivers/orogen/alt_imagenex'
+orogen_package 'drivers/orogen/ctd_seabird'
+orogen_package 'drivers/orogen/mbeam_imagenex'
+orogen_package 'drivers/orogen/pressure_paroscientific'
+orogen_package 'drivers/orogen/ucm_schilling'
+orogen_package 'drivers/orogen/act_schilling'
+orogen_package 'drivers/orogen/phins_ixsea'
+orogen_package 'drivers/orogen/velodyne_lidar'
+orogen_package 'drivers/orogen/tofcamera_mesasr'
+orogen_package 'drivers/orogen/camera_aravis'
 
-    #################################################################################"
-    #################################################################################"
-    ##
-    ## Do not add anything below this line unless you know what you are doing
-    ## New packages MUST be added at the top of the file, just after the "if
-    ## package_enabled" line
-    ##
-    #################################################################################"
-    #################################################################################"
 
-    in_flavor 'master', 'stable' do
-        orogen_package 'drivers/orogen/kinect'
-        orogen_package 'drivers/orogen/dps_desertstar_ssp1'
-        orogen_package 'drivers/orogen/video_streamer_vlc'
-        orogen_package 'simulation/orogen/imumodel'
-        orogen_package 'drivers/orogen/servo_dynamixel'
-        orogen_package 'control/orogen/motor_controller'
-        orogen_package 'control/orogen/joint_dispatcher'
-        orogen_package 'data_processing/orogen/statistics'
-        orogen_package 'data_processing/orogen/type_to_vector'
-    	orogen_package 'control/orogen/auv_rel_pos_controller'
-    	orogen_package 'control/orogen/auv_control'
-        orogen_package 'control/orogen/kdl'
-        orogen_package 'drivers/orogen/ptu_directedperception'
-        orogen_package 'drivers/orogen/aria'
-        orogen_package 'control/orogen/trajectory_follower'
-        orogen_package 'control/orogen/waypoint_navigation'
-        orogen_package 'control/orogen/skid4_control'
 
-        orogen_package 'drivers/orogen/canbus'
-        orogen_package 'drivers/orogen/gps'
-        orogen_package 'drivers/orogen/hokuyo'
-        orogen_package 'drivers/orogen/xsens_imu'
-        orogen_package 'drivers/orogen/dynamixel'
-        orogen_package 'drivers/orogen/controldev'
-        orogen_package 'drivers/orogen/controldev_websocket'
-        orogen_package 'drivers/orogen/parport'
-        orogen_package 'drivers/orogen/wifimon'
-        orogen_package 'drivers/orogen/camera_base'
-        orogen_package 'drivers/orogen/camera_prosilica'
-        orogen_package 'drivers/orogen/fog_kvh'
-        orogen_package 'drivers/orogen/dvl_teledyne'
-        orogen_package 'drivers/orogen/camera_usb'
-	orogen_package 'drivers/orogen/camera_firewire'
+orogen_package 'drivers/orogen/kinect'
+orogen_package 'drivers/orogen/dps_desertstar_ssp1'
+orogen_package 'drivers/orogen/video_streamer_vlc'
+orogen_package 'simulation/orogen/imumodel'
+orogen_package 'drivers/orogen/servo_dynamixel'
+orogen_package 'control/orogen/motor_controller'
+orogen_package 'control/orogen/joint_dispatcher'
+orogen_package 'data_processing/orogen/statistics'
+orogen_package 'data_processing/orogen/type_to_vector'
+orogen_package 'control/orogen/auv_rel_pos_controller'
+orogen_package 'control/orogen/auv_control'
+orogen_package 'control/orogen/kdl'
+orogen_package 'drivers/orogen/ptu_directedperception'
+orogen_package 'drivers/orogen/aria'
+orogen_package 'control/orogen/trajectory_follower'
+orogen_package 'control/orogen/waypoint_navigation'
+orogen_package 'control/orogen/skid4_control'
+
+orogen_package 'drivers/orogen/canbus'
+orogen_package 'drivers/orogen/gps'
+orogen_package 'drivers/orogen/hokuyo'
+orogen_package 'drivers/orogen/xsens_imu'
+orogen_package 'drivers/orogen/dynamixel'
+orogen_package 'drivers/orogen/controldev'
+orogen_package 'drivers/orogen/controldev_websocket'
+orogen_package 'drivers/orogen/parport'
+orogen_package 'drivers/orogen/wifimon'
+orogen_package 'drivers/orogen/camera_base'
+orogen_package 'drivers/orogen/camera_prosilica'
+orogen_package 'drivers/orogen/fog_kvh'
+orogen_package 'drivers/orogen/dvl_teledyne'
+orogen_package 'drivers/orogen/camera_usb'
+orogen_package 'drivers/orogen/camera_firewire'
 #	orogen_package 'drivers/orogen/gpsd_client' #same functionallity like gps, but planned to put gps funcionallity in this, and create generic gps command
-    	orogen_package 'drivers/orogen/vicon'
-    	orogen_package 'drivers/orogen/camera_v4l'
-    	orogen_package 'drivers/orogen/sonar_tritech'
-    	orogen_package 'drivers/orogen/laserscanner_sick'
-    	orogen_package 'drivers/orogen/qualisys'
-	orogen_package 'drivers/orogen/laser_filter'
-    	orogen_package 'drivers/orogen/camera_ids'
-    	if !has_ueye_api?
-    	    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
-    	end
+orogen_package 'drivers/orogen/vicon'
+orogen_package 'drivers/orogen/camera_v4l'
+orogen_package 'drivers/orogen/sonar_tritech'
+orogen_package 'drivers/orogen/laserscanner_sick'
+orogen_package 'drivers/orogen/qualisys'
+orogen_package 'drivers/orogen/laser_filter'
+orogen_package 'drivers/orogen/camera_ids'
+if !has_ueye_api?
+    Autoproj.manifest.add_exclusion "drivers/orogen/camera_ids", "the uEye Linux SDK needed for camera_ids is not installed!. Install it manually: http://www.ids-imaging.de/drivers.php"
+end
 
-        orogen_package 'drivers/orogen/taskmon'
+orogen_package 'drivers/orogen/taskmon'
 
-	orogen_package 'slam/orogen/orientation_estimator'
-	orogen_package 'slam/orogen/envire'
-        orogen_package 'slam/orogen/graph_slam'
-    	orogen_package 'slam/orogen/odometry'
-    	orogen_package 'slam/orogen/tilt_scan'
+orogen_package 'slam/orogen/orientation_estimator'
+orogen_package 'slam/orogen/envire'
+orogen_package 'slam/orogen/graph_slam'
+orogen_package 'slam/orogen/odometry'
+orogen_package 'slam/orogen/tilt_scan'
 
-        orogen_package 'perception/orogen/image_preprocessing'
-        metapackage 'image_processing/orogen/image_preprocessing', 'perception/orogen/image_preprocessing'
-        orogen_package 'perception/orogen/stereo'
-        metapackage 'image_processing/orogen/stereo', 'perception/orogen/stereo'
+orogen_package 'perception/orogen/image_preprocessing'
+metapackage 'image_processing/orogen/image_preprocessing', 'perception/orogen/image_preprocessing'
+orogen_package 'perception/orogen/stereo'
+metapackage 'image_processing/orogen/stereo', 'perception/orogen/stereo'
 
-	orogen_package 'planning/orogen/corridor_navigation'
-        orogen_package 'planning/orogen/corridor_planner' do |pkg|
-            pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
-        end
+orogen_package 'planning/orogen/corridor_navigation'
+orogen_package 'planning/orogen/corridor_planner' do |pkg|
+    pkg.remove_obsolete_installed_file "share", "typelib", "ruby", "corridor_planner.rb"
+end
 
-        orogen_package 'planning/orogen/motion_planning_libraries'
-    end
+orogen_package 'planning/orogen/motion_planning_libraries'
+
 
 create_metapackages
