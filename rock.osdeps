@@ -490,6 +490,12 @@ osgEarth:
     opensuse: nonexistent
     gentoo: nonexistent
 
+planning/ompl:
+    ubuntu:
+        '16.04,18.04': nonexistent  # did not check Ubuntu versions before 20.04
+        default: libompl-dev
+    default: nonexistent # did not check other distros
+
 png++:
     debian,ubuntu: libpng++-dev
     gentoo: media-libs/libpng
