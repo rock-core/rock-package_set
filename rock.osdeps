@@ -467,7 +467,7 @@ muparser:
     gentoo: dev-cpp/muParser
 
 ncurses:
-    debian,ubuntu: libncurses5-dev
+    debian,ubuntu: libncurses-dev
     gentoo: sys-libs/ncurses
     fedora,opensuse: ncurses-devel
     arch,manjarolinux: ncurses
