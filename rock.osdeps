@@ -181,6 +181,10 @@ freetype:
     ubuntu, debian: libfreetype6-dev
     gentoo: media-libs/freetype
 
+frei0r-plugins:
+    ubuntu, debian: frei0r-plugins
+    gentoo: media-plugins/frei0r-plugins
+
 gawk:
     debian,ubuntu: gawk
     gentoo: sys-apps/gawk
