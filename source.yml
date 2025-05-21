@@ -314,9 +314,8 @@ version_control:
             - [$AUTOPROJ_SOURCE_DIR/patches/viso2-remove-unused-xmmintr-include.patch, 1]
 
     - external/lemon:
-      type: archive
-      url: http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
-      update_cached_file: false
+      github: The-OpenROAD-Project/lemon-graph
+      tag: 1.3.1
       patches:
             - $AUTOPROJ_SOURCE_DIR/patches/lemon_cmake.patch
 
