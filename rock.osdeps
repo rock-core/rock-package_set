@@ -266,7 +266,7 @@ gstreamer:
     gentoo: media-libs/gstreamer
 
 gstreamer-plugins-bad:
-    ubuntu:
+    ubuntu,debian:
         - gstreamer1.0-plugins-bad
     gentoo: media-libs/gst-plugins-bad
 
