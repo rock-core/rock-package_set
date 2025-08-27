@@ -291,6 +291,7 @@ in_flavor 'master', 'stable' do
         # this will prevent the ompl-CMakeLists from spawning a browser to
         # register...
         pkg.define("OMPL_REGISTRATION","Off")
+        pkg.define("OMPL_BUILD_DEMOS", "Off")
     end
     metapackage 'external/ompl', 'planning/ompl'
     cmake_package 'external/aruco' do |pkg|
@@ -329,7 +330,9 @@ in_flavor 'master', 'stable' do
     metapackage 'external/freenect', 'drivers/freenect'
 
 
-    cmake_package 'control/urdfdom'
+    cmake_package 'control/urdfdom' do |pkg| 
+        pkg.define "BUILD_TESTING", "OFF"
+    end
     cmake_package 'tools/ignition-math2'
     cmake_package 'control/sdformat'
     cmake_package 'control/urdfdom_headers'
