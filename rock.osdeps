@@ -386,8 +386,8 @@ libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
         '14.04,14.10,15.04,15.10': libqglviewer-dev
-        '20.04': nonexistent
-        default: libqglviewer-dev-qt4
+        '16.04,18.04': libqglviewer-qt4-dev
+        default: nonexistent
     debian:
         '7.3':   libqglviewer-qt4-dev
         'jessie': libqglviewer-dev
@@ -398,7 +398,7 @@ libqglviewer:
 
 libqglviewer5:
     ubuntu:
-        '20.04': libqglviewer-dev-qt5
+        default: libqglviewer-dev-qt5
 
 libturbojpeg:
     debian:
