@@ -55,6 +55,9 @@ cmake_package 'drivers/canopen_master'
 cmake_package 'control/joint_tools'
 cmake_package 'tools/seasocks' do |pkg|
     pkg.depends_on 'zlib'
+    pkg.define "UNITTESTS", "OFF"
+    pkg.define "COVERAGE", "OFF"
+    pkg.define "SEASOCKS_EXAMPLE_APP", "OFF"
 end
 
 cmake_package 'slam/gtsam' do |pkg| #Georgia Tech Smooth and Mapping
