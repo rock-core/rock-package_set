@@ -79,11 +79,11 @@ version_control:
 
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
-        branch: master
+        branch: rolling
 
     - control/urdfdom:
         github: ros/urdfdom
-        branch: master
+        branch: rolling
 
     - control/sdformat:
         type: archive
