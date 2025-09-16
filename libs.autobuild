@@ -606,7 +606,7 @@ in_flavor 'master', 'stable' do
 
     #### Multiagent related packages
     cmake_package 'multiagent/fipa_acl' do |pkg|
-        pkg.define "RUBY_EXECUTABLE", Autoproj.config.ruby_executable
+        set_cmake_ruby_executable pkg
     end
 
     autotools_package 'external/kdtree'
