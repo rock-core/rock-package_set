@@ -80,10 +80,12 @@ version_control:
     - control/urdfdom_headers:
         github: ros/urdfdom_headers
         branch: rolling
+        tag: 2.0.0
 
     - control/urdfdom:
         github: ros/urdfdom
         branch: rolling
+        tag: 5.0.2
 
     - control/sdformat:
         type: archive
