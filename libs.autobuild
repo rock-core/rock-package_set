@@ -5,6 +5,8 @@ cmake_package "database/redis/hiredis"
 cmake_package 'slam/pclomp'
 cmake_package 'slam/slam3d' do |pkg|
     pkg.define 'BUILD_SHARED_LIBS', 'TRUE'
+    pkg.depends_on 'slam/pclomp'
+    pkg.depends_on 'slam/g2o'
 end
 
 cmake_package 'tools/udt'
