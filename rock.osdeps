@@ -107,6 +107,7 @@ control/sdformat:
         '14.04,14.10,15.04,15.10': nonexistent
         '16.04,16.10,17.04,17.10': libsdformat4-dev
         '18.04,20.04': libsdformat6-dev
+        '24.04': libsdformat15-dev
         default: libsdformat-dev
     debian:
         jessie,wheezy,squeeze: nonexistent
@@ -379,6 +380,7 @@ libproc:
         '12.10,13.04,13.10': libprocps0-dev
         '14.04,14.10,15.04,15.10': libprocps3-dev
         '16.04': libprocps4-dev
+        '24.04': libproc2-dev
         default: libprocps-dev
     fedora,opensuse: procps-devel
     gentoo: sys-process/procps
@@ -512,7 +514,9 @@ proj:
     opensuse: [proj, libproj-devel]
 
 pypy:
-    ubuntu,debian: pypy
+    ubuntu,debian:
+      default: pypy
+      "24.04": pypy3
     gentoo: dev-python/pypy
 
 qhull:

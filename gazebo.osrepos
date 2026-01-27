@@ -1,0 +1,7 @@
+- ubuntu:
+    - noble:  # Ubuntu 24.04 needs the gazebo package repository to install libsdformat
+        - type: repo
+          repo: deb http://packages.osrfoundation.org/gazebo/ubuntu-stable noble main
+        - type: key
+          keyserver: hkp://keyserver.ubuntu.com:80
+          id: 67170598AF249743
