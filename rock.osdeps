@@ -209,6 +209,7 @@ geographic:
     ubuntu:
         '12.04,14.04': libgeographiclib-dev
         '15.10,16.04': libgeographic-dev
+        '24.04':       libgeographiclib-dev
         default:       libgeographic-dev
 
 glog:
