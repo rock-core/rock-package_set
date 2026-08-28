@@ -378,7 +378,8 @@ libproc:
         '12.10,13.04,13.10': libprocps0-dev
         '14.04,14.10,15.04,15.10': libprocps3-dev
         '16.04': libprocps4-dev
-        default: libprocps-dev
+        '18.04,20.04': libprocps-dev
+        default: libproc2-dev
     fedora,opensuse: procps-devel
     gentoo: sys-process/procps
 
