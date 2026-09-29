@@ -568,7 +568,12 @@ soqt5:
         '18.04': nonexistent
 
 soup:
-    ubuntu,debian: libsoup2.4-dev
+    ubuntu:
+        '18.04': libsoup2.4-dev
+        '20.04': libsoup2.4-dev
+        default: libsoup-3.0-dev
+    debian:
+        default: libsoup2.4-dev
     gentoo: net-libs/libsoup:2.4
 
 suitesparse:
