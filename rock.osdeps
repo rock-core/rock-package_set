@@ -385,6 +385,10 @@ libproc:
     fedora,opensuse: procps-devel
     gentoo: sys-process/procps
 
+libproc2:
+    ubuntu:
+        '24.04': libproc2-dev
+
 libqglviewer:
     ubuntu:
         '12.04,12.10,13.04': libqglviewer-qt4-dev
