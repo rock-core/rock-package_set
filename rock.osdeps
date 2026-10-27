@@ -475,14 +475,25 @@ ncurses:
     fedora,opensuse: ncurses-devel
     arch,manjarolinux: ncurses
 
-net-scp: gem
+net-scp:
+    gem: net-scp
+    osdep: openssl-ruby
 
-net-ssh: gem
+net-ssh:
+    gem: net-ssh
+    osdep: openssl-ruby
 
 ode:
     debian,ubuntu: libode-dev
     # opensuse: [libode1, libode-devel] # available in repository games
     gentoo: dev-games/ode
+
+openssl:
+    debian: libssl-dev
+
+openssl-ruby:
+    gem: openssl
+    osdep: openssl
 
 osgEarth:
     debian: [libosgearth-dev]
